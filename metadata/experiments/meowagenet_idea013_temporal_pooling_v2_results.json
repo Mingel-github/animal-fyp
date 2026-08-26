@@ -1,0 +1,133 @@
+{
+  "experiment": "idea013-frozen-standard-ast-temporal-pooling-v2-headmatched",
+  "date": "2026-08-26",
+  "status": "completed_gpu_pilot",
+  "research_question": "Does learned temporal pooling outperform matched-capacity mean pooling when standard AST is frozen?",
+  "inputs": {
+    "protocol_id": "meowagenet-locked-v1",
+    "protocol_config_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "nested_roles_sha256": "eae720797e663d16694b71082038a51a27ef467e7b9177f6dbda0931936f0bde",
+    "frozen_temporal_token_sha256": "2599cbc3edf836597e893d2fdd2d18bfce38522b71f049e5cbbfec5e536c3920",
+    "temporal_extraction_summary_sha256": "4c4113a14274e7a910526bca7dc85fe304b96ad03e6c560302d81daa105a509f",
+    "calls": 792,
+    "cats": 111,
+    "fbank_segments": 843,
+    "temporal_tokens": 5842,
+    "outer_folds": 4
+  },
+  "temporal_representation": {
+    "encoder": "frozen MIT AudioSet standard AST",
+    "patch_grid": [12, 12],
+    "frequency_pooling": "mean over 12 frequency positions",
+    "mask": "retain time patches with at least 50 percent real-fbank overlap; keep at least one per segment",
+    "call_token_count_range": [1, 72],
+    "median_call_token_count": 7
+  },
+  "training": {
+    "batch_size": 128,
+    "optimizer": "Adamax",
+    "learning_rate": 0.003109800273709165,
+    "max_epochs": 500,
+    "early_stopping_monitor": "inner validation call-level cross entropy",
+    "early_stopping_patience": 30,
+    "head": "768-128 ReLU-BatchNorm-Dropout-3",
+    "attention_dimensions": 64,
+    "initialization_control": {
+      "shared_head_identical_across_modes": true,
+      "mean_capacity_starts_as_identity": true,
+      "gated_attention_starts_as_uniform_mean": true,
+      "maximum_initial_logit_difference": 0.0
+    }
+  },
+  "results": {
+    "mean": {
+      "macro_f1": 0.6222222222222222,
+      "balanced_accuracy": 0.6891840607210625,
+      "quadratic_weighted_kappa": 0.5811320754716981,
+      "recall_kitten": 0.8,
+      "recall_adult": 0.532258064516129,
+      "recall_senior": 0.7352941176470589,
+      "correct_animals": 70,
+      "best_epochs": [1, 2, 1, 1],
+      "fold_macro_f1": [0.6671146953405017, 0.5905797101449274, 0.6651791751183231, 0.583934583934584],
+      "trainable_parameters": 99075
+    },
+    "mean_capacity": {
+      "macro_f1": 0.6329411001977374,
+      "balanced_accuracy": 0.6812776723592663,
+      "quadratic_weighted_kappa": 0.5900541097655243,
+      "recall_kitten": 0.8,
+      "recall_adult": 0.5967741935483871,
+      "recall_senior": 0.6470588235294118,
+      "correct_animals": 71,
+      "best_epochs": [1, 6, 1, 1],
+      "fold_macro_f1": [0.7083333333333334, 0.6100689434022767, 0.7302867383512545, 0.5572463768115942],
+      "trainable_parameters": 198211
+    },
+    "gated_attention": {
+      "macro_f1": 0.6031626031626032,
+      "balanced_accuracy": 0.6740037950664136,
+      "quadratic_weighted_kappa": 0.544794952681388,
+      "recall_kitten": 0.8,
+      "recall_adult": 0.5161290322580645,
+      "recall_senior": 0.7058823529411765,
+      "correct_animals": 68,
+      "best_epochs": [1, 3, 1, 1],
+      "fold_macro_f1": [0.6603174603174603, 0.5615942028985507, 0.7019607843137255, 0.5211352657004832],
+      "trainable_parameters": 197572
+    },
+    "length_only": {
+      "macro_f1": 0.25414277149999437,
+      "balanced_accuracy": 0.2580012650221379,
+      "quadratic_weighted_kappa": -0.212612069615008,
+      "correct_animals": 32
+    }
+  },
+  "paired_stratified_animal_bootstrap": {
+    "repeats": 2000,
+    "seed": 20260826,
+    "mean_capacity_minus_mean": {
+      "observed_macro_f1_difference": 0.010718877975515184,
+      "ci_95": [-0.0394360003201661, 0.05762384702036728]
+    },
+    "gated_attention_minus_mean": {
+      "observed_macro_f1_difference": -0.01905961905961906,
+      "ci_95": [-0.06500547494399143, 0.025242496405713036]
+    },
+    "gated_attention_minus_mean_capacity": {
+      "observed_macro_f1_difference": -0.029778497035134244,
+      "ci_95": [-0.07864957648834184, 0.020230791138035636]
+    }
+  },
+  "attention_diagnostics": {
+    "mean_normalized_entropy": 0.9990135849566681,
+    "median_normalized_entropy": 0.9994621641777077,
+    "mean_maximum_weight": 0.21211496603821,
+    "spearman_duration_vs_concentration": 0.12833050495706746,
+    "spearman_real_overlap_vs_attention_lift": 0.20104294072107048,
+    "interpretation": "attention remained close to uniform and learned only a small preference for fully real patches"
+  },
+  "decision": {
+    "idea_013": "completed as an aggregation diagnostic; gated temporal selection is not a performance candidate under the current protocol",
+    "retained_observation": "matched residual head capacity gives a small positive point estimate",
+    "next_route": "IDEA-003 ordinal learning on fixed VGGish embeddings"
+  },
+  "integrity": {
+    "unique_calls_per_mode": 792,
+    "unique_animals_per_mode": 111,
+    "unique_attention_tokens": 5842,
+    "one_outer_test_fold_per_animal": true,
+    "probabilities_sum_to_one": true,
+    "attention_weights_sum_to_one_per_call": true,
+    "summary_sha256": "932b4bf8fe030072aa50c0b3bc251575b1ac08a78425343fc5e8f33546d06d13",
+    "attention_csv_sha256": "65051806bbde5898008a6de4e2317cf31c73bd7d933e096e4b35e709b54197e6",
+    "training_script_sha256": "c3a7ffe5a3fe6fc7b0b55c3a99f09202b4407fdb331098077bf7d185276b1b64",
+    "extraction_script_sha256": "15a1352947aabcf3d6088e508fbda4044c295ad558110cb007477157c8f8a50f"
+  },
+  "artifacts": {
+    "summary": "runs/idea013_temporal_pooling_v2_headmatched/summary.json",
+    "attention_weights": "runs/idea013_temporal_pooling_v2_headmatched/gated_attention_token_weights.csv",
+    "temporal_tokens": "runs/ast_temporal_tokens_v1/ast_standard_temporal_tokens.npz",
+    "report": "reports/05_IDEA-013_temporal_pooling_results.md"
+  }
+}

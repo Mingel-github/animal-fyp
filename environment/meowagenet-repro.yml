@@ -1,9 +1,10 @@
 name: meowagenet-repro
 channels:
-  - defaults
+  - conda-forge
 dependencies:
   # Versions reported in Table 6 of the paper.
   - python=3.10.12
+  - ffmpeg
   - pip
   - pip:
       - tensorflow==2.15.0
@@ -21,3 +22,14 @@ dependencies:
       - audiomentations==0.34.1
       - jupyterlab==4.0.9
       - ipykernel==6.27.1
+
+      # CUDA-enabled AST dependencies for the RTX 4060 Ti rerun.
+      # The original 2026-08-25 pilot used the CPU-only builds; this recipe was
+      # corrected on 2026-08-26 after the NVIDIA GPU was re-audited.
+      - --extra-index-url=https://download.pytorch.org/whl/cu121
+      - torch==2.2.2+cu121
+      - torchaudio==2.2.2+cu121
+      - transformers==4.48.3
+      - huggingface-hub==0.28.1
+      - safetensors==0.5.2
+      - pytest==7.4.3

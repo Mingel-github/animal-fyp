@@ -1,0 +1,116 @@
+{
+  "experiment": "ast-standard-finetuning-v1",
+  "date": "2026-08-26",
+  "status": "completed_gpu_pilot",
+  "scope": "Compare frozen, last-two-transformer-block, and full standard-AST fine-tuning under one PyTorch recipe; this does not replace the locked TensorFlow baseline.",
+  "hardware": {
+    "device": "NVIDIA GeForce RTX 4060 Ti",
+    "torch": "2.2.2+cu121",
+    "cuda_runtime": "12.1",
+    "mixed_precision": "fp16"
+  },
+  "inputs": {
+    "protocol_id": "meowagenet-locked-v1",
+    "protocol_config_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "nested_roles_sha256": "eae720797e663d16694b71082038a51a27ef467e7b9177f6dbda0931936f0bde",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "frozen_standard_ast_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "calls": 792,
+    "cats": 111,
+    "outer_folds": 4
+  },
+  "training": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "geometry": "standard frequency_stride=10, time_stride=10",
+    "segment_pooling": "mean AST pooler_output per call before MLP",
+    "head": "768-128 ReLU-BatchNorm-Dropout-3",
+    "optimizer": "Adamax",
+    "encoder_learning_rate": 0.00001,
+    "head_learning_rate": 0.003109800273709165,
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_clip": 1.0,
+    "max_epochs": 50,
+    "early_stopping_patience": 8,
+    "early_stopping_monitor": "inner validation call-level cross entropy",
+    "outer_retrain_rule": "reinitialize and train on train+validation calls for the selected best epoch"
+  },
+  "results": {
+    "frozen": {
+      "macro_f1": 0.725971273734639,
+      "balanced_accuracy": 0.7695973012861058,
+      "quadratic_weighted_kappa": 0.6791064388961892,
+      "recall_kitten": 0.8666666666666667,
+      "recall_adult": 0.6774193548387096,
+      "recall_senior": 0.7647058823529411,
+      "correct_animals": 81,
+      "best_epochs": [3, 11, 1, 2],
+      "fold_macro_f1": [0.8125, 0.6536945812807883, 0.8099529780564264, 0.6251207729468599],
+      "trainable_parameters": 99075,
+      "peak_vram_gib": 0.018846988677978516
+    },
+    "last2": {
+      "macro_f1": 0.733774722010016,
+      "balanced_accuracy": 0.7563145688382881,
+      "quadratic_weighted_kappa": 0.6592241138710577,
+      "recall_kitten": 0.8666666666666667,
+      "recall_adult": 0.7258064516129032,
+      "recall_senior": 0.6764705882352942,
+      "correct_animals": 81,
+      "best_epochs": [3, 7, 1, 2],
+      "fold_macro_f1": [0.7737373737373737, 0.5907151391022359, 0.8472222222222223, 0.7122222222222222],
+      "trainable_parameters": 14276355,
+      "peak_vram_gib": 0.694096565246582
+    },
+    "full": {
+      "macro_f1": 0.7250842561386616,
+      "balanced_accuracy": 0.7306135357368754,
+      "quadratic_weighted_kappa": 0.609460516028147,
+      "recall_kitten": 0.8,
+      "recall_adult": 0.7741935483870968,
+      "recall_senior": 0.6176470588235294,
+      "correct_animals": 81,
+      "best_epochs": [2, 6, 1, 2],
+      "fold_macro_f1": [0.7737373737373737, 0.6013071895424837, 0.7856209150326797, 0.7341269841269841],
+      "trainable_parameters": 85466115,
+      "peak_vram_gib": 2.305145263671875
+    }
+  },
+  "paired_stratified_animal_bootstrap": {
+    "repeats": 2000,
+    "seed": 20260826,
+    "last2_minus_frozen": {
+      "observed_macro_f1_difference": 0.007803448275377045,
+      "ci_95": [-0.034871477365230226, 0.052209657807842334]
+    },
+    "full_minus_frozen": {
+      "observed_macro_f1_difference": -0.000887017595977424,
+      "ci_95": [-0.07067302138262371, 0.06219966335298308]
+    },
+    "full_minus_last2": {
+      "observed_macro_f1_difference": -0.008690465871354469,
+      "ci_95": [-0.06440202217950727, 0.03957460234363432]
+    }
+  },
+  "interpretation": {
+    "last2": "highest macro F1, driven by improved kitten precision and adult recall, with lower senior recall",
+    "frozen": "highest balanced accuracy and QWK; most balanced ordinal error profile",
+    "full": "no aggregate gain and clear validation-loss overfitting; deprioritize",
+    "next_route": "IDEA-013 frozen-backbone temporal pooling",
+    "baseline_policy": "VGGish three-class MLP remains the single baseline; last2 is a candidate method, not another baseline"
+  },
+  "integrity": {
+    "unique_calls_per_mode": 792,
+    "unique_animals_per_mode": 111,
+    "one_outer_test_fold_per_animal": true,
+    "probabilities_sum_to_one": true,
+    "script_sha256": "e3f887fc5750804ef90743588e2a2bd295bb36426161321a1163a331894a6664",
+    "summary_sha256": "a86927fe9782ebd435047b5e1d9297f7d48e48f27fa83f1cf52d8febd06ca7da"
+  },
+  "artifacts": {
+    "summary": "runs/ast_finetuning_v1/summary.json",
+    "predictions": "runs/ast_finetuning_v1/*_call_predictions.csv and *_animal_predictions.csv",
+    "report": "reports/04_ast_finetuning_results.md",
+    "script": "scripts/run_ast_finetuning.py"
+  }
+}

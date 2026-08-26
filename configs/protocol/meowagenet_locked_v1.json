@@ -1,0 +1,71 @@
+{
+  "protocol_id": "meowagenet-locked-v1",
+  "frozen_date": "2026-08-25",
+  "dataset": {
+    "source_commit": "3d02295bef1500d2b2500a124596f77010181391",
+    "manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "analysis_filter": "analysis_include == true",
+    "expected_calls": 792,
+    "expected_cats": 111,
+    "excluded_aliases": ["049A"]
+  },
+  "labels": ["kitten", "adult", "senior"],
+  "splits": {
+    "outer_folds": 4,
+    "outer_seed": 42,
+    "inner_validation_fraction": 0.2,
+    "inner_seed_base": 4200,
+    "stratification_unit": "one row per cat_id",
+    "stratification_label": "age_group"
+  },
+  "evaluation": {
+    "prediction_aggregation": "arithmetic mean of class probabilities within cat_id, then argmax",
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "per_class_recall",
+      "confusion_matrix",
+      "prediction_unit_macro_f1"
+    ],
+    "practical_delta_macro_f1": 0.03
+  },
+  "classifier_head": {
+    "hidden_units": 128,
+    "batch_normalization": true,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.003109800273709165,
+    "batch_size": 128,
+    "max_epochs": 500,
+    "early_stopping_monitor": "val_loss",
+    "early_stopping_patience": 30,
+    "restore_best_weights": true,
+    "class_weight": "balanced",
+    "seed_rule": "42 + outer_fold; identical across representations"
+  },
+  "ast": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "encoder_frozen": true,
+    "sample_rate_hz": 16000,
+    "segment_seconds": 1.28,
+    "segment_hop_seconds": 0.64,
+    "max_length_frames": 128,
+    "num_mel_bins": 128,
+    "patch_size": 16,
+    "segment_pooling": "mean pooled_output embeddings per call",
+    "variants": {
+      "ast_standard": {"frequency_stride": 10, "time_stride": 10},
+      "ast_time_fine": {"frequency_stride": 10, "time_stride": 5},
+      "ast_frequency_fine": {"frequency_stride": 5, "time_stride": 10}
+    },
+    "pretrained_compatibility_rule": "reuse patch projection and encoder weights; resize positional grid by bilinear interpolation only"
+  },
+  "primary_contrasts": [
+    "ast_time_fine - ast_standard",
+    "best frozen AST candidate - vggish_mlp"
+  ],
+  "resource_scope": "CPU pilot; frozen pretrained encoders with a shared trainable MLP head"
+}

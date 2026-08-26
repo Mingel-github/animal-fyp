@@ -30,7 +30,7 @@ the reported total is not an independently collected public corpus.
 | OS | Windows 10 Home 22H2, build 19045 | Darwin 21.6.0 | Different but CPU TensorFlow is supported |
 | CPU | AMD Ryzen 5 5625U, 6C/12T | Apple arm64 | Sufficient for the small MLP baseline |
 | RAM | 15.34 GiB | 16 GiB | Matched closely |
-| GPU | AMD Radeon integrated graphics, 0.5 GiB reported adapter memory | 0 GPUs | CPU reproduction is appropriate |
+| GPU | NVIDIA GeForce RTX 4060 Ti, 8188 MiB reported by `nvidia-smi` (driver 595.79); integrated graphics may also be present | 0 GPUs | CUDA-capable GPU is available; the original VGGish/TensorFlow reproduction still ran on CPU |
 | Python | Anaconda 2025.06 base, Python 3.13.5; not on PATH | Python 3.10.12 | Isolated Python 3.10.12 environment created |
 | Git | 2.53.0.windows.2 | Not reported | Ready |
 | Free space on E: | 173.7 GiB at audit time | Not reported | Enough for the approximately 415 MiB upstream repository |
@@ -41,6 +41,15 @@ the reported total is not an independently collected public corpus.
 - CSV integrity: Git blob `947a7c9baa983c18009f2a85bc12d95e51fbd48b`
 - CSV shape: 937 embedding rows, 128 embedding dimensions, `mean_freq`,
   `gender`, `target`, and `cat_id` columns.
+- Official raw-audio audit: 793 `AudioCropped` paths, 55,828,626 bytes,
+  kitten/adult/senior counts 135/405/253, and 112 published IDs. The observed
+  duration range is 0.0844--4.4253 seconds (mean 0.7247 seconds), matching the
+  paper.
+- Exact duplicate audit: `0Y-041A-01.wav` and `0Y-049A.wav` are byte-identical
+  and have identical VGGish features while carrying different IDs. Preserving
+  all official paths gives 793 rows/112 IDs; excluding the later duplicate
+  alias gives 792 unique calls/111 analysis IDs. This reconciles the reported
+  111 numerically, although the upstream materials do not document the rule.
 - Notebook seed generation: NumPy seed 42 produces
   `[7270, 860, 5390, 5191, 5734]`.
 - Evaluation: five seeds, four-fold `StratifiedGroupKFold`, grouped by
@@ -76,9 +85,16 @@ the authors left unspecified.
 - Environment prefix: `environment/.conda/meowagenet-repro`
 - Verified imports: TensorFlow 2.15.0, NumPy 1.25.2, pandas 1.5.3,
   scikit-learn 1.3.2, imbalanced-learn 0.11.0, and Optuna 3.5.0.
-- TensorFlow devices: CPU only, as expected on this host.
+- TensorFlow 2.15 native-Windows environment exposed only the CPU during this
+  reproduction. This does not describe the machine's full hardware: a later
+  `nvidia-smi` re-audit confirmed an RTX 4060 Ti. PyTorch CUDA is used for the
+  AST rerun.
 - The 937-row VGGish CSV loaded successfully and reported 112 distinct
   `cat_id` values.
+- The pinned 793-file `AudioCropped` dataset was downloaded separately from
+  the fixed upstream commit and every file passed Git-blob and SHA-256
+  verification. Versioned manifests are in `metadata/datasets/meowagenet`;
+  raw audio remains ignored under `data/`.
 - A one-epoch categorical-model smoke test used the paper's Dense(128), batch
   normalisation, dropout, Dense(3), Adamax, learning-rate, and batch-size
   settings. The first grouped fold contained 740 training rows and 197

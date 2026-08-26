@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "decision_id": "meowagenet-idea048-candidate-freeze-v1",
+  "date": "2026-08-27",
+  "status": "complete",
+  "stage": "IDEA-048 Stage C candidate freeze",
+  "freeze_config": {
+    "path": "configs/protocol/meowagenet_idea048_candidate_freeze_v1.json",
+    "sha256": "fc99d2320a8df288acc737a7d2e340d38e9db76c0a02641b17f9d606cc5af354"
+  },
+  "decision": {
+    "formal_baseline": "vggish_mlp",
+    "formal_baseline_count": 1,
+    "final_performance_candidate": "ast_probe_guided_adapter",
+    "required_ablations": [
+      "head_only",
+      "adapter_distributed",
+      "adapter_random"
+    ],
+    "idea019_state": "complete",
+    "idea048_stage_c": "complete",
+    "idea048_stage_d": "ready_for_final_comparison"
+  },
+  "selection_basis": {
+    "locked_baseline_animal_macro_f1": 0.6846008299117196,
+    "candidate_animal_macro_f1": 0.7574677253821639,
+    "candidate_minus_baseline_macro_f1": 0.0728668954704443,
+    "practical_delta_macro_f1": 0.03,
+    "candidate_minus_head_only_macro_f1": 0.0314964516475249,
+    "candidate_minus_random_macro_f1": 0.002996180666716808
+  },
+  "source_records": {
+    "locked_results": {
+      "path": "metadata/experiments/meowagenet_locked_v1_results.json",
+      "sha256": "9c91a58baab271cdf3f5ef682e010931d6ff5fb05faacab54b6a66b41cf6646a"
+    },
+    "idea019_results": {
+      "path": "metadata/experiments/meowagenet_idea019_peft_placement_v1_results.json",
+      "sha256": "9d0fd68d2dffc49116a022bd4d0c610d338d1994f268ef9e574f235072954823"
+    }
+  },
+  "report": "reports/08_IDEA-048_candidate_freeze.md",
+  "future_repeat_policy": "Use the frozen v1 recipe and a new run ID. Append repeat evidence without rewriting this decision record.",
+  "next_action": "IDEA-048 final comparison"
+}

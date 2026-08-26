@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "experiment_id": "meowagenet-idea003-ordinal-learning-v1",
+  "date": "2026-08-26",
+  "status": "complete",
+  "protocol_id": "meowagenet-locked-v1",
+  "purpose": "Test whether the correct kitten-adult-senior order improves animal-level ordinal performance on fixed VGGish embeddings.",
+  "artifacts": {
+    "script": "scripts/run_idea003_ordinal_learning.py",
+    "script_sha256": "dc32ca78a03ffa4c03654be7b2515dc7ef3efc4c5b5f6a70106f55e7cd2dad3a",
+    "summary": "runs/idea003_ordinal_learning_v1/summary.json",
+    "summary_sha256": "60ac4f85d9b02b9852650141b5a16425b0546e04abcd325a3a3f6c7c0ba3f747",
+    "report": "reports/06_IDEA-003_ordinal_learning_results.md"
+  },
+  "execution": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4060 Ti",
+    "torch": "2.2.2+cu121",
+    "cuda_runtime": "12.1"
+  },
+  "data_scope": {
+    "prediction_units": 936,
+    "cats": 111,
+    "excluded_aliases": ["049A"],
+    "unit_label_counts": {"kitten": 170, "adult": 460, "senior": 306},
+    "animal_label_counts": {"kitten": 15, "adult": 62, "senior": 34},
+    "outer_test_unit_counts": {"0": 209, "1": 248, "2": 253, "3": 226},
+    "age_boundaries_years": [0.5, 10.0]
+  },
+  "training_control": {
+    "shared_trunk": "StandardScaler -> Dense(128) -> ReLU -> BatchNorm -> Dropout",
+    "optimizer": "Adamax",
+    "learning_rate": 0.003109800273709165,
+    "batch_size": 128,
+    "maximum_epochs": 500,
+    "early_stopping_patience": 30,
+    "class_weight": "balanced",
+    "folds": "four fixed cat-ID-disjoint outer folds with fixed inner validation roles",
+    "initialization": "identical trunk parameters and uniform initial original-class probabilities",
+    "primary_metric": "animal-level quadratic weighted kappa",
+    "bootstrap": "2000 paired stratified animal-level repeats"
+  },
+  "objectives": {
+    "nominal_ce": "three-class cross entropy; within-experiment objective control",
+    "quadratic_cost": "cross entropy plus expected normalized squared class-distance cost",
+    "coral_correct": "shared-score CORAL with kitten < adult < senior",
+    "coral_reversed": "shared-score CORAL with senior < adult < kitten; equivalent axis orientation",
+    "coral_shuffled": "shared-score CORAL with kitten < senior < adult; wrong-neighborhood control"
+  },
+  "animal_level_results": {
+    "locked_vggish_mlp_context": {
+      "macro_f1": 0.6846008299117196,
+      "balanced_accuracy": 0.675416403120388,
+      "quadratic_weighted_kappa": 0.526347127121167
+    },
+    "nominal_ce": {
+      "macro_f1": 0.638095238095238,
+      "balanced_accuracy": 0.6767657600674678,
+      "quadratic_weighted_kappa": 0.5567921162178234,
+      "accuracy": 0.6306306306306306,
+      "ordinal_mae": 0.38738738738738737,
+      "expected_rank_mae": 0.41203993626395835,
+      "extreme_error_rate": 0.018018018018018018,
+      "adult_prediction_rate": 0.38738738738738737,
+      "confusion_matrix": [[11, 3, 1], [6, 33, 23], [1, 7, 26]]
+    },
+    "quadratic_cost": {
+      "macro_f1": 0.6741176470588236,
+      "balanced_accuracy": 0.6718532574320051,
+      "quadratic_weighted_kappa": 0.5396856013116018,
+      "accuracy": 0.6936936936936937,
+      "ordinal_mae": 0.3333333333333333,
+      "expected_rank_mae": 0.40946643509974157,
+      "extreme_error_rate": 0.02702702702702703,
+      "adult_prediction_rate": 0.5135135135135135,
+      "confusion_matrix": [[9, 4, 2], [3, 44, 15], [1, 9, 24]]
+    },
+    "coral_correct": {
+      "macro_f1": 0.5260027007809315,
+      "balanced_accuracy": 0.6299599409656335,
+      "quadratic_weighted_kappa": 0.5434111943587483,
+      "accuracy": 0.5225225225225225,
+      "ordinal_mae": 0.4864864864864865,
+      "expected_rank_mae": 0.41009406761408734,
+      "extreme_error_rate": 0.009009009009009009,
+      "adult_prediction_rate": 0.21621621621621623,
+      "confusion_matrix": [[11, 4, 0], [12, 17, 33], [1, 3, 30]]
+    },
+    "coral_reversed": {
+      "macro_f1": 0.515174331055253,
+      "balanced_accuracy": 0.5962681846932322,
+      "quadratic_weighted_kappa": 0.5026201868307132,
+      "accuracy": 0.5225225225225225,
+      "ordinal_mae": 0.4954954954954955,
+      "expected_rank_mae": 0.41443282109832963,
+      "extreme_error_rate": 0.018018018018018018,
+      "adult_prediction_rate": 0.24324324324324326,
+      "confusion_matrix": [[9, 5, 1], [11, 19, 32], [1, 3, 30]]
+    },
+    "coral_shuffled": {
+      "macro_f1": 0.5516612131890258,
+      "balanced_accuracy": 0.5542905334176681,
+      "quadratic_weighted_kappa": 0.23414740992224292,
+      "accuracy": 0.5945945945945946,
+      "ordinal_mae": 0.4594594594594595,
+      "expected_rank_mae": 0.448975400054861,
+      "extreme_error_rate": 0.05405405405405406,
+      "adult_prediction_rate": 0.6756756756756757,
+      "confusion_matrix": [[10, 0, 5], [3, 49, 10], [1, 26, 7]]
+    }
+  },
+  "paired_contrasts": {
+    "coral_correct_minus_nominal_ce": {
+      "qwk_difference": -0.013380921859075134,
+      "qwk_95_percent_interval": [-0.10418133841202945, 0.08671956397058303],
+      "macro_f1_difference": -0.11209253731430657,
+      "ordinal_mae_difference": 0.09909909909909914,
+      "extreme_error_rate_difference": -0.009009009009009009
+    },
+    "quadratic_cost_minus_nominal_ce": {
+      "qwk_difference": -0.017106514906221615,
+      "qwk_95_percent_interval": [-0.11050652270182587, 0.06690254353134481],
+      "macro_f1_difference": 0.03602240896358555,
+      "ordinal_mae_difference": -0.05405405405405406,
+      "extreme_error_rate_difference": 0.00900900900900901
+    },
+    "coral_correct_minus_coral_shuffled": {
+      "qwk_difference": 0.3092637844365054,
+      "qwk_95_percent_interval": [0.10127074377617624, 0.5250681186793595],
+      "macro_f1_difference": -0.02565851240809436,
+      "ordinal_mae_difference": 0.02702702702702703,
+      "extreme_error_rate_difference": -0.04504504504504505
+    },
+    "coral_reversed_minus_coral_correct": {
+      "qwk_difference": -0.040791007528035106,
+      "qwk_95_percent_interval": [-0.10399398325344618, 0.011161557971997091],
+      "interpretation": "Equivalent axis orientations; independent long GPU optimization paths provide a stability diagnostic rather than a wrong-order test."
+    }
+  },
+  "integrity": {
+    "unique_prediction_units_per_mode": 936,
+    "unique_cats_per_mode": 111,
+    "one_outer_test_fold_per_cat": true,
+    "probabilities_finite_and_nonnegative": true,
+    "maximum_probability_sum_error": 1.4e-7,
+    "cat_id_leakage": false
+  },
+  "conclusion": {
+    "hypothesis_state": "partially_supported",
+    "order_specificity": "Correct ordinal neighborhoods materially outperform a shuffled class order in QWK and extreme-error rate.",
+    "coral_decision": "archive_as_diagnostic_not_final_pipeline_due_to_middle_class_compression",
+    "quadratic_cost_comparison_scope": "Versus the within-experiment nominal CE control, macro F1 and accuracy increase and ordinal MAE decreases, while primary QWK is 0.0171 lower. Versus the locked VGGish baseline, macro F1 is 0.0105 lower, balanced accuracy is 0.0035 lower, and QWK is 0.0133 higher.",
+    "quadratic_cost_decision": "retain_as_optional_loss_ablation_with_a_macro_f1_accuracy_and_ordinal_mae_advantage_over_the_nominal_control_but_no_primary_qwk_gain",
+    "baseline_decision": "keep_the_locked_three_class_vggish_mlp_as_the_single_project_baseline",
+    "next_route": "IDEA-019"
+  }
+}

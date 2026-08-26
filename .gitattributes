@@ -1,0 +1,20 @@
+# Keep hash-addressed text artifacts byte-stable across Windows and Unix clones.
+.gitattributes text eol=lf
+.gitmodules text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.mjs text eol=lf
+*.sha256 text eol=lf
+
+# Generated manifests were hashed with their original byte representation.
+*.csv -text
+
+# Explicit binary formats.
+*.npz -text
+*.npy -text
+*.wav -text
+*.pt -text
+*.pth -text

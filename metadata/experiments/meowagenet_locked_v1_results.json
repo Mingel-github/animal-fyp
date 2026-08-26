@@ -1,0 +1,101 @@
+{
+  "protocol_id": "meowagenet-locked-v1",
+  "scope": "Frozen-encoder pilot with a shared MLP head; the archived 2026-08-25 AST extraction executed on CPU because the environment used CPU-only PyTorch, although an RTX 4060 Ti was present.",
+  "protocol_config_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+  "outer_manifest_sha256": "9d46edbb9f6bd675a88d69c6bfc8dd60d1929b71b1f617144e7efceb9202ae38",
+  "nested_roles_sha256": "eae720797e663d16694b71082038a51a27ef467e7b9177f6dbda0931936f0bde",
+  "ast_checkpoint": {
+    "repository": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "model_safetensors_sha256": "ae0c1e2ad4e1381d851fa9bf298ba13ebc9c5a914cdee2dbe427a6583869924d"
+  },
+  "animal_level_results": {
+    "vggish_mlp": {
+      "macro_f1": 0.6846008299117196,
+      "balanced_accuracy": 0.675416403120388,
+      "quadratic_weighted_kappa": 0.526347127121167,
+      "recall_kitten": 0.6666666666666666,
+      "recall_adult": 0.7419354838709677,
+      "recall_senior": 0.6176470588235294
+    },
+    "ast_standard": {
+      "macro_f1": 0.6525252525252526,
+      "balanced_accuracy": 0.7062618595825428,
+      "quadratic_weighted_kappa": 0.5722901658569275,
+      "recall_kitten": 0.8,
+      "recall_adult": 0.6129032258064516,
+      "recall_senior": 0.7058823529411765
+    },
+    "ast_time_fine": {
+      "macro_f1": 0.646932646932647,
+      "balanced_accuracy": 0.7018342820999367,
+      "quadratic_weighted_kappa": 0.5473911958059416,
+      "recall_kitten": 0.8,
+      "recall_adult": 0.6290322580645161,
+      "recall_senior": 0.6764705882352942
+    },
+    "ast_frequency_fine": {
+      "macro_f1": 0.6166666666666667,
+      "balanced_accuracy": 0.667046173308033,
+      "quadratic_weighted_kappa": 0.4728629579375848,
+      "recall_kitten": 0.8,
+      "recall_adult": 0.6129032258064516,
+      "recall_senior": 0.5882352941176471
+    },
+    "ast_nested_selected": {
+      "macro_f1": 0.6665649631324689,
+      "balanced_accuracy": 0.7081593927893738,
+      "quadratic_weighted_kappa": 0.5432098765432098,
+      "recall_kitten": 0.8,
+      "recall_adult": 0.6774193548387096,
+      "recall_senior": 0.6470588235294118
+    }
+  },
+  "nested_selection_by_outer_fold": {
+    "0": "ast_standard",
+    "1": "ast_time_fine",
+    "2": "ast_frequency_fine",
+    "3": "ast_standard"
+  },
+  "primary_contrasts": {
+    "ast_time_fine_minus_ast_standard": {
+      "macro_f1_difference": -0.0055926055926056595,
+      "bootstrap_95_percent_interval": [-0.05574682790343855, 0.042095275220275175]
+    },
+    "ast_nested_selected_minus_vggish_mlp": {
+      "macro_f1_difference": -0.01803586677925062,
+      "bootstrap_95_percent_interval": [-0.1100444778579689, 0.08053889996267728]
+    }
+  },
+  "practical_delta_macro_f1": 0.03,
+  "gpu_rerun_2026_08_26": {
+    "purpose": "Correct the hardware audit and verify that moving frozen AST extraction from CPU to CUDA does not change the pilot conclusion.",
+    "hardware": "NVIDIA GeForce RTX 4060 Ti, 8188 MiB",
+    "driver": "595.79",
+    "torch": "2.2.2+cu121",
+    "cuda_runtime": "12.1",
+    "ast_output": "runs/ast_locked_v1/gpu_rerun_2026-08-26",
+    "comparison_output": "runs/locked_comparison_gpu_verified_2026-08-26",
+    "inference_seconds": {
+      "ast_standard": 2.8101527000108035,
+      "ast_time_fine": 5.18514379998669,
+      "ast_frequency_fine": 5.21461549999367
+    },
+    "speedup_vs_cpu": {
+      "ast_standard": 15.63,
+      "ast_time_fine": 17.51,
+      "ast_frequency_fine": 17.68
+    },
+    "embedding_difference_vs_cpu": {
+      "ast_standard": {"mean_abs": 2.5361798634548904e-06, "max_abs": 2.6464462280273438e-05},
+      "ast_time_fine": {"mean_abs": 2.6602151592669543e-06, "max_abs": 3.8564205169677734e-05},
+      "ast_frequency_fine": {"mean_abs": 2.6580155463307165e-06, "max_abs": 3.075599670410156e-05}
+    },
+    "all_animal_predicted_labels_identical_to_cpu_run": true,
+    "all_reported_animal_level_metrics_identical_to_cpu_run": true
+  },
+  "result_state": {
+    "idea_012": "no improvement signal in the frozen-encoder pilot",
+    "idea_048": "nested AST point estimate is within the practical-difference band but does not exceed VGGish"
+  }
+}

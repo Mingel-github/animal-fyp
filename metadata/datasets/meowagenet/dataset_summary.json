@@ -1,0 +1,36 @@
+{
+  "audit_date": "2026-08-25",
+  "source_repository": "https://github.com/aster-droide/feline-age-prediction",
+  "source_commit": "3d02295bef1500d2b2500a124596f77010181391",
+  "source_tree_path": "dataset/raw_audio/AudioCropped",
+  "source_tree_git_sha1": "6a10ede379615a52441b0b80e9f4783f7b182ebf",
+  "official_file_rows": 793,
+  "official_total_bytes": 55828626,
+  "unique_audio_contents": 792,
+  "source_cat_tokens": 112,
+  "published_cat_ids": 112,
+  "clean_analysis_file_rows": 792,
+  "clean_analysis_cat_ids": 111,
+  "clean_analysis_embedding_rows": 936,
+  "exact_duplicate_groups": [
+    [
+      "dataset/raw_audio/AudioCropped/0Y-041A-01.wav",
+      "dataset/raw_audio/AudioCropped/0Y-049A.wav"
+    ]
+  ],
+  "manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+  "checksum_list_sha256": "7c1b51ce1a18b1253d3099e9ce3ea034385cd1851ed121a1a5b82a50a20e6a12",
+  "embedding_csv": {
+    "local_source": "data/meowagenet/official-3d02295bef15/embeddings/vggish_looped_embeddings.csv",
+    "source_git_blob_sha1": "947a7c9baa983c18009f2a85bc12d95e51fbd48b",
+    "sha256": "0c4856c12bb3b829a9731b426619d5f82d3510307374e756555fc8eb0349e641",
+    "rows": 937,
+    "dimensions": 128,
+    "published_cat_ids": 112
+  },
+  "interpretation": {
+    "official_dataset_unit": "cropped_call_file",
+    "embedding_row_unit": "VGGish window embedding; one call can produce more than one row",
+    "clean_analysis_rule": "Keep the official 793-row manifest immutable; exclude later copies within exact SHA-256 duplicate groups from clean model training/evaluation."
+  }
+}

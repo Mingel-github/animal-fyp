@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "freeze_id": "meowagenet-idea048-candidate-freeze-v1",
+  "frozen_date": "2026-08-27",
+  "status": "frozen_for_final_comparison",
+  "research_objective": "IDEA-048: improve cat-ID-disjoint MeowAgeNet age classification relative to the single locked VGGish+MLP baseline",
+  "scope": {
+    "stage_c": "complete",
+    "stage_d": "ready",
+    "freeze_meaning": "The candidate identity, selection rule, training recipe, evaluation protocol, and comparison roles are fixed. This is not a claim that all AST backbone parameters are trainable or frozen in every control.",
+    "amendment_rule": "Do not edit this v1 decision after final-comparison results. Any later repetition or material configuration change receives a new run ID and, when needed, a new freeze version."
+  },
+  "formal_comparison": {
+    "primary_contrast": "ast_probe_guided_adapter - vggish_mlp",
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "practical_delta_macro_f1": 0.03,
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "per_class_recall",
+      "confusion_matrix",
+      "trainable_parameters",
+      "training_time",
+      "peak_vram"
+    ]
+  },
+  "baseline": {
+    "pipeline_id": "vggish_mlp",
+    "role": "single formal project baseline",
+    "protocol_id": "meowagenet-locked-v1",
+    "result_record": "metadata/experiments/meowagenet_locked_v1_results.json",
+    "observed_animal_macro_f1": 0.6846008299117196
+  },
+  "candidate": {
+    "pipeline_id": "ast_probe_guided_adapter",
+    "role": "frozen IDEA-048 final performance candidate",
+    "source_experiment": "meowagenet-idea019-peft-placement-v1",
+    "backbone": {
+      "repository": "MIT/ast-finetuned-audioset-10-10-0.4593",
+      "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+      "model_safetensors_sha256": "ae0c1e2ad4e1381d851fa9bf298ba13ebc9c5a914cdee2dbe427a6583869924d",
+      "encoder_blocks": 12,
+      "base_parameters_frozen": true
+    },
+    "input": {
+      "sample_rate_hz": 16000,
+      "segment_seconds": 1.28,
+      "segment_hop_seconds": 0.64,
+      "max_length_frames": 128,
+      "num_mel_bins": 128,
+      "frequency_stride": 10,
+      "time_stride": 10,
+      "patch_size": 16,
+      "position_embedding_adaptation": "bilinear interpolation from the pretrained grid; patch projection weights reused",
+      "segment_to_call_pooling": "arithmetic mean of AST pooler_output embeddings"
+    },
+    "probe_selection": {
+      "scope": "run independently inside each outer fold using only that fold's inner-train cats",
+      "representations": "frozen FP32 call representations from all 12 AST block outputs after final LayerNorm and special-token pooling",
+      "cross_validation": "3-fold stratified cat-level CV",
+      "feature_scaler": "StandardScaler fitted within each probe-training split",
+      "classifier": {
+        "type": "multinomial logistic regression",
+        "C": 1.0,
+        "class_weight": "balanced",
+        "solver": "lbfgs",
+        "max_iter": 2000
+      },
+      "ranking_metric": "mean animal-level macro F1",
+      "selection_rule": "select the top two layers",
+      "tie_break": "shallower one-based layer index",
+      "seed_rule": "19000 + outer_fold",
+      "observed_selected_layers_one_based": {
+        "0": [5, 8],
+        "1": [7, 10],
+        "2": [10, 12],
+        "3": [2, 7]
+      },
+      "observed_layers_are": "audit outputs of the frozen rule, not a manually fixed global placement"
+    },
+    "adapter": {
+      "family": "block-output residual bottleneck adapter",
+      "adapters_per_model": 2,
+      "hidden_size": 768,
+      "bottleneck_width": 32,
+      "operation": "hidden + Linear(32->768, GELU(Linear(768->32, hidden)))",
+      "down_initialization": "Xavier uniform weights and zero bias",
+      "up_initialization": "zero weights and zero bias",
+      "trainable_adapter_parameters": 99904
+    },
+    "classification_head": {
+      "feature_standardization": "mean and standard deviation from the current outer-training frozen AST call embeddings",
+      "architecture": "Linear(768,128) -> ReLU -> BatchNorm -> Dropout -> Linear(128,3)",
+      "dropout": 0.44571035356880917,
+      "labels": ["kitten", "adult", "senior"],
+      "trainable_parameters_with_adapters": 198979
+    },
+    "training": {
+      "optimizer": "Adamax",
+      "adapter_learning_rate": 0.001,
+      "head_learning_rate": 0.003109800273709165,
+      "class_weight": "balanced from training-call labels",
+      "micro_batch_calls": 8,
+      "gradient_accumulation_steps": 4,
+      "gradient_clip_norm": 1.0,
+      "maximum_epochs": 50,
+      "early_stopping_monitor": "inner validation loss",
+      "early_stopping_patience": 8,
+      "outer_retrain_rule": "retrain on outer train plus validation for the selected best epoch count",
+      "model_seed_rule": "42 + outer_fold",
+      "mixed_precision": true
+    }
+  },
+  "evaluation": {
+    "dataset_filter": "analysis_include == true",
+    "calls": 792,
+    "cats": 111,
+    "labels": ["kitten", "adult", "senior"],
+    "outer_folds": 4,
+    "fold_manifest": "splits/meowagenet_outer_folds_v1.csv",
+    "nested_roles": "splits/meowagenet_nested_roles_v1.csv",
+    "cat_id_disjoint": true,
+    "animal_aggregation": "arithmetic mean of call class probabilities within cat_id, then argmax"
+  },
+  "required_ablations": [
+    {
+      "pipeline_id": "head_only",
+      "role": "direct control for the incremental adapter effect under the same PyTorch AST head recipe"
+    },
+    {
+      "pipeline_id": "adapter_distributed",
+      "layers_one_based": [3, 10],
+      "role": "matched-budget cross-depth placement ablation"
+    },
+    {
+      "pipeline_id": "adapter_random",
+      "layers_one_based": [2, 10],
+      "placement_seed": 20260826,
+      "role": "matched-budget control for the unique value of probe guidance"
+    }
+  ],
+  "retained_supporting_results": [
+    "adapter_early",
+    "adapter_middle",
+    "adapter_late",
+    "last_two_block_finetuning",
+    "full_finetuning",
+    "IDEA-013 temporal pooling",
+    "IDEA-003 ordinal learning"
+  ],
+  "development_evidence_at_freeze": {
+    "candidate_animal_macro_f1": 0.7574677253821639,
+    "candidate_balanced_accuracy": 0.7794855576639258,
+    "candidate_quadratic_weighted_kappa": 0.6754692068282562,
+    "candidate_minus_locked_baseline_macro_f1": 0.0728668954704443,
+    "candidate_minus_head_only_macro_f1": 0.0314964516475249,
+    "candidate_minus_random_macro_f1": 0.002996180666716808,
+    "interpretation": "The performance candidate is selected on a clear primary-metric improvement signal. Random and distributed remain necessary ablations because they constrain the placement-mechanism claim."
+  },
+  "frozen_artifacts": {
+    "locked_protocol": {
+      "path": "configs/protocol/meowagenet_locked_v1.json",
+      "sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef"
+    },
+    "outer_folds": {
+      "path": "splits/meowagenet_outer_folds_v1.csv",
+      "sha256": "9d46edbb9f6bd675a88d69c6bfc8dd60d1929b71b1f617144e7efceb9202ae38"
+    },
+    "nested_roles": {
+      "path": "splits/meowagenet_nested_roles_v1.csv",
+      "sha256": "eae720797e663d16694b71082038a51a27ef467e7b9177f6dbda0931936f0bde"
+    },
+    "training_script": {
+      "path": "scripts/run_idea019_peft_placement.py",
+      "sha256": "24ae56543a10108e9bd0728cf4e7e532fcd87073c996b1dc34881f9cab141402"
+    },
+    "layer_extraction_script": {
+      "path": "scripts/extract_ast_layer_embeddings.py",
+      "sha256": "03982cd9f2a87fc6f84f4eeb3725fa07f3a239b475d1979d84cf7645077a5e84"
+    },
+    "idea019_summary": {
+      "path": "runs/idea019_peft_placement_v1/summary.json",
+      "sha256": "3e3ba7d4b5952cf68226ae8d921dcf7ccf9888f8254c8fc2695824d4923cef72",
+      "version_control": "ignored generated artifact; digest retained here"
+    }
+  },
+  "next_action": "Run or designate the IDEA-048 final comparison without changing this candidate recipe; later repetitions are separate versioned evidence."
+}
