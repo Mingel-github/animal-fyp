@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "meowagenet-formal-v2.1-probe-guided-candidate-v1",
+  "protocol_id": "meowagenet-formal-v2.1",
+  "status": "candidate_recipe_before_execution_lock",
+  "candidate_pipeline": "ast_probe_guided_adapter",
+  "core_pipelines": [
+    "vggish_mlp",
+    "ast_head_only",
+    "ast_probe_guided_adapter"
+  ],
+  "seed_rule": "base_model_seed + 10000 * repeat_index + 100 * outer_fold",
+  "vggish_mlp": {
+    "source_recipe": "configs/protocol/meowagenet_locked_v1.json",
+    "features": 128,
+    "head": "128 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.003109800273709165,
+    "batch_size": 128,
+    "maximum_epochs": 500,
+    "early_stopping_patience": 30,
+    "epoch_selection": "minimum inner-validation loss, followed by refit on outer train plus validation for that epoch count",
+    "class_weight": "balanced from the current training units only",
+    "animal_probability_aggregation": "arithmetic mean within cat_id"
+  },
+  "ast_shared": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "geometry": "standard AST 10x10 stride",
+    "segment_to_call_pooling": "arithmetic mean of AST pooler_output embeddings within each call before the classifier head",
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.003109800273709165,
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum inner-validation loss, followed by refit on outer train plus validation for that epoch count",
+    "class_weight": "balanced from the current training calls only",
+    "mixed_precision_on_cuda": true
+  },
+  "ast_head_only": {
+    "backbone": "frozen",
+    "trainable_components": [
+      "classifier_head"
+    ]
+  },
+  "ast_probe_guided_adapter": {
+    "backbone": "frozen except adapters",
+    "adapter_family": "block-output residual bottleneck adapter",
+    "adapters_per_model": 2,
+    "adapter_width": 32,
+    "adapter_learning_rate": 0.001,
+    "initialization": "Xavier down projection and zero-initialized up projection",
+    "layer_probe": {
+      "data_boundary": "inner-train cats only for the current repeat and outer fold",
+      "features": "precomputed call embeddings from each of 12 AST encoder blocks",
+      "classifier": "StandardScaler plus balanced multinomial logistic regression, C=1.0, lbfgs, max_iter=2000",
+      "cross_validation": "three-fold stratified cat-level CV",
+      "selection_metric": "mean animal-level macro F1",
+      "selection_rule": "top two distinct layers with shallower-layer tie break",
+      "seed": "the frozen inner_seed for the current repeat and outer fold"
+    }
+  },
+  "versioned_dependencies": [
+    {
+      "path": "scripts/run_idea019_peft_placement.py",
+      "sha256": "24ae56543a10108e9bd0728cf4e7e532fcd87073c996b1dc34881f9cab141402"
+    },
+    {
+      "path": "scripts/run_ast_finetuning.py",
+      "sha256": "e3f887fc5750804ef90743588e2a2bd295bb36426161321a1163a331894a6664"
+    },
+    {
+      "path": "src/animal_fyp/evaluation.py",
+      "sha256": "9c2ae80c09c65796805f4f74deea5186b25372ef788af361146a35866b7ea464"
+    },
+    {
+      "path": "configs/protocol/meowagenet_locked_v1.json",
+      "sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef"
+    }
+  ],
+  "local_artifacts": [
+    {
+      "path": "data/meowagenet/official-3d02295bef15/embeddings/vggish_looped_embeddings.csv",
+      "sha256": "0c4856c12bb3b829a9731b426619d5f82d3510307374e756555fc8eb0349e641"
+    },
+    {
+      "path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+      "sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7"
+    },
+    {
+      "path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+      "sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399"
+    },
+    {
+      "path": "runs/ast_layer_embeddings_v2_float32/ast_standard_layer_call_embeddings.npz",
+      "sha256": "2d3aa7929d26e53f3ad1bf8fb67734e97693c38377f585d1679e53b95ea4c884"
+    }
+  ],
+  "analysis": {
+    "oof_unit": "one complete 111-cat prediction set per pipeline, split repeat, and base model seed",
+    "primary_metric": "animal-level macro F1",
+    "paired_contrasts": [
+      "ast_probe_guided_adapter - vggish_mlp",
+      "ast_probe_guided_adapter - ast_head_only"
+    ],
+    "hierarchical_bootstrap_repeats": 10000,
+    "hierarchical_bootstrap_seed": 20260827,
+    "hierarchical_resampling": "stratified cats once per replicate, then split repeats and model seeds with replacement; use matched draws for both pipelines"
+  },
+  "scope_boundary": {
+    "inner_only": "train and validate on the nested inner roles without evaluating or exporting outer-test predictions",
+    "formal": "requires a completed execution lock before any outer-test prediction is produced"
+  }
+}

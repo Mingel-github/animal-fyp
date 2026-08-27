@@ -84,6 +84,10 @@ The active execution design is formal v2.1:
 - deterministic split bank: `splits/meowagenet_formal_v2_*`;
 - amendment metadata:
   `metadata/experiments/meowagenet_formal_v2_1_amendment.json`.
+- candidate execution recipe:
+  `configs/experiment/meowagenet_formal_v2_1_probe_guided_candidate_v1.json`;
+- guarded formal runner: `scripts/run_meowagenet_formal_v2_1.py`;
+- inner-only runner smoke record: `reports/11_formal_v2_1_runner_smoke.md`.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
@@ -95,6 +99,11 @@ Formal v2.1 is a pilot-informed repeated internal validation on the same 111
 cats, not an independent external replication. Training and formal comparison
 run in the external experiment environment after the runner passes checks and
 the execution lock is completed.
+
+The runner exposes separate `inner-only` and `formal` scopes. `inner-only`
+trains and validates within the nested development roles and produces no
+outer-test predictions. `formal` requires a completed execution lock whose
+recipe and runner hashes match before outer-test prediction begins.
 
 The prior stage checkpoint remains historical evidence:
 
