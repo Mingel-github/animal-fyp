@@ -81,6 +81,8 @@ The active execution design is formal v2.1:
 - readable amendment: `reports/10_formal_protocol_v2_1_amendment.md`;
 - execution-lock template:
   `configs/protocol/meowagenet_formal_v2_1_execution_lock_template.json`;
+- completed execution lock:
+  `configs/protocol/meowagenet_formal_v2_1_execution_lock.json`;
 - deterministic split bank: `splits/meowagenet_formal_v2_*`;
 - amendment metadata:
   `metadata/experiments/meowagenet_formal_v2_1_amendment.json`.

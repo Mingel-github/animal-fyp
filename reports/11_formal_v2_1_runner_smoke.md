@@ -1,8 +1,8 @@
 # Formal-v2.1 Runner 与 Inner-only Smoke 记录
 
-> 日期：2026-08-27  
-> 基础 Git 提交：`36f2914bf52afc1c3949f8d35dc8d7efc087955d`  
-> 协议：`meowagenet-formal-v2.1`  
+> 日期：2026-08-27
+> 基础 Git 提交：`36f2914bf52afc1c3949f8d35dc8d7efc087955d`
+> 协议：`meowagenet-formal-v2.1`
 > 状态：runner 已通过 inner-only smoke，等待 execution lock 共同确认
 
 ## 1. 本轮完成内容

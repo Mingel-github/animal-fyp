@@ -1,0 +1,62 @@
+{
+  "schema_version": "2.1",
+  "lock_id": "meowagenet-formal-v2.1-execution-lock",
+  "protocol_id": "meowagenet-formal-v2.1",
+  "status": "locked_before_formal_outcomes",
+  "decision_date": "2026-08-28",
+  "formal_outcomes_accessed_before_lock": false,
+  "selected_primary_adapter": {
+    "pipeline_id": "ast_probe_guided_adapter",
+    "recipe_path": "configs/experiment/meowagenet_formal_v2_1_probe_guided_candidate_v1.json",
+    "recipe_sha256": "4b54d98734c80f5089482ed88cd6a137ec512ac5b3b502bbb8d0ccc5a06fba92",
+    "selection_evidence": "IDEA-019 pilot evidence plus a successful inner-only formal-runner smoke; no formal-v2.1 outer-test outcome was accessed"
+  },
+  "selected_repeat_indices": [
+    0,
+    1,
+    2
+  ],
+  "model_seeds": [
+    17,
+    43,
+    101
+  ],
+  "enabled_optional_modules": [],
+  "runner": {
+    "path": "scripts/run_meowagenet_formal_v2_1.py",
+    "git_revision": "83674039c52bd19f3754768d6f7ac90dd36dc3ee",
+    "sha256": "ed3fc855539d37963aa51d17e54f5ce59acba1d023567289b89d5d1f313e6b25"
+  },
+  "environment": {
+    "environment_file": "environment/meowagenet-repro.yml",
+    "environment_file_sha256": "59c65babbd908e7a36c6c0a0493482d060594722b4578e2bc1e4e07290bfc4e1",
+    "operating_system": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.12",
+    "pytorch": "2.2.2+cu121",
+    "tensorflow": "2.15.0",
+    "transformers": "4.48.3",
+    "cuda_runtime": "12.1",
+    "hardware": {
+      "gpu": "NVIDIA GeForce RTX 4060 Ti",
+      "gpu_memory": "8188 MiB",
+      "driver": "595.79",
+      "compute_capability": "8.9"
+    }
+  },
+  "formal_core": {
+    "pipelines": [
+      "vggish_mlp",
+      "ast_head_only",
+      "ast_probe_guided_adapter"
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "complete_oof_evaluations_per_pipeline": 9,
+    "fold_level_fits": 108
+  },
+  "notes": "The lock freezes this formal-v2.1 execution only. Later model ideas remain eligible for separately identified exploratory work or a later protocol. Begin outer-test access only through the locked runner and report every valid result in the selected scope."
+}

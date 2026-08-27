@@ -14,6 +14,12 @@ RECIPE_PATH = (
     / "experiment"
     / "meowagenet_formal_v2_1_probe_guided_candidate_v1.json"
 )
+LOCK_PATH = (
+    REPO_ROOT
+    / "configs"
+    / "protocol"
+    / "meowagenet_formal_v2_1_execution_lock.json"
+)
 
 
 def sha256(path: Path) -> str:
@@ -59,3 +65,27 @@ def test_candidate_recipe_versioned_dependency_hashes_match() -> None:
         path = REPO_ROOT / entry["path"]
         assert path.is_file()
         assert sha256(path) == entry["sha256"]
+
+
+def test_completed_execution_lock_matches_runner_and_recipe() -> None:
+    lock = json.loads(LOCK_PATH.read_text(encoding="utf-8"))
+    assert lock["status"] == "locked_before_formal_outcomes"
+    assert lock["formal_outcomes_accessed_before_lock"] is False
+    assert lock["selected_repeat_indices"] == [0, 1, 2]
+    assert lock["model_seeds"] == [17, 43, 101]
+    assert lock["enabled_optional_modules"] == []
+    assert lock["formal_core"]["fold_level_fits"] == 108
+    assert sha256(RUNNER_PATH) == lock["runner"]["sha256"]
+    assert sha256(RECIPE_PATH) == lock["selected_primary_adapter"]["recipe_sha256"]
+    assert len(lock["runner"]["git_revision"]) == 40
+
+    def contains_null(value: object) -> bool:
+        if value is None:
+            return True
+        if isinstance(value, dict):
+            return any(contains_null(child) for child in value.values())
+        if isinstance(value, list):
+            return any(contains_null(child) for child in value)
+        return False
+
+    assert not contains_null(lock)
