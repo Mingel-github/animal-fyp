@@ -58,15 +58,15 @@ The MeowAgeNet dataset manifest, checksums, cat-ID-disjoint folds, VGGish
 baseline, standard AST comparisons, and the IDEA-013/003/019 candidate studies
 are recorded in this repository.
 
-As of 2026-08-27, IDEA-048 Stage C is complete. The final performance candidate
-is the **Probe-guided AST adapter** under the frozen
-`meowagenet-idea048-candidate-freeze-v1` recipe:
+As of 2026-08-27, the current IDEA-048 development phase is complete. The
+**Probe-guided AST adapter** is retained as the current reference candidate,
+while later repetitions, new ideas, and candidate replacement remain open:
 
 | Pipeline | Animal macro F1 | Role |
 | --- | ---: | --- |
 | Locked VGGish + MLP | 0.6846 | Single formal baseline |
-| Probe-guided AST adapter | 0.7575 | Frozen final performance candidate |
+| Probe-guided AST adapter | 0.7575 | Current reference candidate |
 
-The candidate freeze and its comparison roles are documented in
-`reports/08_IDEA-048_candidate_freeze.md`; the machine-readable specification
-is in `configs/protocol/meowagenet_idea048_candidate_freeze_v1.json`.
+The stage checkpoint and its open-ended route are documented in
+`reports/08_IDEA-048_stage_checkpoint.md`; the machine-readable record is in
+`configs/protocol/meowagenet_idea048_stage_checkpoint_v1.json`.

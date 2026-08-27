@@ -5,8 +5,8 @@
 > 主指标：animal-level macro F1
 
 > 2026-08-27 路线更新：本报告提名的 Probe-guided AST adapter 已在
-> `reports/08_IDEA-048_candidate_freeze.md` 中正式冻结为 IDEA-048 最终性能候选；
-> Head-only、Distributed 和 Random 保留为必要消融。
+> `reports/08_IDEA-048_stage_checkpoint.md` 中保留为当前参考候选；后续重复实验、
+> 新 idea 与候选替换保持开放。Head-only、Distributed 和 Random 保留为必要消融。
 
 ## 1. 结论摘要
 
@@ -256,8 +256,8 @@ Probe-guided 比同 recipe 的 head-only 高 0.0315，比 last-2 高 0.0237，�
    分散层覆盖仍是强竞争解释。
 
 当前决策是：**保留 probe-guided adapter 为 provisional AST performance candidate，
-保留 random/distributed 为必要 ablations；IDEA-019 完成后回到 IDEA-048 的 candidate
-freeze 与最终比较。**
+保留 random/distributed 为必要 ablations；IDEA-019 在本阶段完成，Probe-guided
+进入 IDEA-048 阶段性 checkpoint，作为可被后续新证据替换的 current reference。**
 
 ## 13. 产物与完整性
 

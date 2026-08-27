@@ -154,9 +154,9 @@
     "peft_effect": "Probe-guided adapter improves macro F1 over head-only by 0.0315 while preserving balanced accuracy and QWK.",
     "placement_effect": "Matched-budget placements span macro F1 0.7204 to 0.7575, so insertion depth materially changes task behavior.",
     "probe_guidance": "Probe-guided beats predeclared late placement by 0.0277 and is best overall, but exceeds random by only 0.0030; layer-semantic prediction is partially supported.",
-    "candidate_decision": "retain_probe_guided_adapter_as_provisional_ast_performance_candidate",
+    "candidate_decision": "retain_probe_guided_adapter_as_current_reference_candidate",
     "required_ablations": ["adapter_random", "adapter_distributed", "head_only"],
     "baseline_decision": "keep_locked_vggish_mlp_as_the_single_project_baseline",
-    "next_route": "return_to_IDEA_048_candidate_freeze_and_final_comparison"
+    "next_route": "IDEA_048_stage_checkpoint_complete_with_future_candidates_open"
   }
 }

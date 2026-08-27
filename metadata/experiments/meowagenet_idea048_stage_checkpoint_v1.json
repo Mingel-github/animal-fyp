@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "decision_id": "meowagenet-idea048-stage-checkpoint-v1",
+  "date": "2026-08-27",
+  "status": "complete",
+  "decision_type": "phase_checkpoint",
+  "supersedes_route_label": "meowagenet-idea048-candidate-freeze-v1",
+  "checkpoint_config": {
+    "path": "configs/protocol/meowagenet_idea048_stage_checkpoint_v1.json",
+    "sha256": "13c197112d618b9d61ff879e62b8954b71d3334c9649dd6ef74d9dfea50c635d"
+  },
+  "decision": {
+    "formal_baseline": "vggish_mlp",
+    "formal_baseline_count": 1,
+    "current_reference_candidate": "ast_probe_guided_adapter",
+    "final_candidate_locked": false,
+    "future_candidate_development_open": true,
+    "required_current_ablations": [
+      "head_only",
+      "adapter_distributed",
+      "adapter_random"
+    ],
+    "idea019_state": "complete",
+    "idea048_current_phase": "complete",
+    "final_comparison": "deferred"
+  },
+  "current_evidence": {
+    "locked_baseline_animal_macro_f1": 0.6846008299117196,
+    "reference_candidate_animal_macro_f1": 0.7574677253821639,
+    "reference_candidate_minus_baseline_macro_f1": 0.0728668954704443,
+    "practical_delta_macro_f1": 0.03,
+    "reference_candidate_minus_head_only_macro_f1": 0.0314964516475249,
+    "reference_candidate_minus_random_macro_f1": 0.002996180666716808
+  },
+  "source_records": {
+    "locked_results": {
+      "path": "metadata/experiments/meowagenet_locked_v1_results.json",
+      "sha256": "9c91a58baab271cdf3f5ef682e010931d6ff5fb05faacab54b6a66b41cf6646a"
+    },
+    "idea019_results": {
+      "path": "metadata/experiments/meowagenet_idea019_peft_placement_v1_results.json",
+      "sha256": "7ffc01a735cb2270fba8a1cef80435ca19ef9e856eefa836849290adb686a213"
+    }
+  },
+  "report": "reports/08_IDEA-048_stage_checkpoint.md",
+  "future_policy": "Later repetitions and new ideas receive new IDs. They may retain or replace the current reference candidate without rewriting this completed phase record.",
+  "next_route": "resume with repeat evidence or a newly selected improvement idea"
+}

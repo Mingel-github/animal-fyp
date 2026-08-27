@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "meowagenet-idea048-stage-checkpoint-v1",
+  "date": "2026-08-27",
+  "status": "phase_complete_future_candidates_open",
+  "supersedes_route_label": "meowagenet-idea048-candidate-freeze-v1",
+  "purpose": "Close the current IDEA-048 development phase while preserving Probe-guided AST as the current reference candidate rather than the final thesis model.",
+  "research_state": {
+    "idea048": "performance_improvement_signal_observed",
+    "current_phase": "complete",
+    "future_candidate_development": "open",
+    "final_candidate_freeze": "deferred_until_thesis_scope_matures",
+    "final_comparison": "deferred_until_final_candidate_freeze"
+  },
+  "stable_foundation": {
+    "protocol_id": "meowagenet-locked-v1",
+    "formal_baseline": "vggish_mlp",
+    "formal_baseline_count": 1,
+    "dataset_calls": 792,
+    "dataset_cats": 111,
+    "outer_folds": 4,
+    "cat_id_disjoint": true,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "practical_delta_macro_f1": 0.03
+  },
+  "current_reference_candidate": {
+    "pipeline_id": "ast_probe_guided_adapter",
+    "role": "best-performing candidate observed in the completed phase; replaceable by later evidence",
+    "source_experiment": "meowagenet-idea019-peft-placement-v1",
+    "recipe_record": "metadata/experiments/meowagenet_idea019_peft_placement_v1_results.json",
+    "animal_macro_f1": 0.7574677253821639,
+    "balanced_accuracy": 0.7794855576639258,
+    "quadratic_weighted_kappa": 0.6754692068282562,
+    "gain_vs_locked_vggish_macro_f1": 0.0728668954704443,
+    "gain_vs_head_only_macro_f1": 0.0314964516475249
+  },
+  "current_required_ablations": [
+    {
+      "pipeline_id": "head_only",
+      "role": "adapter incremental-effect control"
+    },
+    {
+      "pipeline_id": "adapter_distributed",
+      "layers_one_based": [3, 10],
+      "role": "cross-depth placement control"
+    },
+    {
+      "pipeline_id": "adapter_random",
+      "layers_one_based": [2, 10],
+      "placement_seed": 20260826,
+      "role": "probe-guidance control"
+    }
+  ],
+  "open_research_space": [
+    "new pretrained audio encoders",
+    "new PEFT or adapter designs",
+    "pooling and temporal aggregation",
+    "loss and ordinal objectives",
+    "augmentation and input design",
+    "combined pipelines",
+    "repeat and stability experiments"
+  ],
+  "future_entry_rule": {
+    "new_run_or_idea_id": true,
+    "compare_against": [
+      "vggish_mlp",
+      "ast_probe_guided_adapter_current_reference"
+    ],
+    "result_policy": "Append evidence without rewriting completed experiment records. Promote a new reference candidate when later evidence supports it.",
+    "protocol_change_policy": "Create a new protocol version when changing the stable evaluation foundation; retain v1 as a historical comparison."
+  },
+  "source_artifacts": {
+    "locked_protocol": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_results": "metadata/experiments/meowagenet_locked_v1_results.json",
+    "idea019_results": "metadata/experiments/meowagenet_idea019_peft_placement_v1_results.json",
+    "stage_report": "reports/08_IDEA-048_stage_checkpoint.md"
+  },
+  "next_route": "phase_wrap_up_complete; resume with repetitions or a newly defined improvement idea when selected"
+}
