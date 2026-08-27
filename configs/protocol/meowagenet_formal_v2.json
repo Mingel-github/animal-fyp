@@ -1,0 +1,267 @@
+{
+  "schema_version": 2,
+  "protocol_id": "meowagenet-formal-v2",
+  "frozen_date": "2026-08-27",
+  "status": "frozen_before_formal_v2_outcomes",
+  "accountability": {
+    "decision_owner": "FYP team and supervisor",
+    "intended_use": "formal within-dataset evaluation for a computer-science final-year project",
+    "ai_assistance": "AI assisted protocol drafting; the team and supervisor retain scientific accountability"
+  },
+  "prior_access": {
+    "dataset_reused": true,
+    "all_111_cats_previously_appeared_in_development_outer_tests": true,
+    "pilot_results_viewed": true,
+    "candidate_selected_after_pilot": "ast_probe_guided_adapter",
+    "source_checkpoint": "meowagenet-idea048-stage-checkpoint-v1",
+    "interpretation_boundary": "This is a prospective formal evaluation after exploratory model selection on the same public dataset. It is internal repeated grouped validation, not independent external replication."
+  },
+  "research_program": {
+    "primary_goal": "IDEA-048",
+    "method_route": "IDEA-019",
+    "claim_type": "predictive",
+    "research_question": "Under a cat-ID-disjoint MeowAgeNet evaluation, does low-parameter AST adaptation improve animal-level feline age classification relative to the locked VGGish+MLP baseline and a matched frozen-AST head-only control?",
+    "working_claim_if_supported": "Low-parameter AST adaptation improves MeowAgeNet animal-level age classification under the declared internal validation protocol.",
+    "claim_not_targeted": "The protocol does not treat probe-guided layer selection as a uniquely established mechanism."
+  },
+  "hypotheses": {
+    "H048": {
+      "statement": "The frozen primary AST adapter candidate improves animal-level macro F1 over the locked VGGish+MLP pipeline.",
+      "primary_contrast": "ast_probe_guided_adapter - vggish_mlp",
+      "practical_delta_macro_f1": 0.03
+    },
+    "H019": {
+      "statement": "Adding the matched low-parameter adapters improves animal-level macro F1 over the frozen-AST head-only pipeline.",
+      "key_contrast": "ast_probe_guided_adapter - ast_head_only",
+      "practical_delta_macro_f1": 0.03
+    },
+    "rivals": [
+      "The apparent gain is produced by split or optimization variability.",
+      "The gain comes from the revised AST training recipe or classifier head rather than adapter updates.",
+      "Generic cross-depth placement performs similarly, so probe guidance is not the active ingredient.",
+      "Repeated reuse of the same 111 cats inflates apparent generalization."
+    ]
+  },
+  "dataset": {
+    "inherits_from": "meowagenet-locked-v1",
+    "source_commit": "3d02295bef1500d2b2500a124596f77010181391",
+    "data_manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "cat_manifest_sha256": "5ae4c48c2266c4452b69a161c9e56bc506b35bff5fe3eaa53a3f69a91f641f5e",
+    "analysis_filter": "analysis_include == true",
+    "expected_calls": 792,
+    "expected_cats": 111,
+    "class_cats": {
+      "kitten": 15,
+      "adult": 62,
+      "senior": 34
+    },
+    "excluded_aliases": [
+      "049A"
+    ],
+    "failure_policy": "Abort the formal run if checksums, counts, labels, or required files differ. Do not silently exclude additional calls or cats."
+  },
+  "splits": {
+    "design": "five repeats of four-fold stratified cat-ID-disjoint outer cross-validation",
+    "repeat_count": 5,
+    "outer_folds": 4,
+    "outer_split_seeds": [
+      104729,
+      130363,
+      155921,
+      181081,
+      206639
+    ],
+    "inner_validation_fraction": 0.2,
+    "inner_seed_rule": "outer_split_seed + 1000 + outer_fold",
+    "stratification_unit": "one row per cat_id",
+    "stratification_label": "age_group",
+    "test_rule": "Each cat appears in exactly one outer-test fold per repeat and never crosses train, validation, and test within a repeat-fold.",
+    "new_split_limitation": "New deterministic partitions reduce exact reuse of v1 folds but do not create new animals or external validation."
+  },
+  "model_randomness": {
+    "base_model_seeds": [
+      17,
+      43,
+      101
+    ],
+    "full_seed_rule": "base_model_seed + 10000 * repeat_index + 100 * outer_fold",
+    "pairing_rule": "Use the same base seed, repeat, and outer fold for every matched pipeline.",
+    "complete_oof_evaluations_per_pipeline": 15
+  },
+  "representations": {
+    "vggish": {
+      "role": "locked formal baseline pipeline",
+      "recipe": "inherit the audited meowagenet-locked-v1 VGGish+MLP preprocessing, head, aggregation, and class weighting"
+    },
+    "ast": {
+      "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+      "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+      "sample_rate_hz": 16000,
+      "segment_seconds": 1.28,
+      "segment_hop_seconds": 0.64,
+      "max_length_frames": 128,
+      "num_mel_bins": 128,
+      "patch_size": 16,
+      "frequency_stride": 10,
+      "time_stride": 10,
+      "segment_pooling": "arithmetic mean of AST pooler_output embeddings or probabilities within each call as required by the matched training implementation",
+      "geometry_policy": "standard AST geometry only; IDEA-012 geometry variants are excluded from formal v2"
+    }
+  },
+  "primary_candidate": {
+    "pipeline_id": "ast_probe_guided_adapter",
+    "backbone": "standard AST",
+    "adapter_family": "block-output residual bottleneck adapter",
+    "adapters_per_model": 2,
+    "adapter_width": 32,
+    "adapter_parameters": 99904,
+    "total_trainable_parameters_with_head": 198979,
+    "initialization": "zero-initialized up projection so the adapter starts as an identity mapping",
+    "layer_selection": {
+      "eligible_layers_one_based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "data_boundary": "only inner-train cats for the current repeat and outer fold",
+      "probe": "StandardScaler plus balanced multinomial logistic regression with C=1.0, lbfgs, max_iter=2000",
+      "probe_cv": "three-fold stratified cat-level CV",
+      "selection_metric": "mean animal-level macro F1",
+      "selection_rule": "select the top two distinct layers",
+      "tie_break": "smaller one-based layer index",
+      "selection_freeze": "selected layers are fixed before adapter training and outer-test prediction for that repeat-fold"
+    }
+  },
+  "formal_matrix": {
+    "confirmatory_core": [
+      {
+        "pipeline_id": "vggish_mlp",
+        "role": "IDEA-048 formal baseline"
+      },
+      {
+        "pipeline_id": "ast_head_only",
+        "role": "matched control for the adapter incremental effect"
+      },
+      {
+        "pipeline_id": "ast_probe_guided_adapter",
+        "role": "frozen primary candidate"
+      }
+    ],
+    "required_diagnostics": [
+      {
+        "pipeline_id": "ast_adapter_distributed",
+        "layers_one_based": [
+          3,
+          10
+        ],
+        "role": "fixed cross-depth placement control"
+      },
+      {
+        "pipeline_id": "ast_adapter_random_controls",
+        "draws_per_repeat_fold": 2,
+        "sampling_frame": "uniform without replacement from all 66 unordered pairs of 12 AST layers",
+        "seed_rule": "880301 + 100 * repeat_index + outer_fold",
+        "aggregation_rule": "report the distribution and mean metric across the two pair-specific models; do not ensemble their probabilities",
+        "role": "estimate generic placement variability without claiming a single lucky random pair is representative"
+      },
+      {
+        "pipeline_id": "ast_last2_finetuning",
+        "trainable_blocks_one_based": [
+          11,
+          12
+        ],
+        "role": "conventional partial-fine-tuning and parameter-efficiency comparator"
+      }
+    ],
+    "excluded_from_formal_v2": [
+      "IDEA-003 ordinal learning",
+      "IDEA-012 patch geometry search",
+      "IDEA-013 temporal pooling search",
+      "IDEA-017 capacity-matched architecture study",
+      "full AST fine-tuning",
+      "additional PEFT families or unregistered placements"
+    ]
+  },
+  "training": {
+    "ast_head": "768 -> 128 -> 3 with ReLU, BatchNorm, and dropout 0.44571035356880917",
+    "optimizer": "Adamax",
+    "adapter_learning_rate": 0.001,
+    "head_learning_rate": 0.003109800273709165,
+    "last2_encoder_learning_rate": 0.00001,
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_clip": 1.0,
+    "class_weight": "balanced, fitted from the current training cats only",
+    "maximum_epochs": 50,
+    "early_stopping_monitor": "inner validation loss",
+    "early_stopping_patience": 8,
+    "epoch_selection": "select the best epoch using inner validation only, then refit on outer train plus validation cats for the selected epoch count",
+    "mixed_precision": true,
+    "invalid_run_policy": "A non-finite result, exception, corrupted artifact, or checksum mismatch is a technical failure. Retry only the identical configuration after documenting the cause; any configuration change is a protocol deviation."
+  },
+  "evaluation": {
+    "primary_unit": "animal",
+    "probability_aggregation": "arithmetic mean of class probabilities within cat_id, then argmax",
+    "primary_metric": "animal-level macro F1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "per_class_precision",
+      "per_class_recall",
+      "per_class_f1",
+      "confusion_matrix",
+      "ordinal_mae"
+    ],
+    "efficiency_metrics": [
+      "trainable_parameter_count",
+      "peak_gpu_memory",
+      "training_wall_time",
+      "inference_wall_time"
+    ],
+    "pipeline_comparison_boundary": "VGGish and AST retain their audited native preprocessing. The comparison is between complete pipelines and does not identify a pure architecture effect."
+  },
+  "analysis": {
+    "oof_construction": "For each repeat and model seed, concatenate the four outer-test predictions so all 111 cats contribute exactly once.",
+    "pipeline_summary": "Report the mean, standard deviation, minimum, maximum, and all 15 complete-OOF metric values.",
+    "contrast_summary": "Compute paired candidate-minus-comparator differences within every repeat and model seed, then report their mean and distribution.",
+    "uncertainty": "Use 10000 hierarchical paired bootstrap replicates. In each replicate, stratified-resample cats once and apply the same sampled cats to all pipelines; resample split repeats and model seeds with replacement; report the percentile 95% interval of the mean paired difference.",
+    "consistency": "Report the number of the 15 complete-OOF evaluations with a positive paired difference. Do not substitute best-fold or best-seed results for the full summary.",
+    "multiplicity": "H048 is the primary performance contrast and H019 is the prespecified key method contrast. Random, distributed, last-2, secondary metrics, and layer correlations are diagnostic; do not promote them to primary after results are known.",
+    "missing_predictions": "A formal pipeline is incomplete if any expected cat lacks a finite probability vector. Do not calculate the primary result on a reduced cat set.",
+    "deviation_policy": "Preserve the frozen protocol and append every deviation with date, reason, result-awareness status, and likely interpretive effect."
+  },
+  "interpretation_rules": {
+    "full_route_support": "H048 and H019 both have positive mean paired differences, at least 12 of 15 complete-OOF differences are positive for each contrast, and each 95% interval excludes zero. Label a mean H048 difference of at least 0.03 as practically meaningful.",
+    "practical_but_uncertain": "The mean H048 difference reaches 0.03 but its interval includes zero or fewer than 12 of 15 paired evaluations are positive. Report the effect estimate and uncertainty without a stable-improvement claim.",
+    "directional_only": "The mean difference is above zero but below 0.03. Describe it as a small directional effect.",
+    "not_supported": "A mean difference at or below zero does not support the corresponding improvement hypothesis under formal v2.",
+    "probe_guidance_boundary": "Probe-guided superiority is not a primary claim. Interpret its diagnostic contrasts against distributed and random placements without semantic claims about unique age-information layers."
+  },
+  "formal_artifacts_required": [
+    "frozen protocol and split manifests with SHA256",
+    "source revision and training-script SHA256",
+    "environment specification and hardware record",
+    "per-cat probabilities for every repeat, fold, seed, and pipeline",
+    "layer-probe rankings and selected layers",
+    "epoch-selection logs and technical-failure records",
+    "complete result tables and hierarchical-bootstrap output",
+    "dated deviation log"
+  ],
+  "stopping_rule": "Run the complete frozen matrix. Do not stop the study because an interim result is favorable or unfavorable. New models, losses, placements, or tuning choices require a separately labeled exploratory protocol or a later version.",
+  "execution": {
+    "location": "external experiment environment",
+    "reference_hardware": "one NVIDIA GeForce RTX 4060 Ti 8GB or a documented compatible GPU",
+    "environment_file": "environment/meowagenet-repro.yml",
+    "environment_sha256_at_freeze": "e371ce50ca7a80beb75621091e18be907d92e8569c1379b7c0e70672730bd7a1",
+    "formal_outcomes_accessed_at_freeze": false
+  }
+}

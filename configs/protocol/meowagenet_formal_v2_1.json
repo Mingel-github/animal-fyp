@@ -1,0 +1,196 @@
+{
+  "schema_version": "2.1",
+  "protocol_id": "meowagenet-formal-v2.1",
+  "amendment_date": "2026-08-27",
+  "status": "core_frozen_execution_scope_pending",
+  "supersedes_for_execution": "meowagenet-formal-v2",
+  "amendment_reason": "Explain hypothesis identifiers and separate the evidence-critical core from model-development and optional diagnostic choices.",
+  "prior_formal_outcomes_accessed": false,
+  "parent_protocol": {
+    "path": "configs/protocol/meowagenet_formal_v2.json",
+    "sha256": "0ebdd1435c7a97c78230fa5f46976eb59cf21b909fb58919f79790d168b1c8ea",
+    "preservation_rule": "Retain the parent as a dated design record; use v2.1 for execution."
+  },
+  "terminology": {
+    "H": "Hypothesis, meaning a research hypothesis to be tested rather than a model, result, or established fact.",
+    "H048": "The testable performance hypothesis corresponding to IDEA-048: the selected low-parameter AST adaptation pipeline improves MeowAgeNet prediction relative to VGGish+MLP.",
+    "H019": "The testable method hypothesis corresponding to IDEA-019: the adapter contributes improvement relative to a matched frozen-AST head-only control.",
+    "IDEA": "A research direction or design candidate. An IDEA can generate one or more hypotheses, implementations, and experiments."
+  },
+  "research_route": {
+    "goal": "IDEA-048",
+    "method_family": "IDEA-019 low-parameter AST adaptation",
+    "claim_type": "predictive",
+    "working_claim": "Low-parameter AST adaptation can improve animal-level feline age classification under cat-ID-disjoint MeowAgeNet evaluation.",
+    "current_reference_implementation": "ast_probe_guided_adapter",
+    "mechanism_boundary": "Probe-guided layer selection is an implementation candidate, not a required claim of unique layer semantics.",
+    "idea003_status": "paused and excluded from formal v2.1 because the pilot did not improve overall performance"
+  },
+  "frozen_evidence_core": {
+    "dataset": "the audited 792-call, 111-cat MeowAgeNet analysis view with existing manifest and checksums",
+    "independence_unit": "cat_id",
+    "split_rule": "cat-ID-disjoint train, validation, and test roles",
+    "formal_baseline": "vggish_mlp using the locked audited recipe",
+    "method_control": "ast_head_only matched to the selected adapter implementation",
+    "primary_unit": "animal",
+    "primary_metric": "animal-level macro F1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "per_class_precision",
+      "per_class_recall",
+      "per_class_f1",
+      "confusion_matrix",
+      "ordinal_mae"
+    ],
+    "practical_reference_delta_macro_f1": 0.03,
+    "practical_delta_role": "reference for effect magnitude, not a mechanical pass/fail threshold",
+    "non_negotiable_rules": [
+      "No cat may cross training, validation, and test roles within a split.",
+      "Outer-test outcomes may not select models, layers, epochs, hyperparameters, or repeat count.",
+      "Every initiated paired comparison must report all valid runs in its declared scope.",
+      "Best-fold and best-seed results may not replace the complete paired summary.",
+      "Pilot and formal results must remain distinguishable."
+    ]
+  },
+  "split_bank": {
+    "source_protocol": "meowagenet-formal-v2",
+    "summary_path": "splits/meowagenet_formal_v2_split_summary.json",
+    "summary_sha256": "81538a91ae0d87c3e1fda49142521c882fdb606eeed297b715b5a726342b82ca",
+    "outer_path": "splits/meowagenet_formal_v2_outer_folds.csv",
+    "outer_sha256": "3e63a9b1ea13e6e42a17bedd1aad799476e02d7bbc73aa0293f205e3e2cf28be",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "available_repeat_indices": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "outer_folds_per_repeat": 4
+  },
+  "development_window": {
+    "open_until": "formal-v2.1 execution lock is created",
+    "allowed": [
+      "repair implementation bugs and validate data flow",
+      "run smoke tests on synthetic data or inner-training roles",
+      "compare IDEA-019 adapter implementations using pilot records or inner-only development evidence",
+      "replace the current reference implementation with one documented IDEA-019 candidate before execution lock",
+      "adjust batch size or gradient accumulation for hardware feasibility while preserving the declared effective optimization"
+    ],
+    "not_allowed": [
+      "use formal-v2.1 outer-test outcomes to choose the primary adapter",
+      "change cat-ID independence or the primary metric",
+      "silently transfer a favorable exploratory result into the formal core"
+    ],
+    "candidate_change_rule": "Record a candidate ID, complete recipe, reason, evidence source, and decision date in the execution lock. Probe-guided remains the default if no replacement is recorded."
+  },
+  "formal_core": {
+    "required_pipelines": [
+      {
+        "pipeline_id": "vggish_mlp",
+        "role": "IDEA-048 performance baseline"
+      },
+      {
+        "pipeline_id": "ast_head_only",
+        "role": "matched control for adapter contribution"
+      },
+      {
+        "pipeline_id": "selected_idea019_adapter",
+        "default_implementation": "ast_probe_guided_adapter",
+        "role": "primary low-parameter AST adaptation candidate"
+      }
+    ],
+    "minimum_repeat_indices": [
+      0,
+      1,
+      2
+    ],
+    "optional_extension_repeat_indices": [
+      3,
+      4
+    ],
+    "repeat_count_range": [
+      3,
+      5
+    ],
+    "model_seeds": [
+      17,
+      43,
+      101
+    ],
+    "complete_oof_evaluations_per_pipeline_range": [
+      9,
+      15
+    ],
+    "minimum_fold_level_fits": 108,
+    "target_fold_level_fits_if_all_repeats_enabled": 180,
+    "execution_scope_rule": "Choose the exact repeat indices before viewing formal aggregate outcomes and store them in the execution lock. Additional repeats may later be added for resource- or precision-based reasons, but the reason and result-awareness status must be recorded."
+  },
+  "formal_questions": {
+    "H048": {
+      "plain_language": "Does the selected low-parameter AST adaptation pipeline improve MeowAgeNet prediction relative to VGGish+MLP?",
+      "contrast": "selected_idea019_adapter - vggish_mlp",
+      "role": "primary performance comparison"
+    },
+    "H019": {
+      "plain_language": "Does adding the adapter improve prediction relative to an otherwise matched frozen AST with only the classifier head trained?",
+      "contrast": "selected_idea019_adapter - ast_head_only",
+      "role": "key method comparison"
+    }
+  },
+  "optional_modules": [
+    {
+      "module_id": "distributed_placement",
+      "pipeline": "ast_adapter_distributed_layers_3_10",
+      "purpose": "check whether a simple fixed cross-depth placement is sufficient"
+    },
+    {
+      "module_id": "random_placement",
+      "pipeline": "precomputed random layer pairs from splits/meowagenet_formal_v2_random_adapter_pairs.csv",
+      "purpose": "describe generic placement variability without treating a single random pair as representative"
+    },
+    {
+      "module_id": "last2_finetuning",
+      "pipeline": "AST blocks 11 and 12 plus the classifier head",
+      "purpose": "compare low-parameter adaptation with conventional partial fine-tuning"
+    }
+  ],
+  "optional_module_rule": "The execution lock lists enabled modules. A module is not required for the core result. Once started, its complete declared paired scope must be reported; unstarted modules may be deferred without making the core incomplete.",
+  "analysis": {
+    "oof_unit": "one complete 111-cat out-of-fold prediction set per split repeat and model seed",
+    "primary_summary": "report every complete OOF value, the mean paired difference, variability across repeats and seeds, and a paired uncertainty interval",
+    "uncertainty_default": "hierarchical paired bootstrap over cats, split repeats, and model seeds",
+    "interpretation": [
+      "Use the sign, magnitude, uncertainty interval, and repeat/seed consistency together.",
+      "Treat 0.03 macro F1 as a practical reference rather than a hard success gate.",
+      "If the interval includes zero, describe the point estimate and uncertainty rather than declaring equivalence or failure.",
+      "A result below zero challenges the corresponding improvement hypothesis under the tested conditions.",
+      "Human scientific judgment remains responsible for the final conclusion; the protocol does not automatically accept or reject a hypothesis."
+    ],
+    "multiplicity": "H048 and H019 are the two declared core comparisons. Optional modules and secondary metrics are diagnostic and remain labeled as such.",
+    "deviation_policy": "Preserve v2.1 and record each material deviation with date, reason, result-awareness status, and expected interpretive effect."
+  },
+  "execution_lock": {
+    "template_path": "configs/protocol/meowagenet_formal_v2_1_execution_lock_template.json",
+    "required_before": "formal-v2.1 outer-test aggregation",
+    "must_record": [
+      "selected primary adapter implementation and full recipe",
+      "selected repeat indices",
+      "model seeds",
+      "enabled optional modules",
+      "runner revision and SHA256",
+      "environment and hardware",
+      "decision date and formal-outcome access status"
+    ]
+  },
+  "excluded_routes": [
+    "IDEA-003 ordinal learning",
+    "IDEA-012 patch-geometry search",
+    "IDEA-013 temporal-pooling search",
+    "IDEA-017 full capacity-matched architecture study"
+  ],
+  "future_idea_policy": "New ideas remain allowed. Before execution lock they may compete within the documented development window; after execution starts they receive a separate exploratory ID or a later protocol version.",
+  "execution_location": "external experiment environment"
+}

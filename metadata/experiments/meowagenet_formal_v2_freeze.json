@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "decision_id": "meowagenet-formal-v2-freeze",
+  "date": "2026-08-27",
+  "status": "frozen_unexecuted",
+  "route": {
+    "research_goal": "IDEA-048",
+    "method_route": "IDEA-019 low-parameter AST adaptation",
+    "primary_candidate": "ast_probe_guided_adapter",
+    "idea003": "excluded_from_formal_v2"
+  },
+  "prior_access": {
+    "dataset_reused": true,
+    "all_111_cats_previously_appeared_in_development_outer_tests": true,
+    "pilot_results_viewed": true,
+    "candidate_selected_after_pilot": "ast_probe_guided_adapter",
+    "source_checkpoint": "meowagenet-idea048-stage-checkpoint-v1",
+    "interpretation_boundary": "This is a prospective formal evaluation after exploratory model selection on the same public dataset. It is internal repeated grouped validation, not independent external replication."
+  },
+  "artifacts": {
+    "protocol": {
+      "path": "configs/protocol/meowagenet_formal_v2.json",
+      "sha256": "0ebdd1435c7a97c78230fa5f46976eb59cf21b909fb58919f79790d168b1c8ea"
+    },
+    "split_summary": {
+      "path": "splits/meowagenet_formal_v2_split_summary.json",
+      "sha256": "81538a91ae0d87c3e1fda49142521c882fdb606eeed297b715b5a726342b82ca"
+    },
+    "outer_folds": {
+      "path": "splits/meowagenet_formal_v2_outer_folds.csv",
+      "sha256": "3e63a9b1ea13e6e42a17bedd1aad799476e02d7bbc73aa0293f205e3e2cf28be"
+    },
+    "nested_roles": {
+      "path": "splits/meowagenet_formal_v2_nested_roles.csv",
+      "sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433"
+    },
+    "random_adapter_pairs": {
+      "path": "splits/meowagenet_formal_v2_random_adapter_pairs.csv",
+      "sha256": "687f6deea73d2c925b7f42554e663343121131fd683dec02be5feaf83017ce9b"
+    },
+    "freeze_script": {
+      "path": "scripts/freeze_meowagenet_formal_v2.py",
+      "sha256": "9c6a966eca59c53f1bee34a6096193d1c4a24e8123b4b7229265acee0ebe266e"
+    },
+    "protocol_report": "reports/09_formal_protocol_v2_freeze.md"
+  },
+  "formal_outcomes_accessed": false,
+  "execution_location": "external experiment environment",
+  "change_policy": "Do not overwrite v2. Record deviations or create a later protocol version."
+}

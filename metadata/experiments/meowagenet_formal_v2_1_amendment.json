@@ -1,0 +1,48 @@
+{
+  "schema_version": "2.1",
+  "decision_id": "meowagenet-formal-v2.1-amendment",
+  "date": "2026-08-27",
+  "status": "core_frozen_execution_scope_pending",
+  "reason": "Explain hypothesis identifiers and separate the evidence-critical core from model-development and optional diagnostic choices.",
+  "formal_outcomes_accessed": false,
+  "active_route": {
+    "goal": "IDEA-048",
+    "method": "IDEA-019 low-parameter AST adaptation",
+    "idea003": "paused_and_excluded"
+  },
+  "artifacts": {
+    "amended_protocol": {
+      "path": "configs/protocol/meowagenet_formal_v2_1.json",
+      "sha256": "5f6d523d26bd02e3168ea0bf1c68a99306c4fc8fabaa7e62adc50a1a15d8dc18"
+    },
+    "execution_lock_template": {
+      "path": "configs/protocol/meowagenet_formal_v2_1_execution_lock_template.json",
+      "sha256": "8acc3ed9582fb3dc9dc43970a026260f7a013283df1ef1de243a258346483fdc"
+    },
+    "report": {
+      "path": "reports/10_formal_protocol_v2_1_amendment.md",
+      "sha256": "7afb2e5a77111bedb04da2b67dabc1e9d249bc17531c304dcbfa1982d6c9f83c"
+    },
+    "verification_script": {
+      "path": "scripts/verify_meowagenet_formal_v2_1.py",
+      "sha256": "e07aa92b5a744d8594f73e86be75daa82d82511208c8f1d49359e959affa05f8"
+    },
+    "parent_protocol": {
+      "path": "configs/protocol/meowagenet_formal_v2.json",
+      "sha256": "0ebdd1435c7a97c78230fa5f46976eb59cf21b909fb58919f79790d168b1c8ea",
+      "preservation_rule": "Retain the parent as a dated design record; use v2.1 for execution."
+    },
+    "split_summary": {
+      "path": "splits/meowagenet_formal_v2_split_summary.json",
+      "sha256": "81538a91ae0d87c3e1fda49142521c882fdb606eeed297b715b5a726342b82ca"
+    }
+  },
+  "minimum_core": {
+    "pipelines": 3,
+    "split_repeats": 3,
+    "outer_folds_per_repeat": 4,
+    "model_seeds": 3,
+    "fold_level_fits": 108
+  },
+  "next_gate": "complete and freeze the execution lock before formal-v2.1 outcomes"
+}

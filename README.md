@@ -58,15 +58,51 @@ The MeowAgeNet dataset manifest, checksums, cat-ID-disjoint folds, VGGish
 baseline, standard AST comparisons, and the IDEA-013/003/019 candidate studies
 are recorded in this repository.
 
-As of 2026-08-27, the current IDEA-048 development phase is complete. The
-**Probe-guided AST adapter** is retained as the current reference candidate,
-while later repetitions, new ideas, and candidate replacement remain open:
+The feasibility-pilot phase is complete. The confirmed formal route is:
+
+- research goal: **IDEA-048**, improving MeowAgeNet prediction performance;
+- method route: **IDEA-019**, low-parameter AST adaptation;
+- current reference implementation: **Probe-guided AST adapter**;
+- working claim: low-parameter AST adaptation can improve animal-level feline
+  age classification under the declared internal validation protocol.
+
+`H` in the protocol means **Hypothesis**, a research hypothesis to be tested.
+`H048` is the performance hypothesis derived from IDEA-048; `H019` is the
+adapter-contribution hypothesis derived from IDEA-019.
+
+IDEA-003 is paused and excluded from formal v2.1 because its pilot did not
+improve overall performance. Probe-guided layer selection remains a replaceable
+implementation candidate before the external execution lock; it is not a
+frozen claim of unique layer semantics.
+
+The active execution design is formal v2.1:
+
+- amended protocol: `configs/protocol/meowagenet_formal_v2_1.json`;
+- readable amendment: `reports/10_formal_protocol_v2_1_amendment.md`;
+- execution-lock template:
+  `configs/protocol/meowagenet_formal_v2_1_execution_lock_template.json`;
+- deterministic split bank: `splits/meowagenet_formal_v2_*`;
+- amendment metadata:
+  `metadata/experiments/meowagenet_formal_v2_1_amendment.json`.
+
+Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
+three-to-five split repeats, and optional diagnostic modules selectable before
+formal outcomes. The minimum core is three pipelines, three repeats, four folds,
+and three model seeds, totaling 108 fold-level fits. The earlier strict v2
+matrix remains in the repository as a design-history record.
+
+Formal v2.1 is a pilot-informed repeated internal validation on the same 111
+cats, not an independent external replication. Training and formal comparison
+run in the external experiment environment after the runner passes checks and
+the execution lock is completed.
+
+The prior stage checkpoint remains historical evidence:
 
 | Pipeline | Animal macro F1 | Role |
 | --- | ---: | --- |
-| Locked VGGish + MLP | 0.6846 | Single formal baseline |
-| Probe-guided AST adapter | 0.7575 | Current reference candidate |
+| Locked VGGish + MLP | 0.6846 | Single formal baseline recipe |
+| Probe-guided AST adapter | 0.7575 | Pilot reference candidate |
 
-The stage checkpoint and its open-ended route are documented in
-`reports/08_IDEA-048_stage_checkpoint.md`; the machine-readable record is in
-`configs/protocol/meowagenet_idea048_stage_checkpoint_v1.json`.
+The pilot checkpoint is documented in
+`reports/08_IDEA-048_stage_checkpoint.md`; formal results must not overwrite
+that record.
