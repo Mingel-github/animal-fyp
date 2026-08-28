@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "run_id": "meowagenet_formal_v2_1_core",
+  "date": "2026-08-28",
+  "status": "complete_for_selected_scope",
+  "formal_outcomes_accessed": true,
+  "evidence_boundary": {
+    "design": "pilot-informed repeated internal validation",
+    "analysis_cats": 111,
+    "class_counts": {
+      "kitten": 15,
+      "adult": 62,
+      "senior": 34
+    },
+    "independent_external_replication": false
+  },
+  "execution": {
+    "scope": "formal",
+    "started_local": "2026-08-28 12:40:37 Asia/Shanghai",
+    "completed_local": "2026-08-28 13:10:29 Asia/Shanghai",
+    "approximate_wall_minutes": 30,
+    "command": ".\\environment\\.conda\\meowagenet-repro\\python.exe scripts/run_meowagenet_formal_v2_1.py --scope formal --output-subdir meowagenet_formal_v2_1_core --execution-lock configs/protocol/meowagenet_formal_v2_1_execution_lock.json --device cuda",
+    "pipelines": [
+      "vggish_mlp",
+      "ast_head_only",
+      "ast_probe_guided_adapter"
+    ],
+    "repeat_indices": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "model_seeds": [17, 43, 101],
+    "optional_modules": [],
+    "hardware": {
+      "gpu": "NVIDIA GeForce RTX 4060 Ti",
+      "gpu_memory": "8188 MiB",
+      "driver": "595.79",
+      "cuda_runtime": "12.1"
+    },
+    "runner_revision": "83674039c52bd19f3754768d6f7ac90dd36dc3ee",
+    "execution_lock_revision": "50bb877ada14b09c54d9626f04872217fadd2c36"
+  },
+  "versioned_inputs": {
+    "protocol": {
+      "path": "configs/protocol/meowagenet_formal_v2_1.json",
+      "sha256": "5f6d523d26bd02e3168ea0bf1c68a99306c4fc8fabaa7e62adc50a1a15d8dc18"
+    },
+    "execution_lock": {
+      "path": "configs/protocol/meowagenet_formal_v2_1_execution_lock.json",
+      "sha256": "bcb27d45bec74f6e79054c9a9dd40eb157b34869bf12e0c342d6ac21e0ec8f45"
+    },
+    "candidate_recipe": {
+      "path": "configs/experiment/meowagenet_formal_v2_1_probe_guided_candidate_v1.json",
+      "sha256": "4b54d98734c80f5089482ed88cd6a137ec512ac5b3b502bbb8d0ccc5a06fba92"
+    },
+    "runner": {
+      "path": "scripts/run_meowagenet_formal_v2_1.py",
+      "sha256": "ed3fc855539d37963aa51d17e54f5ce59acba1d023567289b89d5d1f313e6b25"
+    }
+  },
+  "local_run_artifacts": {
+    "directory": "runs/meowagenet_formal_v2_1_core",
+    "git_policy": "ignored; retain locally and verify through recorded hashes",
+    "total_bytes": 4650123,
+    "files": {
+      "run_manifest.json": {
+        "sha256": "68a73d9cc8ca6b24006695bffc177da50756c092129cee3fb22c9ebd78226586",
+        "bytes": 1402
+      },
+      "run_summary.json": {
+        "sha256": "55f4be6f10ddbe78225ddb94daacb84cc310dbf08c819c7ee1d39c6b8334566b",
+        "bytes": 1022495
+      },
+      "formal_summary.json": {
+        "sha256": "d0eba94ef7ca1ae9089e80a96d0906836f33dc51306b7a5b357333983bbf30c1",
+        "bytes": 21033
+      }
+    }
+  },
+  "integrity_audit": {
+    "expected_fold_level_fits": 108,
+    "completed_fold_level_fits": 108,
+    "failed_fold_level_fits": 0,
+    "expected_complete_oof_files": 27,
+    "complete_oof_files": 27,
+    "unique_cats_per_oof": 111,
+    "label_counts_per_oof": [15, 62, 34],
+    "nonfinite_probability_values": 0,
+    "max_probability_sum_error": 1.4000000003733248e-7,
+    "recomputed_metrics_match_formal_summary": true,
+    "units_per_complete_oof": {
+      "vggish_mlp": 936,
+      "ast_head_only": 792,
+      "ast_probe_guided_adapter": 792
+    }
+  },
+  "pipeline_aggregate": {
+    "vggish_mlp": {
+      "macro_f1": {"mean": 0.6524995850585984, "sample_sd": 0.0461650153210391, "min": 0.5979823633156967, "max": 0.7183740860130513},
+      "balanced_accuracy": {"mean": 0.6524937334551503, "sample_sd": 0.049251457241389796},
+      "quadratic_weighted_kappa": {"mean": 0.533385244904159, "sample_sd": 0.05974302204219272}
+    },
+    "ast_head_only": {
+      "macro_f1": {"mean": 0.7237808179940559, "sample_sd": 0.033485242447800066, "min": 0.6629105520614954, "max": 0.7615904674728204},
+      "balanced_accuracy": {"mean": 0.7597418417785274, "sample_sd": 0.0247068677667663},
+      "quadratic_weighted_kappa": {"mean": 0.6374038308283352, "sample_sd": 0.03873048594680909}
+    },
+    "ast_probe_guided_adapter": {
+      "macro_f1": {"mean": 0.7289754002707316, "sample_sd": 0.04277517241112956, "min": 0.663342670401494, "max": 0.7846390212946662},
+      "balanced_accuracy": {"mean": 0.7418511490617753, "sample_sd": 0.048151065751583906},
+      "quadratic_weighted_kappa": {"mean": 0.6372700369070847, "sample_sd": 0.05685395387531354}
+    }
+  },
+  "primary_contrasts": {
+    "H048_adapter_minus_vggish": {
+      "mean_macro_f1_difference": 0.07647581521213324,
+      "positive_complete_oof_evaluations": 9,
+      "total_complete_oof_evaluations": 9,
+      "paired_differences": [0.06424304488820631, 0.10078434550450655, 0.013324239947569594, 0.08163924333344164, 0.12234288374006308, 0.15394328195631446, 0.020024210302465373, 0.04882276407830899, 0.08315832315832317],
+      "hierarchical_paired_bootstrap": {
+        "resamples": 10000,
+        "seed": 20260827,
+        "bootstrap_mean": 0.07818822656367332,
+        "ci_lower": -0.006353954244966051,
+        "ci_upper": 0.16851338100798968
+      }
+    },
+    "H019_adapter_minus_ast_head_only": {
+      "mean_macro_f1_difference": 0.0051945822766756855,
+      "positive_complete_oof_evaluations": 5,
+      "total_complete_oof_evaluations": 9,
+      "paired_differences": [0.055826248628106145, 0.03270606066605353, 0.04254131180360676, -0.010555076147340414, -0.03732279171449626, 0.0173315286602872, -0.0418470418470418, 0.0004321183399985662, -0.012361117899092555],
+      "hierarchical_paired_bootstrap": {
+        "resamples": 10000,
+        "seed": 20260827,
+        "bootstrap_mean": 0.004890842249554356,
+        "ci_lower": -0.04580968360548246,
+        "ci_upper": 0.058501560945030166
+      }
+    }
+  },
+  "secondary_mean_differences": {
+    "adapter_minus_vggish": {
+      "macro_f1": 0.07647581521213324,
+      "balanced_accuracy": 0.089357415606625,
+      "quadratic_weighted_kappa": 0.1038847920029257
+    },
+    "head_only_minus_vggish": {
+      "macro_f1": 0.0712812329354575,
+      "balanced_accuracy": 0.1072481083233771,
+      "quadratic_weighted_kappa": 0.1040185859241762
+    },
+    "adapter_minus_head_only": {
+      "macro_f1": 0.0051945822766757,
+      "balanced_accuracy": -0.0178906927167521,
+      "quadratic_weighted_kappa": -0.0001337939212505
+    }
+  },
+  "per_class_recall_mean": {
+    "vggish_mlp": {"kitten": 0.6296296296296297, "adult": 0.6971326164874552, "senior": 0.630718954248366},
+    "ast_head_only": {"kitten": 0.8814814814814815, "adult": 0.6559139784946236, "senior": 0.7418300653594772},
+    "ast_probe_guided_adapter": {"kitten": 0.8222222222222222, "adult": 0.7007168458781362, "senior": 0.7026143790849674}
+  },
+  "repeat_mean_macro_f1": {
+    "vggish_mlp": {"repeat_0": 0.7040199303296929, "repeat_1": 0.6248319756909118, "repeat_2": 0.6286468491551904},
+    "ast_head_only": {"repeat_0": 0.7197792667438649, "repeat_1": 0.7543225584347013, "repeat_2": 0.6972406288036015},
+    "ast_probe_guided_adapter": {"repeat_0": 0.7634704737764537, "repeat_1": 0.7441404453675181, "repeat_2": 0.679315281668223}
+  },
+  "probe_layer_selection_one_based": {
+    "repeat_0": {"fold_0": [8, 11], "fold_1": [8, 11], "fold_2": [8, 11], "fold_3": [10, 12]},
+    "repeat_1": {"fold_0": [11, 12], "fold_1": [10, 12], "fold_2": [11, 12], "fold_3": [11, 12]},
+    "repeat_2": {"fold_0": [5, 7], "fold_1": [8, 11], "fold_2": [6, 7], "fold_3": [11, 12]},
+    "selection_frequency": {"5": 1, "6": 1, "7": 2, "8": 4, "10": 2, "11": 8, "12": 6}
+  },
+  "interpretation": {
+    "H048": "All nine paired OOF macro-F1 differences favor the adapter over VGGish, with a practically sizable mean gain; the hierarchical interval retains uncertainty from the same 111-cat internal-validation boundary.",
+    "H019": "The adapter and matched AST head-only control are effectively tied on primary macro F1 across repeated splits; most of the formal gain over VGGish is attributable to the AST pipeline rather than a uniquely established adapter effect.",
+    "candidate_status": "Probe-guided AST adapter remains the highest-mean-macro-F1 formal candidate, while future candidates and external validation remain open."
+  },
+  "report": "reports/12_formal_v2_1_core_results.md"
+}

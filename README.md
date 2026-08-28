@@ -75,7 +75,7 @@ improve overall performance. Probe-guided layer selection remains a replaceable
 implementation candidate before the external execution lock; it is not a
 frozen claim of unique layer semantics.
 
-The active execution design is formal v2.1:
+The completed core execution design is formal v2.1:
 
 - amended protocol: `configs/protocol/meowagenet_formal_v2_1.json`;
 - readable amendment: `reports/10_formal_protocol_v2_1_amendment.md`;
@@ -89,7 +89,10 @@ The active execution design is formal v2.1:
 - candidate execution recipe:
   `configs/experiment/meowagenet_formal_v2_1_probe_guided_candidate_v1.json`;
 - guarded formal runner: `scripts/run_meowagenet_formal_v2_1.py`;
-- inner-only runner smoke record: `reports/11_formal_v2_1_runner_smoke.md`.
+- inner-only runner smoke record: `reports/11_formal_v2_1_runner_smoke.md`;
+- formal core results: `reports/12_formal_v2_1_core_results.md`;
+- machine-readable result audit:
+  `metadata/experiments/meowagenet_formal_v2_1_core_results.json`.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
@@ -98,16 +101,28 @@ and three model seeds, totaling 108 fold-level fits. The earlier strict v2
 matrix remains in the repository as a design-history record.
 
 Formal v2.1 is a pilot-informed repeated internal validation on the same 111
-cats, not an independent external replication. Training and formal comparison
-run in the external experiment environment after the runner passes checks and
-the execution lock is completed.
+cats, not an independent external replication. The locked minimum core has now
+completed all 108 fold-level fits and 27 complete OOF evaluations.
 
 The runner exposes separate `inner-only` and `formal` scopes. `inner-only`
 trains and validates within the nested development roles and produces no
 outer-test predictions. `formal` requires a completed execution lock whose
 recipe and runner hashes match before outer-test prediction begins.
 
-The prior stage checkpoint remains historical evidence:
+The formal-v2.1 aggregate is:
+
+| Pipeline | Animal macro F1, mean ± SD | Balanced accuracy | QWK |
+| --- | ---: | ---: | ---: |
+| VGGish + MLP | 0.6525 ± 0.0462 | 0.6525 | 0.5334 |
+| AST head-only | 0.7238 ± 0.0335 | **0.7597** | **0.6374** |
+| Probe-guided AST adapter | **0.7290 ± 0.0428** | 0.7419 | 0.6373 |
+
+The adapter improved macro F1 over VGGish by 0.0765 on average, with all nine
+paired OOF comparisons positive. Its incremental difference over matched AST
+head-only was 0.0052, so the formal evidence supports the AST route strongly
+while treating the adapter-specific contribution as split-dependent.
+
+The prior stage checkpoint remains historical pilot evidence:
 
 | Pipeline | Animal macro F1 | Role |
 | --- | ---: | --- |
