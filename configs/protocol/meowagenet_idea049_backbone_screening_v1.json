@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea049-backbone-screening-v1",
+  "date": "2026-08-29",
+  "status": "ssast_initial_screening_authorized",
+  "relationship_to_formal_v2_1": "separate exploratory screening; formal-v2.1 files and outcomes remain historical anchors",
+  "dataset": {
+    "manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "calls": 792,
+    "cats": 111,
+    "class_counts": {
+      "kitten": 15,
+      "adult": 62,
+      "senior": 34
+    }
+  },
+  "splits": {
+    "outer_path": "splits/meowagenet_formal_v2_outer_folds.csv",
+    "outer_sha256": "3e63a9b1ea13e6e42a17bedd1aad799476e02d7bbc73aa0293f205e3e2cf28be",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "initial_repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "initial_base_seeds": [17],
+    "expanded_base_seeds": [17, 43, 101],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * outer_fold"
+  },
+  "evaluation": {
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "per_class_recall",
+      "confusion_matrix"
+    ],
+    "call_to_animal_aggregation": "arithmetic mean of call-level probabilities within cat_id",
+    "epoch_selection": "minimum inner-validation cross-entropy loss"
+  },
+  "shared_head": {
+    "structure": "embedding_dimension -> 128 -> 3",
+    "activation": "ReLU",
+    "normalization": "feature standardization followed by BatchNorm1d",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.003109800273709165,
+    "batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "class_weight": "balanced from current training calls"
+  },
+  "stages": {
+    "smoke": {
+      "repeat": 0,
+      "outer_fold": 0,
+      "base_seed": 17,
+      "maximum_epochs": 2,
+      "outer_test_access": false
+    },
+    "initial": {
+      "repeats": [0, 1, 2],
+      "outer_folds": [0, 1, 2, 3],
+      "base_seeds": [17],
+      "fold_level_fits": 12,
+      "complete_oof_evaluations": 3
+    },
+    "expanded": {
+      "requires_team_confirmation": true,
+      "base_seeds": [17, 43, 101],
+      "fold_level_fits": 36,
+      "complete_oof_evaluations": 9
+    }
+  },
+  "candidate_order": [
+    "ssast_base_patch400",
+    "passt",
+    "panns_cnn14",
+    "aves",
+    "conditional_conformer"
+  ],
+  "report": "reports/13_IDEA-049_backbone_screening_plan.md"
+}

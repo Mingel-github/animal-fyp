@@ -1,0 +1,117 @@
+# IDEA-049｜MeowAgeNet 预训练主干模型筛选计划
+
+> 纳入日期：2026-08-29
+> 来源：U 盘 `IDEA-049_Backbone_Screening_Plan.md`
+> 来源 SHA-256：`49f9b04d03f16f9142403245abc58b6458437279c7ad6aece791067ea0f15824`
+> 状态：SSAST 第一候选 initial screening 已完成；结果见
+> `reports/14_IDEA-049_SSAST_initial_screening_results.md`
+
+## 1. 定位
+
+IDEA-049 是 formal-v2.1 完成后的独立探索性 backbone screening。它沿用同一套
+MeowAgeNet 数据、cat-ID-disjoint split bank 和 animal-level 指标，回答公开预训练
+audio pipeline 中是否存在能够稳定超过现有 AST head-only 的候选。
+
+formal-v2.1 继续作为不可改写的历史参照。IDEA-049 使用独立协议、runner、run ID 和
+结果报告，服务于 IDEA-048 的总体性能提升目标。
+
+## 2. 历史参照
+
+| Pipeline | Animal macro F1，mean ± SD | Balanced accuracy | QWK |
+|---|---:|---:|---:|
+| VGGish + MLP | 0.6525 ± 0.0462 | 0.6525 | 0.5334 |
+| AST head-only | 0.7238 ± 0.0335 | 0.7597 | 0.6374 |
+| Probe-guided AST adapter | 0.7290 ± 0.0428 | 0.7419 | 0.6373 |
+
+Initial screening 只使用 base seed 17。与之配对的 AST head-only 三个 repeat macro F1
+分别为 0.7182、0.7616 和 0.7212，平均 0.7337。Expanded screening 增加 seeds 43、
+101 后，候选才与 formal AST 的全部九组 complete OOF 对齐。
+
+## 3. 共同评价边界
+
+- 分析视图：792 段唯一叫声、111 只猫；
+- splits：`meowagenet_formal_v2_outer_folds.csv` 和
+  `meowagenet_formal_v2_nested_roles.csv`；
+- primary unit：animal；
+- primary metric：animal-level macro F1；
+- secondary metrics：balanced accuracy、QWK、per-class recall 和混淆矩阵；
+- 同一只猫的全部叫声始终处于同一 partition；
+- inner validation 选择 epoch，outer-test 只形成该候选的 exploratory OOF；
+- 每段叫声产生一个 frozen call embedding，分类概率在 cat_id 内算术平均。
+
+## 4. 统一分类 head
+
+所有 frozen candidate 使用：
+
+```text
+embedding dimension -> 128 -> 3
+```
+
+具体结构为 feature standardization、Linear、ReLU、BatchNorm、Dropout、Linear。输入维度
+随 backbone 改变，隐藏宽度固定为 128，优化器、学习率、class weighting、early stopping
+和 animal aggregation 沿用 formal AST head-only。这样可以直接复用已完成的 AST 参照。
+
+## 5. 候选顺序
+
+1. SSAST；
+2. PaSST；
+3. PANNs CNN14；
+4. AVES；
+5. 具有适合公开预训练权重时的 Conformer。
+
+BEATs、HTS-AT 和 Perch 保留在第二波候选池。
+
+## 6. SSAST v1 锁定
+
+第一候选采用 SSAST-Base-Patch-400 的 Hugging Face 转换版权重。上游定义来自
+`YuanGongND/ssast`，BSD-3-Clause，官方主干 commit
+`a1a3eecb94731e226308a6812f2fbf268d789caf`。官方 Dropbox 当前临时停用，实际运行锁定
+`Simon-Kotchou/ssast-base-patch-audioset-16-16` revision
+`f67df8e895e787bad0aec434563e8f0a1f61c794`。
+
+- pretraining：AudioSet + LibriSpeech，joint discriminative/generative MSPM；
+- architecture：base，12 blocks，768 hidden dimensions；
+- input：16 kHz，128 mel bins，1024 frames；
+- patch/stride：16×16 / 16×16；
+- normalization：mean −4.2677393，std 4.5689974；
+- pooling：Hugging Face AST `pooler_output`，即 CLS 与 distillation token 的平均；
+- checkpoint SHA-256：
+  `a31a7f70fea7648847882ecd278369f6f1b1cb0050364c4dff7d3c8cf8aabfe6`。
+
+该实现被报告为“SSAST Hugging Face converted pipeline”，从而保留与原生官方实现的
+来源边界。
+
+## 7. 执行阶段
+
+### Stage A｜资源审查
+
+锁定论文、上游代码、license、checkpoint、revision、checksum、输入前端和 pooling。
+
+### Stage B｜embedding cache
+
+从 792 段音频提取一个 768 维 call-level frozen embedding，保存数据顺序、标签、
+cat_id、duration、模型 revision 和 checksum。
+
+### Stage C｜smoke
+
+运行 repeat 0、fold 0、base seed 17 的 inner train/validation 数据流；限制为两个 epoch，
+检查维度、loss、animal aggregation、GPU 和日志。
+
+### Stage D｜initial screening
+
+运行 repeats 0–2 × folds 0–3 × base seed 17，共 12 个 fold-level fits，形成三组完整
+111-cat OOF，并与同 repeat、同 seed 的 AST head-only 配对。
+
+### Stage E｜expanded screening
+
+候选经团队确认后增加 seeds 43 和 101，总量达到 36 fits 和九组 complete OOF。
+
+SSAST 的三组 seed-17 OOF 已完成，macro F1 均值为 0.6292；配对 AST head-only
+均值为 0.7337。SSAST 记录为 `screened_not_better`，因此本轮保留初筛证据并停止
+seed 扩展。PaSST 仍是计划中的下一候选，启动时间由团队另行确认。
+
+## 8. 结果解释
+
+IDEA-049 报告完整 pipeline 在共享评价边界下的性能。preprocessing、pretraining、
+pooling 和 backbone 共同构成 pipeline，候选排名不延伸为纯 architecture 因果结论。
+所有完成的 OOF、资源代价与失败记录均进入结果文档。

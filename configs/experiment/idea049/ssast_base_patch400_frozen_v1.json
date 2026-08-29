@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "idea049-ssast-base-patch400-frozen-v1",
+  "protocol_id": "meowagenet-idea049-backbone-screening-v1",
+  "pipeline_id": "ssast_hf_base_patch400_frozen_mlp",
+  "model": {
+    "official_repository": "https://github.com/YuanGongND/ssast",
+    "official_revision": "a1a3eecb94731e226308a6812f2fbf268d789caf",
+    "official_checkpoint_name": "SSAST-Base-Patch-400.pth",
+    "runtime_model_id": "Simon-Kotchou/ssast-base-patch-audioset-16-16",
+    "runtime_revision": "f67df8e895e787bad0aec434563e8f0a1f61c794",
+    "runtime_checkpoint_file": "model.safetensors",
+    "runtime_checkpoint_sha256": "a31a7f70fea7648847882ecd278369f6f1b1cb0050364c4dff7d3c8cf8aabfe6",
+    "runtime_checkpoint_bytes": 344254540,
+    "backbone": "frozen",
+    "hidden_size": 768,
+    "pooling": "ASTModel.pooler_output: mean of CLS and distillation tokens"
+  },
+  "preprocessing": {
+    "sampling_rate_hz": 16000,
+    "mono": "arithmetic channel mean",
+    "num_mel_bins": 128,
+    "max_length_frames": 1024,
+    "mean": -4.2677393,
+    "std": 4.5689974,
+    "patch_size": 16,
+    "frequency_stride": 16,
+    "time_stride": 16,
+    "padding_side": "right"
+  },
+  "embedding_cache": "runs/idea049_ssast_base_patch400_v1/features/ssast_call_embeddings.npz",
+  "head_source": "configs/protocol/meowagenet_idea049_backbone_screening_v1.json"
+}

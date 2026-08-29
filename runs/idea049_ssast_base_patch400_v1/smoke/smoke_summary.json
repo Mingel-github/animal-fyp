@@ -1,0 +1,67 @@
+{
+  "status": "complete",
+  "outer_test_accessed": false,
+  "pipeline": "ssast_hf_base_patch400_frozen_mlp",
+  "repeat": 0,
+  "outer_fold": 0,
+  "base_seed": 17,
+  "full_seed": 17,
+  "train_calls": 517,
+  "validation_calls": 112,
+  "best_epoch": 2,
+  "audit": {
+    "best_epoch": 2,
+    "stopped_epoch": 2,
+    "best_validation_loss": 0.8083915114402771,
+    "best_validation_animal_metrics": {
+      "macro_f1": 0.7241830065359477,
+      "balanced_accuracy": 0.8000000000000002,
+      "quadratic_weighted_kappa": 0.6792452830188679,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.6,
+        "senior": 0.8
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          1,
+          6,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ]
+      ],
+      "n": 17
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.841562959280881,
+        "validation_loss": 1.1038753677691733,
+        "validation_macro_f1": 0.5925925925925926,
+        "validation_qwk": 0.29655172413793107
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.5822739006241701,
+        "validation_loss": 0.8083915114402771,
+        "validation_macro_f1": 0.7241830065359477,
+        "validation_qwk": 0.6792452830188679
+      }
+    ],
+    "train_seconds": 0.5198901000003389,
+    "parameters": {
+      "trainable": 99075,
+      "total": 99075
+    },
+    "peak_vram_bytes": 20235776
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea049-ssast-initial-v1",
+  "date": "2026-08-29",
+  "status": "complete_for_initial_screening",
+  "candidate_status": "screened_not_better",
+  "pipeline": "ssast_hf_base_patch400_frozen_mlp",
+  "scope": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "completed_fits": 12,
+    "complete_oof_evaluations": 3,
+    "calls": 792,
+    "cats": 111
+  },
+  "embedding_cache": {
+    "shape": [792, 768],
+    "finite": true,
+    "sha256": "cfffa85ac117767a0d47118bf7bd0f5f7576214250a167ab210530f426a1784c",
+    "bytes": 2269496,
+    "elapsed_seconds": 12.482515399999102,
+    "peak_vram_bytes": 659125248
+  },
+  "checkpoint": {
+    "repo_id": "Simon-Kotchou/ssast-base-patch-audioset-16-16",
+    "revision": "f67df8e895e787bad0aec434563e8f0a1f61c794",
+    "sha256": "a31a7f70fea7648847882ecd278369f6f1b1cb0050364c4dff7d3c8cf8aabfe6",
+    "implementation_identity": "SSAST Hugging Face converted pipeline"
+  },
+  "smoke": {
+    "repeat": 0,
+    "outer_fold": 0,
+    "base_seed": 17,
+    "epochs": 2,
+    "outer_test_accessed": false,
+    "best_validation_animal_macro_f1": 0.7241830065359477
+  },
+  "complete_oof": [
+    {
+      "repeat": 0,
+      "base_seed": 17,
+      "n_animals": 111,
+      "macro_f1": 0.6371212121212121,
+      "balanced_accuracy": 0.6652962260172887,
+      "quadratic_weighted_kappa": 0.6081200353045013,
+      "per_class_recall": {"kitten": 0.6666666666666666, "adult": 0.5645161290322581, "senior": 0.7647058823529411},
+      "confusion_matrix": [[10, 5, 0], [7, 35, 20], [0, 8, 26]]
+    },
+    {
+      "repeat": 1,
+      "base_seed": 17,
+      "n_animals": 111,
+      "macro_f1": 0.6982631700023004,
+      "balanced_accuracy": 0.7348091924942018,
+      "quadratic_weighted_kappa": 0.6330742428303404,
+      "per_class_recall": {"kitten": 0.8666666666666667, "adult": 0.6612903225806451, "senior": 0.6764705882352942},
+      "confusion_matrix": [[13, 2, 0], [6, 41, 15], [1, 10, 23]]
+    },
+    {
+      "repeat": 2,
+      "base_seed": 17,
+      "n_animals": 111,
+      "macro_f1": 0.5520922755811409,
+      "balanced_accuracy": 0.6063251106894371,
+      "quadratic_weighted_kappa": 0.4014155712841254,
+      "per_class_recall": {"kitten": 0.8, "adult": 0.5483870967741935, "senior": 0.47058823529411764},
+      "confusion_matrix": [[12, 3, 0], [9, 34, 19], [5, 13, 16]]
+    }
+  ],
+  "aggregate": {
+    "macro_f1_mean": 0.6291588859015511,
+    "macro_f1_sample_sd": 0.07341002365543593,
+    "balanced_accuracy_mean": 0.6688101764003092,
+    "quadratic_weighted_kappa_mean": 0.547536616472989,
+    "per_class_recall_mean": {"kitten": 0.7777777777777778, "adult": 0.5913978494623656, "senior": 0.6372549019607843}
+  },
+  "paired_references_seed17": {
+    "vggish_macro_f1": [0.7098310291858678, 0.6693961479920384, 0.6593408690626141],
+    "vggish_mean": 0.6795226820801735,
+    "ast_head_only_macro_f1": [0.718247825445968, 0.7615904674728204, 0.7212121212121213],
+    "ast_head_only_mean": 0.7336834713769699,
+    "probe_guided_adapter_macro_f1": [0.7740740740740741, 0.75103539132548, 0.6793650793650795],
+    "probe_guided_adapter_mean": 0.7348248482548779
+  },
+  "paired_vs_ast_head_only": {
+    "candidate_minus_ast_macro_f1": [-0.0811266133247559, -0.06332729747052002, -0.16911984563098037],
+    "mean_difference": -0.10452458547541876,
+    "positive_complete_oof_evaluations": 0,
+    "paired_bootstrap": {
+      "resamples": 5000,
+      "seed": 20260829,
+      "bootstrap_mean": -0.10485894949317803,
+      "percentile_interval_95": [-0.20326903089419834, -0.007518091745622989]
+    }
+  },
+  "integrity_audit": {
+    "failed_fits": 0,
+    "fit_summary_files": 12,
+    "outer_prediction_files": 12,
+    "rows_per_repeat": [792, 792, 792],
+    "unique_calls_per_repeat": [792, 792, 792],
+    "unique_cats_per_repeat": [111, 111, 111],
+    "maximum_probability_sum_error_per_repeat": [
+      1.2852251529693604e-7,
+      1.1526935850270092e-7,
+      1.2185773812234402e-7
+    ],
+    "cat_id_partition_overlap": false,
+    "complete_oof_audit_passed": true
+  },
+  "expansion_decision": {
+    "seeds_43_101_executed": false,
+    "reason": "Seed-17 candidate-minus-AST macro F1 was negative in all three complete OOF comparisons."
+  },
+  "provenance_sha256": {
+    "protocol": "4519bd798d985e9462a3adf628ef543ea31f5d19dac78befabb0bbf8e22af065",
+    "recipe": "4e9f717408f0122c8bfbe49427d351e211d46c267ce82d88839244bc164cbc48",
+    "checkpoint_card": "7b2c074ac994083a855755291e77de4a7d235d0a6a5e4a914d1b51ad705530b7",
+    "runner": "419ac7815f7b24151b3d3c9536e76858cd53a7954f147cc6acc776951bcd07f0",
+    "feature_manifest": "18c157b305f33915a7ef6fcef45ed4c1036afe96f95b1df3ab525c3fee08fe5e",
+    "smoke_summary": "bffba95689e8a4c857310574a548ece2b398c59ce112ae7b9b402798c143ad37",
+    "initial_summary": "9bbf225a4e4fe43684e0f3f6b1ea33e60ed5e7b46c57337cca4e54c7d352515a",
+    "run_summary": "188e3bdc09dc6652841da74408ea06394d55c7a0199db2bd2063276713474e70",
+    "run_manifest": "2a51ff4dcada8f6cf7bf051cb45ab02898af80ab49963101aaeee45f493b6b3a"
+  },
+  "report": "reports/14_IDEA-049_SSAST_initial_screening_results.md"
+}

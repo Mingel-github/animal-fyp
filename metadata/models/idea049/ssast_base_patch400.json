@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "candidate_id": "ssast_base_patch400",
+  "audit_date": "2026-08-29",
+  "status": "verified_for_converted_pipeline_screening",
+  "paper": {
+    "title": "SSAST: Self-Supervised Audio Spectrogram Transformer",
+    "venue": "AAAI 2022",
+    "url": "https://arxiv.org/abs/2110.09784"
+  },
+  "official_source": {
+    "repository": "https://github.com/YuanGongND/ssast",
+    "revision": "a1a3eecb94731e226308a6812f2fbf268d789caf",
+    "license": "BSD-3-Clause",
+    "checkpoint_name": "SSAST-Base-Patch-400.pth",
+    "checkpoint_url": "https://www.dropbox.com/s/ewrzpco95n9jdz6/SSAST-Base-Patch-400.pth?dl=1",
+    "checkpoint_access_observation": "official Dropbox link displayed a temporary-disabled response on 2026-08-29",
+    "pretraining_data": ["AudioSet", "LibriSpeech"],
+    "pretraining_objective": "joint discriminative and generative masked spectrogram patch modeling",
+    "masked_patches": 400
+  },
+  "runtime_conversion": {
+    "model_id": "Simon-Kotchou/ssast-base-patch-audioset-16-16",
+    "revision": "f67df8e895e787bad0aec434563e8f0a1f61c794",
+    "license_on_model_card": "BSD-3-Clause",
+    "checkpoint_file": "model.safetensors",
+    "checkpoint_bytes": 344254540,
+    "checkpoint_sha256": "a31a7f70fea7648847882ecd278369f6f1b1cb0050364c4dff7d3c8cf8aabfe6",
+    "transformers_class": "ASTModel",
+    "parameter_count": 85649664,
+    "source_boundary": "community conversion of the released SSAST checkpoint; report as SSAST Hugging Face converted pipeline"
+  },
+  "input": {
+    "sampling_rate_hz": 16000,
+    "num_mel_bins": 128,
+    "max_length_frames": 1024,
+    "normalization_mean": -4.2677393,
+    "normalization_std": 4.5689974,
+    "patch_shape": [16, 16],
+    "patch_stride": [16, 16]
+  },
+  "output": {
+    "embedding_dimension": 768,
+    "pooling": "mean of post-layernorm CLS and distillation token outputs"
+  },
+  "local_smoke": {
+    "device": "NVIDIA GeForce RTX 4060 Ti",
+    "input_shape": [1, 1024, 128],
+    "token_shape": [1, 514, 768],
+    "embedding_shape": [1, 768],
+    "finite": true
+  }
+}

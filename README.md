@@ -97,6 +97,26 @@ The completed core execution design is formal v2.1:
 - tracked formal execution logs:
   `runs/meowagenet_formal_v2_1_core/**/*.json`.
 
+IDEA-049 begins a separate exploratory pretrained-backbone screening after the
+formal-v2.1 checkpoint:
+
+- readable plan: `reports/13_IDEA-049_backbone_screening_plan.md`;
+- protocol: `configs/protocol/meowagenet_idea049_backbone_screening_v1.json`;
+- first candidate recipe:
+  `configs/experiment/idea049/ssast_base_patch400_frozen_v1.json`;
+- SSAST checkpoint card: `metadata/models/idea049/ssast_base_patch400.json`.
+- independent runner: `scripts/run_meowagenet_idea049.py`;
+- SSAST initial-screening report:
+  `reports/14_IDEA-049_SSAST_initial_screening_results.md`;
+- machine-readable SSAST result:
+  `metadata/experiments/meowagenet_idea049_ssast_initial_v1_results.json`.
+
+The SSAST candidate completed its 792-call frozen embedding cache, inner-only
+smoke test, and 12 initial-screening fits. Its three seed-17 complete-OOF animal
+macro F1 values were 0.6371, 0.6983, and 0.5521 (mean 0.6292), compared with
+0.7337 for the paired AST head-only reference. It is retained as a completed
+`screened_not_better` candidate; PaSST remains the next planned candidate.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,

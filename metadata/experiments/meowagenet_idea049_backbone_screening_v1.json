@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea049-backbone-screening-v1",
+  "date": "2026-08-29",
+  "status": "ssast_initial_screening_complete",
+  "authorized_scope": {
+    "candidate": "ssast_base_patch400",
+    "stages": ["embedding_cache", "smoke", "initial_screening"],
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3]
+  },
+  "completed": {
+    "plan_versioned": true,
+    "official_code_review": true,
+    "license_review": true,
+    "checkpoint_provenance_review": true,
+    "local_model_forward_smoke": true,
+    "embedding_cache": true,
+    "inner_smoke": true,
+    "initial_screening": true
+  },
+  "protocol": "configs/protocol/meowagenet_idea049_backbone_screening_v1.json",
+  "recipe": "configs/experiment/idea049/ssast_base_patch400_frozen_v1.json",
+  "checkpoint_card": "metadata/models/idea049/ssast_base_patch400.json",
+  "runner": "scripts/run_meowagenet_idea049.py",
+  "result_record": "metadata/experiments/meowagenet_idea049_ssast_initial_v1_results.json",
+  "result_report": "reports/14_IDEA-049_SSAST_initial_screening_results.md",
+  "decision": {
+    "candidate_status": "screened_not_better",
+    "expanded_seeds_authorized": false,
+    "expanded_seeds_executed": false,
+    "next_candidate_in_plan": "passt",
+    "next_candidate_status": "pending_team_confirmation"
+  }
+}
