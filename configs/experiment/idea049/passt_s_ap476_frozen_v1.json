@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "idea049-passt-s-ap476-frozen-v1",
+  "protocol_id": "meowagenet-idea049-backbone-screening-v1",
+  "pipeline_id": "passt_s_ap476_frozen_mlp",
+  "model": {
+    "official_repository": "https://github.com/kkoutini/PaSST",
+    "official_revision": "2a5c818afcc2a215b2a1aaf1ed8be71f89d43201",
+    "inference_repository": "https://github.com/kkoutini/passt_hear21",
+    "inference_revision": "5f1cce6a54b88faf0abad82ed428355e7931213a",
+    "runtime_package": "hear21passt",
+    "runtime_package_version": "0.0.26",
+    "runtime_package_wheel_sha256": "a3a7377604c6d829369111ab26a86fc5dd40154ec611b8fa5819ecaa6b252550",
+    "runtime_arch": "passt_s_swa_p16_128_ap476",
+    "checkpoint_release": "v0.0.1-audioset",
+    "checkpoint_asset_id": 47268195,
+    "checkpoint_file": "passt-s-f128-p16-s10-ap.476-swa.pt",
+    "checkpoint_sha256": "302903fa8c4aee817b11dc982da0b29aaf8d11a3e722420476d0a12c9db70c2c",
+    "checkpoint_bytes": 344665734,
+    "backbone": "frozen",
+    "hidden_size": 768,
+    "pooling": "mean of final CLS and distillation tokens",
+    "wrapper_mode": "embed_only",
+    "inference_patchout": {
+      "unstructured": 0,
+      "structured_time": 0,
+      "structured_frequency": 0
+    }
+  },
+  "preprocessing": {
+    "sampling_rate_hz": 32000,
+    "mono": "arithmetic channel mean",
+    "num_mel_bins": 128,
+    "window_samples": 800,
+    "hop_samples": 320,
+    "fft_samples": 1024,
+    "preemphasis": 0.97,
+    "fmin_hz": 0,
+    "fmax_hz": 15000,
+    "log_mel_normalization": "(log(mel + 1e-5) + 4.5) / 5",
+    "native_max_window_seconds": 10,
+    "short_clip_policy": "retain native duration; right-zero-pad only clips shorter than 160 ms to 5120 samples",
+    "clips_below_160ms": 11,
+    "clips_at_or_above_160ms": 781,
+    "extraction_batch_size": 1
+  },
+  "embedding_cache": "runs/idea049_passt_s_ap476_v1/features/passt_call_embeddings.npz",
+  "head_source": "configs/protocol/meowagenet_idea049_backbone_screening_v1.json",
+  "training_engine": "scripts/run_meowagenet_idea049.py"
+}

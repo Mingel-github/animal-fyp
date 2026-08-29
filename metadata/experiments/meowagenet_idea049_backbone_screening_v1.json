@@ -2,9 +2,10 @@
   "schema_version": "1.0",
   "experiment_id": "meowagenet-idea049-backbone-screening-v1",
   "date": "2026-08-29",
-  "status": "ssast_initial_screening_complete",
+  "last_updated": "2026-08-30",
+  "status": "passt_initial_screening_complete",
   "authorized_scope": {
-    "candidate": "ssast_base_patch400",
+    "candidates": ["ssast_base_patch400", "passt_s_ap476"],
     "stages": ["embedding_cache", "smoke", "initial_screening"],
     "base_seeds": [17],
     "repeats": [0, 1, 2],
@@ -27,10 +28,28 @@
   "result_record": "metadata/experiments/meowagenet_idea049_ssast_initial_v1_results.json",
   "result_report": "reports/14_IDEA-049_SSAST_initial_screening_results.md",
   "decision": {
+    "latest_candidate": "passt_s_ap476",
     "candidate_status": "screened_not_better",
     "expanded_seeds_authorized": false,
     "expanded_seeds_executed": false,
-    "next_candidate_in_plan": "passt",
+    "next_candidate_in_plan": "panns_cnn14",
     "next_candidate_status": "pending_team_confirmation"
+  },
+  "passt": {
+    "authorized": true,
+    "status": "initial_screening_complete",
+    "recipe": "configs/experiment/idea049/passt_s_ap476_frozen_v1.json",
+    "checkpoint_card": "metadata/models/idea049/passt_s_ap476.json",
+    "runner": "scripts/run_meowagenet_idea049_passt.py",
+    "run_root": "runs/idea049_passt_s_ap476_v1",
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "completed_fits": 12,
+    "complete_oof_evaluations": 3,
+    "candidate_status": "screened_not_better",
+    "expanded_seeds_executed": false,
+    "result_record": "metadata/experiments/meowagenet_idea049_passt_initial_v1_results.json",
+    "result_report": "reports/15_IDEA-049_PaSST_initial_screening_results.md"
   }
 }

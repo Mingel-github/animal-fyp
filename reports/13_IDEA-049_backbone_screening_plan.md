@@ -3,8 +3,7 @@
 > 纳入日期：2026-08-29
 > 来源：U 盘 `IDEA-049_Backbone_Screening_Plan.md`
 > 来源 SHA-256：`49f9b04d03f16f9142403245abc58b6458437279c7ad6aece791067ea0f15824`
-> 状态：SSAST 第一候选 initial screening 已完成；结果见
-> `reports/14_IDEA-049_SSAST_initial_screening_results.md`
+> 状态：SSAST、PaSST 两个候选的 initial screening 已完成
 
 ## 1. 定位
 
@@ -108,9 +107,36 @@ cat_id、duration、模型 revision 和 checksum。
 
 SSAST 的三组 seed-17 OOF 已完成，macro F1 均值为 0.6292；配对 AST head-only
 均值为 0.7337。SSAST 记录为 `screened_not_better`，因此本轮保留初筛证据并停止
-seed 扩展。PaSST 仍是计划中的下一候选，启动时间由团队另行确认。
+seed 扩展。PaSST 已于 2026-08-30 获准进入第二候选执行。
 
-## 8. 结果解释
+## 8. PaSST v1 锁定
+
+第二候选采用官方 `hear21passt==0.0.26` 提供的
+`passt_s_swa_p16_128_ap476`。权重来自 PaSST 官方 GitHub release
+`v0.0.1-audioset`，checkpoint SHA-256 为
+`302903fa8c4aee817b11dc982da0b29aaf8d11a3e722420476d0a12c9db70c2c`。
+
+- pretraining：ImageNet 初始化后进行 supervised AudioSet multi-label training，使用
+  structured Patchout 与 SWA；
+- input：32 kHz mono、128 mel、800-sample window、320-sample hop、1024 FFT；
+- architecture：PaSST-S，16×16 patch、10×10 stride、768 hidden dimensions；
+- pooling：final CLS 与 distillation token 的平均；
+- output：`embed_only` 768 维，排除 527 维 AudioSet logits；
+- inference Patchout：0，形成确定性 frozen embedding；
+- short-call policy：保留 call 原始时长，仅将短于 160 ms 的 11 条 call 右侧补零至
+  5120 samples；其余 781 条保持原始时长；
+- license：Apache-2.0。
+
+PaSST 使用独立 recipe、runner 和 run ID，继续复用同一 split bank、共享
+`embedding dimension → 128 → 3` head 与 animal-level evaluation。
+
+PaSST 的三组 seed-17 complete OOF macro F1 为 0.6319、0.6741 和 0.6619，均值
+0.6560；配对 AST head-only 均值为 0.7337，平均差值为 −0.0777。PaSST 记录为
+`screened_not_better`，保留完整初筛证据并停止 seed 扩展。它比 SSAST 的初筛均值高
+0.0268，且 repeat 间 SD 从 0.0734 降至 0.0217。详细结果见
+`reports/15_IDEA-049_PaSST_initial_screening_results.md`。计划中的下一候选为 PANNs CNN14。
+
+## 9. 结果解释
 
 IDEA-049 报告完整 pipeline 在共享评价边界下的性能。preprocessing、pretraining、
 pooling 和 backbone 共同构成 pipeline，候选排名不延伸为纯 architecture 因果结论。

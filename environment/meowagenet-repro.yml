@@ -29,7 +29,12 @@ dependencies:
       - --extra-index-url=https://download.pytorch.org/whl/cu121
       - torch==2.2.2+cu121
       - torchaudio==2.2.2+cu121
+      - torchvision==0.17.2+cu121
       - transformers==4.48.3
       - huggingface-hub==0.28.1
       - safetensors==0.5.2
+
+      # IDEA-049 PaSST inference dependencies.
+      - timm==0.9.16
+      - hear21passt==0.0.26
       - pytest==7.4.3

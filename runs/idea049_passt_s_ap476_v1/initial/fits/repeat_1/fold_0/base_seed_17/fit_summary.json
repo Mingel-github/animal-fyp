@@ -1,0 +1,159 @@
+{
+  "status": "complete",
+  "stage": "initial",
+  "pipeline": "passt_s_ap476_frozen_mlp",
+  "repeat": 1,
+  "outer_fold": 0,
+  "base_seed": 17,
+  "full_seed": 10017,
+  "train_calls": 515,
+  "validation_calls": 86,
+  "test_calls": 191,
+  "selected_epoch": 1,
+  "inner": {
+    "best_epoch": 1,
+    "stopped_epoch": 9,
+    "best_validation_loss": 1.2017981950626817,
+    "best_validation_animal_metrics": {
+      "macro_f1": 0.45833333333333326,
+      "balanced_accuracy": 0.5666666666666668,
+      "quadratic_weighted_kappa": 0.4097222222222222,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.3,
+        "senior": 0.4
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          3,
+          5
+        ],
+        [
+          0,
+          3,
+          2
+        ]
+      ],
+      "n": 17
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.7628716380850783,
+        "validation_loss": 1.2017981950626817,
+        "validation_macro_f1": 0.45833333333333326,
+        "validation_qwk": 0.4097222222222222
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.47501346874005584,
+        "validation_loss": 1.2722797823506733,
+        "validation_macro_f1": 0.5002970885323826,
+        "validation_qwk": 0.4476534296028881
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.39431662958802527,
+        "validation_loss": 1.367620425168858,
+        "validation_macro_f1": 0.534640522875817,
+        "validation_qwk": 0.42264150943396217
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.3310213273011365,
+        "validation_loss": 1.411851860756098,
+        "validation_macro_f1": 0.573063973063973,
+        "validation_qwk": 0.46456692913385833
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.25972058842483076,
+        "validation_loss": 1.4975505207860194,
+        "validation_macro_f1": 0.573063973063973,
+        "validation_qwk": 0.46456692913385833
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.20869159131374174,
+        "validation_loss": 1.4889074023379836,
+        "validation_macro_f1": 0.573063973063973,
+        "validation_qwk": 0.46456692913385833
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.17890811481522126,
+        "validation_loss": 1.5865532090497572,
+        "validation_macro_f1": 0.6650717703349281,
+        "validation_qwk": 0.48484848484848486
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.17667418251049172,
+        "validation_loss": 1.665023336576861,
+        "validation_macro_f1": 0.6650717703349281,
+        "validation_qwk": 0.48484848484848486
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.18746036917549894,
+        "validation_loss": 1.7347682575846828,
+        "validation_macro_f1": 0.6650717703349281,
+        "validation_qwk": 0.48484848484848486
+      }
+    ],
+    "train_seconds": 1.151225699999486,
+    "parameters": {
+      "trainable": 99075,
+      "total": 99075
+    },
+    "peak_vram_bytes": 20235776
+  },
+  "outer": {
+    "epochs": 1,
+    "training_losses": [
+      0.763747452100118
+    ],
+    "test_loss": 0.6567229431961219,
+    "test_animal_metrics": {
+      "macro_f1": 0.7307692307692308,
+      "balanced_accuracy": 0.8125,
+      "quadratic_weighted_kappa": 0.7171717171717171,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.5625,
+        "senior": 0.875
+      },
+      "confusion_matrix": [
+        [
+          4,
+          0,
+          0
+        ],
+        [
+          2,
+          9,
+          5
+        ],
+        [
+          0,
+          1,
+          7
+        ]
+      ],
+      "n": 28
+    },
+    "train_and_predict_seconds": 0.17495270000290475,
+    "parameters": {
+      "trainable": 99075,
+      "total": 99075
+    },
+    "peak_vram_bytes": 20235776
+  },
+  "prediction_path": "runs/idea049_passt_s_ap476_v1/initial/fits/repeat_1/fold_0/base_seed_17/outer_test_call_predictions.csv"
+}

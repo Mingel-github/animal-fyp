@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "model_card_id": "idea049-passt-s-ap476",
+  "date_verified": "2026-08-30",
+  "status": "verified_for_initial_screening",
+  "paper": {
+    "title": "Efficient Training of Audio Transformers with Patchout",
+    "venue": "Interspeech 2022",
+    "url": "https://arxiv.org/abs/2110.05069"
+  },
+  "official_code": {
+    "repository": "https://github.com/kkoutini/PaSST",
+    "revision": "2a5c818afcc2a215b2a1aaf1ed8be71f89d43201",
+    "license": "Apache-2.0",
+    "license_sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6"
+  },
+  "inference_implementation": {
+    "repository": "https://github.com/kkoutini/passt_hear21",
+    "revision": "5f1cce6a54b88faf0abad82ed428355e7931213a",
+    "pypi_project": "https://pypi.org/project/hear21passt/0.0.26/",
+    "package": "hear21passt==0.0.26",
+    "wheel_sha256": "a3a7377604c6d829369111ab26a86fc5dd40154ec611b8fa5819ecaa6b252550",
+    "license_metadata": "Apache-2.0",
+    "compatibility_runtime": {
+      "torch": "2.2.2+cu121",
+      "torchaudio": "2.2.2+cu121",
+      "torchvision": "0.17.2+cu121",
+      "timm": "0.9.16"
+    }
+  },
+  "checkpoint": {
+    "architecture": "passt_s_swa_p16_128_ap476",
+    "release": "https://github.com/kkoutini/PaSST/releases/tag/v0.0.1-audioset",
+    "asset_id": 47268195,
+    "filename": "passt-s-f128-p16-s10-ap.476-swa.pt",
+    "bytes": 344665734,
+    "sha256": "302903fa8c4aee817b11dc982da0b29aaf8d11a3e722420476d0a12c9db70c2c",
+    "pretraining": "ImageNet-initialized PaSST-S followed by supervised multi-label AudioSet training with structured Patchout and SWA",
+    "reported_audioset_map": 0.476
+  },
+  "input": {
+    "sample_rate_hz": 32000,
+    "mono": true,
+    "mel_bins": 128,
+    "stft_window_samples": 800,
+    "stft_hop_samples": 320,
+    "fft_samples": 1024,
+    "frequency_range_hz": [0, 15000],
+    "maximum_native_window_seconds": 10,
+    "expected_training_time_frames": 998,
+    "variable_shorter_input_supported": true
+  },
+  "output": {
+    "wrapper_mode": "embed_only",
+    "dimension": 768,
+    "pooling": "mean of final CLS and distillation tokens",
+    "audioset_logits_excluded": true
+  },
+  "local_forward_audit": {
+    "device": "NVIDIA GeForce RTX 4060 Ti",
+    "input": "one second of zero-valued 32 kHz mono audio",
+    "output_shape": [1, 768],
+    "finite": true,
+    "backbone_parameters": 86153758,
+    "peak_vram_bytes": 438768640
+  },
+  "known_runtime_notes": [
+    "hear21passt requires timm for checkpoint retrieval helpers.",
+    "torch 2.2 emits a deprecation warning for the package's return_complex=False STFT call; numerical forward succeeds.",
+    "The package supports shorter time dimensions by slicing the disentangled time positional embedding. Inputs shorter than one 16-frame patch require right padding."
+  ]
+}

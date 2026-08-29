@@ -115,7 +115,24 @@ The SSAST candidate completed its 792-call frozen embedding cache, inner-only
 smoke test, and 12 initial-screening fits. Its three seed-17 complete-OOF animal
 macro F1 values were 0.6371, 0.6983, and 0.5521 (mean 0.6292), compared with
 0.7337 for the paired AST head-only reference. It is retained as a completed
-`screened_not_better` candidate; PaSST remains the next planned candidate.
+`screened_not_better` candidate. PaSST then entered as the second candidate.
+
+The second IDEA-049 candidate, PaSST, has also completed its resource audit,
+792-call embedding cache, inner-only smoke test, and 12 initial-screening fits:
+
+- runner: `scripts/run_meowagenet_idea049_passt.py`;
+- recipe: `configs/experiment/idea049/passt_s_ap476_frozen_v1.json`;
+- checkpoint card: `metadata/models/idea049/passt_s_ap476.json`;
+- Chinese result report:
+  `reports/15_IDEA-049_PaSST_initial_screening_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea049_passt_initial_v1_results.json`.
+
+PaSST achieved seed-17 complete-OOF animal macro F1 values of 0.6319, 0.6741,
+and 0.6619 (mean 0.6560, sample SD 0.0217). It improved over the SSAST screen
+mean by 0.0268 while remaining 0.0777 below the paired AST head-only mean. The
+candidate is retained as `screened_not_better`; PANNs CNN14 is next in the
+planned screening order.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
