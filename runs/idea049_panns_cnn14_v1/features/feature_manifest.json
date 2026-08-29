@@ -1,0 +1,44 @@
+{
+  "status": "complete",
+  "pipeline": "panns_cnn14_audioset_frozen_mlp",
+  "feature_path": "runs/idea049_panns_cnn14_v1/features/panns_cnn14_call_embeddings.npz",
+  "feature_sha256": "3f39f5416111f5f9a551de0ac2fceded18c40efa42098b1426a039a82275eaa4",
+  "feature_bytes": 1304034,
+  "shape": [
+    792,
+    2048
+  ],
+  "calls": 792,
+  "cats": 111,
+  "finite": true,
+  "checkpoint_path": "D:\\animalFYP\\animal-fyp\\data\\models\\panns\\Cnn14_mAP=0.431.pth",
+  "checkpoint_sha256": "0dc499e40e9761ef5ea061ffc77697697f277f6a960894903df3ada000e34b31",
+  "checkpoint_bytes": 327428481,
+  "official_repository": "https://github.com/qiuqiangkong/audioset_tagging_cnn",
+  "runtime_package": "panns-inference==0.1.1",
+  "torchlibrosa": "0.1.0",
+  "pooling": "frequency mean, then temporal max plus temporal mean, then fc1 ReLU; inference dropout disabled",
+  "source_sample_rates_hz": [
+    16000,
+    44100,
+    48000,
+    96000
+  ],
+  "short_calls_padded_to_310ms": 68,
+  "native_duration_seconds": {
+    "minimum": 0.084375,
+    "median": 0.6980105000000001,
+    "p95": 1.2877513999999997,
+    "maximum": 4.42525
+  },
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4060 Ti",
+  "extraction_batch_size": 1,
+  "elapsed_seconds": 7.359272699999565,
+  "peak_vram_bytes": 488786944,
+  "backbone_parameters": 81837071,
+  "protocol_sha256": "4519bd798d985e9462a3adf628ef543ea31f5d19dac78befabb0bbf8e22af065",
+  "recipe_sha256": "8943cf1c4aa66ea7758ae832e1200dd1953155d6c744579c95d8f4a602b0c425",
+  "runner_sha256": "281b5d9773462ad875f0c1490edc3c83417ea52a090f95a96bc7d7a8ac0728d6",
+  "training_engine_sha256": "419ac7815f7b24151b3d3c9536e76858cd53a7954f147cc6acc776951bcd07f0"
+}

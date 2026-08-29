@@ -1,0 +1,159 @@
+{
+  "status": "complete",
+  "stage": "initial",
+  "pipeline": "panns_cnn14_audioset_frozen_mlp",
+  "repeat": 1,
+  "outer_fold": 3,
+  "base_seed": 17,
+  "full_seed": 10317,
+  "train_calls": 534,
+  "validation_calls": 81,
+  "test_calls": 177,
+  "selected_epoch": 1,
+  "inner": {
+    "best_epoch": 1,
+    "stopped_epoch": 9,
+    "best_validation_loss": 0.936709068439625,
+    "best_validation_animal_metrics": {
+      "macro_f1": 0.538961038961039,
+      "balanced_accuracy": 0.6666666666666666,
+      "quadratic_weighted_kappa": 0.5466666666666666,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.4,
+        "senior": 0.6
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          3,
+          4,
+          3
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ],
+      "n": 17
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 1.03772659605362,
+        "validation_loss": 0.936709068439625,
+        "validation_macro_f1": 0.538961038961039,
+        "validation_qwk": 0.5466666666666666
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.6550596584095044,
+        "validation_loss": 1.1873823212988583,
+        "validation_macro_f1": 0.31697931697931697,
+        "validation_qwk": 0.4104046242774566
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.5970271623759681,
+        "validation_loss": 1.1115027298162012,
+        "validation_macro_f1": 0.3767676767676767,
+        "validation_qwk": 0.42105263157894735
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.49345285057575067,
+        "validation_loss": 1.1627040203706718,
+        "validation_macro_f1": 0.48181818181818176,
+        "validation_qwk": 0.5263157894736843
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.44360253527369836,
+        "validation_loss": 1.2763601938883464,
+        "validation_macro_f1": 0.43956043956043955,
+        "validation_qwk": 0.4720496894409938
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.43749380111694336,
+        "validation_loss": 1.2226751586537303,
+        "validation_macro_f1": 0.42500000000000004,
+        "validation_qwk": 0.45512820512820507
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.3766316681514295,
+        "validation_loss": 1.111470134169967,
+        "validation_macro_f1": 0.5317460317460317,
+        "validation_qwk": 0.592814371257485
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.3442761085453105,
+        "validation_loss": 1.1614670341397508,
+        "validation_macro_f1": 0.4806722689075631,
+        "validation_qwk": 0.47058823529411764
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.3318700603443139,
+        "validation_loss": 1.213139663507909,
+        "validation_macro_f1": 0.4366883116883116,
+        "validation_qwk": 0.43333333333333335
+      }
+    ],
+    "train_seconds": 1.0654482999998436,
+    "parameters": {
+      "trainable": 262915,
+      "total": 262915
+    },
+    "peak_vram_bytes": 25529856
+  },
+  "outer": {
+    "epochs": 1,
+    "training_losses": [
+      0.9088053184796155
+    ],
+    "test_loss": 1.0753480728063207,
+    "test_animal_metrics": {
+      "macro_f1": 0.4659197012138188,
+      "balanced_accuracy": 0.48148148148148145,
+      "quadratic_weighted_kappa": 0.2674418604651163,
+      "per_class_recall": {
+        "kitten": 0.6666666666666666,
+        "adult": 0.6666666666666666,
+        "senior": 0.1111111111111111
+      },
+      "confusion_matrix": [
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          1,
+          10,
+          4
+        ],
+        [
+          0,
+          8,
+          1
+        ]
+      ],
+      "n": 27
+    },
+    "train_and_predict_seconds": 0.14163170000028913,
+    "parameters": {
+      "trainable": 262915,
+      "total": 262915
+    },
+    "peak_vram_bytes": 25529856
+  },
+  "prediction_path": "runs/idea049_panns_cnn14_v1/initial/fits/repeat_1/fold_3/base_seed_17/outer_test_call_predictions.csv"
+}

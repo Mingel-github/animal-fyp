@@ -1,0 +1,159 @@
+{
+  "status": "complete",
+  "stage": "initial",
+  "pipeline": "panns_cnn14_audioset_frozen_mlp",
+  "repeat": 2,
+  "outer_fold": 0,
+  "base_seed": 17,
+  "full_seed": 20017,
+  "train_calls": 462,
+  "validation_calls": 95,
+  "test_calls": 235,
+  "selected_epoch": 1,
+  "inner": {
+    "best_epoch": 1,
+    "stopped_epoch": 9,
+    "best_validation_loss": 3.0072676828033047,
+    "best_validation_animal_metrics": {
+      "macro_f1": 0.5349206349206349,
+      "balanced_accuracy": 0.6666666666666666,
+      "quadratic_weighted_kappa": 0.3987138263665596,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.4,
+        "senior": 0.6
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          4,
+          4
+        ],
+        [
+          1,
+          1,
+          3
+        ]
+      ],
+      "n": 17
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 1.0656877301988148,
+        "validation_loss": 3.0072676828033047,
+        "validation_macro_f1": 0.5349206349206349,
+        "validation_qwk": 0.3987138263665596
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.7224333239840223,
+        "validation_loss": 3.1244903583275643,
+        "validation_macro_f1": 0.5051282051282051,
+        "validation_qwk": 0.5072463768115942
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.6516119243649693,
+        "validation_loss": 3.140584843409689,
+        "validation_macro_f1": 0.45714285714285713,
+        "validation_qwk": 0.4668989547038328
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.5802223976556357,
+        "validation_loss": 3.2034400538394325,
+        "validation_macro_f1": 0.45714285714285713,
+        "validation_qwk": 0.4668989547038328
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.449969178154355,
+        "validation_loss": 3.4353900300829032,
+        "validation_macro_f1": 0.34722222222222215,
+        "validation_qwk": 0.17361111111111116
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.4116731688573763,
+        "validation_loss": 3.691832292393634,
+        "validation_macro_f1": 0.5094017094017094,
+        "validation_qwk": 0.4882943143812708
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.3556920389334361,
+        "validation_loss": 4.036048527140366,
+        "validation_macro_f1": 0.5094017094017094,
+        "validation_qwk": 0.4882943143812708
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.31691602665882607,
+        "validation_loss": 4.299409082375075,
+        "validation_macro_f1": 0.5094017094017094,
+        "validation_qwk": 0.4882943143812708
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.2842766947366975,
+        "validation_loss": 4.3968044078663775,
+        "validation_macro_f1": 0.5871794871794872,
+        "validation_qwk": 0.5072463768115942
+      }
+    ],
+    "train_seconds": 0.9683040999989316,
+    "parameters": {
+      "trainable": 262915,
+      "total": 262915
+    },
+    "peak_vram_bytes": 25529856
+  },
+  "outer": {
+    "epochs": 1,
+    "training_losses": [
+      1.0054043360201632
+    ],
+    "test_loss": 1.8092845500783716,
+    "test_animal_metrics": {
+      "macro_f1": 0.5052910052910053,
+      "balanced_accuracy": 0.625,
+      "quadratic_weighted_kappa": 0.375,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.375,
+        "senior": 0.5
+      },
+      "confusion_matrix": [
+        [
+          4,
+          0,
+          0
+        ],
+        [
+          4,
+          6,
+          6
+        ],
+        [
+          2,
+          2,
+          4
+        ]
+      ],
+      "n": 28
+    },
+    "train_and_predict_seconds": 0.13575399999899673,
+    "parameters": {
+      "trainable": 262915,
+      "total": 262915
+    },
+    "peak_vram_bytes": 25529856
+  },
+  "prediction_path": "runs/idea049_panns_cnn14_v1/initial/fits/repeat_2/fold_0/base_seed_17/outer_test_call_predictions.csv"
+}

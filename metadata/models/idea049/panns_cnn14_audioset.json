@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "model_card_id": "idea049-panns-cnn14-audioset",
+  "date_verified": "2026-08-30",
+  "status": "verified_for_initial_screening",
+  "paper": {
+    "title": "PANNs: Large-Scale Pretrained Audio Neural Networks for Audio Pattern Recognition",
+    "venue": "IEEE/ACM Transactions on Audio, Speech, and Language Processing 28 (2020)",
+    "url": "https://arxiv.org/abs/1912.10211"
+  },
+  "official_code": {
+    "repository": "https://github.com/qiuqiangkong/audioset_tagging_cnn",
+    "source": "pytorch/models.py::Cnn14 on master, verified 2026-08-30",
+    "license": "MIT",
+    "license_file": "LICENSE.MIT"
+  },
+  "inference_implementation": {
+    "repository": "https://github.com/qiuqiangkong/panns_inference",
+    "pypi_project": "https://pypi.org/project/panns-inference/0.1.1/",
+    "package": "panns-inference==0.1.1",
+    "wheel_sha256": "97f6b56b6c9467cf00e21f041e1f88933188c65c1b5ca64eeb3c92e37fb27fc2",
+    "license_metadata": "MIT",
+    "torchlibrosa": "0.1.0",
+    "torchlibrosa_wheel_sha256": "89b65fd28b833ceb6bc74a3d0d87e2924ddc5a845d0a246b194952a4e12a38cb",
+    "runtime_note": "The runner imports the wheel's models module without executing the package-level AudioSet label downloader; the Cnn14 model path is unchanged."
+  },
+  "checkpoint": {
+    "architecture": "Cnn14",
+    "official_record": "https://zenodo.org/records/3987831",
+    "filename": "Cnn14_mAP=0.431.pth",
+    "bytes": 327428481,
+    "md5": "541141fa2ee191a88f24a3219fff024e",
+    "sha256": "0dc499e40e9761ef5ea061ffc77697697f277f6a960894903df3ada000e34b31",
+    "license": "CC-BY-4.0",
+    "verified_mirror": "https://huggingface.co/thelou1s/panns-inference/blob/5546cbe0c06a7695a23c041ef5e6dab76b3312d6/Cnn14_mAP%3D0.431.pth",
+    "pretraining": "supervised multi-label AudioSet training on the full training set with balanced sampling and mixup",
+    "reported_audioset_map": 0.431
+  },
+  "input": {
+    "sample_rate_hz": 32000,
+    "mono": true,
+    "stft_window_samples": 1024,
+    "stft_hop_samples": 320,
+    "mel_bins": 64,
+    "frequency_range_hz": [50, 14000],
+    "variable_shorter_input_supported_from_samples": 9920,
+    "minimum_duration_seconds": 0.31
+  },
+  "output": {
+    "dimension": 2048,
+    "pooling": "frequency mean followed by temporal max-plus-mean and fc1 ReLU",
+    "audioset_logits_excluded": true
+  },
+  "local_forward_audit": {
+    "device": "NVIDIA GeForce RTX 4060 Ti",
+    "minimum_input_samples_pass": 9920,
+    "one_sample_short_failure": 9919,
+    "output_shape": [1, 2048],
+    "finite": true,
+    "backbone_parameters": 81837071,
+    "checkpoint_keys_matched": true,
+    "peak_vram_bytes": 487561216
+  },
+  "known_runtime_notes": [
+    "Cnn14 applies five 2x2 temporal-frequency pooling operations followed by one 1x1 pooling operation.",
+    "The 32 kHz centered STFT produces 32 frames from 9920 samples, the minimum that survives five temporal halvings.",
+    "Embedding extraction uses float32 because the torchlibrosa spectral front end is the audited official path."
+  ]
+}

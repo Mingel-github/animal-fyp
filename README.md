@@ -131,8 +131,23 @@ The second IDEA-049 candidate, PaSST, has also completed its resource audit,
 PaSST achieved seed-17 complete-OOF animal macro F1 values of 0.6319, 0.6741,
 and 0.6619 (mean 0.6560, sample SD 0.0217). It improved over the SSAST screen
 mean by 0.0268 while remaining 0.0777 below the paired AST head-only mean. The
-candidate is retained as `screened_not_better`; PANNs CNN14 is next in the
-planned screening order.
+candidate is retained as `screened_not_better`.
+
+The third candidate, PANNs CNN14, completed the same resource audit, 792-call
+embedding cache, inner-only smoke, and 12 initial-screening fits:
+
+- runner: `scripts/run_meowagenet_idea049_panns.py`;
+- recipe: `configs/experiment/idea049/panns_cnn14_frozen_v1.json`;
+- checkpoint card: `metadata/models/idea049/panns_cnn14_audioset.json`;
+- Chinese result report:
+  `reports/16_IDEA-049_PANNs_CNN14_initial_screening_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea049_panns_initial_v1_results.json`.
+
+PANNs achieved seed-17 complete-OOF animal macro F1 values of 0.6121, 0.5991,
+and 0.5540 (mean 0.5884, sample SD 0.0305). Its matched difference from AST
+head-only averaged -0.1453 across the three repeats. It is retained as a
+completed `screened_not_better` candidate; AVES is next in the planned order.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before

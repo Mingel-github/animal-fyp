@@ -3,7 +3,7 @@
 > 纳入日期：2026-08-29
 > 来源：U 盘 `IDEA-049_Backbone_Screening_Plan.md`
 > 来源 SHA-256：`49f9b04d03f16f9142403245abc58b6458437279c7ad6aece791067ea0f15824`
-> 状态：SSAST、PaSST 两个候选的 initial screening 已完成
+> 状态：SSAST、PaSST、PANNs CNN14 三个候选的 initial screening 已完成
 
 ## 1. 定位
 
@@ -88,7 +88,7 @@ BEATs、HTS-AT 和 Perch 保留在第二波候选池。
 
 ### Stage B｜embedding cache
 
-从 792 段音频提取一个 768 维 call-level frozen embedding，保存数据顺序、标签、
+从 792 段音频提取一个候选专属维度的 call-level frozen embedding，保存数据顺序、标签、
 cat_id、duration、模型 revision 和 checksum。
 
 ### Stage C｜smoke
@@ -134,9 +134,29 @@ PaSST 的三组 seed-17 complete OOF macro F1 为 0.6319、0.6741 和 0.6619，�
 0.6560；配对 AST head-only 均值为 0.7337，平均差值为 −0.0777。PaSST 记录为
 `screened_not_better`，保留完整初筛证据并停止 seed 扩展。它比 SSAST 的初筛均值高
 0.0268，且 repeat 间 SD 从 0.0734 降至 0.0217。详细结果见
-`reports/15_IDEA-049_PaSST_initial_screening_results.md`。计划中的下一候选为 PANNs CNN14。
+`reports/15_IDEA-049_PaSST_initial_screening_results.md`。
 
-## 9. 结果解释
+## 9. PANNs CNN14 v1 锁定
+
+第三候选采用官方 AudioSet `Cnn14_mAP=0.431.pth`。权重来自 Zenodo record 3987831，
+checkpoint SHA-256 为
+`0dc499e40e9761ef5ea061ffc77697697f277f6a960894903df3ada000e34b31`。
+
+- pretraining：supervised AudioSet multi-label training，balanced sampling 与 mixup；
+- input：32 kHz mono、64 mel、1024-sample Hann window、320-sample hop、50–14000 Hz；
+- architecture：六个 convolution blocks，前五个执行 2×2 average pooling；
+- pooling：frequency mean 后执行 temporal max-plus-mean，再通过 `fc1` ReLU；
+- output：2048 维 frozen embedding，排除 527 维 AudioSet logits；
+- short-call policy：将短于 310 ms 的 68 条 call 右侧补零至 9920 samples；其余 724 条
+  保留原始时长；
+- code license：MIT；checkpoint license：CC BY 4.0。
+
+PANNs 的三组 seed-17 complete OOF macro F1 为 0.6121、0.5991 和 0.5540，均值
+0.5884；配对 AST head-only 平均差值为 −0.1453。PANNs 记录为 `screened_not_better`，
+保留完整初筛证据，seeds 43/101 停留在待扩展池。详细结果见
+`reports/16_IDEA-049_PANNs_CNN14_initial_screening_results.md`。计划中的下一候选为 AVES。
+
+## 10. 结果解释
 
 IDEA-049 报告完整 pipeline 在共享评价边界下的性能。preprocessing、pretraining、
 pooling 和 backbone 共同构成 pipeline，候选排名不延伸为纯 architecture 因果结论。
