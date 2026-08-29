@@ -1,0 +1,171 @@
+{
+  "status": "complete",
+  "scope": "formal",
+  "pipeline": "ast_probe_guided_adapter",
+  "repeat": 2,
+  "outer_fold": 1,
+  "base_seed": 43,
+  "full_seed": 20143,
+  "probe_seed": 156922,
+  "outer_test_predictions": "runs/meowagenet_formal_v2_1_core/fits/ast_probe_guided_adapter/repeat_2/fold_1/base_seed_43/outer_test_unit_predictions.csv",
+  "audit": {
+    "placement_layers_zero_based": [
+      7,
+      10
+    ],
+    "placement_layers_one_based": [
+      8,
+      11
+    ],
+    "inner_train_calls": 472,
+    "inner_validation_calls": 130,
+    "inner": {
+      "best_epoch": 1,
+      "stopped_epoch": 9,
+      "best_validation_loss": 0.8074530161344088,
+      "best_validation_animal_metrics": {
+        "macro_f1": 0.7321428571428572,
+        "balanced_accuracy": 0.7999999999999999,
+        "quadratic_weighted_kappa": 0.6433566433566433,
+        "per_class_recall": {
+          "kitten": 1.0,
+          "adult": 0.4,
+          "senior": 1.0
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            6
+          ],
+          [
+            0,
+            0,
+            5
+          ]
+        ],
+        "n": 17
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.7616437140662792,
+          "validation_loss": 0.8074530161344088,
+          "validation_macro_f1": 0.7321428571428572,
+          "validation_qwk": 0.6433566433566433
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.4716513773142281,
+          "validation_loss": 0.9489729276070228,
+          "validation_macro_f1": 0.8148148148148148,
+          "validation_qwk": 0.71900826446281
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.3442438357209755,
+          "validation_loss": 0.9636501697393564,
+          "validation_macro_f1": 0.8642533936651584,
+          "validation_qwk": 0.7984189723320159
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.2497895444601269,
+          "validation_loss": 0.9741500891171969,
+          "validation_macro_f1": 0.7607655502392344,
+          "validation_qwk": 0.6320346320346321
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.16924097311635644,
+          "validation_loss": 1.4389173837808462,
+          "validation_macro_f1": 0.8214285714285715,
+          "validation_qwk": 0.7424242424242424
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.17938003982654063,
+          "validation_loss": 1.5108195937596836,
+          "validation_macro_f1": 0.8214285714285715,
+          "validation_qwk": 0.7424242424242424
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.1327776549289287,
+          "validation_loss": 1.3260752237760103,
+          "validation_macro_f1": 0.8148148148148148,
+          "validation_qwk": 0.71900826446281
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.10800015848224699,
+          "validation_loss": 1.4373240250807542,
+          "validation_macro_f1": 0.8642533936651584,
+          "validation_qwk": 0.7984189723320159
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.07898481013411182,
+          "validation_loss": 1.5220350485581617,
+          "validation_macro_f1": 0.7000000000000001,
+          "validation_qwk": 0.5363636363636364
+        }
+      ],
+      "train_seconds": 11.812052900000708,
+      "peak_vram_bytes": 622957568,
+      "parameters": {
+        "trainable": 198979,
+        "total": 85566019
+      },
+      "trainable_adapter_parameters": 99904
+    },
+    "outer_test_calls": 190,
+    "outer": {
+      "epochs": 1,
+      "training_losses": [
+        0.7985676349793558
+      ],
+      "test_loss": 0.7430931078760248,
+      "test_animal_metrics": {
+        "macro_f1": 0.626031746031746,
+        "balanced_accuracy": 0.6666666666666666,
+        "quadratic_weighted_kappa": 0.5235602094240838,
+        "per_class_recall": {
+          "kitten": 0.5,
+          "adult": 0.5,
+          "senior": 1.0
+        },
+        "confusion_matrix": [
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            1,
+            8,
+            7
+          ],
+          [
+            0,
+            0,
+            8
+          ]
+        ],
+        "n": 28
+      },
+      "train_and_predict_seconds": 1.7059278999995513,
+      "peak_vram_bytes": 638998528,
+      "parameters": {
+        "trainable": 198979,
+        "total": 85566019
+      },
+      "trainable_adapter_parameters": 99904
+    }
+  }
+}

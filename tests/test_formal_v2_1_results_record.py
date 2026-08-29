@@ -14,6 +14,7 @@ RECORD_PATH = (
     / "experiments"
     / "meowagenet_formal_v2_1_core_results.json"
 )
+TRACKED_RUN_ROOT = REPO_ROOT / "runs" / "meowagenet_formal_v2_1_core"
 
 
 def sha256(path: Path) -> str:
@@ -63,13 +64,52 @@ def test_formal_primary_contrasts_record_expected_pattern() -> None:
     assert any(delta < 0 for delta in h019["paired_differences"])
 
 
-def test_local_formal_artifact_hashes_when_run_directory_is_available() -> None:
+def test_versioned_formal_artifact_hashes() -> None:
     record = load_record()
-    run_dir = REPO_ROOT / record["local_run_artifacts"]["directory"]
-    if not run_dir.is_dir():
-        pytest.skip("Local ignored formal run directory is not present")
+    artifacts = record["local_run_artifacts"]
+    run_dir = REPO_ROOT / artifacts["directory"]
+    assert run_dir == TRACKED_RUN_ROOT
+    assert artifacts["versioned_json_files"] == 123
+    assert artifacts["versioned_json_bytes"] == 1_958_340
     for name, entry in record["local_run_artifacts"]["files"].items():
         path = run_dir / name
         assert path.is_file()
         assert path.stat().st_size == entry["bytes"]
         assert sha256(path) == entry["sha256"]
+
+
+def test_versioned_formal_json_audit_is_complete() -> None:
+    json_files = list(TRACKED_RUN_ROOT.rglob("*.json"))
+    fit_summaries = list((TRACKED_RUN_ROOT / "fits").rglob("fit_summary.json"))
+    probe_summaries = list((TRACKED_RUN_ROOT / "probes").glob("*.json"))
+    assert len(json_files) == 123
+    assert sum(path.stat().st_size for path in json_files) == 1_958_340
+    assert len(fit_summaries) == 108
+    assert len(probe_summaries) == 12
+
+    run_summary = json.loads(
+        (TRACKED_RUN_ROOT / "run_summary.json").read_text(encoding="utf-8")
+    )
+    assert run_summary["status"] == "complete"
+    assert run_summary["scope"] == "formal"
+    assert run_summary["completed_fits"] == 108
+    assert run_summary["outer_test_predictions_produced"] is True
+    assert run_summary["formal_aggregate_written"] is True
+    assert len(run_summary["fits"]) == 108
+
+    formal_summary = json.loads(
+        (TRACKED_RUN_ROOT / "formal_summary.json").read_text(encoding="utf-8")
+    )
+    expected_means = {
+        "vggish_mlp": 0.6524995850585984,
+        "ast_head_only": 0.7237808179940559,
+        "ast_probe_guided_adapter": 0.7289754002707316,
+    }
+    for pipeline, expected_mean in expected_means.items():
+        evaluations = formal_summary["oof_metrics"][pipeline]
+        assert len(evaluations) == 9
+        assert all(metrics["n"] == 111 for metrics in evaluations.values())
+        observed_mean = sum(
+            metrics["macro_f1"] for metrics in evaluations.values()
+        ) / len(evaluations)
+        assert observed_mean == pytest.approx(expected_mean)

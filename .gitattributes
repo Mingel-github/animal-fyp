@@ -9,6 +9,10 @@
 *.mjs text eol=lf
 *.sha256 text eol=lf
 
+# Preserve the exact bytes of the completed formal-run audit records so the
+# published files retain the SHA-256 values recorded at execution time.
+runs/meowagenet_formal_v2_1_core/**/*.json -text whitespace=cr-at-eol
+
 # Generated manifests were hashed with their original byte representation.
 *.csv -text
 

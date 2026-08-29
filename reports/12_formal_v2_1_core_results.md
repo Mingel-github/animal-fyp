@@ -55,6 +55,25 @@ NVIDIA GeForce RTX 4060 Ti；软件、硬件、runner 与 recipe 哈希均由 ex
 | AST head-only | 0.7238 ± 0.0335 | 0.6629–0.7616 | **0.7597 ± 0.0247** | **0.6374 ± 0.0387** |
 | Probe-guided AST adapter | **0.7290 ± 0.0428** | 0.6633–0.7846 | 0.7419 ± 0.0482 | 0.6373 ± 0.0569 |
 
+下表列出全部 9 套 complete OOF 的绝对 macro F1 和配对差值。每一行覆盖同一组
+111 只猫、同一 split repeat 和同一 model seed；三个 pipeline 在该行共享测试猫。
+
+| Repeat | Seed | VGGish | AST head-only | AST + adapter | Head − VGGish | Adapter − VGGish | Adapter − Head |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 0 | 17 | 0.7098 | 0.7182 | **0.7741** | +0.0084 | +0.0642 | +0.0558 |
+| 0 | 43 | 0.6839 | 0.7519 | **0.7846** | +0.0681 | +0.1008 | +0.0327 |
+| 0 | 101 | 0.7184 | 0.6892 | **0.7317** | −0.0292 | +0.0133 | +0.0425 |
+| 1 | 17 | 0.6694 | **0.7616** | 0.7510 | +0.0922 | +0.0816 | −0.0106 |
+| 1 | 43 | 0.5980 | **0.7576** | 0.7203 | +0.1597 | +0.1223 | −0.0373 |
+| 1 | 101 | 0.6071 | 0.7437 | **0.7611** | +0.1366 | +0.1539 | +0.0173 |
+| 2 | 17 | 0.6593 | **0.7212** | 0.6794 | +0.0619 | +0.0200 | −0.0418 |
+| 2 | 43 | 0.6145 | 0.6629 | **0.6633** | +0.0484 | +0.0488 | +0.0004 |
+| 2 | 101 | 0.6121 | **0.7076** | 0.6952 | +0.0955 | +0.0832 | −0.0124 |
+
+`0.0765` 表示 9 行 `Adapter − VGGish` 的平均值；`0.0713` 表示 9 行
+`Head − VGGish` 的平均值；两者之差 `0.0052` 等于 9 行 `Adapter − Head` 的
+平均值。这个分解将 AST 路线贡献和 adapter 附加贡献分别呈现。
+
 表格传达了三个互补信息：
 
 - **Macro F1** 对三个年龄类别等权，adapter 的均值最高，说明它取得了本轮最好的
@@ -73,8 +92,8 @@ NVIDIA GeForce RTX 4060 Ti；软件、硬件、runner 与 recipe 哈希均由 ex
 
 ### H048：性能改进假设
 
-9 个 paired OOF 差值全部为正，范围为 +0.0133 到 +0.1539。这个模式说明增益并非由
-单个 lucky seed 产生；在每个 repeat×seed 单元中，adapter 都超过对应的 VGGish。
+9 个 paired OOF 差值全部为正，范围为 +0.0133 到 +0.1539。正向结果覆盖每个
+repeat×seed 单元，adapter 在每个单元中都超过对应的 VGGish。
 平均差 +0.0765 也明显高于协议中的实际意义参考幅度 0.03。
 
 层级 paired bootstrap 区间的下界略低于 0，体现当前证据仍来自同一批 111 只猫和
@@ -112,8 +131,7 @@ AST 路线的性能结论。
 
 这说明不同 AST 模块具有各自优势：head-only 更擅长识别 kitten 和 senior，adapter
 在 adult 上取得最高召回，并以更均衡的 precision/recall 组合获得最高 macro F1。
-模型并非简单地“一个全面压倒另一个”，而是围绕相同强势 AST 表征形成不同的类别
-决策取向。
+两种方案围绕相同的 AST 表征形成了不同的类别决策取向。
 
 ## 6. Repeat 与 pilot 对照
 
@@ -130,8 +148,7 @@ Pilot 中的 macro F1 为 VGGish 0.6846、head-only 0.7260、adapter 0.7575；fo
 - pilot 的 adapter−VGGish 差约为 +0.0729；
 - formal 的平均差为 +0.0765；
 - 两阶段的相对提升幅度非常接近；
-- pilot 的 adapter−head-only 差为 +0.0315，formal 缩小到 +0.0052，说明单次 pilot
-  高估了 adapter 相对 matched AST control 的独立增量。
+- pilot 的 adapter−head-only 差为 +0.0315，formal 将跨划分平均增量校准为 +0.0052。
 
 Formal-v2.1 因而保留了 pilot 中最重要的性能信号，同时校准了机制归因。
 
@@ -167,9 +184,16 @@ fold-specific placement selection”，同时也解释了 adapter 增益的 spli
 - `formal_summary.json` SHA256：
   `d0eba94ef7ca1ae9089e80a96d0906836f33dc51306b7a5b357333983bbf30c1`。
 
-原始运行产物继续保存在本机忽略目录 `runs/meowagenet_formal_v2_1_core/`；Git 中保存
-本报告和机器可读审计快照，既避免提交逐样本预测，又能通过哈希确认本报告对应的原始
-正式结果。
+Git 版本控制收录本次正式运行的 123 个 JSON 审计文件：
+
+- `run_manifest.json`：执行范围、环境、recipe 和 execution lock；
+- `formal_summary.json`：27 套 complete OOF 指标、混淆矩阵和两项 primary contrasts；
+- `run_summary.json`：108 个 fits 的完整训练历史与 outer-test 审计；
+- `probes/*.json`：12 个 repeat×fold layer-probe 排名和选层结果；
+- `fits/**/fit_summary.json`：108 个独立 fit summaries。
+
+135 个逐样本 prediction CSV 按本地研究数据管理，版本库通过上述 JSON、报告和 SHA256
+保存结论复核所需的信息。
 
 ## 9. 论文使用建议
 

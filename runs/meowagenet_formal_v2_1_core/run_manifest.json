@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-formal-v2.1",
+  "scope": "formal",
+  "outer_test_accessed": true,
+  "recipe_path": "configs/experiment/meowagenet_formal_v2_1_probe_guided_candidate_v1.json",
+  "recipe_sha256": "4b54d98734c80f5089482ed88cd6a137ec512ac5b3b502bbb8d0ccc5a06fba92",
+  "runner_path": "scripts/run_meowagenet_formal_v2_1.py",
+  "runner_sha256": "ed3fc855539d37963aa51d17e54f5ce59acba1d023567289b89d5d1f313e6b25",
+  "git_revision_at_start": "50bb877ada14b09c54d9626f04872217fadd2c36",
+  "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+  "execution_lock_path": "configs/protocol/meowagenet_formal_v2_1_execution_lock.json",
+  "execution_lock_sha256": "bcb27d45bec74f6e79054c9a9dd40eb157b34869bf12e0c342d6ac21e0ec8f45",
+  "selected_pipelines": [
+    "vggish_mlp",
+    "ast_head_only",
+    "ast_probe_guided_adapter"
+  ],
+  "selected_repeats": [
+    0,
+    1,
+    2
+  ],
+  "selected_folds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "selected_base_seeds": [
+    17,
+    43,
+    101
+  ],
+  "smoke_max_epochs": null,
+  "seed_rule": "base_model_seed + 10000 * repeat_index + 100 * outer_fold",
+  "environment": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "tensorflow": "2.15.0",
+    "cuda_runtime": "12.1",
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce RTX 4060 Ti"
+  }
+}

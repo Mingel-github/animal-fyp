@@ -38,7 +38,7 @@ from the YAML file instead of copying local binaries.
 | `metadata/` | Dataset and experiment metadata suitable for version control |
 | `notebooks/` | Project-owned exploratory notebooks |
 | `reports/` | Reproduction assessments and results |
-| `runs/` | Generated experiment outputs; ignored by Git |
+| `runs/` | Generated outputs; selected formal JSON audit logs are versioned |
 | `scripts/` | Command-line entry points and utilities |
 | `splits/` | Reproducible train/validation/test split definitions |
 | `src/` | Project source and external baseline references |
@@ -46,9 +46,10 @@ from the YAML file instead of copying local binaries.
 
 ## Data policy
 
-Do not commit raw audio, personal data, credentials, trained checkpoints, or
-generated run artifacts. Record acquisition instructions, licenses, checksums,
-and preprocessing steps so collaborators can reconstruct permitted datasets.
+Keep raw audio, personal data, credentials, trained checkpoints, and per-sample
+predictions in the local research environment. Version compact formal audit
+logs, acquisition instructions, licenses, checksums, and preprocessing steps so
+collaborators can reconstruct and verify permitted results.
 
 The initial baseline assessment is in `reports/00_baseline_assessment.md`.
 
@@ -92,7 +93,9 @@ The completed core execution design is formal v2.1:
 - inner-only runner smoke record: `reports/11_formal_v2_1_runner_smoke.md`;
 - formal core results: `reports/12_formal_v2_1_core_results.md`;
 - machine-readable result audit:
-  `metadata/experiments/meowagenet_formal_v2_1_core_results.json`.
+  `metadata/experiments/meowagenet_formal_v2_1_core_results.json`;
+- tracked formal execution logs:
+  `runs/meowagenet_formal_v2_1_core/**/*.json`.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
