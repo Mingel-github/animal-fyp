@@ -1,0 +1,17 @@
+# IDEA-049 AVES-base-bio inference addendum for meowagenet-repro.
+# Install into the existing environment with:
+# python -m pip install -r environment/idea049-aves-inference-v1.txt
+
+# Audited wheel SHA-256:
+# b342bf1d4c65995f3e2cf087202285ce27f5186158a442f331a9164d64b86065
+esp-aves==1.0.0
+
+# esp-aves imports its ONNX wrapper at package import time.
+# Audited CPython 3.10 Windows wheel SHA-256:
+# d3b616bb53a77a9463707bb313637223380fc327f5064c9a782e8ec69c22e6a2
+onnxruntime==1.20.1
+
+# esp-aves 1.0.0 declares pytest>=8.3.4 as a runtime dependency.
+# Audited universal wheel SHA-256:
+# 50e16d954148559c9a74109af1eaf0c945ba2d8f30f0a3d3335edde19788b6f6
+pytest==8.3.4

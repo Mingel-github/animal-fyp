@@ -147,7 +147,25 @@ embedding cache, inner-only smoke, and 12 initial-screening fits:
 PANNs achieved seed-17 complete-OOF animal macro F1 values of 0.6121, 0.5991,
 and 0.5540 (mean 0.5884, sample SD 0.0305). Its matched difference from AST
 head-only averaged -0.1453 across the three repeats. It is retained as a
-completed `screened_not_better` candidate; AVES is next in the planned order.
+completed `screened_not_better` candidate.
+
+The fourth candidate, AVES-base-bio, completed its official resource audit,
+792-call embedding cache, inner-only smoke, and 12 initial-screening fits:
+
+- runner: `scripts/run_meowagenet_idea049_aves.py`;
+- recipe: `configs/experiment/idea049/aves_base_bio_frozen_v1.json`;
+- checkpoint card: `metadata/models/idea049/aves_base_bio.json`;
+- Chinese result and stage-closeout report:
+  `reports/17_IDEA-049_AVES_initial_screening_and_stage_closeout.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea049_aves_initial_v1_results.json`.
+
+AVES achieved complete-OOF animal macro F1 values of 0.6675, 0.6649, and
+0.6865 (mean 0.6730, sample SD 0.0118). It ranks first among the four new
+backbones and is close to matched VGGish on macro F1 while improving balanced
+accuracy and QWK. Matched AST head-only remains higher by 0.0607 on average.
+IDEA-049 initial backbone screening closes after AVES; Conformer and expanded
+seeds remain future-work options.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before

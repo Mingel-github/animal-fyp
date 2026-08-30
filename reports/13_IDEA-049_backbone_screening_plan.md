@@ -3,7 +3,7 @@
 > 纳入日期：2026-08-29
 > 来源：U 盘 `IDEA-049_Backbone_Screening_Plan.md`
 > 来源 SHA-256：`49f9b04d03f16f9142403245abc58b6458437279c7ad6aece791067ea0f15824`
-> 状态：SSAST、PaSST、PANNs CNN14 三个候选的 initial screening 已完成
+> 状态：SSAST、PaSST、PANNs CNN14、AVES 四个候选的 initial screening 已完成；本阶段在 AVES 后收尾
 
 ## 1. 定位
 
@@ -154,9 +154,38 @@ checkpoint SHA-256 为
 PANNs 的三组 seed-17 complete OOF macro F1 为 0.6121、0.5991 和 0.5540，均值
 0.5884；配对 AST head-only 平均差值为 −0.1453。PANNs 记录为 `screened_not_better`，
 保留完整初筛证据，seeds 43/101 停留在待扩展池。详细结果见
-`reports/16_IDEA-049_PANNs_CNN14_initial_screening_results.md`。计划中的下一候选为 AVES。
+`reports/16_IDEA-049_PANNs_CNN14_initial_screening_results.md`。随后按计划执行 AVES。
 
-## 10. 结果解释
+## 10. AVES-base-bio v1 锁定与结果
+
+第四候选采用官方 TorchAudio port 的 `AVES-base-bio`，运行包为 `esp-aves==1.0.0`。
+checkpoint 为 377,570,545 bytes，SHA-256 为
+`7a7dfaff2ea0b617cae1d82d7831e766be2a9ac00e37962a26f0a1b285be2530`。
+
+- pretraining：AVES core 数据加 AudioSet、VGGSound 动物子集，共 360 小时；
+- input：16 kHz mono，保留每条 call 的原生时长；
+- architecture：12 层 HuBERT/Wav2Vec2-style encoder，768 hidden dimensions；
+- pooling：最后层全部有效时间帧算术平均，与官方分类器一致；
+- batch policy：每条 call 独立前向，避免 padding 改变逐帧 embedding；
+- short-call policy：最短卷积输入 400 samples；本数据 792 条均超过该长度，补零数量为 0；
+- license：MIT。
+
+AVES 的三组 seed-17 complete OOF macro F1 为 0.6675、0.6649 和 0.6865，均值
+0.6730，sample SD 0.0118；balanced accuracy 均值 0.7203，QWK 均值 0.6033。
+它在四个新 backbone 中综合排名第一，相对 PaSST 的 macro F1 平均提高 0.0171，并与
+VGGish 的 0.6795 接近。配对 AST head-only 平均差值为 −0.0607。详细结果见
+`reports/17_IDEA-049_AVES_initial_screening_and_stage_closeout.md`。
+
+## 11. 阶段收尾
+
+四个新 backbone 的 macro F1 均值排序为 AVES 0.6730、PaSST 0.6560、SSAST 0.6292、
+PANNs 0.5884。AVES 同时取得四候选最高 balanced accuracy、QWK 与最低 repeat 波动；
+AST head-only 以 0.7337 继续保持最高参照。
+
+本阶段在 AVES 后收尾，seeds 43/101、Conformer、BEATs、HTS-AT 与 Perch 进入未来工作池。
+已有四项完整初筛结果保留为 IDEA-049 的阶段性证据。
+
+## 12. 结果解释
 
 IDEA-049 报告完整 pipeline 在共享评价边界下的性能。preprocessing、pretraining、
 pooling 和 backbone 共同构成 pipeline，候选排名不延伸为纯 architecture 因果结论。

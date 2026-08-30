@@ -69,6 +69,23 @@ runs/idea049_panns_cnn14_v1/initial/*
 runs/idea049_panns_cnn14_v1/**/*.csv
 runs/idea049_panns_cnn14_v1/**/*.npz
 
+# IDEA-049 AVES: keep compact JSON audit records; retain features/predictions locally
+!runs/idea049_aves_base_bio_v1/
+runs/idea049_aves_base_bio_v1/*
+!runs/idea049_aves_base_bio_v1/features/
+runs/idea049_aves_base_bio_v1/features/*
+!runs/idea049_aves_base_bio_v1/features/feature_manifest.json
+!runs/idea049_aves_base_bio_v1/smoke/
+!runs/idea049_aves_base_bio_v1/smoke/*.json
+!runs/idea049_aves_base_bio_v1/initial/
+runs/idea049_aves_base_bio_v1/initial/*
+!runs/idea049_aves_base_bio_v1/initial/*.json
+!runs/idea049_aves_base_bio_v1/initial/fits/
+!runs/idea049_aves_base_bio_v1/initial/fits/**/
+!runs/idea049_aves_base_bio_v1/initial/fits/**/fit_summary.json
+runs/idea049_aves_base_bio_v1/**/*.csv
+runs/idea049_aves_base_bio_v1/**/*.npz
+
 # Local datasets: review licensing and privacy before publishing
 data/*
 !data/README.md

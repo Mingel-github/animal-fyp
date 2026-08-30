@@ -3,9 +3,14 @@
   "experiment_id": "meowagenet-idea049-backbone-screening-v1",
   "date": "2026-08-29",
   "last_updated": "2026-08-30",
-  "status": "passt_initial_screening_complete",
+  "status": "idea049_initial_screening_closed_after_aves",
   "authorized_scope": {
-    "candidates": ["ssast_base_patch400", "passt_s_ap476"],
+    "candidates": [
+      "ssast_base_patch400",
+      "passt_s_ap476",
+      "panns_cnn14",
+      "aves_base_bio"
+    ],
     "stages": ["embedding_cache", "smoke", "initial_screening"],
     "base_seeds": [17],
     "repeats": [0, 1, 2],
@@ -22,18 +27,21 @@
     "initial_screening": true
   },
   "protocol": "configs/protocol/meowagenet_idea049_backbone_screening_v1.json",
-  "recipe": "configs/experiment/idea049/ssast_base_patch400_frozen_v1.json",
-  "checkpoint_card": "metadata/models/idea049/ssast_base_patch400.json",
-  "runner": "scripts/run_meowagenet_idea049.py",
-  "result_record": "metadata/experiments/meowagenet_idea049_ssast_initial_v1_results.json",
-  "result_report": "reports/14_IDEA-049_SSAST_initial_screening_results.md",
+  "first_candidate_recipe": "configs/experiment/idea049/ssast_base_patch400_frozen_v1.json",
+  "first_candidate_checkpoint_card": "metadata/models/idea049/ssast_base_patch400.json",
+  "first_candidate_runner": "scripts/run_meowagenet_idea049.py",
+  "first_candidate_result_record": "metadata/experiments/meowagenet_idea049_ssast_initial_v1_results.json",
+  "first_candidate_result_report": "reports/14_IDEA-049_SSAST_initial_screening_results.md",
   "decision": {
-    "latest_candidate": "passt_s_ap476",
+    "latest_candidate": "aves_base_bio",
     "candidate_status": "screened_not_better",
     "expanded_seeds_authorized": false,
     "expanded_seeds_executed": false,
-    "next_candidate_in_plan": "panns_cnn14",
-    "next_candidate_status": "pending_team_confirmation"
+    "best_new_backbone": "aves_base_bio",
+    "best_new_backbone_macro_f1_mean": 0.6730061262433967,
+    "next_candidate_in_plan": "future_work_pool",
+    "next_candidate_status": "stage_closed_after_aves",
+    "conditional_conformer_executed": false
   },
   "passt": {
     "authorized": true,
@@ -51,5 +59,38 @@
     "expanded_seeds_executed": false,
     "result_record": "metadata/experiments/meowagenet_idea049_passt_initial_v1_results.json",
     "result_report": "reports/15_IDEA-049_PaSST_initial_screening_results.md"
+  },
+  "panns": {
+    "authorized": true,
+    "status": "initial_screening_complete",
+    "recipe": "configs/experiment/idea049/panns_cnn14_frozen_v1.json",
+    "checkpoint_card": "metadata/models/idea049/panns_cnn14_audioset.json",
+    "runner": "scripts/run_meowagenet_idea049_panns.py",
+    "run_root": "runs/idea049_panns_cnn14_v1",
+    "completed_fits": 12,
+    "complete_oof_evaluations": 3,
+    "macro_f1_mean": 0.5883705401063001,
+    "candidate_status": "screened_not_better",
+    "expanded_seeds_executed": false,
+    "result_record": "metadata/experiments/meowagenet_idea049_panns_initial_v1_results.json",
+    "result_report": "reports/16_IDEA-049_PANNs_CNN14_initial_screening_results.md"
+  },
+  "aves": {
+    "authorized": true,
+    "status": "initial_screening_complete",
+    "recipe": "configs/experiment/idea049/aves_base_bio_frozen_v1.json",
+    "checkpoint_card": "metadata/models/idea049/aves_base_bio.json",
+    "runner": "scripts/run_meowagenet_idea049_aves.py",
+    "run_root": "runs/idea049_aves_base_bio_v1",
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "completed_fits": 12,
+    "complete_oof_evaluations": 3,
+    "macro_f1_mean": 0.6730061262433967,
+    "candidate_status": "screened_not_better",
+    "expanded_seeds_executed": false,
+    "result_record": "metadata/experiments/meowagenet_idea049_aves_initial_v1_results.json",
+    "result_report": "reports/17_IDEA-049_AVES_initial_screening_and_stage_closeout.md"
   }
 }

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "model_card_id": "idea049-aves-base-bio",
+  "date_verified": "2026-08-30",
+  "status": "verified_for_initial_screening",
+  "paper": {
+    "title": "AVES: Animal Vocalization Encoder based on Self-Supervision",
+    "venue": "ICASSP 2023",
+    "url": "https://arxiv.org/abs/2210.14493"
+  },
+  "official_code": {
+    "repository": "https://github.com/earthspecies/aves",
+    "revision": "fd1b660ac454719d2c4b9628df2d0cd3993a4c89",
+    "revision_date": "2026-02-04",
+    "license": "MIT",
+    "migration_note": "The frozen AVES repository points future development to Earth Species Project AVEX. This screen retains the published AVES-base-bio model identity."
+  },
+  "inference_implementation": {
+    "pypi_project": "https://pypi.org/project/esp-aves/1.0.0/",
+    "package": "esp-aves==1.0.0",
+    "release_date": "2025-04-15",
+    "wheel_sha256": "b342bf1d4c65995f3e2cf087202285ce27f5186158a442f331a9164d64b86065",
+    "license_metadata": "MIT",
+    "backend": "TorchAudio Wav2Vec2 model port"
+  },
+  "checkpoint": {
+    "variant": "AVES-base-bio",
+    "url": "https://storage.googleapis.com/esp-public-files/ported_aves/aves-base-bio.torchaudio.pt",
+    "filename": "aves-base-bio.torchaudio.pt",
+    "bytes": 377570545,
+    "md5": "f2124a57e2ce7ef005dfd084cf2e81f9",
+    "sha256": "7a7dfaff2ea0b617cae1d82d7831e766be2a9ac00e37962a26f0a1b285be2530",
+    "model_config_sha256": "5c6ad4a9469bfa0f4ca705eed0cb814241048546833cbd291a32a6082ed96dc9",
+    "versioned_semantic_config_copy": "metadata/models/idea049/aves_base_bio_torchaudio_config.json",
+    "versioned_semantic_config_copy_sha256": "661b374ed786cee60b884a05092d7e76a96e05b3bed9521d8af4d3d4ad86933d",
+    "pretraining": "153 hours of AVES core data plus animal-labelled subsets from AudioSet and VGGSound, 360 hours total",
+    "selection_reason": "The official AVES study reports that a smaller task-related pretraining subset can outperform a much larger broad-audio subset; base-bio has the closest prior to feline vocalizations."
+  },
+  "input": {
+    "sample_rate_hz": 16000,
+    "mono": true,
+    "variable_duration": true,
+    "minimum_architecture_samples": 400,
+    "minimum_duration_seconds": 0.025,
+    "extraction_batch_size": 1
+  },
+  "output": {
+    "frame_dimension": 768,
+    "approximate_frames_per_second": 49,
+    "selected_layer": 12,
+    "pooling": "arithmetic mean across valid final-layer temporal frames",
+    "downstream_logits_excluded": true
+  },
+  "local_forward_audit": {
+    "device": "NVIDIA GeForce RTX 4060 Ti",
+    "minimum_input_samples_pass": 400,
+    "one_sample_short_failure": 399,
+    "one_second_frame_output_shape": [1, 49, 768],
+    "pooled_output_shape": [1, 768],
+    "finite": true,
+    "backbone_parameters": 94370944
+  },
+  "known_runtime_notes": [
+    "The official TorchAudio wrapper returns the selected encoder layer as batch by time by 768.",
+    "The official AVES classifier applies temporal mean pooling before its downstream head.",
+    "Each call is forwarded independently because padded batch inference changes HuBERT frame embeddings."
+  ]
+}
