@@ -190,12 +190,13 @@ the completed formal-v2.1 evidence remains unchanged.
 The next focused method plan is IDEA-050, an AST LoRA study:
 
 - readable plan: `reports/19_IDEA-050_AST_LoRA_plan.md`;
-- shared head candidate: dropout 0.4457 and head learning rate 0.006 from
-  AST-HPO-v1;
+- shared head recipe: dropout 0.4457 and head learning rate 0.006 from
+  AST-HPO-v1; the principal HPO signal is the higher head learning rate, while
+  dropout is retained as part of the selected combination;
 - primary comparison: selected Q/V LoRA against a contemporaneously rerun,
   matched tuned AST head-only control;
-- first-stage scope: five bounded LoRA candidates followed by three
-  seed-17 complete OOF evaluations per pipeline.
+- first-stage scope: five bounded LoRA candidates selected within each outer
+  fold, followed by three seed-17 nested complete OOF evaluations per pipeline.
 
 The LoRA stage treats the HPO result as exploratory candidate evidence and
 keeps formal-v2.1 as the historical formal anchor. LoRA seed expansion to 43
