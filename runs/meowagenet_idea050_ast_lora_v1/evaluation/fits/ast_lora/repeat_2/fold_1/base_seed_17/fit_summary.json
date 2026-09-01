@@ -1,0 +1,76 @@
+{
+  "status": "complete",
+  "stage": "initial_nested_paired_evaluation",
+  "outer_test_accessed": true,
+  "pipeline": "ast_lora",
+  "candidate": {
+    "candidate_id": "L3",
+    "target_blocks": "all_12",
+    "rank": 4,
+    "alpha": 8,
+    "lora_learning_rate": 0.0003
+  },
+  "repeat": 2,
+  "outer_fold": 1,
+  "base_seed": 17,
+  "full_seed": 20117,
+  "selected_epoch": 3,
+  "inner": {
+    "source": "locked_nested_inner_candidate_fit",
+    "fit_summary_path": "runs/meowagenet_idea050_ast_lora_v1/selection/candidates/repeat_2/fold_1/L3/fit_summary.json",
+    "selected_validation_macro_f1": 0.8642533936651584,
+    "selected_validation_balanced_accuracy": 0.9,
+    "selected_validation_qwk": 0.7984189723320159,
+    "selected_validation_loss": 1.0022638357602633
+  },
+  "outer": {
+    "epochs": 3,
+    "training_losses": [
+      0.7964230860982623,
+      0.49730679957177554,
+      0.39993079209644533
+    ],
+    "test_loss": 0.7230758779927304,
+    "test_animal_metrics": {
+      "macro_f1": 0.6444444444444444,
+      "balanced_accuracy": 0.6875,
+      "quadratic_weighted_kappa": 0.5185185185185186,
+      "per_class_recall": {
+        "kitten": 0.75,
+        "adult": 0.5625,
+        "senior": 0.75
+      },
+      "confusion_matrix": [
+        [
+          3,
+          0,
+          1
+        ],
+        [
+          2,
+          9,
+          5
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ],
+      "n": 28
+    },
+    "train_and_predict_seconds": 7.312979700000142,
+    "peak_vram_bytes": 1160909824,
+    "parameters": {
+      "trainable": 246531,
+      "total": 85613571
+    },
+    "trainable_lora_parameters": 147456,
+    "trainable_parameter_bytes_fp32": 986124
+  },
+  "selection_reference": {
+    "lock_path": "runs/meowagenet_idea050_ast_lora_v1/selection/locks/repeat_2_fold_1.json",
+    "lock_sha256": "792f89d1d66a18c15fcb79d464b91b4781187924515a36539ab0733e6a5c65f1"
+  },
+  "prediction_path": "runs/meowagenet_idea050_ast_lora_v1/evaluation/fits/ast_lora/repeat_2/fold_1/base_seed_17/outer_test_call_predictions.csv"
+}

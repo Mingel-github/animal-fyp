@@ -202,6 +202,22 @@ The LoRA stage treats the HPO result as exploratory candidate evidence and
 keeps formal-v2.1 as the historical formal anchor. LoRA seed expansion to 43
 and 101 follows team review of the initial paired result.
 
+IDEA-050 initial nested paired evaluation has now completed:
+
+- executable protocol: `configs/protocol/meowagenet_idea050_ast_lora_v1.json`;
+- independent runner: `scripts/run_meowagenet_idea050_ast_lora.py`;
+- Chinese result report: `reports/20_IDEA-050_AST_LoRA_initial_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea050_ast_lora_initial_v1_results.json`.
+
+The run completed 60 inner-only candidate fits, 12 pre-outer selection locks,
+and 24 outer pipeline fits. Across three seed-17 complete OOF evaluations,
+matched tuned AST head-only achieved mean animal macro F1 0.7488 and selected
+AST LoRA achieved 0.7174. The paired differences were -0.0043, -0.0465, and
+-0.0433. The current five-candidate Q/V LoRA stage therefore closes without
+seed-43/101 expansion; its full ablation and audit evidence remains available
+for the thesis, while future LoRA variants remain open as later candidates.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,

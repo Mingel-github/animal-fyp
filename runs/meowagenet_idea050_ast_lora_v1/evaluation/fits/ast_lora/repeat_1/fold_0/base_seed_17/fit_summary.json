@@ -1,0 +1,74 @@
+{
+  "status": "complete",
+  "stage": "initial_nested_paired_evaluation",
+  "outer_test_accessed": true,
+  "pipeline": "ast_lora",
+  "candidate": {
+    "candidate_id": "L3",
+    "target_blocks": "all_12",
+    "rank": 4,
+    "alpha": 8,
+    "lora_learning_rate": 0.0003
+  },
+  "repeat": 1,
+  "outer_fold": 0,
+  "base_seed": 17,
+  "full_seed": 10017,
+  "selected_epoch": 1,
+  "inner": {
+    "source": "locked_nested_inner_candidate_fit",
+    "fit_summary_path": "runs/meowagenet_idea050_ast_lora_v1/selection/candidates/repeat_1/fold_0/L3/fit_summary.json",
+    "selected_validation_macro_f1": 0.6105263157894737,
+    "selected_validation_balanced_accuracy": 0.6666666666666666,
+    "selected_validation_qwk": 0.5102880658436213,
+    "selected_validation_loss": 1.1559201617573582
+  },
+  "outer": {
+    "epochs": 1,
+    "training_losses": [
+      0.7939560031890869
+    ],
+    "test_loss": 0.7051887649516161,
+    "test_animal_metrics": {
+      "macro_f1": 0.7396231219760633,
+      "balanced_accuracy": 0.8125,
+      "quadratic_weighted_kappa": 0.6354166666666667,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.6875,
+        "senior": 0.75
+      },
+      "confusion_matrix": [
+        [
+          4,
+          0,
+          0
+        ],
+        [
+          2,
+          11,
+          3
+        ],
+        [
+          1,
+          1,
+          6
+        ]
+      ],
+      "n": 28
+    },
+    "train_and_predict_seconds": 2.5153441000002204,
+    "peak_vram_bytes": 1113671168,
+    "parameters": {
+      "trainable": 246531,
+      "total": 85613571
+    },
+    "trainable_lora_parameters": 147456,
+    "trainable_parameter_bytes_fp32": 986124
+  },
+  "selection_reference": {
+    "lock_path": "runs/meowagenet_idea050_ast_lora_v1/selection/locks/repeat_1_fold_0.json",
+    "lock_sha256": "4d942b41e3672661925a2e47dc38ab3c54df95739a94b6bc5abce8e30a6620ff"
+  },
+  "prediction_path": "runs/meowagenet_idea050_ast_lora_v1/evaluation/fits/ast_lora/repeat_1/fold_0/base_seed_17/outer_test_call_predictions.csv"
+}

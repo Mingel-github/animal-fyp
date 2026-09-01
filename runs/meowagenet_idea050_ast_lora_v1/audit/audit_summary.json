@@ -1,0 +1,235 @@
+{
+  "status": "passed",
+  "stage": "implementation_audit",
+  "outer_test_accessed": false,
+  "candidate": {
+    "candidate_id": "L1",
+    "target_blocks": "last_4",
+    "rank": 4,
+    "alpha": 8,
+    "lora_learning_rate": 0.0003
+  },
+  "repeat": 0,
+  "outer_fold": 0,
+  "full_seed": 17,
+  "target_layers_zero_based": [
+    8,
+    9,
+    10,
+    11
+  ],
+  "target_layers_one_based": [
+    9,
+    10,
+    11,
+    12
+  ],
+  "target_projections": [
+    "query",
+    "value"
+  ],
+  "injected_projection_count": 8,
+  "trainable_lora_parameters": 49152,
+  "trainable_total_parameters": 148227,
+  "model_total_parameters": 85515267,
+  "trainable_parameters": [
+    {
+      "name": "ast.encoder.layer.8.attention.attention.query.lora_A.weight",
+      "shape": [
+        4,
+        768
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.8.attention.attention.query.lora_B.weight",
+      "shape": [
+        768,
+        4
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.8.attention.attention.value.lora_A.weight",
+      "shape": [
+        4,
+        768
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.8.attention.attention.value.lora_B.weight",
+      "shape": [
+        768,
+        4
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.9.attention.attention.query.lora_A.weight",
+      "shape": [
+        4,
+        768
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.9.attention.attention.query.lora_B.weight",
+      "shape": [
+        768,
+        4
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.9.attention.attention.value.lora_A.weight",
+      "shape": [
+        4,
+        768
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.9.attention.attention.value.lora_B.weight",
+      "shape": [
+        768,
+        4
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.10.attention.attention.query.lora_A.weight",
+      "shape": [
+        4,
+        768
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.10.attention.attention.query.lora_B.weight",
+      "shape": [
+        768,
+        4
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.10.attention.attention.value.lora_A.weight",
+      "shape": [
+        4,
+        768
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.10.attention.attention.value.lora_B.weight",
+      "shape": [
+        768,
+        4
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.11.attention.attention.query.lora_A.weight",
+      "shape": [
+        4,
+        768
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.11.attention.attention.query.lora_B.weight",
+      "shape": [
+        768,
+        4
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.11.attention.attention.value.lora_A.weight",
+      "shape": [
+        4,
+        768
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "ast.encoder.layer.11.attention.attention.value.lora_B.weight",
+      "shape": [
+        768,
+        4
+      ],
+      "numel": 3072
+    },
+    {
+      "name": "head.network.0.weight",
+      "shape": [
+        128,
+        768
+      ],
+      "numel": 98304
+    },
+    {
+      "name": "head.network.0.bias",
+      "shape": [
+        128
+      ],
+      "numel": 128
+    },
+    {
+      "name": "head.network.2.weight",
+      "shape": [
+        128
+      ],
+      "numel": 128
+    },
+    {
+      "name": "head.network.2.bias",
+      "shape": [
+        128
+      ],
+      "numel": 128
+    },
+    {
+      "name": "head.network.4.weight",
+      "shape": [
+        3,
+        128
+      ],
+      "numel": 384
+    },
+    {
+      "name": "head.network.4.bias",
+      "shape": [
+        3
+      ],
+      "numel": 3
+    }
+  ],
+  "forbidden_trainable_parameters": [],
+  "all_lora_B_zero_initialized": true,
+  "initialization_equivalence": {
+    "max_abs_logit_difference": 0.0,
+    "tolerance": 1e-05,
+    "passed": true
+  },
+  "manifest": {
+    "schema_version": "1.0",
+    "protocol_id": "meowagenet-idea050-ast-lora-v1",
+    "stage": "audit",
+    "outer_test_accessed": false,
+    "protocol_sha256": "a8c1f6883c620c8e18cd59f7adc9293e57b170c1e67bdaf77b4e13f012ceb432",
+    "runner_sha256": "58362104f4cfcb38b188d712f11b7ce097edd2dd86b0b87ab03a20808379ecc5",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "selection_path": null,
+    "selection_sha256": null,
+    "git_revision_at_start": "d52b491483b4b37bc30d294c33f53a5e80bb13c8",
+    "environment": {
+      "python": "3.10.12",
+      "torch": "2.2.2+cu121",
+      "cuda_runtime": "12.1",
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce RTX 4060 Ti"
+    }
+  }
+}

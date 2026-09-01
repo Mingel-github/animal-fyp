@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea050-ast-lora-v1",
+  "date": "2026-09-02",
+  "status": "authorized_initial_nested_paired_study",
+  "relationship": {
+    "formal_v2_1": "historical formal anchor; files and outcomes remain unchanged",
+    "ast_hpo_v1": "provides the provisional shared head recipe used by both matched pipelines",
+    "idea050_plan": "reports/19_IDEA-050_AST_LoRA_plan.md",
+    "scope": "post-formal exploratory PEFT study"
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "labels": ["kitten", "adult", "senior"],
+    "manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f"
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id",
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3]
+  },
+  "pipelines": [
+    "ast_head_only",
+    "ast_lora"
+  ],
+  "shared_training": {
+    "head": "768 -> 128 -> 3 with ReLU and BatchNorm",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "class_weight": "balanced from current inner-training or outer-training calls",
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum inner-validation cross-entropy loss",
+    "call_to_animal_aggregation": "arithmetic mean of call probabilities within cat_id"
+  },
+  "lora": {
+    "target_projections": ["query", "value"],
+    "alpha_rule": "2 * rank",
+    "dropout": 0.05,
+    "base_weight_frozen": true,
+    "initialization": "Kaiming A and zero B so the initial low-rank update is zero",
+    "candidates": [
+      {
+        "candidate_id": "L1",
+        "target_blocks": "last_4",
+        "rank": 4,
+        "alpha": 8,
+        "lora_learning_rate": 0.0003
+      },
+      {
+        "candidate_id": "L2",
+        "target_blocks": "last_4",
+        "rank": 8,
+        "alpha": 16,
+        "lora_learning_rate": 0.0003
+      },
+      {
+        "candidate_id": "L3",
+        "target_blocks": "all_12",
+        "rank": 4,
+        "alpha": 8,
+        "lora_learning_rate": 0.0003
+      },
+      {
+        "candidate_id": "L4",
+        "target_blocks": "last_4",
+        "rank": 4,
+        "alpha": 8,
+        "lora_learning_rate": 0.0001
+      },
+      {
+        "candidate_id": "L5",
+        "target_blocks": "last_4",
+        "rank": 4,
+        "alpha": 8,
+        "lora_learning_rate": 0.001
+      }
+    ]
+  },
+  "audit": {
+    "candidate": "L1",
+    "repeat": 0,
+    "outer_fold": 0,
+    "base_seed": 17,
+    "initialization_logit_tolerance": 0.00001
+  },
+  "smoke": {
+    "candidate": "L1",
+    "repeat": 0,
+    "outer_fold": 0,
+    "base_seed": 17,
+    "epochs": 2,
+    "outer_test_accessed": false
+  },
+  "selection": {
+    "base_seed": 17,
+    "candidate_inner_fits": 60,
+    "selection_unit": "one candidate lock per repeat and outer fold",
+    "selection_metric": "animal-level macro F1 at the epoch selected by minimum validation loss",
+    "tie_breakers": [
+      "balanced accuracy descending",
+      "QWK descending",
+      "validation loss ascending",
+      "candidate_id ascending"
+    ],
+    "outer_test_accessed": false
+  },
+  "initial_evaluation": {
+    "base_seed": 17,
+    "pipelines": ["ast_head_only", "ast_lora"],
+    "outer_pipeline_fits": 24,
+    "complete_oof_evaluations": 6,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "per_class_precision",
+      "per_class_recall",
+      "per_class_f1",
+      "confusion_matrix"
+    ],
+    "paired_bootstrap_repeats": 10000,
+    "paired_bootstrap_seed": 20260902
+  },
+  "seed_expansion_signal": {
+    "mean_lora_minus_head_macro_f1_positive": true,
+    "minimum_positive_complete_oof_evaluations": 2,
+    "secondary_metric_rule": "balanced accuracy and QWK must not each decline in all three paired complete OOF evaluations",
+    "decision": "team review after initial evaluation"
+  },
+  "dependencies": {
+    "locked_model_protocol": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_model_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "training_engine": "scripts/run_idea019_peft_placement.py",
+    "training_engine_sha256": "24ae56543a10108e9bd0728cf4e7e532fcd87073c996b1dc34881f9cab141402",
+    "hpo_reference_runner": "scripts/run_meowagenet_ast_hpo_v1.py",
+    "hpo_reference_runner_sha256": "a584e7ee0e3576974f1ec601181f791ac1d5630b560822f998ec7543588a47a4",
+    "idea050_plan_sha256": "1529b78e6306b74a278ade0b30c4e172facd8ded67ee8e5791218b3f6913b61a",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399"
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "status": "complete",
+  "stage": "nested_inner_only_candidate_selection",
+  "outer_test_accessed": false,
+  "candidate": {
+    "candidate_id": "L2",
+    "target_blocks": "last_4",
+    "rank": 8,
+    "alpha": 16,
+    "lora_learning_rate": 0.0003
+  },
+  "repeat": 2,
+  "outer_fold": 2,
+  "base_seed": 17,
+  "full_seed": 20217,
+  "inner_train_calls": 480,
+  "inner_validation_calls": 115,
+  "best_epoch": 6,
+  "audit": {
+    "best_epoch": 6,
+    "stopped_epoch": 14,
+    "best_validation_loss": 0.6795952174974524,
+    "best_validation_animal_metrics": {
+      "macro_f1": 0.8148148148148148,
+      "balanced_accuracy": 0.8333333333333334,
+      "quadratic_weighted_kappa": 0.71900826446281,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.7,
+        "senior": 0.8
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ]
+      ],
+      "n": 17
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.820466102162997,
+        "validation_loss": 1.07260102811067,
+        "validation_macro_f1": 0.6832579185520361,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.5993265993265994
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.5503802905480067,
+        "validation_loss": 0.8800105281498121,
+        "validation_macro_f1": 0.7737556561085972,
+        "validation_balanced_accuracy": 0.8000000000000002,
+        "validation_qwk": 0.6640316205533596
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.3734174226721128,
+        "validation_loss": 0.7257522976916769,
+        "validation_macro_f1": 0.8148148148148148,
+        "validation_balanced_accuracy": 0.8333333333333334,
+        "validation_qwk": 0.71900826446281
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.3348946482564012,
+        "validation_loss": 0.7176234753235526,
+        "validation_macro_f1": 0.8148148148148148,
+        "validation_balanced_accuracy": 0.8333333333333334,
+        "validation_qwk": 0.71900826446281
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.24130395197619994,
+        "validation_loss": 0.765984615035679,
+        "validation_macro_f1": 0.8148148148148148,
+        "validation_balanced_accuracy": 0.8333333333333334,
+        "validation_qwk": 0.71900826446281
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.21332986010238528,
+        "validation_loss": 0.6795952174974524,
+        "validation_macro_f1": 0.8148148148148148,
+        "validation_balanced_accuracy": 0.8333333333333334,
+        "validation_qwk": 0.71900826446281
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.2080009459828337,
+        "validation_loss": 0.7516493185706761,
+        "validation_macro_f1": 0.7607655502392344,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.6320346320346321
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.18045135967743894,
+        "validation_loss": 0.8116340264030125,
+        "validation_macro_f1": 0.7607655502392344,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.6320346320346321
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.12649609686341137,
+        "validation_loss": 0.8081160638643348,
+        "validation_macro_f1": 0.7607655502392344,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.6320346320346321
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.12206732622968654,
+        "validation_loss": 0.8192779966022657,
+        "validation_macro_f1": 0.7607655502392344,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.6320346320346321
+      },
+      {
+        "epoch": 11,
+        "train_loss": 0.14634339137313265,
+        "validation_loss": 0.8428144879963086,
+        "validation_macro_f1": 0.7607655502392344,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.6320346320346321
+      },
+      {
+        "epoch": 12,
+        "train_loss": 0.11694614427785079,
+        "validation_loss": 0.879164719581604,
+        "validation_macro_f1": 0.7607655502392344,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.6320346320346321
+      },
+      {
+        "epoch": 13,
+        "train_loss": 0.09114620726710806,
+        "validation_loss": 0.9858839283818784,
+        "validation_macro_f1": 0.7607655502392344,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.6320346320346321
+      },
+      {
+        "epoch": 14,
+        "train_loss": 0.13889549276015412,
+        "validation_loss": 0.9911528286726579,
+        "validation_macro_f1": 0.7607655502392344,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.6320346320346321
+      }
+    ],
+    "train_seconds": 18.286702700002934,
+    "peak_vram_bytes": 645233664,
+    "parameters": {
+      "trainable": 197379,
+      "total": 85564419
+    },
+    "trainable_lora_parameters": 98304,
+    "lora_parameters": [
+      {
+        "name": "ast.encoder.layer.8.attention.attention.query.lora_A.weight",
+        "shape": [
+          8,
+          768
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.8.attention.attention.query.lora_B.weight",
+        "shape": [
+          768,
+          8
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.8.attention.attention.value.lora_A.weight",
+        "shape": [
+          8,
+          768
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.8.attention.attention.value.lora_B.weight",
+        "shape": [
+          768,
+          8
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.9.attention.attention.query.lora_A.weight",
+        "shape": [
+          8,
+          768
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.9.attention.attention.query.lora_B.weight",
+        "shape": [
+          768,
+          8
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.9.attention.attention.value.lora_A.weight",
+        "shape": [
+          8,
+          768
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.9.attention.attention.value.lora_B.weight",
+        "shape": [
+          768,
+          8
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.10.attention.attention.query.lora_A.weight",
+        "shape": [
+          8,
+          768
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.10.attention.attention.query.lora_B.weight",
+        "shape": [
+          768,
+          8
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.10.attention.attention.value.lora_A.weight",
+        "shape": [
+          8,
+          768
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.10.attention.attention.value.lora_B.weight",
+        "shape": [
+          768,
+          8
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.11.attention.attention.query.lora_A.weight",
+        "shape": [
+          8,
+          768
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.11.attention.attention.query.lora_B.weight",
+        "shape": [
+          768,
+          8
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.11.attention.attention.value.lora_A.weight",
+        "shape": [
+          8,
+          768
+        ],
+        "numel": 6144
+      },
+      {
+        "name": "ast.encoder.layer.11.attention.attention.value.lora_B.weight",
+        "shape": [
+          768,
+          8
+        ],
+        "numel": 6144
+      }
+    ],
+    "maximum_trainable_parameter_updates": {
+      "ast.encoder.layer.8.attention.attention.query.lora_A.weight": 0.012440010905265808,
+      "ast.encoder.layer.8.attention.attention.query.lora_B.weight": 0.0126132071018219,
+      "ast.encoder.layer.8.attention.attention.value.lora_A.weight": 0.012176986783742905,
+      "ast.encoder.layer.8.attention.attention.value.lora_B.weight": 0.011831957846879959,
+      "ast.encoder.layer.9.attention.attention.query.lora_A.weight": 0.012899134308099747,
+      "ast.encoder.layer.9.attention.attention.query.lora_B.weight": 0.011542939580976963,
+      "ast.encoder.layer.9.attention.attention.value.lora_A.weight": 0.01273573562502861,
+      "ast.encoder.layer.9.attention.attention.value.lora_B.weight": 0.011428669095039368,
+      "ast.encoder.layer.10.attention.attention.query.lora_A.weight": 0.011134162545204163,
+      "ast.encoder.layer.10.attention.attention.query.lora_B.weight": 0.013174903579056263,
+      "ast.encoder.layer.10.attention.attention.value.lora_A.weight": 0.010267900303006172,
+      "ast.encoder.layer.10.attention.attention.value.lora_B.weight": 0.009161385707557201,
+      "ast.encoder.layer.11.attention.attention.query.lora_A.weight": 0.015000622719526291,
+      "ast.encoder.layer.11.attention.attention.query.lora_B.weight": 0.012400295585393906,
+      "ast.encoder.layer.11.attention.attention.value.lora_A.weight": 0.011031260713934898,
+      "ast.encoder.layer.11.attention.attention.value.lora_B.weight": 0.00956111028790474,
+      "head.network.0.weight": 0.13469748198986053,
+      "head.network.0.bias": 0.09563564509153366,
+      "head.network.2.weight": 0.1259225606918335,
+      "head.network.2.bias": 0.233023539185524,
+      "head.network.4.weight": 0.14327944815158844,
+      "head.network.4.bias": 0.17806649208068848
+    },
+    "all_trainable_parameters_updated": true,
+    "trainable_parameter_bytes_fp32": 789516,
+    "checkpoint_audit": null
+  }
+}

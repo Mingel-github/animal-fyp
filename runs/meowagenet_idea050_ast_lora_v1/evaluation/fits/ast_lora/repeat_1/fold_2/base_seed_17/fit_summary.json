@@ -1,0 +1,79 @@
+{
+  "status": "complete",
+  "stage": "initial_nested_paired_evaluation",
+  "outer_test_accessed": true,
+  "pipeline": "ast_lora",
+  "candidate": {
+    "candidate_id": "L1",
+    "target_blocks": "last_4",
+    "rank": 4,
+    "alpha": 8,
+    "lora_learning_rate": 0.0003
+  },
+  "repeat": 1,
+  "outer_fold": 2,
+  "base_seed": 17,
+  "full_seed": 10217,
+  "selected_epoch": 6,
+  "inner": {
+    "source": "locked_nested_inner_candidate_fit",
+    "fit_summary_path": "runs/meowagenet_idea050_ast_lora_v1/selection/candidates/repeat_1/fold_2/L1/fit_summary.json",
+    "selected_validation_macro_f1": 0.8148148148148148,
+    "selected_validation_balanced_accuracy": 0.8333333333333334,
+    "selected_validation_qwk": 0.71900826446281,
+    "selected_validation_loss": 1.4770790662294553
+  },
+  "outer": {
+    "epochs": 6,
+    "training_losses": [
+      0.840048987717524,
+      0.5555473177754966,
+      0.4594607159604121,
+      0.33344224334633266,
+      0.3072183052771283,
+      0.25874398496464224
+    ],
+    "test_loss": 0.8438538645134598,
+    "test_animal_metrics": {
+      "macro_f1": 0.671957671957672,
+      "balanced_accuracy": 0.6259259259259259,
+      "quadratic_weighted_kappa": 0.5773584905660377,
+      "per_class_recall": {
+        "kitten": 0.5,
+        "adult": 0.9333333333333333,
+        "senior": 0.4444444444444444
+      },
+      "confusion_matrix": [
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          0,
+          14,
+          1
+        ],
+        [
+          0,
+          5,
+          4
+        ]
+      ],
+      "n": 28
+    },
+    "train_and_predict_seconds": 8.2144197000016,
+    "peak_vram_bytes": 591713280,
+    "parameters": {
+      "trainable": 148227,
+      "total": 85515267
+    },
+    "trainable_lora_parameters": 49152,
+    "trainable_parameter_bytes_fp32": 592908
+  },
+  "selection_reference": {
+    "lock_path": "runs/meowagenet_idea050_ast_lora_v1/selection/locks/repeat_1_fold_2.json",
+    "lock_sha256": "f3e2452288688246aa33671a4130e428d240da3fd8d7d9a585def4adaeed7034"
+  },
+  "prediction_path": "runs/meowagenet_idea050_ast_lora_v1/evaluation/fits/ast_lora/repeat_1/fold_2/base_seed_17/outer_test_call_predictions.csv"
+}

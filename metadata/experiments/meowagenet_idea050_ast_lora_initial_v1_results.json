@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea050-ast-lora-initial-v1",
+  "date": "2026-09-02",
+  "status": "complete_for_initial_nested_paired_evaluation",
+  "candidate_status": "screened_below_matched_head_only",
+  "scope": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "calls": 792,
+    "cats": 111,
+    "candidate_inner_fits": 60,
+    "selection_locks": 12,
+    "outer_pipeline_fits": 24,
+    "complete_oof_evaluations": 6,
+    "total_training_fits": 84
+  },
+  "implementation_audit": {
+    "status": "passed",
+    "target_layers_one_based": [9, 10, 11, 12],
+    "target_projections": ["query", "value"],
+    "injected_projection_count": 8,
+    "trainable_lora_parameters_l1": 49152,
+    "trainable_total_parameters_l1": 148227,
+    "model_total_parameters": 85515267,
+    "forbidden_trainable_parameters": [],
+    "initialization_max_abs_logit_difference": 0.0
+  },
+  "smoke": {
+    "status": "passed",
+    "repeat": 0,
+    "outer_fold": 0,
+    "base_seed": 17,
+    "epochs": 2,
+    "outer_test_accessed": false,
+    "all_trainable_parameters_updated": true,
+    "checkpoint_bytes": 609368,
+    "checkpoint_reload_max_abs_logit_difference": 0.0,
+    "peak_vram_bytes": 761573376
+  },
+  "selection": {
+    "outer_test_accessed": false,
+    "completed_inner_fits": 60,
+    "selection_index_sha256": "afd5dfc0b58f483ef2b17fdee3dc209f43bd77f2e783f96f8b8b874d435b9a39",
+    "candidate_frequency": {
+      "L1": 2,
+      "L2": 3,
+      "L3": 2,
+      "L4": 3,
+      "L5": 2
+    },
+    "locks": [
+      {"repeat": 0, "outer_fold": 0, "candidate": "L5", "epoch": 6},
+      {"repeat": 0, "outer_fold": 1, "candidate": "L2", "epoch": 9},
+      {"repeat": 0, "outer_fold": 2, "candidate": "L4", "epoch": 2},
+      {"repeat": 0, "outer_fold": 3, "candidate": "L1", "epoch": 5},
+      {"repeat": 1, "outer_fold": 0, "candidate": "L3", "epoch": 1},
+      {"repeat": 1, "outer_fold": 1, "candidate": "L4", "epoch": 3},
+      {"repeat": 1, "outer_fold": 2, "candidate": "L1", "epoch": 6},
+      {"repeat": 1, "outer_fold": 3, "candidate": "L4", "epoch": 6},
+      {"repeat": 2, "outer_fold": 0, "candidate": "L2", "epoch": 4},
+      {"repeat": 2, "outer_fold": 1, "candidate": "L3", "epoch": 3},
+      {"repeat": 2, "outer_fold": 2, "candidate": "L2", "epoch": 6},
+      {"repeat": 2, "outer_fold": 3, "candidate": "L5", "epoch": 2}
+    ]
+  },
+  "complete_oof": {
+    "ast_head_only": [
+      {"repeat": 0, "n_animals": 111, "macro_f1": 0.7816103945136202, "balanced_accuracy": 0.7964790217162134, "quadratic_weighted_kappa": 0.6796984082658475},
+      {"repeat": 1, "n_animals": 111, "macro_f1": 0.7372892518440463, "balanced_accuracy": 0.7563145688382881, "quadratic_weighted_kappa": 0.5998705980219984},
+      {"repeat": 2, "n_animals": 111, "macro_f1": 0.7274860405295187, "balanced_accuracy": 0.7403331224963102, "quadratic_weighted_kappa": 0.6612410986775178}
+    ],
+    "ast_lora": [
+      {"repeat": 0, "n_animals": 111, "macro_f1": 0.7772815629536675, "balanced_accuracy": 0.7955302551127978, "quadratic_weighted_kappa": 0.7043805675452292},
+      {"repeat": 1, "n_animals": 111, "macro_f1": 0.6908238107281631, "balanced_accuracy": 0.6976386253426101, "quadratic_weighted_kappa": 0.5507804972056274},
+      {"repeat": 2, "n_animals": 111, "macro_f1": 0.6842326082137995, "balanced_accuracy": 0.6815095930845456, "quadratic_weighted_kappa": 0.5796679289251383}
+    ]
+  },
+  "aggregate": {
+    "ast_head_only": {
+      "macro_f1_mean": 0.7487952289623951,
+      "macro_f1_sample_sd": 0.0288383781727589,
+      "balanced_accuracy_mean": 0.7643755710169372,
+      "quadratic_weighted_kappa_mean": 0.6469367016551212
+    },
+    "ast_lora": {
+      "macro_f1_mean": 0.7174459939652099,
+      "macro_f1_sample_sd": 0.051923814139329894,
+      "balanced_accuracy_mean": 0.7248928245133178,
+      "quadratic_weighted_kappa_mean": 0.611609664558665
+    }
+  },
+  "lora_minus_matched_head_only": {
+    "macro_f1_differences": [-0.004328831559952784, -0.04646544111588313, -0.04325343231571921],
+    "macro_f1_mean_difference": -0.03134923499718504,
+    "macro_f1_positive_repeats": 0,
+    "balanced_accuracy_differences": [-0.000948766603415585, -0.05867594349567795, -0.05882352941176461],
+    "balanced_accuracy_mean_difference": -0.03948274650361938,
+    "qwk_differences": [0.024682159279381666, -0.049090100816370996, -0.08157316975237949],
+    "qwk_mean_difference": -0.03532703709645627,
+    "hierarchical_bootstrap": {
+      "method": "paired repeat-and-class-stratified animal bootstrap",
+      "bootstrap_repeats": 10000,
+      "seed": 20260902,
+      "observed_mean_difference": -0.03134923499718504,
+      "bootstrap_mean": -0.03148723101314632,
+      "ci_lower_2_5_percent": -0.06784681580390083,
+      "ci_upper_97_5_percent": 0.002121251681588255,
+      "probability_difference_positive": 0.0358
+    }
+  },
+  "class_analysis": {
+    "ast_head_only": {
+      "mean_recall": {"kitten": 0.8222222222222223, "adult": 0.7258064516129034, "senior": 0.7450980392156863},
+      "mean_f1": {"kitten": 0.7948476702508961, "adult": 0.7734918865353647, "senior": 0.6780461301009247},
+      "summed_confusion_matrix": [[37, 5, 3], [8, 135, 43], [3, 23, 76]],
+      "cross_two_level_errors": 6
+    },
+    "ast_lora": {
+      "mean_recall": {"kitten": 0.7777777777777778, "adult": 0.7204301075268816, "senior": 0.676470588235294},
+      "mean_f1": {"kitten": 0.7690025954764552, "adult": 0.7491502859869348, "senior": 0.63418510043224},
+      "summed_confusion_matrix": [[35, 8, 2], [8, 134, 44], [3, 30, 69]],
+      "cross_two_level_errors": 5
+    }
+  },
+  "resources": {
+    "head_only_trainable_parameters": 99075,
+    "lora_trainable_parameters_minimum": 148227,
+    "lora_trainable_parameters_maximum": 246531,
+    "lora_outer_seconds_mean": 6.796908741667721,
+    "lora_outer_peak_vram_bytes": 1160909824,
+    "head_only_cached_embedding_outer_seconds_mean": 0.6021263833348106,
+    "head_only_cached_embedding_outer_peak_vram_bytes": 20236800
+  },
+  "decision": {
+    "supports_seed_43_101_expansion": false,
+    "seeds_43_101_executed": false,
+    "current_performance_candidate": "ast_head_only_tuned",
+    "idea050_role": "complete PEFT ablation and future mechanism-development evidence",
+    "reason": "Matched tuned AST head-only led animal macro F1 in all three repeats; LoRA mean macro F1, balanced accuracy, and QWK were lower in the current five-candidate Q/V study."
+  },
+  "integrity_audit": {
+    "failed_candidate_fits": 0,
+    "failed_outer_fits": 0,
+    "candidate_fit_summary_files": 60,
+    "selection_lock_files": 12,
+    "outer_fit_summary_files": 24,
+    "complete_oof_rows_per_pipeline": 3,
+    "animals_per_complete_oof": 111,
+    "versioned_json_files": 104,
+    "versioned_json_bytes": 961044
+  },
+  "provenance_sha256": {
+    "protocol": "a8c1f6883c620c8e18cd59f7adc9293e57b170c1e67bdaf77b4e13f012ceb432",
+    "runner": "58362104f4cfcb38b188d712f11b7ce097edd2dd86b0b87ab03a20808379ecc5",
+    "audit_summary": "a19df2e5384cde3c18a4cfb680830e96eda598021d917b02dfe4e73fa9ffdf72",
+    "smoke_summary": "b70af4e252d1d135bf10794fdfec861e3ca131d5f0bdcb7a1c850e724de6f0fe",
+    "selection_index": "afd5dfc0b58f483ef2b17fdee3dc209f43bd77f2e783f96f8b8b874d435b9a39",
+    "evaluation_summary": "ef9741b4a04b561f51c974f8e6dab850ad266b977dd246a76d580c959a7bca0b",
+    "evaluation_run_summary": "990ece9d17a05cbdb4bffe48ff3a6baf0947b7344e95d58b4778570cecd992b4",
+    "evaluation_run_manifest": "1d5544e7375ed3bfc653ddc8d597e6e18083888f9af502e650db2ad783924afe"
+  },
+  "report": "reports/20_IDEA-050_AST_LoRA_initial_results.md"
+}

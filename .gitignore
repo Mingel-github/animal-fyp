@@ -98,6 +98,30 @@ runs/meowagenet_ast_hpo_v1/*
 runs/meowagenet_ast_hpo_v1/**/*.csv
 runs/meowagenet_ast_hpo_v1/**/*.npz
 
+# IDEA-050 AST LoRA: keep compact JSON audit records; retain checkpoints and predictions locally
+!runs/meowagenet_idea050_ast_lora_v1/
+runs/meowagenet_idea050_ast_lora_v1/*
+!runs/meowagenet_idea050_ast_lora_v1/audit/
+!runs/meowagenet_idea050_ast_lora_v1/audit/*.json
+!runs/meowagenet_idea050_ast_lora_v1/smoke/
+!runs/meowagenet_idea050_ast_lora_v1/smoke/*.json
+!runs/meowagenet_idea050_ast_lora_v1/selection/
+runs/meowagenet_idea050_ast_lora_v1/selection/*
+!runs/meowagenet_idea050_ast_lora_v1/selection/*.json
+!runs/meowagenet_idea050_ast_lora_v1/selection/locks/
+!runs/meowagenet_idea050_ast_lora_v1/selection/locks/*.json
+!runs/meowagenet_idea050_ast_lora_v1/selection/candidates/
+!runs/meowagenet_idea050_ast_lora_v1/selection/candidates/**/
+!runs/meowagenet_idea050_ast_lora_v1/selection/candidates/**/fit_summary.json
+!runs/meowagenet_idea050_ast_lora_v1/evaluation/
+runs/meowagenet_idea050_ast_lora_v1/evaluation/*
+!runs/meowagenet_idea050_ast_lora_v1/evaluation/*.json
+!runs/meowagenet_idea050_ast_lora_v1/evaluation/fits/
+!runs/meowagenet_idea050_ast_lora_v1/evaluation/fits/**/
+!runs/meowagenet_idea050_ast_lora_v1/evaluation/fits/**/fit_summary.json
+runs/meowagenet_idea050_ast_lora_v1/**/*.csv
+runs/meowagenet_idea050_ast_lora_v1/**/*.npz
+
 # Local datasets: review licensing and privacy before publishing
 data/*
 !data/README.md

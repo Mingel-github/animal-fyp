@@ -1,0 +1,79 @@
+{
+  "status": "complete",
+  "stage": "initial_nested_paired_evaluation",
+  "outer_test_accessed": true,
+  "pipeline": "ast_lora",
+  "candidate": {
+    "candidate_id": "L4",
+    "target_blocks": "last_4",
+    "rank": 4,
+    "alpha": 8,
+    "lora_learning_rate": 0.0001
+  },
+  "repeat": 1,
+  "outer_fold": 3,
+  "base_seed": 17,
+  "full_seed": 10317,
+  "selected_epoch": 6,
+  "inner": {
+    "source": "locked_nested_inner_candidate_fit",
+    "fit_summary_path": "runs/meowagenet_idea050_ast_lora_v1/selection/candidates/repeat_1/fold_3/L4/fit_summary.json",
+    "selected_validation_macro_f1": 0.8000000000000002,
+    "selected_validation_balanced_accuracy": 0.7999999999999999,
+    "selected_validation_qwk": 0.6909090909090909,
+    "selected_validation_loss": 0.5251983256987584
+  },
+  "outer": {
+    "epochs": 6,
+    "training_losses": [
+      0.6947088227766316,
+      0.4110981408052328,
+      0.3350328173094649,
+      0.23525916457903095,
+      0.22768153393171667,
+      0.20701619479350927
+    ],
+    "test_loss": 1.6081945020600228,
+    "test_animal_metrics": {
+      "macro_f1": 0.48148148148148145,
+      "balanced_accuracy": 0.48148148148148145,
+      "quadratic_weighted_kappa": 0.1562500000000001,
+      "per_class_recall": {
+        "kitten": 0.3333333333333333,
+        "adult": 0.6666666666666666,
+        "senior": 0.4444444444444444
+      },
+      "confusion_matrix": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          10,
+          4
+        ],
+        [
+          1,
+          4,
+          4
+        ]
+      ],
+      "n": 27
+    },
+    "train_and_predict_seconds": 9.069317200002843,
+    "peak_vram_bytes": 669327872,
+    "parameters": {
+      "trainable": 148227,
+      "total": 85515267
+    },
+    "trainable_lora_parameters": 49152,
+    "trainable_parameter_bytes_fp32": 592908
+  },
+  "selection_reference": {
+    "lock_path": "runs/meowagenet_idea050_ast_lora_v1/selection/locks/repeat_1_fold_3.json",
+    "lock_sha256": "5b872aea6ffff86376598d915f6c8d2d691946ce5254033d803fba1dc139af06"
+  },
+  "prediction_path": "runs/meowagenet_idea050_ast_lora_v1/evaluation/fits/ast_lora/repeat_1/fold_3/base_seed_17/outer_test_call_predictions.csv"
+}
