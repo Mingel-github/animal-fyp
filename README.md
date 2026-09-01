@@ -187,6 +187,20 @@ formal-v2.1 head-only mean, tuned head-only improved macro F1 by 0.0151 and QWK
 by 0.0125. This is recorded as a provisional post-formal performance result;
 the completed formal-v2.1 evidence remains unchanged.
 
+The next focused method plan is IDEA-050, an AST LoRA study:
+
+- readable plan: `reports/19_IDEA-050_AST_LoRA_plan.md`;
+- shared head candidate: dropout 0.4457 and head learning rate 0.006 from
+  AST-HPO-v1;
+- primary comparison: selected Q/V LoRA against a contemporaneously rerun,
+  matched tuned AST head-only control;
+- first-stage scope: five bounded LoRA candidates followed by three
+  seed-17 complete OOF evaluations per pipeline.
+
+The LoRA stage treats the HPO result as exploratory candidate evidence and
+keeps formal-v2.1 as the historical formal anchor. LoRA seed expansion to 43
+and 101 follows team review of the initial paired result.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,
