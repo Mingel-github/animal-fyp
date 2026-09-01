@@ -167,6 +167,26 @@ accuracy and QWK. Matched AST head-only remains higher by 0.0607 on average.
 IDEA-049 initial backbone screening closes after AVES; Conformer and expanded
 seeds remain future-work options.
 
+After the IDEA-049 closeout, a separate exploratory AST hyperparameter stage
+compared eight inner-only configurations each for AST head-only and the
+Probe-guided AST adapter. The search was locked before exploratory outer
+evaluation:
+
+- protocol: `configs/protocol/meowagenet_ast_hpo_v1.json`;
+- independent runner: `scripts/run_meowagenet_ast_hpo_v1.py`;
+- Chinese result report:
+  `reports/18_AST_head_and_adapter_hyperparameter_search.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_ast_hpo_v1_results.json`.
+
+The search selected dropout 0.4457 and head learning rate 0.006 for AST
+head-only, while the adapter retained its existing configuration. Across three
+seed-17 complete OOF evaluations, tuned head-only achieved animal macro F1
+0.7488 versus 0.7367 for the adapter. Relative to the matched historical
+formal-v2.1 head-only mean, tuned head-only improved macro F1 by 0.0151 and QWK
+by 0.0125. This is recorded as a provisional post-formal performance result;
+the completed formal-v2.1 evidence remains unchanged.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,

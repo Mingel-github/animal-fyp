@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-ast-hpo-v1",
+  "date": "2026-09-01",
+  "status": "authorized_exploratory_hpo",
+  "relationship": {
+    "formal_v2_1": "historical evidence anchor; files and reported outcomes remain unchanged",
+    "idea049": "completed backbone screen; this experiment optimizes the two existing AST pipelines",
+    "result_awareness": "formal-v2.1 and IDEA-049 outcomes were already known before this exploratory HPO",
+    "outer_boundary": "search uses inner train/validation only; selected configurations are written and hashed before exploratory outer evaluation"
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f"
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id"
+  },
+  "pipelines": [
+    "ast_head_only",
+    "ast_probe_guided_adapter"
+  ],
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU and BatchNorm",
+    "optimizer": "Adamax",
+    "class_weight": "balanced from inner-training calls",
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum inner-validation cross-entropy loss",
+    "adapter_width": 32,
+    "adapter_placement": "top two layers from the frozen inner-train-only probe for each repeat and fold"
+  },
+  "search": {
+    "development_repeat": 0,
+    "outer_folds_used_as_inner_development_splits": [0, 1, 2, 3],
+    "base_seed": 17,
+    "trials_per_pipeline": 8,
+    "total_inner_fits": 64,
+    "selection_metric": "mean inner-validation animal-level macro F1 across four folds",
+    "tie_breakers": [
+      "mean balanced accuracy descending",
+      "mean QWK descending",
+      "mean validation loss ascending",
+      "trial_id ascending"
+    ],
+    "head_only_trials": [
+      {"trial_id": "h_d025_lr0005", "dropout": 0.25, "head_learning_rate": 0.0005},
+      {"trial_id": "h_d025_lr0015", "dropout": 0.25, "head_learning_rate": 0.0015},
+      {"trial_id": "h_d025_lr0031098", "dropout": 0.25, "head_learning_rate": 0.003109800273709165},
+      {"trial_id": "h_d025_lr006", "dropout": 0.25, "head_learning_rate": 0.006},
+      {"trial_id": "h_d04457_lr0005", "dropout": 0.44571035356880917, "head_learning_rate": 0.0005},
+      {"trial_id": "h_d04457_lr0015", "dropout": 0.44571035356880917, "head_learning_rate": 0.0015},
+      {"trial_id": "h_baseline", "dropout": 0.44571035356880917, "head_learning_rate": 0.003109800273709165},
+      {"trial_id": "h_d04457_lr006", "dropout": 0.44571035356880917, "head_learning_rate": 0.006}
+    ],
+    "adapter_trials": [
+      {"trial_id": "a_d025_hlr0015_alr0003", "dropout": 0.25, "head_learning_rate": 0.0015, "adapter_learning_rate": 0.0003},
+      {"trial_id": "a_d025_hlr0015_alr001", "dropout": 0.25, "head_learning_rate": 0.0015, "adapter_learning_rate": 0.001},
+      {"trial_id": "a_d025_hlr0031098_alr0003", "dropout": 0.25, "head_learning_rate": 0.003109800273709165, "adapter_learning_rate": 0.0003},
+      {"trial_id": "a_d025_hlr0031098_alr001", "dropout": 0.25, "head_learning_rate": 0.003109800273709165, "adapter_learning_rate": 0.001},
+      {"trial_id": "a_d04457_hlr0015_alr0003", "dropout": 0.44571035356880917, "head_learning_rate": 0.0015, "adapter_learning_rate": 0.0003},
+      {"trial_id": "a_d04457_hlr0015_alr001", "dropout": 0.44571035356880917, "head_learning_rate": 0.0015, "adapter_learning_rate": 0.001},
+      {"trial_id": "a_d04457_hlr0031098_alr0003", "dropout": 0.44571035356880917, "head_learning_rate": 0.003109800273709165, "adapter_learning_rate": 0.0003},
+      {"trial_id": "a_baseline", "dropout": 0.44571035356880917, "head_learning_rate": 0.003109800273709165, "adapter_learning_rate": 0.001}
+    ]
+  },
+  "exploratory_evaluation": {
+    "requires_locked_selection": true,
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "base_seed": 17,
+    "fits_per_pipeline": 12,
+    "total_fits": 24,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "per_class_recall",
+      "confusion_matrix"
+    ],
+    "call_to_animal_aggregation": "arithmetic mean of call-level probabilities within cat_id"
+  },
+  "dependencies": {
+    "locked_model_protocol": "configs/protocol/meowagenet_locked_v1.json",
+    "ast_training_engine": "scripts/run_idea019_peft_placement.py",
+    "formal_reference_runner": "scripts/run_meowagenet_formal_v2_1.py",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "layer_embedding_sha256": "2d3aa7929d26e53f3ad1bf8fb67734e97693c38377f585d1679e53b95ea4c884"
+  }
+}

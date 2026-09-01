@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-ast-hpo-v1",
+  "date": "2026-09-01",
+  "status": "complete_for_exploratory_hpo",
+  "relationship_to_formal_v2_1": "post-formal exploratory model selection; formal-v2.1 records remain unchanged",
+  "scope": {
+    "pipelines": [
+      "ast_head_only",
+      "ast_probe_guided_adapter"
+    ],
+    "search": {
+      "development_repeat": 0,
+      "outer_folds_used_as_inner_development_splits": [0, 1, 2, 3],
+      "base_seed": 17,
+      "trials_per_pipeline": 8,
+      "completed_inner_fits": 64,
+      "outer_test_accessed": false
+    },
+    "locked_exploratory_evaluation": {
+      "repeats": [0, 1, 2],
+      "outer_folds": [0, 1, 2, 3],
+      "base_seed": 17,
+      "completed_fits": 24,
+      "complete_oof_evaluations": 6,
+      "animals_per_oof": 111
+    }
+  },
+  "selection": {
+    "status": "locked_before_exploratory_outer_evaluation",
+    "primary_metric": "mean inner-validation animal-level macro F1 across four folds",
+    "selection_sha256": "ccd70c403c632d246d68c7373f84d0f9fb03ebe5255a79f1d0738c07ea93a26e",
+    "ast_head_only": {
+      "trial_id": "h_d04457_lr006",
+      "dropout": 0.44571035356880917,
+      "head_learning_rate": 0.006,
+      "mean_inner_macro_f1": 0.7729475933423302,
+      "baseline_mean_inner_macro_f1": 0.6809548380755812,
+      "selected_minus_baseline_inner_macro_f1": 0.091992755266749
+    },
+    "ast_probe_guided_adapter": {
+      "trial_id": "a_baseline",
+      "dropout": 0.44571035356880917,
+      "head_learning_rate": 0.003109800273709165,
+      "adapter_learning_rate": 0.001,
+      "adapter_width": 32,
+      "mean_inner_macro_f1": 0.7869204260651629,
+      "selected_minus_baseline_inner_macro_f1": 0.0
+    }
+  },
+  "complete_oof": {
+    "ast_head_only": [
+      {
+        "repeat": 0,
+        "macro_f1": 0.7816103945136202,
+        "balanced_accuracy": 0.7964790217162134,
+        "quadratic_weighted_kappa": 0.6796984082658475,
+        "n_animals": 111
+      },
+      {
+        "repeat": 1,
+        "macro_f1": 0.7372892518440463,
+        "balanced_accuracy": 0.7563145688382881,
+        "quadratic_weighted_kappa": 0.5998705980219984,
+        "n_animals": 111
+      },
+      {
+        "repeat": 2,
+        "macro_f1": 0.7274860405295187,
+        "balanced_accuracy": 0.7403331224963102,
+        "quadratic_weighted_kappa": 0.6612410986775178,
+        "n_animals": 111
+      }
+    ],
+    "ast_probe_guided_adapter": [
+      {
+        "repeat": 0,
+        "macro_f1": 0.731655989369238,
+        "balanced_accuracy": 0.7359055450137043,
+        "quadratic_weighted_kappa": 0.6541403078085166,
+        "n_animals": 111
+      },
+      {
+        "repeat": 1,
+        "macro_f1": 0.7575549450549449,
+        "balanced_accuracy": 0.7847775669407548,
+        "quadratic_weighted_kappa": 0.6625536480686696,
+        "n_animals": 111
+      },
+      {
+        "repeat": 2,
+        "macro_f1": 0.7208421539707328,
+        "balanced_accuracy": 0.7570314147164243,
+        "quadratic_weighted_kappa": 0.6156441445440823,
+        "n_animals": 111
+      }
+    ]
+  },
+  "aggregate": {
+    "ast_head_only": {
+      "macro_f1_mean": 0.7487952289623951,
+      "macro_f1_sample_sd": 0.0288383781727589,
+      "balanced_accuracy_mean": 0.7643755710169372,
+      "quadratic_weighted_kappa_mean": 0.6469367016551212
+    },
+    "ast_probe_guided_adapter": {
+      "macro_f1_mean": 0.7366843627983052,
+      "macro_f1_sample_sd": 0.018865859688995432,
+      "balanced_accuracy_mean": 0.7592381755569612,
+      "quadratic_weighted_kappa_mean": 0.6441127001404229
+    }
+  },
+  "paired_current_comparison": {
+    "adapter_minus_head_only_macro_f1": {
+      "paired_differences": [
+        -0.04995440514438221,
+        0.02026569321089866,
+        -0.006643886558785894
+      ],
+      "mean_difference": -0.012110866164089814,
+      "adapter_positive_repeats": 1,
+      "head_only_positive_repeats": 2
+    },
+    "head_only_minus_adapter_mean_balanced_accuracy": 0.005137395459976,
+    "head_only_minus_adapter_mean_qwk": 0.0028240015146983
+  },
+  "historical_seed17_comparison": {
+    "ast_head_only": {
+      "formal_v2_1_macro_f1_values": [
+        0.718247825445968,
+        0.7615904674728204,
+        0.7212121212121213
+      ],
+      "formal_v2_1_macro_f1_mean": 0.7336834713769699,
+      "hpo_macro_f1_mean": 0.7487952289623951,
+      "mean_macro_f1_difference": 0.0151117575854253,
+      "mean_balanced_accuracy_difference": -0.00848970412537786,
+      "mean_qwk_difference": 0.0125230578844173
+    },
+    "ast_probe_guided_adapter": {
+      "formal_v2_1_macro_f1_values": [
+        0.7740740740740741,
+        0.75103539132548,
+        0.6793650793650795
+      ],
+      "formal_v2_1_macro_f1_mean": 0.7348248482548779,
+      "hpo_macro_f1_mean": 0.7366843627983052,
+      "mean_macro_f1_difference": 0.00185951454342725,
+      "same_hyperparameters": true,
+      "same_probe_layers_for_all_12_fits": true,
+      "fits_with_changed_selected_epoch": 5,
+      "interpretation": "The aggregate level is stable; seeded CUDA training without forced deterministic algorithms can alter validation-loss trajectories and selected epochs between executions."
+    }
+  },
+  "stage_conclusion": {
+    "ast_head_only": "promising provisional performance candidate with head learning rate 0.006",
+    "ast_probe_guided_adapter": "original adapter configuration remains the best of the tested adapter grid",
+    "current_seed17_order": "tuned AST head-only leads the adapter by 0.0121 mean animal macro F1 and also has small mean advantages in balanced accuracy and QWK",
+    "method_label": "inner-only hyperparameter optimization followed by locked exploratory complete-OOF evaluation"
+  },
+  "provenance_sha256": {
+    "protocol": "1e2dce0f8f2d864af2939912c01ac434ade7c7752c50d311af69b0cda8b0c814",
+    "runner": "a584e7ee0e3576974f1ec601181f791ac1d5630b560822f998ec7543588a47a4",
+    "training_engine": "24ae56543a10108e9bd0728cf4e7e532fcd87073c996b1dc34881f9cab141402",
+    "roles": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "search_selection": "ccd70c403c632d246d68c7373f84d0f9fb03ebe5255a79f1d0738c07ea93a26e",
+    "search_run_summary": "76040705b3858da2d67f013b7fa9e0f359e83ef0e2c5c9e9bd6d76028029b365",
+    "search_run_manifest": "75e7cd275f1571036028b74b1d796c59fcb5f4b923474cfe240d980064d238e7",
+    "evaluation_summary": "752c210a0b7d00a8ae4aa97603a7eb1f5c8167a45e820af816c754b9caa0befc",
+    "evaluation_run_summary": "979d85979b76a3b053fed10a6a983e9a1e6f1f12ec3c2c319f07320a5acef3e5",
+    "evaluation_run_manifest": "5a9aabf1fe924190baf96c23654edcb290f9954f991306d52611fe3d74278027"
+  },
+  "versioned_json_audit": {
+    "directory": "runs/meowagenet_ast_hpo_v1",
+    "files": 106,
+    "bytes": 576320,
+    "fit_summaries": 88,
+    "probe_summaries": 12
+  }
+}

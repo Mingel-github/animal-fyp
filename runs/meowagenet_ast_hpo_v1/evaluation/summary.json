@@ -1,0 +1,209 @@
+{
+  "status": "complete",
+  "pipelines": {
+    "ast_head_only": [
+      {
+        "repeat": 0,
+        "macro_f1": 0.7816103945136202,
+        "balanced_accuracy": 0.7964790217162134,
+        "quadratic_weighted_kappa": 0.6796984082658475,
+        "per_class_recall": {
+          "kitten": 0.8666666666666667,
+          "adult": 0.7580645161290323,
+          "senior": 0.7647058823529411
+        },
+        "confusion_matrix": [
+          [
+            13,
+            1,
+            1
+          ],
+          [
+            2,
+            47,
+            13
+          ],
+          [
+            1,
+            7,
+            26
+          ]
+        ],
+        "n": 111
+      },
+      {
+        "repeat": 1,
+        "macro_f1": 0.7372892518440463,
+        "balanced_accuracy": 0.7563145688382881,
+        "quadratic_weighted_kappa": 0.5998705980219984,
+        "per_class_recall": {
+          "kitten": 0.8666666666666667,
+          "adult": 0.7258064516129032,
+          "senior": 0.6764705882352942
+        },
+        "confusion_matrix": [
+          [
+            13,
+            1,
+            1
+          ],
+          [
+            2,
+            45,
+            15
+          ],
+          [
+            2,
+            9,
+            23
+          ]
+        ],
+        "n": 111
+      },
+      {
+        "repeat": 2,
+        "macro_f1": 0.7274860405295187,
+        "balanced_accuracy": 0.7403331224963102,
+        "quadratic_weighted_kappa": 0.6612410986775178,
+        "per_class_recall": {
+          "kitten": 0.7333333333333333,
+          "adult": 0.6935483870967742,
+          "senior": 0.7941176470588235
+        },
+        "confusion_matrix": [
+          [
+            11,
+            3,
+            1
+          ],
+          [
+            4,
+            43,
+            15
+          ],
+          [
+            0,
+            7,
+            27
+          ]
+        ],
+        "n": 111
+      }
+    ],
+    "ast_probe_guided_adapter": [
+      {
+        "repeat": 0,
+        "macro_f1": 0.731655989369238,
+        "balanced_accuracy": 0.7359055450137043,
+        "quadratic_weighted_kappa": 0.6541403078085166,
+        "per_class_recall": {
+          "kitten": 0.7333333333333333,
+          "adult": 0.7096774193548387,
+          "senior": 0.7647058823529411
+        },
+        "confusion_matrix": [
+          [
+            11,
+            4,
+            0
+          ],
+          [
+            2,
+            44,
+            16
+          ],
+          [
+            1,
+            7,
+            26
+          ]
+        ],
+        "n": 111
+      },
+      {
+        "repeat": 1,
+        "macro_f1": 0.7575549450549449,
+        "balanced_accuracy": 0.7847775669407548,
+        "quadratic_weighted_kappa": 0.6625536480686696,
+        "per_class_recall": {
+          "kitten": 0.8666666666666667,
+          "adult": 0.6935483870967742,
+          "senior": 0.7941176470588235
+        },
+        "confusion_matrix": [
+          [
+            13,
+            1,
+            1
+          ],
+          [
+            3,
+            43,
+            16
+          ],
+          [
+            1,
+            6,
+            27
+          ]
+        ],
+        "n": 111
+      },
+      {
+        "repeat": 2,
+        "macro_f1": 0.7208421539707328,
+        "balanced_accuracy": 0.7570314147164243,
+        "quadratic_weighted_kappa": 0.6156441445440823,
+        "per_class_recall": {
+          "kitten": 0.9333333333333333,
+          "adult": 0.6612903225806451,
+          "senior": 0.6764705882352942
+        },
+        "confusion_matrix": [
+          [
+            14,
+            0,
+            1
+          ],
+          [
+            4,
+            41,
+            17
+          ],
+          [
+            1,
+            10,
+            23
+          ]
+        ],
+        "n": 111
+      }
+    ]
+  },
+  "aggregate": {
+    "ast_head_only": {
+      "macro_f1_mean": 0.7487952289623951,
+      "macro_f1_sample_sd": 0.0288383781727589,
+      "balanced_accuracy_mean": 0.7643755710169372,
+      "qwk_mean": 0.6469367016551212
+    },
+    "ast_probe_guided_adapter": {
+      "macro_f1_mean": 0.7366843627983052,
+      "macro_f1_sample_sd": 0.018865859688995432,
+      "balanced_accuracy_mean": 0.7592381755569612,
+      "qwk_mean": 0.6441127001404229
+    }
+  },
+  "adapter_minus_head_only_macro_f1": {
+    "paired_differences": [
+      -0.04995440514438221,
+      0.02026569321089866,
+      -0.006643886558785894
+    ],
+    "mean_difference": -0.012110866164089814,
+    "positive_repeats": 1
+  },
+  "selection_path": "runs/meowagenet_ast_hpo_v1/search/selection.json",
+  "selection_sha256": "ccd70c403c632d246d68c7373f84d0f9fb03ebe5255a79f1d0738c07ea93a26e",
+  "completed_fits": 24
+}

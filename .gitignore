@@ -86,6 +86,18 @@ runs/idea049_aves_base_bio_v1/initial/*
 runs/idea049_aves_base_bio_v1/**/*.csv
 runs/idea049_aves_base_bio_v1/**/*.npz
 
+# Exploratory AST HPO: keep compact JSON audit; retain predictions locally
+!runs/meowagenet_ast_hpo_v1/
+runs/meowagenet_ast_hpo_v1/*
+!runs/meowagenet_ast_hpo_v1/search/
+!runs/meowagenet_ast_hpo_v1/search/**/*.json
+!runs/meowagenet_ast_hpo_v1/evaluation/
+!runs/meowagenet_ast_hpo_v1/evaluation/**/*.json
+!runs/meowagenet_ast_hpo_v1/probes/
+!runs/meowagenet_ast_hpo_v1/probes/*.json
+runs/meowagenet_ast_hpo_v1/**/*.csv
+runs/meowagenet_ast_hpo_v1/**/*.npz
+
 # Local datasets: review licensing and privacy before publishing
 data/*
 !data/README.md
