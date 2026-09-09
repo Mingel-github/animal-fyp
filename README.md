@@ -38,7 +38,7 @@ from the YAML file instead of copying local binaries.
 | `metadata/` | Dataset and experiment metadata suitable for version control |
 | `notebooks/` | Project-owned exploratory notebooks |
 | `plan/` | Idea handoffs, experiment plans, protocol narratives, and amendments |
-| `reports/` | Completed experiment results, evidence reviews, and stage conclusions |
+| `reports/` | Completed results and conclusions; also immutable legacy-path copies required by historical audits |
 | `runs/` | Generated outputs; selected formal JSON audit logs are versioned |
 | `scripts/` | Command-line entry points and utilities |
 | `splits/` | Reproducible train/validation/test split definitions |
