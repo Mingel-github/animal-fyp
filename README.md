@@ -37,7 +37,8 @@ from the YAML file instead of copying local binaries.
 | `environment/` | Reproducible environment definitions |
 | `metadata/` | Dataset and experiment metadata suitable for version control |
 | `notebooks/` | Project-owned exploratory notebooks |
-| `reports/` | Reproduction assessments and results |
+| `plan/` | Idea handoffs, experiment plans, protocol narratives, and amendments |
+| `reports/` | Completed experiment results, evidence reviews, and stage conclusions |
 | `runs/` | Generated outputs; selected formal JSON audit logs are versioned |
 | `scripts/` | Command-line entry points and utilities |
 | `splits/` | Reproducible train/validation/test split definitions |
@@ -79,7 +80,7 @@ frozen claim of unique layer semantics.
 The completed core execution design is formal v2.1:
 
 - amended protocol: `configs/protocol/meowagenet_formal_v2_1.json`;
-- readable amendment: `reports/10_formal_protocol_v2_1_amendment.md`;
+- readable amendment: `plan/10_formal_protocol_v2_1_amendment.md`;
 - execution-lock template:
   `configs/protocol/meowagenet_formal_v2_1_execution_lock_template.json`;
 - completed execution lock:
@@ -100,7 +101,7 @@ The completed core execution design is formal v2.1:
 IDEA-049 begins a separate exploratory pretrained-backbone screening after the
 formal-v2.1 checkpoint:
 
-- readable plan: `reports/13_IDEA-049_backbone_screening_plan.md`;
+- readable plan: `plan/13_IDEA-049_backbone_screening_plan.md`;
 - protocol: `configs/protocol/meowagenet_idea049_backbone_screening_v1.json`;
 - first candidate recipe:
   `configs/experiment/idea049/ssast_base_patch400_frozen_v1.json`;
@@ -189,7 +190,7 @@ the completed formal-v2.1 evidence remains unchanged.
 
 The next focused method plan is IDEA-050, an AST LoRA study:
 
-- readable plan: `reports/19_IDEA-050_AST_LoRA_plan.md`;
+- readable plan: `plan/19_IDEA-050_AST_LoRA_plan.md`;
 - shared head recipe: dropout 0.4457 and head learning rate 0.006 from
   AST-HPO-v1; the principal HPO signal is the higher head learning rate, while
   dropout is retained as part of the selected combination;
@@ -217,6 +218,14 @@ AST LoRA achieved 0.7174. The paired differences were -0.0043, -0.0465, and
 -0.0433. The current five-candidate Q/V LoRA stage therefore closes without
 seed-43/101 expansion; its full ablation and audit evidence remains available
 for the thesis, while future LoRA variants remain open as later candidates.
+
+A new candidate-discovery stage now examines accuracy-oriented additions to
+the tuned AST head-only pipeline. The leading route is cat-balanced training
+combined with frozen multi-layer AST fusion; cross-model fusion, distillation,
+normalization, checkpoint averaging, and native-length handling remain
+conditional candidates. The plan is recorded in
+`plan/AST_accuracy_enhancement_candidates.md`. No candidate in that document
+is treated as a confirmed improvement before matched cat-ID-disjoint ablation.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
