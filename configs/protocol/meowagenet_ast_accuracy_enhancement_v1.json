@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-ast-accuracy-enhancement-v1",
+  "date": "2026-09-10",
+  "status": "authorized_exploratory_seed17_matrix",
+  "objective": "Test whether cat-aligned training contribution and frozen multi-layer AST scalar fusion improve unseen-cat age classification over the tuned frozen AST head-only anchor.",
+  "result_awareness": {
+    "historical_results_known": true,
+    "anchor": "post-formal tuned AST head-only",
+    "anchor_seed17_macro_f1_mean": 0.7487952289623951,
+    "candidate_matrix_fixed_before_new_outer_evaluation": true
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f"
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id",
+    "inner_roles": ["train", "validation"],
+    "outer_role": "test"
+  },
+  "pipelines": {
+    "A0_final_class_balanced": {
+      "cat_balancing": false,
+      "representation": "locked_final_ast_embedding",
+      "purpose": "same-run tuned frozen AST head-only control"
+    },
+    "A1_final_cat_balanced": {
+      "cat_balancing": true,
+      "representation": "locked_final_ast_embedding",
+      "purpose": "isolate alignment of training contribution with the animal evaluation unit"
+    },
+    "A2_scalar_fusion_class_balanced": {
+      "cat_balancing": false,
+      "representation": "learned_scalar_fusion_of_12_frozen_ast_layers",
+      "purpose": "isolate access to complementary frozen AST layers"
+    },
+    "A3_scalar_fusion_cat_balanced": {
+      "cat_balancing": true,
+      "representation": "learned_scalar_fusion_of_12_frozen_ast_layers",
+      "purpose": "test the combined mechanisms and their interaction"
+    }
+  },
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_and_fusion_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation call cross-entropy loss",
+    "current_balance": "inverse inner-training call frequency for each age class",
+    "cat_balance": "each class has equal total loss weight and each training cat within a class has equal total loss weight",
+    "cat_balance_call_weight": "N_train_calls / (3 * N_train_cats_in_class * N_train_calls_for_cat)",
+    "call_to_animal_aggregation": "arithmetic mean of call-level probabilities within cat_id"
+  },
+  "scalar_fusion": {
+    "layers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "parameterization": "softmax over 12 trainable scalar logits",
+    "initialization": "uniform layer weights",
+    "output_dimension": 768,
+    "extra_trainable_parameters_vs_A0": 12,
+    "capacity_control": "the fused representation remains 768-dimensional and uses the identical 768-128-3 head; the 12 added scalars are treated as an intrinsic near-matched-capacity comparison"
+  },
+  "diagnostics": {
+    "historical_outer_results_are_descriptive_only": true,
+    "fixed_segment_seconds": 1.28,
+    "items": [
+      "call count versus tuned-AST accuracy and confidence",
+      "tuned AST error overlap with matched VGGish and PANNs CNN14",
+      "existing inner-only single-layer AST probes",
+      "duration and fixed-window padding ratio versus tuned-AST errors"
+    ]
+  },
+  "smoke": {
+    "repeat": 0,
+    "outer_fold": 0,
+    "base_seed": 17,
+    "pipelines": [
+      "A0_final_class_balanced",
+      "A1_final_cat_balanced",
+      "A2_scalar_fusion_class_balanced",
+      "A3_scalar_fusion_cat_balanced"
+    ],
+    "outer_test_accessed": false,
+    "execution_lock_written_after_success": true
+  },
+  "exploratory_evaluation": {
+    "requires_execution_lock": true,
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "base_seed": 17,
+    "fits_per_pipeline": 12,
+    "total_fits": 48,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "per_class_recall",
+      "confusion_matrix"
+    ]
+  },
+  "stage_decision": {
+    "expansion_condition": "candidate minus A0 mean animal macro F1 is at least 0.01 and positive in at least two of three repeats",
+    "expansion_if_triggered": "evaluate A0 and the leading candidate with base seeds 43 and 101 in a later stage",
+    "current_scope": "seed 17 only"
+  },
+  "dependencies": {
+    "locked_model_protocol": "configs/protocol/meowagenet_locked_v1.json",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "final_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "final_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "ast_hpo_summary_path": "runs/meowagenet_ast_hpo_v1/evaluation/summary.json",
+    "ast_hpo_summary_sha256": "752c210a0b7d00a8ae4aa97603a7eb1f5c8167a45e820af816c754b9caa0befc",
+    "panns_summary_path": "runs/idea049_panns_cnn14_v1/initial/initial_summary.json",
+    "panns_summary_sha256": "e28a585a88c6b35a6883e05e9c22fa82178e37b7821ab80091759b6d125ec9b4",
+    "layer_embedding_path": "runs/ast_layer_embeddings_v2_float32/ast_standard_layer_call_embeddings.npz",
+    "layer_embedding_sha256": "2d3aa7929d26e53f3ad1bf8fb67734e97693c38377f585d1679e53b95ea4c884"
+  }
+}

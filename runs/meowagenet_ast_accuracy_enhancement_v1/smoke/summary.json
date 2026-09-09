@@ -1,0 +1,173 @@
+{
+  "status": "complete",
+  "outer_test_accessed": false,
+  "completed_inner_fits": 4,
+  "execution_lock": "runs/meowagenet_ast_accuracy_enhancement_v1/execution_lock.json",
+  "execution_lock_sha256": "8121650774dfe10002935698b3e4eeba691972370770ea17c13594f6a9c03230",
+  "a0_reproduction": {
+    "reference": "runs/meowagenet_ast_hpo_v1/evaluation/fits/ast_head_only/repeat_0/fold_0/base_seed_17/fit_summary.json",
+    "best_epoch": 7,
+    "macro_f1_difference": 0.0,
+    "validation_loss_difference": 0.0
+  },
+  "pipelines": {
+    "A0_final_class_balanced": {
+      "best_epoch": 7,
+      "best_validation_loss": 0.7025218095098223,
+      "best_validation_animal_metrics": {
+        "macro_f1": 0.7473684210526317,
+        "balanced_accuracy": 0.7999999999999999,
+        "quadratic_weighted_kappa": 0.5102880658436213,
+        "per_class_recall": {
+          "kitten": 1.0,
+          "adult": 0.8,
+          "senior": 0.6
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            2
+          ],
+          [
+            1,
+            1,
+            3
+          ]
+        ],
+        "n": 17
+      },
+      "best_layer_weights": null
+    },
+    "A1_final_cat_balanced": {
+      "best_epoch": 5,
+      "best_validation_loss": 0.6989399705614362,
+      "best_validation_animal_metrics": {
+        "macro_f1": 0.7473684210526317,
+        "balanced_accuracy": 0.7999999999999999,
+        "quadratic_weighted_kappa": 0.5102880658436213,
+        "per_class_recall": {
+          "kitten": 1.0,
+          "adult": 0.8,
+          "senior": 0.6
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            2
+          ],
+          [
+            1,
+            1,
+            3
+          ]
+        ],
+        "n": 17
+      },
+      "best_layer_weights": null
+    },
+    "A2_scalar_fusion_class_balanced": {
+      "best_epoch": 5,
+      "best_validation_loss": 0.46377131768635343,
+      "best_validation_animal_metrics": {
+        "macro_f1": 0.7888888888888889,
+        "balanced_accuracy": 0.8333333333333334,
+        "quadratic_weighted_kappa": 0.560344827586207,
+        "per_class_recall": {
+          "kitten": 1.0,
+          "adult": 0.9,
+          "senior": 0.6
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            9,
+            1
+          ],
+          [
+            1,
+            1,
+            3
+          ]
+        ],
+        "n": 17
+      },
+      "best_layer_weights": [
+        0.08419927209615707,
+        0.0840299129486084,
+        0.08641481399536133,
+        0.08463333547115326,
+        0.08601894974708557,
+        0.08525502681732178,
+        0.08860974758863449,
+        0.08442375808954239,
+        0.08104804903268814,
+        0.07632175832986832,
+        0.07872370630502701,
+        0.08032165467739105
+      ]
+    },
+    "A3_scalar_fusion_cat_balanced": {
+      "best_epoch": 7,
+      "best_validation_loss": 0.5488276992525373,
+      "best_validation_animal_metrics": {
+        "macro_f1": 0.7473684210526317,
+        "balanced_accuracy": 0.7999999999999999,
+        "quadratic_weighted_kappa": 0.5102880658436213,
+        "per_class_recall": {
+          "kitten": 1.0,
+          "adult": 0.8,
+          "senior": 0.6
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            2
+          ],
+          [
+            1,
+            1,
+            3
+          ]
+        ],
+        "n": 17
+      },
+      "best_layer_weights": [
+        0.08272777497768402,
+        0.0830906331539154,
+        0.08405768871307373,
+        0.08279544860124588,
+        0.08159203827381134,
+        0.08469336479902267,
+        0.08655347675085068,
+        0.08624338358640671,
+        0.08492052555084229,
+        0.07945157587528229,
+        0.08008985221385956,
+        0.08378417789936066
+      ]
+    }
+  }
+}

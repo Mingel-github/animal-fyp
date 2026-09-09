@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-ast-accuracy-enhancement-v1",
+  "date": "2026-09-10",
+  "status": "seed17_core_matrix_complete",
+  "scope": {
+    "calls": 792,
+    "cats": 111,
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "base_seed": 17,
+    "pipelines": 4,
+    "completed_outer_fits": 48,
+    "complete_oof_evaluations": 12
+  },
+  "methods": {
+    "A0_final_class_balanced": "tuned frozen final-layer AST head with call-level class balancing",
+    "A1_final_cat_balanced": "A0 representation and head with equal class totals and equal cat totals within each class",
+    "A2_scalar_fusion_class_balanced": "learned softmax scalar fusion of all 12 frozen AST layers with call-level class balancing",
+    "A3_scalar_fusion_cat_balanced": "12-layer scalar fusion with cat- and class-balanced loss"
+  },
+  "diagnostics": {
+    "call_count_vs_repeat_accuracy_spearman_rho": 0.0865331689635869,
+    "call_count_vs_confidence_spearman_rho": -0.3099934319050561,
+    "mean_duration_vs_repeat_accuracy_spearman_rho": -0.11725416952119687,
+    "mean_padding_ratio_vs_repeat_accuracy_spearman_rho": 0.08227220594787255,
+    "leading_inner_probe_layers_one_based": [8, 12, 11, 10],
+    "interpretation": "Call count, duration, and padding show weak monotonic association with tuned-AST correctness. Inner-only probes support layer-dependent information, while selected useful layers vary across folds."
+  },
+  "smoke": {
+    "outer_test_accessed": false,
+    "repeat": 0,
+    "outer_fold": 0,
+    "completed_inner_fits": 4,
+    "a0_reference_best_epoch": 7,
+    "a0_macro_f1_difference_from_existing_tuned_ast": 0.0,
+    "a0_validation_loss_difference_from_existing_tuned_ast": 0.0
+  },
+  "complete_oof_macro_f1": {
+    "A0_final_class_balanced": [0.7816103945136202, 0.7372892518440463, 0.7274860405295187],
+    "A1_final_cat_balanced": [0.789684835001854, 0.7519659765687692, 0.7877518130539887],
+    "A2_scalar_fusion_class_balanced": [0.7340019920665082, 0.7043336439888165, 0.6698078973033046],
+    "A3_scalar_fusion_cat_balanced": [0.7446336957722157, 0.724904214559387, 0.6995231191067978]
+  },
+  "aggregate": {
+    "A0_final_class_balanced": {
+      "macro_f1_mean": 0.7487952289623951,
+      "macro_f1_sample_sd": 0.0288383781727589,
+      "balanced_accuracy_mean": 0.7643755710169372,
+      "qwk_mean": 0.6469367016551212,
+      "plain_accuracy_mean": 0.7447447447447447,
+      "mean_per_class_recall": {"kitten": 0.8222222222222223, "adult": 0.7258064516129034, "senior": 0.7450980392156863}
+    },
+    "A1_final_cat_balanced": {
+      "macro_f1_mean": 0.7764675415415373,
+      "macro_f1_sample_sd": 0.021240978274288957,
+      "balanced_accuracy_mean": 0.7864361515215404,
+      "qwk_mean": 0.6724401418464493,
+      "plain_accuracy_mean": 0.7747747747747747,
+      "mean_per_class_recall": {"kitten": 0.8444444444444444, "adult": 0.7795698924731184, "senior": 0.7352941176470588}
+    },
+    "A2_scalar_fusion_class_balanced": {
+      "macro_f1_mean": 0.7027145111195431,
+      "macro_f1_sample_sd": 0.032127661664880965,
+      "balanced_accuracy_mean": 0.7271628364607491,
+      "qwk_mean": 0.6024872961231204,
+      "plain_accuracy_mean": 0.6996996996996997,
+      "mean_per_class_recall": {"kitten": 0.8222222222222223, "adult": 0.6827956989247311, "senior": 0.676470588235294}
+    },
+    "A3_scalar_fusion_cat_balanced": {
+      "macro_f1_mean": 0.7230203431461336,
+      "macro_f1_sample_sd": 0.02261421589173264,
+      "balanced_accuracy_mean": 0.7476210555906951,
+      "qwk_mean": 0.6170637887435133,
+      "plain_accuracy_mean": 0.7087087087087087,
+      "mean_per_class_recall": {"kitten": 0.9111111111111111, "adult": 0.7043010752688174, "senior": 0.6274509803921569}
+    }
+  },
+  "paired_vs_A0": {
+    "A1_final_cat_balanced": {
+      "macro_f1_differences": [0.008074440488233803, 0.014676724724722923, 0.06026577252446996],
+      "mean_macro_f1_difference": 0.027672312579142228,
+      "positive_repeats": 3,
+      "net_additional_correct_animals_by_repeat": [1, 2, 7]
+    },
+    "A2_scalar_fusion_class_balanced": {
+      "macro_f1_differences": [-0.047608402447112064, -0.032955607855229774, -0.05767814322621412],
+      "mean_macro_f1_difference": -0.04608071784285198,
+      "positive_repeats": 0
+    },
+    "A3_scalar_fusion_cat_balanced": {
+      "macro_f1_differences": [-0.03697669874140452, -0.012385037284659228, -0.027962921422720943],
+      "mean_macro_f1_difference": -0.025774885816261566,
+      "positive_repeats": 0
+    }
+  },
+  "interpretation": {
+    "primary_result": "Cat-balanced loss is the leading provisional AST accuracy candidate and improves all three seed-17 complete OOF repeats.",
+    "class_pattern": "The largest mean recall gain is adult: 0.7258 to 0.7796. Kitten recall rises from 0.8222 to 0.8444; senior recall changes from 0.7451 to 0.7353.",
+    "scalar_fusion_result": "All-layer scalar fusion remains close to uniform weighting and reduces the current complete-OOF scores. The current all-layer implementation closes at this stage.",
+    "capacity_note": "Scalar fusion adds 12 trainable logits while preserving the 768-dimensional representation and identical 768-128-3 head."
+  },
+  "stage_decision": {
+    "leading_pipeline": "A1_final_cat_balanced",
+    "expansion_condition_met": true,
+    "next_stage": "matched A0 versus A1 evaluation with base seeds 43 and 101 after team review",
+    "current_claim": "provisional seed17 performance improvement"
+  },
+  "provenance_sha256": {
+    "protocol": "fe3551985d795ded131e577fac100d9b975f9148df7c2a190ac64ba33014d67d",
+    "runner": "edfdd2787fb32c8d8970d49222994be236a12af4fe32a4104b0cde5f678f11d9",
+    "roles": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "execution_lock": "8121650774dfe10002935698b3e4eeba691972370770ea17c13594f6a9c03230",
+    "diagnostics_summary": "a9fe4b34c5f947e29bba55143c0362140959fee9ff9bca24942cafc07d7f902e",
+    "smoke_summary": "bef69eda35d60261c08d20e27cb725ae2e6f2e6b84b90b37745e37c9e7a47e83",
+    "evaluation_summary": "53d1a6b2dcb5f60bbde1c07acf522513007f23f5881c62e5e7dde811634bc9bd",
+    "evaluation_run_summary": "1e220c6493451edf1e33d0cfe81e0b1f40de8173ed51f7a910f9a3830126dc1d"
+  },
+  "run_artifact_audit": {
+    "root": "runs/meowagenet_ast_accuracy_enhancement_v1",
+    "files": 123,
+    "bytes": 1536512,
+    "fit_summaries": 52,
+    "outer_fit_summaries": 48,
+    "complete_oof_animal_tables": 12,
+    "versioned_json_files": 60,
+    "versioned_json_bytes": 503878,
+    "version_control_policy": "Version all compact JSON manifests, locks, fit summaries and aggregate summaries; keep prediction CSV tables in the local research environment."
+  }
+}

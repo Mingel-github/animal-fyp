@@ -1,0 +1,488 @@
+{
+  "status": "complete",
+  "scope": {
+    "calls": 792,
+    "cats": 111,
+    "historical_tuned_ast_repeats": 3
+  },
+  "call_count_buckets": [
+    {
+      "call_count_bucket": "1",
+      "cats": 20,
+      "mean_repeat_accuracy": 0.8,
+      "mean_confidence": 0.843374333779017,
+      "mean_padding_ratio": 0.4613623816985637
+    },
+    {
+      "call_count_bucket": "2-5",
+      "cats": 42,
+      "mean_repeat_accuracy": 0.6746031746031745,
+      "mean_confidence": 0.7420729355857013,
+      "mean_padding_ratio": 0.46423527962964267
+    },
+    {
+      "call_count_bucket": "6-10",
+      "cats": 25,
+      "mean_repeat_accuracy": 0.7866666666666667,
+      "mean_confidence": 0.7160259636338288,
+      "mean_padding_ratio": 0.463739034795158
+    },
+    {
+      "call_count_bucket": "11-20",
+      "cats": 19,
+      "mean_repeat_accuracy": 0.7894736842105263,
+      "mean_confidence": 0.7000147047009598,
+      "mean_padding_ratio": 0.4678853967151053
+    },
+    {
+      "call_count_bucket": "21+",
+      "cats": 5,
+      "mean_repeat_accuracy": 0.7333333333333333,
+      "mean_confidence": 0.6466595268318487,
+      "mean_padding_ratio": 0.4713406495219523
+    }
+  ],
+  "correlations": {
+    "call_count_vs_repeat_accuracy": {
+      "rho": 0.0865331689635869,
+      "pvalue": 0.3664947692428282
+    },
+    "call_count_vs_confidence": {
+      "rho": -0.3099934319050561,
+      "pvalue": 0.0009297339996160405
+    },
+    "mean_duration_vs_repeat_accuracy": {
+      "rho": -0.11725416952119687,
+      "pvalue": 0.22035006340530647
+    },
+    "mean_padding_ratio_vs_repeat_accuracy": {
+      "rho": 0.08227220594787255,
+      "pvalue": 0.3906518150223218
+    }
+  },
+  "persistent_errors": [
+    {
+      "cat_id": "005A",
+      "age_group": "adult",
+      "call_count": 9,
+      "mean_duration_seconds": 0.7254953384399414,
+      "mean_padding_ratio": 0.4976942686157094
+    },
+    {
+      "cat_id": "008A",
+      "age_group": "senior",
+      "call_count": 5,
+      "mean_duration_seconds": 0.8652666091918946,
+      "mean_padding_ratio": 0.42666507326066494
+    },
+    {
+      "cat_id": "010A",
+      "age_group": "adult",
+      "call_count": 3,
+      "mean_duration_seconds": 1.5980836947758992,
+      "mean_padding_ratio": 0.3757485567281644
+    },
+    {
+      "cat_id": "015A",
+      "age_group": "senior",
+      "call_count": 7,
+      "mean_duration_seconds": 0.9347858514104571,
+      "mean_padding_ratio": 0.2696985535855804
+    },
+    {
+      "cat_id": "019B",
+      "age_group": "adult",
+      "call_count": 1,
+      "mean_duration_seconds": 0.6219580173492432,
+      "mean_padding_ratio": 0.5140952989459038
+    },
+    {
+      "cat_id": "025B",
+      "age_group": "adult",
+      "call_count": 2,
+      "mean_duration_seconds": 0.2314480058848858,
+      "mean_padding_ratio": 0.819181245402433
+    },
+    {
+      "cat_id": "029A",
+      "age_group": "adult",
+      "call_count": 15,
+      "mean_duration_seconds": 0.8209472795327505,
+      "mean_padding_ratio": 0.3586349378650387
+    },
+    {
+      "cat_id": "036A",
+      "age_group": "adult",
+      "call_count": 7,
+      "mean_duration_seconds": 1.0340297051838465,
+      "mean_padding_ratio": 0.19216429282511985
+    },
+    {
+      "cat_id": "038A",
+      "age_group": "adult",
+      "call_count": 2,
+      "mean_duration_seconds": 0.6466324925422668,
+      "mean_padding_ratio": 0.494818365201354
+    },
+    {
+      "cat_id": "041A",
+      "age_group": "kitten",
+      "call_count": 1,
+      "mean_duration_seconds": 0.2912929952144623,
+      "mean_padding_ratio": 0.7724273474887013
+    },
+    {
+      "cat_id": "047A",
+      "age_group": "kitten",
+      "call_count": 22,
+      "mean_duration_seconds": 0.9517160952091217,
+      "mean_padding_ratio": 0.2793991801921617
+    },
+    {
+      "cat_id": "052A",
+      "age_group": "adult",
+      "call_count": 2,
+      "mean_duration_seconds": 1.2751305103302002,
+      "mean_padding_ratio": 0.2557513527572155
+    },
+    {
+      "cat_id": "060A",
+      "age_group": "senior",
+      "call_count": 3,
+      "mean_duration_seconds": 0.3267500003178914,
+      "mean_padding_ratio": 0.7447265622516474
+    },
+    {
+      "cat_id": "069A",
+      "age_group": "adult",
+      "call_count": 2,
+      "mean_duration_seconds": 0.4469899982213974,
+      "mean_padding_ratio": 0.6507890638895333
+    },
+    {
+      "cat_id": "075A",
+      "age_group": "adult",
+      "call_count": 5,
+      "mean_duration_seconds": 0.6830429911613465,
+      "mean_padding_ratio": 0.4663726631551981
+    },
+    {
+      "cat_id": "101A",
+      "age_group": "senior",
+      "call_count": 12,
+      "mean_duration_seconds": 0.7720954964558283,
+      "mean_padding_ratio": 0.3968003933938841
+    },
+    {
+      "cat_id": "106A",
+      "age_group": "senior",
+      "call_count": 13,
+      "mean_duration_seconds": 0.5835448400332377,
+      "mean_padding_ratio": 0.544105593724033
+    }
+  ],
+  "error_overlap": {
+    "repeat_0": {
+      "tuned_ast_vs_vggish": {
+        "both_correct": 72,
+        "reference_only_correct": 14,
+        "candidate_only_correct": 8,
+        "both_wrong": 17,
+        "reference_only_cat_ids": [
+          "007A",
+          "026B",
+          "028A",
+          "044A",
+          "046A",
+          "048A",
+          "050A",
+          "053A",
+          "057A",
+          "058A",
+          "063A",
+          "073A",
+          "090A",
+          "091A"
+        ],
+        "candidate_only_cat_ids": [
+          "015A",
+          "025A",
+          "025C",
+          "027A",
+          "047A",
+          "052A",
+          "075A",
+          "102A"
+        ]
+      },
+      "tuned_ast_vs_panns_cnn14": {
+        "both_correct": 61,
+        "reference_only_correct": 25,
+        "candidate_only_correct": 6,
+        "both_wrong": 19,
+        "reference_only_cat_ids": [
+          "007A",
+          "014A",
+          "018A",
+          "019A",
+          "022A",
+          "023B",
+          "026B",
+          "037A",
+          "042A",
+          "051A",
+          "051B",
+          "054A",
+          "057A",
+          "058A",
+          "063A",
+          "064A",
+          "065A",
+          "067A",
+          "068A",
+          "076A",
+          "095A",
+          "096A",
+          "099A",
+          "100A",
+          "108A"
+        ],
+        "candidate_only_cat_ids": [
+          "025C",
+          "041A",
+          "047A",
+          "075A",
+          "101A",
+          "102A"
+        ]
+      }
+    },
+    "repeat_1": {
+      "tuned_ast_vs_vggish": {
+        "both_correct": 69,
+        "reference_only_correct": 12,
+        "candidate_only_correct": 6,
+        "both_wrong": 24,
+        "reference_only_cat_ids": [
+          "004A",
+          "011A",
+          "026C",
+          "033A",
+          "034A",
+          "046A",
+          "050A",
+          "061A",
+          "065A",
+          "066A",
+          "076A",
+          "109A"
+        ],
+        "candidate_only_cat_ids": [
+          "010A",
+          "015A",
+          "027A",
+          "047A",
+          "075A",
+          "095A"
+        ]
+      },
+      "tuned_ast_vs_panns_cnn14": {
+        "both_correct": 56,
+        "reference_only_correct": 25,
+        "candidate_only_correct": 10,
+        "both_wrong": 20,
+        "reference_only_cat_ids": [
+          "003A",
+          "004A",
+          "014A",
+          "016A",
+          "020A",
+          "022A",
+          "023B",
+          "026C",
+          "031A",
+          "032A",
+          "033A",
+          "042A",
+          "051A",
+          "051B",
+          "054A",
+          "056A",
+          "061A",
+          "064A",
+          "065A",
+          "067A",
+          "068A",
+          "091A",
+          "096A",
+          "099A",
+          "108A"
+        ],
+        "candidate_only_cat_ids": [
+          "009A",
+          "019B",
+          "027A",
+          "047A",
+          "052A",
+          "053A",
+          "063A",
+          "073A",
+          "075A",
+          "101A"
+        ]
+      }
+    },
+    "repeat_2": {
+      "tuned_ast_vs_vggish": {
+        "both_correct": 66,
+        "reference_only_correct": 15,
+        "candidate_only_correct": 9,
+        "both_wrong": 21,
+        "reference_only_cat_ids": [
+          "007A",
+          "009A",
+          "025C",
+          "026C",
+          "028A",
+          "048A",
+          "050A",
+          "053A",
+          "057A",
+          "061A",
+          "063A",
+          "065A",
+          "066A",
+          "093A",
+          "109A"
+        ],
+        "candidate_only_cat_ids": [
+          "015A",
+          "036A",
+          "037A",
+          "042A",
+          "069A",
+          "075A",
+          "100A",
+          "102A",
+          "105A"
+        ]
+      },
+      "tuned_ast_vs_panns_cnn14": {
+        "both_correct": 51,
+        "reference_only_correct": 30,
+        "candidate_only_correct": 10,
+        "both_wrong": 20,
+        "reference_only_cat_ids": [
+          "003A",
+          "007A",
+          "009A",
+          "012A",
+          "014A",
+          "020A",
+          "022A",
+          "025A",
+          "026C",
+          "033A",
+          "051A",
+          "051B",
+          "056A",
+          "057A",
+          "061A",
+          "063A",
+          "064A",
+          "065A",
+          "066A",
+          "067A",
+          "068A",
+          "071A",
+          "074A",
+          "076A",
+          "088A",
+          "091A",
+          "093A",
+          "096A",
+          "099A",
+          "109A"
+        ],
+        "candidate_only_cat_ids": [
+          "015A",
+          "035A",
+          "042A",
+          "046A",
+          "047A",
+          "052A",
+          "073A",
+          "101A",
+          "102A",
+          "108A"
+        ]
+      }
+    }
+  },
+  "inner_only_layer_probe_ranking": [
+    {
+      "layer_one_based": 8,
+      "mean_inner_cv_macro_f1": 0.6991445347544136,
+      "selected_in_top_two_folds": 4
+    },
+    {
+      "layer_one_based": 12,
+      "mean_inner_cv_macro_f1": 0.6939625393984489,
+      "selected_in_top_two_folds": 6
+    },
+    {
+      "layer_one_based": 11,
+      "mean_inner_cv_macro_f1": 0.6910817470177254,
+      "selected_in_top_two_folds": 8
+    },
+    {
+      "layer_one_based": 10,
+      "mean_inner_cv_macro_f1": 0.6894744582438568,
+      "selected_in_top_two_folds": 2
+    },
+    {
+      "layer_one_based": 7,
+      "mean_inner_cv_macro_f1": 0.6826241300630413,
+      "selected_in_top_two_folds": 2
+    },
+    {
+      "layer_one_based": 9,
+      "mean_inner_cv_macro_f1": 0.6617178041278217,
+      "selected_in_top_two_folds": 0
+    },
+    {
+      "layer_one_based": 6,
+      "mean_inner_cv_macro_f1": 0.6585254160658983,
+      "selected_in_top_two_folds": 1
+    },
+    {
+      "layer_one_based": 5,
+      "mean_inner_cv_macro_f1": 0.6231534875360005,
+      "selected_in_top_two_folds": 1
+    },
+    {
+      "layer_one_based": 2,
+      "mean_inner_cv_macro_f1": 0.6137317049698084,
+      "selected_in_top_two_folds": 0
+    },
+    {
+      "layer_one_based": 4,
+      "mean_inner_cv_macro_f1": 0.5953259658544966,
+      "selected_in_top_two_folds": 0
+    },
+    {
+      "layer_one_based": 3,
+      "mean_inner_cv_macro_f1": 0.581313246939531,
+      "selected_in_top_two_folds": 0
+    },
+    {
+      "layer_one_based": 1,
+      "mean_inner_cv_macro_f1": 0.547777906492466,
+      "selected_in_top_two_folds": 0
+    }
+  ],
+  "artifacts": {
+    "animal_table": "runs/meowagenet_ast_accuracy_enhancement_v1/diagnostics/tuned_ast_animal_diagnostics.csv",
+    "historical_outer_use": "descriptive diagnosis only"
+  }
+}

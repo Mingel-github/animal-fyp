@@ -219,13 +219,26 @@ AST LoRA achieved 0.7174. The paired differences were -0.0043, -0.0465, and
 seed-43/101 expansion; its full ablation and audit evidence remains available
 for the thesis, while future LoRA variants remain open as later candidates.
 
-A new candidate-discovery stage now examines accuracy-oriented additions to
-the tuned AST head-only pipeline. The leading route is cat-balanced training
-combined with frozen multi-layer AST fusion; cross-model fusion, distillation,
-normalization, checkpoint averaging, and native-length handling remain
-conditional candidates. The plan is recorded in
-`plan/AST_accuracy_enhancement_candidates.md`. No candidate in that document
-is treated as a confirmed improvement before matched cat-ID-disjoint ablation.
+The first AST accuracy-enhancement matrix has completed its diagnostics,
+inner-only smoke, execution lock, and 48 seed-17 outer fits:
+
+- design plan: `plan/AST_accuracy_enhancement_candidates.md`;
+- executable protocol:
+  `configs/protocol/meowagenet_ast_accuracy_enhancement_v1.json`;
+- independent runner:
+  `scripts/run_meowagenet_ast_accuracy_enhancement_v1.py`;
+- Chinese result report:
+  `reports/21_AST_cat_balancing_and_multilayer_fusion_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_ast_accuracy_enhancement_v1_results.json`.
+
+The matched tuned AST A0 control reproduced the earlier HPO result exactly at
+mean animal macro F1 0.7488. Cat-balanced final-layer AST (A1) achieved 0.7765,
+with paired gains of 0.0081, 0.0147, and 0.0603 across the three repeats;
+balanced accuracy reached 0.7864 and QWK reached 0.6724. All-layer scalar
+fusion achieved 0.7027 with class balancing and 0.7230 with cat balancing.
+Cat balancing is retained as the provisional performance candidate. Its preset
+condition for a later matched A0/A1 expansion to seeds 43 and 101 is met.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before

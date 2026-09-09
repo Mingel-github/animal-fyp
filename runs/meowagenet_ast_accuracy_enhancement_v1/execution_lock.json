@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "status": "locked_for_seed17_exploratory_evaluation",
+  "outer_test_accessed": false,
+  "protocol_id": "meowagenet-ast-accuracy-enhancement-v1",
+  "protocol_sha256": "fe3551985d795ded131e577fac100d9b975f9148df7c2a190ac64ba33014d67d",
+  "runner_sha256": "edfdd2787fb32c8d8970d49222994be236a12af4fe32a4104b0cde5f678f11d9",
+  "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+  "pipelines": [
+    "A0_final_class_balanced",
+    "A1_final_cat_balanced",
+    "A2_scalar_fusion_class_balanced",
+    "A3_scalar_fusion_cat_balanced"
+  ],
+  "training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_and_fusion_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation call cross-entropy loss",
+    "current_balance": "inverse inner-training call frequency for each age class",
+    "cat_balance": "each class has equal total loss weight and each training cat within a class has equal total loss weight",
+    "cat_balance_call_weight": "N_train_calls / (3 * N_train_cats_in_class * N_train_calls_for_cat)",
+    "call_to_animal_aggregation": "arithmetic mean of call-level probabilities within cat_id"
+  },
+  "scalar_fusion": {
+    "layers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "parameterization": "softmax over 12 trainable scalar logits",
+    "initialization": "uniform layer weights",
+    "output_dimension": 768,
+    "extra_trainable_parameters_vs_A0": 12,
+    "capacity_control": "the fused representation remains 768-dimensional and uses the identical 768-128-3 head; the 12 added scalars are treated as an intrinsic near-matched-capacity comparison"
+  },
+  "evaluation": {
+    "requires_execution_lock": true,
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "base_seed": 17,
+    "fits_per_pipeline": 12,
+    "total_fits": 48,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "per_class_recall",
+      "confusion_matrix"
+    ]
+  },
+  "smoke_fit_sha256": {
+    "A0_final_class_balanced": "83c7768247bd1aaeafb9b9929a61c6882159c5d1fc7cdbb25b65b30bb250ea67",
+    "A1_final_cat_balanced": "0c1654d90e98c186f79bed65357d95b9fd82727d7331f78358c5c13b1c660cfe",
+    "A2_scalar_fusion_class_balanced": "6e39d454cd12cc43fae2063fe7fe307a2d749b9f1bb267c4436fd3070ca8e639",
+    "A3_scalar_fusion_cat_balanced": "c7f831e9ff20bb779e9828b548a6562599dfa25a1fad8d4a63aecca9022e2f68"
+  },
+  "a0_reproduction": {
+    "reference": "runs/meowagenet_ast_hpo_v1/evaluation/fits/ast_head_only/repeat_0/fold_0/base_seed_17/fit_summary.json",
+    "best_epoch": 7,
+    "macro_f1_difference": 0.0,
+    "validation_loss_difference": 0.0
+  }
+}
