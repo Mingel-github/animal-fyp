@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "status": "locked_for_seed43_101_evaluation",
+  "outer_test_accessed": false,
+  "protocol_id": "meowagenet-ast-cat-balance-seed-expansion-v1",
+  "protocol_sha256": "9699a6ed0659d630941324826bca9d3a20f8024b11933b3055b3ee963cc96ff4",
+  "runner_sha256": "837331ec18a324e3b9c6fe748cc9793e6121ef211bc1075c0a92a04d64b68bc7",
+  "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+  "seed17_result_sha256": "99e2db601e1886f981ab5aac89737174c33171880750547fc39cb2e7fd794a61",
+  "pipelines": [
+    "A0_final_class_balanced",
+    "A1_final_cat_balanced"
+  ],
+  "evaluation": {
+    "base_seeds": [
+      43,
+      101
+    ],
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "pipelines": [
+      "A0_final_class_balanced",
+      "A1_final_cat_balanced"
+    ],
+    "fits_per_pipeline": 24,
+    "total_outer_fits": 48,
+    "new_complete_oof_evaluations": 12,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "per_class_recall",
+      "confusion_matrix"
+    ]
+  },
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_and_fusion_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation call cross-entropy loss",
+    "current_balance": "inverse inner-training call frequency for each age class",
+    "cat_balance": "each class has equal total loss weight and each training cat within a class has equal total loss weight",
+    "cat_balance_call_weight": "N_train_calls / (3 * N_train_cats_in_class * N_train_calls_for_cat)",
+    "call_to_animal_aggregation": "arithmetic mean of call-level probabilities within cat_id"
+  },
+  "smoke_fit_sha256": {
+    "A0_final_class_balanced": "3bec7f11bea462b793bf56ed085e3712cce3e12cb182a130e47c045252ba3821",
+    "A1_final_cat_balanced": "4939bd9be6dbb6306c27ea7871fd5dbef14fd3b163008ab04f36a5b2b3794c72"
+  }
+}

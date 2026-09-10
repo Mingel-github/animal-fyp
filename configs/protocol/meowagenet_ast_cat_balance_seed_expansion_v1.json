@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-ast-cat-balance-seed-expansion-v1",
+  "date": "2026-09-10",
+  "status": "authorized_matched_seed_expansion",
+  "objective": "Evaluate the seed-17 leading cat-balanced frozen AST pipeline against its matched tuned AST control with base seeds 43 and 101.",
+  "result_awareness": {
+    "seed17_matrix_known": true,
+    "seed17_A0_macro_f1_mean": 0.7487952289623951,
+    "seed17_A1_macro_f1_mean": 0.7764675415415373,
+    "seed17_A1_minus_A0": 0.027672312579142228,
+    "reason_for_expansion": "The preset seed-17 condition was met: mean improvement at least 0.01 and all three repeat differences positive.",
+    "new_seed_recipes_fixed_before_new_outer_evaluation": true
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"]
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id"
+  },
+  "pipelines": {
+    "A0_final_class_balanced": {
+      "representation": "locked final AST embedding",
+      "loss_balance": "call-level class balance",
+      "role": "matched tuned AST control"
+    },
+    "A1_final_cat_balanced": {
+      "representation": "locked final AST embedding",
+      "loss_balance": "equal class totals and equal cat totals within each class",
+      "role": "seed-17 leading candidate"
+    }
+  },
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_and_fusion_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation call cross-entropy loss",
+    "current_balance": "inverse inner-training call frequency for each age class",
+    "cat_balance": "each class has equal total loss weight and each training cat within a class has equal total loss weight",
+    "cat_balance_call_weight": "N_train_calls / (3 * N_train_cats_in_class * N_train_calls_for_cat)",
+    "call_to_animal_aggregation": "arithmetic mean of call-level probabilities within cat_id"
+  },
+  "smoke": {
+    "base_seed": 43,
+    "repeat": 0,
+    "outer_fold": 0,
+    "pipelines": ["A0_final_class_balanced", "A1_final_cat_balanced"],
+    "outer_test_accessed": false,
+    "execution_lock_written_after_success": true
+  },
+  "evaluation": {
+    "base_seeds": [43, 101],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": ["A0_final_class_balanced", "A1_final_cat_balanced"],
+    "fits_per_pipeline": 24,
+    "total_outer_fits": 48,
+    "new_complete_oof_evaluations": 12,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": ["balanced_accuracy", "quadratic_weighted_kappa", "per_class_recall", "confusion_matrix"]
+  },
+  "combined_decision": {
+    "comparison_count_with_seed17": 9,
+    "confirmation_rule": "combined A1-minus-A0 mean macro F1 above zero and at least six of nine paired OOF comparisons positive",
+    "interpretation_if_met": "retain cat-balanced frozen AST as the confirmed post-formal performance candidate",
+    "interpretation_if_unmet": "retain the seed-17 result as a provisional split-sensitive gain"
+  },
+  "dependencies": {
+    "seed17_protocol_path": "configs/protocol/meowagenet_ast_accuracy_enhancement_v1.json",
+    "seed17_protocol_sha256": "fe3551985d795ded131e577fac100d9b975f9148df7c2a190ac64ba33014d67d",
+    "seed17_runner_path": "scripts/run_meowagenet_ast_accuracy_enhancement_v1.py",
+    "seed17_runner_sha256": "edfdd2787fb32c8d8970d49222994be236a12af4fe32a4104b0cde5f678f11d9",
+    "seed17_result_path": "metadata/experiments/meowagenet_ast_accuracy_enhancement_v1_results.json",
+    "seed17_result_sha256": "99e2db601e1886f981ab5aac89737174c33171880750547fc39cb2e7fd794a61",
+    "seed17_execution_lock_path": "runs/meowagenet_ast_accuracy_enhancement_v1/execution_lock.json",
+    "seed17_execution_lock_sha256": "8121650774dfe10002935698b3e4eeba691972370770ea17c13594f6a9c03230",
+    "seed17_evaluation_summary_path": "runs/meowagenet_ast_accuracy_enhancement_v1/evaluation/summary.json",
+    "seed17_evaluation_summary_sha256": "53d1a6b2dcb5f60bbde1c07acf522513007f23f5881c62e5e7dde811634bc9bd",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "final_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399"
+  }
+}

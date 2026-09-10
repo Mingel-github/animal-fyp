@@ -1,0 +1,209 @@
+{
+  "status": "complete",
+  "stage": "locked_seed43_101_evaluation",
+  "outer_test_accessed": true,
+  "pipeline": "A0_final_class_balanced",
+  "base_seed": 43,
+  "repeat": 0,
+  "outer_fold": 3,
+  "full_seed": 343,
+  "selected_epoch": 4,
+  "inner": {
+    "best_epoch": 4,
+    "stopped_epoch": 12,
+    "best_validation_loss": 1.3883001920653553,
+    "best_validation_animal_metrics": {
+      "macro_f1": 0.7222222222222222,
+      "balanced_accuracy": 0.7333333333333334,
+      "quadratic_weighted_kappa": 0.5785123966942148,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.6,
+        "senior": 0.6
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          6,
+          4
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ],
+      "n": 17
+    },
+    "best_layer_weights": null,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.7282701038795969,
+        "validation_loss": 1.4989804407445395,
+        "validation_macro_f1": 0.3333333333333333,
+        "validation_balanced_accuracy": 0.6,
+        "validation_qwk": 0.37037037037037035,
+        "layer_weights": null
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.499606862793798,
+        "validation_loss": 1.5672506093978882,
+        "validation_macro_f1": 0.5871794871794872,
+        "validation_balanced_accuracy": 0.7000000000000001,
+        "validation_qwk": 0.394822006472492,
+        "layer_weights": null
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.3674730480365131,
+        "validation_loss": 1.4698084476517468,
+        "validation_macro_f1": 0.6801282051282053,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.6304347826086956,
+        "layer_weights": null
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.33507499260746915,
+        "validation_loss": 1.3883001920653553,
+        "validation_macro_f1": 0.7222222222222222,
+        "validation_balanced_accuracy": 0.7333333333333334,
+        "validation_qwk": 0.5785123966942148,
+        "layer_weights": null
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.22591910556606623,
+        "validation_loss": 1.5155211890616067,
+        "validation_macro_f1": 0.573063973063973,
+        "validation_balanced_accuracy": 0.6333333333333333,
+        "validation_qwk": 0.46456692913385833,
+        "layer_weights": null
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.21175129160932873,
+        "validation_loss": 1.4583927538336776,
+        "validation_macro_f1": 0.6650717703349281,
+        "validation_balanced_accuracy": 0.6666666666666666,
+        "validation_qwk": 0.48484848484848486,
+        "layer_weights": null
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.1930313450972671,
+        "validation_loss": 1.629880179719227,
+        "validation_macro_f1": 0.5994152046783626,
+        "validation_balanced_accuracy": 0.5666666666666668,
+        "validation_qwk": 0.45662100456621,
+        "layer_weights": null
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.18676512751566327,
+        "validation_loss": 1.48588512001968,
+        "validation_macro_f1": 0.5994152046783626,
+        "validation_balanced_accuracy": 0.5666666666666668,
+        "validation_qwk": 0.45662100456621,
+        "layer_weights": null
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.10890681805979946,
+        "validation_loss": 1.5153080224990845,
+        "validation_macro_f1": 0.5434343434343434,
+        "validation_balanced_accuracy": 0.5,
+        "validation_qwk": 0.34615384615384626,
+        "layer_weights": null
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.13179902291816215,
+        "validation_loss": 1.7276129708057497,
+        "validation_macro_f1": 0.6650717703349281,
+        "validation_balanced_accuracy": 0.6666666666666666,
+        "validation_qwk": 0.48484848484848486,
+        "layer_weights": null
+      },
+      {
+        "epoch": 11,
+        "train_loss": 0.13790679396656544,
+        "validation_loss": 1.5509376947472735,
+        "validation_macro_f1": 0.6650717703349281,
+        "validation_balanced_accuracy": 0.6666666666666666,
+        "validation_qwk": 0.48484848484848486,
+        "layer_weights": null
+      },
+      {
+        "epoch": 12,
+        "train_loss": 0.09193078562333856,
+        "validation_loss": 1.570637559018484,
+        "validation_macro_f1": 0.7000000000000001,
+        "validation_balanced_accuracy": 0.7000000000000001,
+        "validation_qwk": 0.5363636363636364,
+        "layer_weights": null
+      }
+    ],
+    "train_seconds": 170.1510500000004,
+    "peak_vram_bytes": 20236800,
+    "parameters": {
+      "trainable": 99075,
+      "total": 99075
+    },
+    "loss_balance": "class"
+  },
+  "outer": {
+    "epochs": 4,
+    "training_losses": [
+      0.7729686741263438,
+      0.4992369799277721,
+      0.431543419471918,
+      0.3514306429678049
+    ],
+    "test_loss": 0.5792260993094671,
+    "test_animal_metrics": {
+      "macro_f1": 0.8269980506822612,
+      "balanced_accuracy": 0.8962962962962964,
+      "quadratic_weighted_kappa": 0.7174887892376682,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.8,
+        "senior": 0.8888888888888888
+      },
+      "confusion_matrix": [
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          1,
+          12,
+          2
+        ],
+        [
+          1,
+          0,
+          8
+        ]
+      ],
+      "n": 27
+    },
+    "final_layer_weights": null,
+    "train_and_predict_seconds": 71.54670330000226,
+    "peak_vram_bytes": 20236800,
+    "parameters": {
+      "trainable": 99075,
+      "total": 99075
+    },
+    "loss_balance": "class"
+  },
+  "prediction_path": "runs/meowagenet_ast_cat_balance_seed_expansion_v1/evaluation/fits/A0_final_class_balanced/base_seed_43/repeat_0/fold_3/outer_test_call_predictions.csv"
+}

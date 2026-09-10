@@ -1,0 +1,209 @@
+{
+  "status": "complete",
+  "stage": "locked_seed43_101_evaluation",
+  "outer_test_accessed": true,
+  "pipeline": "A0_final_class_balanced",
+  "base_seed": 43,
+  "repeat": 1,
+  "outer_fold": 3,
+  "full_seed": 10343,
+  "selected_epoch": 4,
+  "inner": {
+    "best_epoch": 4,
+    "stopped_epoch": 12,
+    "best_validation_loss": 0.579532171473091,
+    "best_validation_animal_metrics": {
+      "macro_f1": 0.6814814814814815,
+      "balanced_accuracy": 0.7666666666666666,
+      "quadratic_weighted_kappa": 0.4887218045112782,
+      "per_class_recall": {
+        "kitten": 1.0,
+        "adult": 0.7,
+        "senior": 0.6
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          1,
+          7,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ]
+      ],
+      "n": 17
+    },
+    "best_layer_weights": null,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.7054924573121446,
+        "validation_loss": 0.6670994228786893,
+        "validation_macro_f1": 0.6241830065359476,
+        "validation_balanced_accuracy": 0.7333333333333334,
+        "validation_qwk": 0.49169435215946833,
+        "layer_weights": null
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.40281941783562136,
+        "validation_loss": 0.790803004194189,
+        "validation_macro_f1": 0.5108932461873638,
+        "validation_balanced_accuracy": 0.6333333333333333,
+        "validation_qwk": 0.37873754152823913,
+        "layer_weights": null
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.2647026050068466,
+        "validation_loss": 0.612274608494323,
+        "validation_macro_f1": 0.6159844054580896,
+        "validation_balanced_accuracy": 0.7000000000000001,
+        "validation_qwk": 0.4,
+        "layer_weights": null
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.2465478296527702,
+        "validation_loss": 0.579532171473091,
+        "validation_macro_f1": 0.6814814814814815,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.4887218045112782,
+        "layer_weights": null
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.18922346202510126,
+        "validation_loss": 0.5860327187879586,
+        "validation_macro_f1": 0.6481481481481481,
+        "validation_balanced_accuracy": 0.7000000000000001,
+        "validation_qwk": 0.560344827586207,
+        "layer_weights": null
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.1927470209614168,
+        "validation_loss": 0.6342894133226371,
+        "validation_macro_f1": 0.6481481481481481,
+        "validation_balanced_accuracy": 0.7000000000000001,
+        "validation_qwk": 0.560344827586207,
+        "layer_weights": null
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.14506101997548274,
+        "validation_loss": 0.6222429761180172,
+        "validation_macro_f1": 0.6481481481481481,
+        "validation_balanced_accuracy": 0.7000000000000001,
+        "validation_qwk": 0.560344827586207,
+        "layer_weights": null
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.1562923254368457,
+        "validation_loss": 0.5902405668188024,
+        "validation_macro_f1": 0.6481481481481481,
+        "validation_balanced_accuracy": 0.7000000000000001,
+        "validation_qwk": 0.560344827586207,
+        "layer_weights": null
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.1466683970366636,
+        "validation_loss": 0.6679716389856221,
+        "validation_macro_f1": 0.712280701754386,
+        "validation_balanced_accuracy": 0.7666666666666666,
+        "validation_qwk": 0.6502057613168724,
+        "layer_weights": null
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.1088449355556668,
+        "validation_loss": 0.6165944543885596,
+        "validation_macro_f1": 0.6481481481481481,
+        "validation_balanced_accuracy": 0.7000000000000001,
+        "validation_qwk": 0.560344827586207,
+        "layer_weights": null
+      },
+      {
+        "epoch": 11,
+        "train_loss": 0.08956904533538926,
+        "validation_loss": 0.6770482342920185,
+        "validation_macro_f1": 0.6481481481481481,
+        "validation_balanced_accuracy": 0.7000000000000001,
+        "validation_qwk": 0.560344827586207,
+        "layer_weights": null
+      },
+      {
+        "epoch": 12,
+        "train_loss": 0.09924378899389996,
+        "validation_loss": 0.5984373607753236,
+        "validation_macro_f1": 0.6481481481481481,
+        "validation_balanced_accuracy": 0.7000000000000001,
+        "validation_qwk": 0.560344827586207,
+        "layer_weights": null
+      }
+    ],
+    "train_seconds": 174.79601849999744,
+    "peak_vram_bytes": 20236800,
+    "parameters": {
+      "trainable": 99075,
+      "total": 99075
+    },
+    "loss_balance": "class"
+  },
+  "outer": {
+    "epochs": 4,
+    "training_losses": [
+      0.6615758762127015,
+      0.4184737699787791,
+      0.2980314838207834,
+      0.21920753097146506
+    ],
+    "test_loss": 1.5378393992192327,
+    "test_animal_metrics": {
+      "macro_f1": 0.568509396095603,
+      "balanced_accuracy": 0.5925925925925926,
+      "quadratic_weighted_kappa": 0.25365853658536586,
+      "per_class_recall": {
+        "kitten": 0.6666666666666666,
+        "adult": 0.6666666666666666,
+        "senior": 0.4444444444444444
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          1,
+          10,
+          4
+        ],
+        [
+          1,
+          4,
+          4
+        ]
+      ],
+      "n": 27
+    },
+    "final_layer_weights": null,
+    "train_and_predict_seconds": 53.08265599999868,
+    "peak_vram_bytes": 20236800,
+    "parameters": {
+      "trainable": 99075,
+      "total": 99075
+    },
+    "loss_balance": "class"
+  },
+  "prediction_path": "runs/meowagenet_ast_cat_balance_seed_expansion_v1/evaluation/fits/A0_final_class_balanced/base_seed_43/repeat_1/fold_3/outer_test_call_predictions.csv"
+}

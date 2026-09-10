@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-ast-cat-balance-seed-expansion-v1",
+  "date": "2026-09-10",
+  "status": "seed_expansion_complete_boundary_confirmation",
+  "scope": {
+    "calls": 792,
+    "cats": 111,
+    "new_base_seeds": [43, 101],
+    "combined_base_seeds": [17, 43, 101],
+    "repeats_per_seed": 3,
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": 2,
+    "new_completed_outer_fits": 48,
+    "new_complete_oof_evaluations": 12,
+    "combined_matched_outer_fits": 72,
+    "combined_complete_oof_evaluations_per_pipeline": 9,
+    "combined_paired_comparisons": 9
+  },
+  "methods": {
+    "A0_final_class_balanced": "tuned frozen final-layer AST with call-level age-class balancing",
+    "A1_final_cat_balanced": "the matched A0 representation, head, splits, seeds and training recipe with equal class totals and equal cat totals within each class"
+  },
+  "smoke": {
+    "outer_test_accessed": false,
+    "base_seed": 43,
+    "repeat": 0,
+    "outer_fold": 0,
+    "completed_inner_fits": 2,
+    "A0_best_epoch": 7,
+    "A1_best_epoch": 3
+  },
+  "new_seed_aggregate": {
+    "A0_final_class_balanced": {
+      "macro_f1_mean": 0.7333364137728773,
+      "macro_f1_sample_sd": 0.05162693882305865,
+      "balanced_accuracy_mean": 0.7571192634759997,
+      "qwk_mean": 0.6397942619849398,
+      "plain_accuracy_mean": 0.7177177177177178,
+      "mean_per_class_recall": {
+        "kitten": 0.8777777777777778,
+        "adult": 0.6827956989247311,
+        "senior": 0.7107843137254902
+      }
+    },
+    "A1_final_cat_balanced": {
+      "macro_f1_mean": 0.7242133721578755,
+      "macro_f1_sample_sd": 0.02462151291666257,
+      "balanced_accuracy_mean": 0.7448098952842787,
+      "qwk_mean": 0.6233558403566292,
+      "plain_accuracy_mean": 0.7102102102102101,
+      "mean_per_class_recall": {
+        "kitten": 0.8555555555555555,
+        "adult": 0.6827956989247311,
+        "senior": 0.6960784313725491
+      }
+    },
+    "A1_minus_A0_macro_f1": -0.00912304161500177
+  },
+  "per_seed_macro_f1": {
+    "17": {
+      "A0": 0.7487952289623951,
+      "A1": 0.7764675415415373,
+      "A1_minus_A0": 0.027672312579142228,
+      "positive_repeats": 3
+    },
+    "43": {
+      "A0": 0.738004515108011,
+      "A1": 0.7300086425280194,
+      "A1_minus_A0": -0.00799587257999157,
+      "positive_repeats": 2
+    },
+    "101": {
+      "A0": 0.7286683124377435,
+      "A1": 0.7184181017877315,
+      "A1_minus_A0": -0.010250210650012118,
+      "positive_repeats": 1
+    }
+  },
+  "combined_aggregate": {
+    "A0_final_class_balanced": {
+      "macro_f1_mean": 0.7384893521693832,
+      "macro_f1_sample_sd": 0.043971522185666724,
+      "balanced_accuracy_mean": 0.7595380326563123,
+      "qwk_mean": 0.6421750752083336,
+      "plain_accuracy_mean": 0.7267267267267268,
+      "macro_f1_range": [0.6716425120772948, 0.8019841269841269],
+      "mean_per_class_recall": {
+        "kitten": 0.8592592592592593,
+        "adult": 0.6971326164874552,
+        "senior": 0.7222222222222223
+      },
+      "summed_confusion_matrix": [[116, 11, 8], [28, 389, 141], [7, 78, 221]]
+    },
+    "A1_final_cat_balanced": {
+      "macro_f1_mean": 0.7416314286190961,
+      "macro_f1_sample_sd": 0.0342681507444912,
+      "balanced_accuracy_mean": 0.7586853140300326,
+      "qwk_mean": 0.6397172741865691,
+      "plain_accuracy_mean": 0.7317317317317318,
+      "macro_f1_range": [0.688925956815865, 0.789684835001854],
+      "mean_per_class_recall": {
+        "kitten": 0.851851851851852,
+        "adult": 0.7150537634408602,
+        "senior": 0.7091503267973855
+      },
+      "summed_confusion_matrix": [[115, 12, 8], [25, 399, 134], [8, 81, 217]]
+    },
+    "A1_minus_A0": {
+      "macro_f1": 0.003142076449712847,
+      "balanced_accuracy": -0.0008527186262797128,
+      "qwk": -0.002457801021764543,
+      "plain_accuracy": 0.005005005005005031,
+      "macro_f1_sample_sd": -0.009703371441175524,
+      "kitten_recall": -0.007407407407407307,
+      "adult_recall": 0.017921146953405,
+      "senior_recall": -0.013071895424836777
+    }
+  },
+  "paired_macro_f1": [
+    {"base_seed": 17, "repeat": 0, "A1_minus_A0": 0.008074440488233803},
+    {"base_seed": 17, "repeat": 1, "A1_minus_A0": 0.014676724724722923},
+    {"base_seed": 17, "repeat": 2, "A1_minus_A0": 0.06026577252446996},
+    {"base_seed": 43, "repeat": 0, "A1_minus_A0": -0.07152160704792287},
+    {"base_seed": 43, "repeat": 1, "A1_minus_A0": 0.02091952457189694},
+    {"base_seed": 43, "repeat": 2, "A1_minus_A0": 0.026614464736051224},
+    {"base_seed": 101, "repeat": 0, "A1_minus_A0": -0.01841880302462562},
+    {"base_seed": 101, "repeat": 1, "A1_minus_A0": -0.02961527366398098},
+    {"base_seed": 101, "repeat": 2, "A1_minus_A0": 0.01728344473857024}
+  ],
+  "paired_summary": {
+    "mean_A1_minus_A0_macro_f1": 0.003142076449712847,
+    "positive_comparisons": 6,
+    "comparison_count": 9,
+    "net_additional_correct_animal_evaluations": 5
+  },
+  "interpretation": {
+    "stage_gate": "A1 meets the preset boundary: positive mean macro F1 difference and six of nine positive paired comparisons.",
+    "effect_pattern": "The combined effect is small and seed-dependent. Seed 17 favors A1 strongly, while the seed-43 and seed-101 means favor A0 by 0.0080 and 0.0103 macro F1.",
+    "metric_pattern": "A1 has higher combined macro F1, plain accuracy, adult recall, and a smaller macro-F1 sample SD. A0 has slightly higher balanced accuracy, QWK, kitten recall, and senior recall.",
+    "model_role": "A1 remains the confirmed post-formal performance candidate under the locked rule; A0 remains the matched tuned-AST reference, and final model selection remains open to later ideas and final reruns."
+  },
+  "stage_decision": {
+    "preset_rule": "combined A1-minus-A0 mean macro F1 above zero and at least six of nine paired OOF comparisons positive",
+    "confirmation_met": true,
+    "leading_pipeline_by_primary_mean": "A1_final_cat_balanced",
+    "decision_strength": "boundary confirmation with a small mixed-seed effect",
+    "next_status": "stage closeout; retain A0 and A1 for the eventual final comparison"
+  },
+  "provenance_sha256": {
+    "protocol": "9699a6ed0659d630941324826bca9d3a20f8024b11933b3055b3ee963cc96ff4",
+    "runner": "837331ec18a324e3b9c6fe748cc9793e6121ef211bc1075c0a92a04d64b68bc7",
+    "roles": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "execution_lock": "88fd7478ddd8327684360a511e9f8c5984bd01ed84dcd869b548b86c4a29687d",
+    "smoke_summary": "1305623ab5164a06eda153705bcaa94b846bfa6ea6bdee3979272bb23ec607e9",
+    "evaluation_summary": "52f63cc1a27a61231962b618d59ed968c3a2cfe4d80ef26eabbaff89e765745f",
+    "evaluation_run_summary": "3516cc1ccf27ff2fa095a5dc309a6223cbc31e01c5474938b20f9bf4cc3ac1c1"
+  },
+  "run_artifact_audit": {
+    "root": "runs/meowagenet_ast_cat_balance_seed_expansion_v1",
+    "files": 117,
+    "bytes": 1321624,
+    "outer_fit_summaries": 48,
+    "complete_oof_animal_tables": 12,
+    "versioned_json_files": 56,
+    "versioned_json_bytes": 328685,
+    "local_prediction_csv_files": 61,
+    "version_control_policy": "Version compact JSON manifests, locks, fit summaries and aggregate summaries; retain call-level and animal-level prediction CSV tables in the local research environment."
+  }
+}

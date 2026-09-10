@@ -240,6 +240,27 @@ fusion achieved 0.7027 with class balancing and 0.7230 with cat balancing.
 Cat balancing is retained as the provisional performance candidate. Its preset
 condition for a later matched A0/A1 expansion to seeds 43 and 101 is met.
 
+The matched cat-balancing seed expansion has now completed:
+
+- executable protocol:
+  `configs/protocol/meowagenet_ast_cat_balance_seed_expansion_v1.json`;
+- independent runner:
+  `scripts/run_meowagenet_ast_cat_balance_seed_expansion_v1.py`;
+- Chinese result report:
+  `reports/22_AST_cat_balancing_seed_expansion_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_ast_cat_balance_seed_expansion_v1_results.json`.
+
+The expansion added base seeds 43 and 101 with three repeats and four folds,
+completing 48 new outer fits. Combined with seed 17, each pipeline now has nine
+111-cat complete-OOF evaluations. Cat-balanced A1 achieved mean animal macro
+F1 0.7416 versus 0.7385 for matched A0, with six of nine paired comparisons
+positive. A1 also achieved higher plain accuracy and lower macro-F1 sample SD;
+A0 retained small advantages in balanced accuracy and QWK. The preset stage
+gate is met at its boundary, so A1 remains the confirmed post-formal candidate,
+A0 remains the matched tuned-AST reference, and later model selection remains
+open to new ideas and final reruns.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,
