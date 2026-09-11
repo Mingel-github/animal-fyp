@@ -168,4 +168,3 @@ def test_unit_weights_match_mean_cross_entropy_gradient_for_32_calls() -> None:
         loss = runner.global_weighted_micro_loss(per_call, torch.ones(8), 32)
         loss.backward()
     assert torch.allclose(micro_logits.grad, expected_gradient, atol=1.0e-7, rtol=1.0e-6)
-
