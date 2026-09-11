@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-ast-cat-balance-global-weighting-v1",
+  "date": "2026-09-11",
+  "status": "pre_execution_locked_design",
+  "objective": "Compare strict global class-balanced and strict global cat-and-class-balanced loss with matched frozen AST training.",
+  "historical_scope": {
+    "prior_result_role": "per-mini-batch normalized cat-aware weighting study",
+    "prior_artifacts_read_only": true,
+    "plan_path": "plan/AST_cat_balance_global_weighting_retest.md",
+    "plan_sha256": "c8504eedf0ec874ecaa2e8b7b3e16900ece78908e1344a6bc746a336c9cc72e6"
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"]
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id"
+  },
+  "pipelines": {
+    "C0_global_class_balanced": {
+      "representation": "locked final AST embedding",
+      "call_weight": "N_train_calls / (3 * N_train_calls_in_class)",
+      "role": "strict global class-balanced control"
+    },
+    "C1_global_cat_and_class_balanced": {
+      "representation": "locked final AST embedding",
+      "call_weight": "N_train_calls / (3 * N_train_cats_in_class * N_train_calls_for_cat)",
+      "role": "strict global cat-and-class-balanced candidate"
+    }
+  },
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "micro_loss": "sum(call_weight * call_cross_entropy) / 32",
+    "partial_window_denominator": 32,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation call cross-entropy loss",
+    "call_to_animal_aggregation": "arithmetic mean of call-level probabilities within cat_id",
+    "preserve_all_training_calls": true,
+    "singleton_remainder_policy": "redistribute final 8+1 calls as 7+2 calls"
+  },
+  "coefficient_audit": {
+    "per_epoch": true,
+    "groupings": ["pipeline", "base_seed", "repeat", "fold", "class", "cat_id"],
+    "batch_order_sha256": true,
+    "paired_batch_order_required": true
+  },
+  "smoke": {
+    "base_seed": 17,
+    "repeat": 0,
+    "outer_fold": 0,
+    "epochs": 2,
+    "pipelines": ["C0_global_class_balanced", "C1_global_cat_and_class_balanced"],
+    "requirements": ["train", "validation", "checkpoint_save", "checkpoint_reload", "animal_aggregation"],
+    "outer_test_accessed": false,
+    "excluded_from_formal_summary": true
+  },
+  "evaluation": {
+    "base_seeds": [17, 43, 101],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": ["C0_global_class_balanced", "C1_global_cat_and_class_balanced"],
+    "fits_per_pipeline": 36,
+    "total_outer_fits": 72,
+    "complete_oof_evaluations": 18,
+    "paired_complete_oof_comparisons": 9,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": ["balanced_accuracy", "quadratic_weighted_kappa", "plain_accuracy", "per_class_recall", "call_count_confidence_error_association"]
+  },
+  "bootstrap": {
+    "method": "paired cat-cluster hierarchical bootstrap",
+    "resampling_unit": "cat_id",
+    "paired_predictions_preserved": true,
+    "same_resampled_cats_across_nine_pairs": true,
+    "iterations": 10000,
+    "seed": 20260911,
+    "interval": [0.025, 0.975]
+  },
+  "interpretation_rules": {
+    "stable_improvement": "mean C1-minus-C0 macro F1 at least 0.010, at least two of three base-seed means positive, at least six of nine paired comparisons positive, and bootstrap 95% interval lower bound above zero",
+    "small_or_mixed": "absolute mean difference below 0.010, or base-seed directions differ, or bootstrap interval covers zero",
+    "no_improvement_evidence": "mean difference at most zero and most base-seed means are non-positive"
+  },
+  "dependencies": {
+    "accuracy_runner_path": "scripts/run_meowagenet_ast_accuracy_enhancement_v1.py",
+    "accuracy_runner_sha256": "edfdd2787fb32c8d8970d49222994be236a12af4fe32a4104b0cde5f678f11d9",
+    "ast_base_runner_path": "scripts/run_ast_finetuning.py",
+    "ast_base_runner_sha256": "e3f887fc5750804ef90743588e2a2bd295bb36426161321a1163a331894a6664",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "final_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399"
+  }
+}
