@@ -12,3 +12,7 @@
 部分已经执行的旧 protocol 和 runner 将 `reports/...` 路径及文件 SHA-256 写入了审计记录。因此，`reports/09`、`reports/10`、`reports/13` 和 `reports/19` 保留逐字节一致的历史原件，`plan/` 中保留便于浏览的相同副本。这些历史文件保持只读；新的规划文件只在 `plan/` 创建。
 
 一项 plan 执行后，原 plan 作为设计历史保留，并在 `reports/` 新建结果报告。后续结果不反向改写原计划。
+
+## 当前活动计划
+
+- [`AST_cat_balance_global_weighting_retest.md`](AST_cat_balance_global_weighting_retest.md)：修正 micro-batch 内权重归一化，对严格 global class-balanced 与 global cat-balanced loss 进行配对复验。

@@ -257,9 +257,15 @@ completing 48 new outer fits. Combined with seed 17, each pipeline now has nine
 F1 0.7416 versus 0.7385 for matched A0, with six of nine paired comparisons
 positive. A1 also achieved higher plain accuracy and lower macro-F1 sample SD;
 A0 retained small advantages in balanced accuracy and QWK. The preset stage
-gate is met at its boundary, so A1 remains the confirmed post-formal candidate,
-A0 remains the matched tuned-AST reference, and later model selection remains
-open to new ideas and final reruns.
+gate was met at its boundary. A later code audit found that both weighted
+pipelines normalize their weights inside each micro-batch. The stored lookup
+weights have the intended global totals, while the effective optimizer
+coefficients do not preserve exact equal-cat totals. Combined with the small
+mixed-seed effect (+0.0031 macro F1), this stage is retained as an executed
+cat-aware weighting study rather than final confirmation of strict
+cat-balanced loss. A matched global-weighting correction and retest is planned
+in `plan/AST_cat_balance_global_weighting_retest.md`. A0 remains the tuned-AST
+reference until that retest is reviewed.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
