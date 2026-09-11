@@ -262,10 +262,29 @@ pipelines normalize their weights inside each micro-batch. The stored lookup
 weights have the intended global totals, while the effective optimizer
 coefficients do not preserve exact equal-cat totals. Combined with the small
 mixed-seed effect (+0.0031 macro F1), this stage is retained as an executed
-cat-aware weighting study rather than final confirmation of strict
-cat-balanced loss. A matched global-weighting correction and retest is planned
-in `plan/AST_cat_balance_global_weighting_retest.md`. A0 remains the tuned-AST
-reference until that retest is reviewed.
+per-mini-batch normalized cat-aware weighting study.
+
+The matched global-weighting correction and retest has now completed:
+
+- design plan: `plan/AST_cat_balance_global_weighting_retest.md`;
+- executable protocol:
+  `configs/protocol/meowagenet_ast_cat_balance_global_weighting_v1.json`;
+- independent runner:
+  `scripts/run_meowagenet_ast_cat_balance_global_weighting_v1.py`;
+- Chinese result report:
+  `reports/23_AST_cat_balance_global_weighting_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_ast_cat_balance_global_weighting_v1_results.json`.
+
+The corrected experiment completed 72 outer fits, 18 complete OOF evaluations,
+and nine paired comparisons. Global class-balanced C0 achieved mean animal
+macro F1 0.7400 versus 0.7326 for global cat-and-class-balanced C1, a paired
+difference of -0.0074. C1 was higher in three of nine comparisons and one of
+three base-seed means. The paired cat-cluster bootstrap interval was
+[-0.0380, 0.0238]. C0 also led balanced accuracy, QWK, and plain accuracy;
+C1 retained a small adult-recall advantage. Under the preset rule, the strict
+global cat-balancing stage closes with no improvement evidence. C0 remains the
+tuned frozen-AST reference, while future AST accuracy ideas remain open.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before

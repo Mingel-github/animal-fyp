@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-ast-cat-balance-global-weighting-v1",
+  "date": "2026-09-11",
+  "status": "complete_no_improvement_evidence_for_global_cat_balancing",
+  "scope": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "base_seeds": [17, 43, 101],
+    "repeats_per_seed": 3,
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": 2,
+    "completed_outer_fits": 72,
+    "complete_oof_evaluations": 18,
+    "paired_complete_oof_comparisons": 9
+  },
+  "methods": {
+    "C0_global_class_balanced": "tuned frozen final-layer AST with fixed global class-balanced call weights",
+    "C1_global_cat_and_class_balanced": "the matched C0 representation, head, splits, seeds, batch order and training recipe with fixed global equal-class and within-class equal-cat call weights",
+    "shared_head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "global_loss": "sum(call_weight * per-call cross-entropy) / 32 for every micro-batch, accumulated over four micro-batches before each optimizer step",
+    "partial_window": "fixed denominator 32 with the effective number of calls recorded",
+    "checkpoint_selection": "minimum unweighted inner-validation call-level cross-entropy"
+  },
+  "implementation_correction": {
+    "historical_scope": "The earlier A0/A1 studies used per-mini-batch normalized weighted loss and remain preserved as historical cat-aware weighting evidence.",
+    "corrected_scope": "This experiment applies fixed global weights through a fixed 32-call denominator and records the optimizer-effective coefficient of every class and cat in every epoch.",
+    "paired_batch_order_pairs": 36,
+    "all_common_epoch_batch_hashes_match": true
+  },
+  "smoke": {
+    "outer_test_accessed": false,
+    "excluded_from_formal_summary": true,
+    "completed_inner_fits": 2,
+    "checkpoint_reload_passed": true,
+    "checkpoint_reload_max_probability_difference": 0.0,
+    "C0_validation_animal_macro_f1": 0.6686274509803921,
+    "C1_validation_animal_macro_f1": 0.5555555555555555
+  },
+  "aggregate": {
+    "C0_global_class_balanced": {
+      "macro_f1_mean": 0.739996183189763,
+      "macro_f1_sample_sd": 0.028026558485763773,
+      "balanced_accuracy_mean": 0.761320776817298,
+      "qwk_mean": 0.6543340513596978,
+      "plain_accuracy_mean": 0.7287287287287287,
+      "macro_f1_range": [0.6976849237718804, 0.7918505942275041],
+      "mean_per_class_recall": {
+        "kitten": 0.8518518518518519,
+        "adult": 0.6935483870967742,
+        "senior": 0.738562091503268
+      },
+      "summed_correct_animals": {
+        "kitten": 115,
+        "adult": 387,
+        "senior": 226,
+        "all": 728
+      }
+    },
+    "C1_global_cat_and_class_balanced": {
+      "macro_f1_mean": 0.7326372453251159,
+      "macro_f1_sample_sd": 0.027770773607640756,
+      "balanced_accuracy_mean": 0.7467894206667136,
+      "qwk_mean": 0.6352593836390267,
+      "plain_accuracy_mean": 0.7197197197197198,
+      "macro_f1_range": [0.6890039107430411, 0.7693016932394018],
+      "mean_per_class_recall": {
+        "kitten": 0.837037037037037,
+        "adult": 0.7007168458781362,
+        "senior": 0.7026143790849673
+      },
+      "summed_correct_animals": {
+        "kitten": 113,
+        "adult": 391,
+        "senior": 215,
+        "all": 719
+      }
+    },
+    "C1_minus_C0": {
+      "macro_f1_mean": -0.007358937864646969,
+      "macro_f1_sample_sd": -0.00025578487812301723,
+      "balanced_accuracy_mean": -0.014531356150584429,
+      "qwk_mean": -0.019074667720671123,
+      "plain_accuracy_mean": -0.009009009009008917,
+      "kitten_recall": -0.014814814814814836,
+      "adult_recall": 0.007168458781361964,
+      "senior_recall": -0.03594771241830075,
+      "net_correct_animal_evaluations": -9
+    }
+  },
+  "per_seed_macro_f1": {
+    "17": {
+      "C0": 0.7464264321280533,
+      "C1": 0.724023686728856,
+      "C1_minus_C0": -0.022402745399197104,
+      "positive_repeats": 0
+    },
+    "43": {
+      "C0": 0.7271810586061195,
+      "C1": 0.726067554281673,
+      "C1_minus_C0": -0.001113504324446531,
+      "positive_repeats": 1
+    },
+    "101": {
+      "C0": 0.7463810588351162,
+      "C1": 0.7478204949648188,
+      "C1_minus_C0": 0.0014394361297027276,
+      "positive_repeats": 2
+    }
+  },
+  "paired_macro_f1": [
+    {"base_seed": 17, "repeat": 0, "C0": 0.7674149111699475, "C1": 0.7279638549718084, "C1_minus_C0": -0.039451056198139156},
+    {"base_seed": 17, "repeat": 1, "C0": 0.7478565297241188, "C1": 0.7266829627905174, "C1_minus_C0": -0.021173566933601395},
+    {"base_seed": 17, "repeat": 2, "C0": 0.7240078554900932, "C1": 0.7174242424242424, "C1_minus_C0": -0.0065836130658507575},
+    {"base_seed": 43, "repeat": 0, "C0": 0.7357456140350878, "C1": 0.7317913446945706, "C1_minus_C0": -0.003954269340517236},
+    {"base_seed": 43, "repeat": 1, "C0": 0.7273983800924977, "C1": 0.7574074074069551, "C1_minus_C0": 0.030009027314457426},
+    {"base_seed": 43, "repeat": 2, "C0": 0.7183991817063209, "C1": 0.6890039107430411, "C1_minus_C0": -0.029395270947279784},
+    {"base_seed": 101, "repeat": 0, "C0": 0.7918505942275041, "C1": 0.7693016932394018, "C1_minus_C0": -0.02254890098810236},
+    {"base_seed": 101, "repeat": 1, "C0": 0.7496076585094915, "C1": 0.7685369858659974, "C1_minus_C0": 0.018929327356505876},
+    {"base_seed": 101, "repeat": 2, "C0": 0.6976849237718804, "C1": 0.7056228057925851, "C1_minus_C0": 0.007937882020704667}
+  ],
+  "paired_summary": {
+    "mean_C1_minus_C0_macro_f1": -0.007358937864646969,
+    "positive_comparisons": 3,
+    "comparison_count": 9,
+    "positive_base_seed_means": 1
+  },
+  "paired_cat_hierarchical_bootstrap": {
+    "resampling_unit": "cat_id",
+    "cats_per_resample": 111,
+    "paired_oof_comparisons_per_resample": 9,
+    "iterations": 10000,
+    "seed": 20260911,
+    "macro_f1_difference_interval_95pct": [-0.03796146776951256, 0.023767239681714594],
+    "bootstrap_mean_difference": -0.00738866297142207,
+    "fraction_above_zero": 0.3157
+  },
+  "call_count_association": {
+    "C0_global_class_balanced": {
+      "call_count_vs_mean_confidence_spearman_rho": -0.3491969785429807,
+      "call_count_vs_mean_confidence_pvalue": 0.00017242004643643356,
+      "call_count_vs_repeat_accuracy_spearman_rho": 0.1250786947124021,
+      "call_count_vs_repeat_accuracy_pvalue": 0.19086936301538632
+    },
+    "C1_global_cat_and_class_balanced": {
+      "call_count_vs_mean_confidence_spearman_rho": -0.3172897823201712,
+      "call_count_vs_mean_confidence_pvalue": 0.0006909821033860237,
+      "call_count_vs_repeat_accuracy_spearman_rho": 0.09610914384778275,
+      "call_count_vs_repeat_accuracy_pvalue": 0.31565081881598595
+    }
+  },
+  "interpretation": {
+    "primary": "C0 leads C1 by 0.00736 mean animal macro F1. C1 wins three of nine paired complete-OOF comparisons and one of three base-seed means.",
+    "secondary": "C0 leads balanced accuracy, QWK, plain accuracy, kitten recall and senior recall. C1 leads adult recall by 0.00717 and has nearly identical macro-F1 dispersion.",
+    "uncertainty": "The paired cat-cluster bootstrap interval spans -0.03796 to 0.02377; 31.57% of resamples favor C1.",
+    "historical_comparison": "The earlier per-mini-batch normalized experiment measured A1-minus-A0 at +0.00314. Under strict global weighting the matched difference is -0.00736, so the earlier cat-aware candidate signal does not carry into the corrected objective.",
+    "model_role": "C0 remains the tuned frozen-AST reference. Strict global cat-and-class weighting is retained as a completed loss ablation and supplies no current performance-candidate advantage."
+  },
+  "stage_decision": {
+    "rule_category": "no_improvement_evidence",
+    "stable_improvement": false,
+    "positive_base_seed_means": 1,
+    "positive_paired_comparisons": 3,
+    "next_status": "corrected weighting stage complete; retain C0 as the reference and keep future AST accuracy ideas open"
+  },
+  "provenance_sha256": {
+    "plan": "c8504eedf0ec874ecaa2e8b7b3e16900ece78908e1344a6bc746a336c9cc72e6",
+    "protocol": "d377bcaf5e3c2187c2ad97792bdf1f2a759f8bcf95358128b91d698d20c87244",
+    "runner": "a0a217e76a99f2d9f3e00d5caa2d21c81c5e37e53237c6ac311318ad8c39674a",
+    "roles": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "execution_lock": "4b8c75d46176e98223a4f6e0b3f83efe1055a808cc7106f6ab4baa837ae805bc",
+    "environment_lock": "57107ad3851c39d827a5b3862d5d348b20a54a441a9323585050e02cfae27940",
+    "smoke_summary": "8fba071cca67f9375890a7888384c52cb7731ed72c09fd32b8063e97ea97d6e4",
+    "evaluation_summary": "46affeead827f172eb9acd9dae0ffc26dac7a5d4e9ee5866d0c7f42bc0cfbbe7",
+    "evaluation_run_summary": "12f24a044ced6f55bb1f945b288cbc950cb6e1a272ecb61e7b4e8b7eb8d4db12",
+    "raw_prediction_inventory": "560dba579c9a6f14882eabee1746c8deaec4a692aa6908f3b0bc531ab8dd9584",
+    "raw_prediction_aggregate": "14f01ff60d0a5cde03ef6156af815308291717849f555f1ba66bd31dbc9dc568"
+  },
+  "execution": {
+    "code_commit": "20077e4c941280d0f00fb3d6dc1ab0e805fb98e7",
+    "device": "NVIDIA GeForce RTX 4060 Ti",
+    "summed_inner_training_seconds": 118.7,
+    "summed_outer_training_and_prediction_seconds": 51.0,
+    "peak_recorded_vram_bytes": 20240384
+  },
+  "run_artifact_audit": {
+    "root": "runs/meowagenet_ast_cat_balance_global_weighting_v1",
+    "files": 176,
+    "bytes": 9283808,
+    "outer_fit_summaries": 72,
+    "complete_oof_animal_tables": 18,
+    "versioned_json_files": 81,
+    "versioned_json_bytes": 7015364,
+    "local_prediction_csv_files": 93,
+    "local_prediction_csv_bytes": 1452888,
+    "local_smoke_checkpoints": 2,
+    "raw_prediction_inventory_files": 91,
+    "raw_prediction_inventory_bytes": 1433017,
+    "version_control_policy": "Version compact JSON manifests, locks, fit summaries and aggregate summaries; retain prediction CSV tables and smoke checkpoints in the local research environment."
+  }
+}

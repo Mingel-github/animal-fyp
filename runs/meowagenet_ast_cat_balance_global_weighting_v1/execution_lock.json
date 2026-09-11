@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "status": "locked_for_global_weighting_evaluation",
+  "outer_test_accessed": false,
+  "protocol_id": "meowagenet-ast-cat-balance-global-weighting-v1",
+  "code_commit": "20077e4c941280d0f00fb3d6dc1ab0e805fb98e7",
+  "protocol_sha256": "d377bcaf5e3c2187c2ad97792bdf1f2a759f8bcf95358128b91d698d20c87244",
+  "runner_sha256": "a0a217e76a99f2d9f3e00d5caa2d21c81c5e37e53237c6ac311318ad8c39674a",
+  "plan_sha256": "c8504eedf0ec874ecaa2e8b7b3e16900ece78908e1344a6bc746a336c9cc72e6",
+  "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+  "environment_lock_sha256": "57107ad3851c39d827a5b3862d5d348b20a54a441a9323585050e02cfae27940",
+  "pipelines": [
+    "C0_global_class_balanced",
+    "C1_global_cat_and_class_balanced"
+  ],
+  "evaluation": {
+    "base_seeds": [
+      17,
+      43,
+      101
+    ],
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "pipelines": [
+      "C0_global_class_balanced",
+      "C1_global_cat_and_class_balanced"
+    ],
+    "fits_per_pipeline": 36,
+    "total_outer_fits": 72,
+    "complete_oof_evaluations": 18,
+    "paired_complete_oof_comparisons": 9,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "per_class_recall",
+      "call_count_confidence_error_association"
+    ]
+  },
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "micro_loss": "sum(call_weight * call_cross_entropy) / 32",
+    "partial_window_denominator": 32,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation call cross-entropy loss",
+    "call_to_animal_aggregation": "arithmetic mean of call-level probabilities within cat_id",
+    "preserve_all_training_calls": true,
+    "singleton_remainder_policy": "redistribute final 8+1 calls as 7+2 calls"
+  },
+  "smoke_fit_sha256": {
+    "C0_global_class_balanced": "2504d0f8589101e14f6d06e4b5c5974425e056d3e59b50759ac17cc40953b616",
+    "C1_global_cat_and_class_balanced": "9fab1140d8fdb73d3d9240679d036eabec8cd11dcf18c3567ba866a27a08f715"
+  }
+}

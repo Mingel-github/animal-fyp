@@ -31,6 +31,13 @@ RUNNER_PATH = (
     / "scripts"
     / "run_meowagenet_ast_cat_balance_global_weighting_v1.py"
 )
+RUN_ROOT = REPO_ROOT / "runs" / "meowagenet_ast_cat_balance_global_weighting_v1"
+RESULTS_PATH = (
+    REPO_ROOT
+    / "metadata"
+    / "experiments"
+    / "meowagenet_ast_cat_balance_global_weighting_v1_results.json"
+)
 
 
 def actual_inner_train() -> tuple[object, np.ndarray]:
@@ -168,3 +175,102 @@ def test_unit_weights_match_mean_cross_entropy_gradient_for_32_calls() -> None:
         loss = runner.global_weighted_micro_loss(per_call, torch.ones(8), 32)
         loss.backward()
     assert torch.allclose(micro_logits.grad, expected_gradient, atol=1.0e-7, rtol=1.0e-6)
+
+
+def test_smoke_reloads_checkpoint_and_logs_exact_epoch_coefficients() -> None:
+    summary = runner.read_json(RUN_ROOT / "smoke" / "summary.json")
+    assert summary["status"] == "complete"
+    assert summary["outer_test_accessed"] is False
+    assert summary["excluded_from_formal_summary"] is True
+    assert summary["checkpoint_reload_passed"] is True
+    assert summary["paired_batch_order_audit"]["inner_epochs"] == 2
+    fits = [
+        runner.read_json(RUN_ROOT / "smoke" / "fits" / pipeline / "fit_summary.json")
+        for pipeline in runner.PIPELINES
+    ]
+    for fit in fits:
+        assert fit["checkpoint_reload_max_probability_difference"] == 0.0
+        assert fit["validation_animals"] == 17
+        for epoch in fit["history"]:
+            audit = epoch["effective_coefficients"]
+            assert audit["processed_calls"] == 517
+            assert audit["unique_processed_calls"] == 517
+            target = fit["target_weight_audit"]
+            for label in runner.LABEL_NAMES:
+                assert audit["effective_coefficient_by_class"][label] == pytest.approx(
+                    target["weight_by_class"][label] / 32.0
+                )
+    for epoch_index in range(2):
+        first_hash = fits[0]["history"][epoch_index]["effective_coefficients"][
+            "batch_order_sha256"
+        ]
+        second_hash = fits[1]["history"][epoch_index]["effective_coefficients"][
+            "batch_order_sha256"
+        ]
+        assert first_hash == second_hash
+
+
+def test_evaluation_completes_the_locked_matrix_and_pairing_audit() -> None:
+    summary = runner.read_json(RUN_ROOT / "evaluation" / "summary.json")
+    assert summary["status"] == "complete"
+    assert summary["completed_outer_fits"] == 72
+    assert sum(len(rows) for rows in summary["complete_oof"].values()) == 18
+    assert len(summary["paired_C1_vs_C0"]) == 9
+    assert all(
+        row["n"] == 111
+        for rows in summary["complete_oof"].values()
+        for row in rows
+    )
+    batch_audit = summary["paired_batch_order_audit"]
+    assert batch_audit["pairs"] == 36
+    assert batch_audit["all_common_epoch_hashes_match"] is True
+
+
+def test_every_formal_epoch_logs_the_exact_global_effective_coefficients() -> None:
+    fit_paths = sorted((RUN_ROOT / "evaluation" / "fits").rglob("fit_summary.json"))
+    assert len(fit_paths) == 72
+    for path in fit_paths:
+        fit = runner.read_json(path)
+        for phase in ("inner", "outer"):
+            target = fit[phase]["target_weight_audit"]
+            for epoch in fit[phase]["history"]:
+                audit = epoch["effective_coefficients"]
+                assert audit["processed_calls"] == audit["unique_processed_calls"]
+                assert audit["effective_coefficient_total"] == pytest.approx(
+                    target["weight_total"] / 32.0, rel=1.0e-6
+                )
+                for label in runner.LABEL_NAMES:
+                    assert audit["effective_coefficient_by_class"][label] == pytest.approx(
+                        target["weight_by_class"][label] / 32.0, rel=1.0e-6
+                    )
+                assert set(audit["effective_coefficient_by_cat"]) == set(
+                    target["weight_by_cat"]
+                )
+                for cat_id, target_weight in target["weight_by_cat"].items():
+                    assert audit["effective_coefficient_by_cat"][cat_id] == pytest.approx(
+                        target_weight / 32.0, rel=1.0e-6
+                    )
+
+
+def test_corrected_global_weighting_result_record_matches_run_summary() -> None:
+    summary = runner.read_json(RUN_ROOT / "evaluation" / "summary.json")
+    result = runner.read_json(RESULTS_PATH)
+    c0 = summary["aggregate"]["C0_global_class_balanced"]
+    c1 = summary["aggregate"]["C1_global_cat_and_class_balanced"]
+    assert result["aggregate"]["C0_global_class_balanced"][
+        "macro_f1_mean"
+    ] == pytest.approx(c0["macro_f1_mean"])
+    assert result["aggregate"]["C1_global_cat_and_class_balanced"][
+        "macro_f1_mean"
+    ] == pytest.approx(c1["macro_f1_mean"])
+    assert result["aggregate"]["C1_minus_C0"]["macro_f1_mean"] == pytest.approx(
+        summary["paired_summary"]["mean_C1_minus_C0_macro_f1"]
+    )
+    assert result["paired_summary"]["positive_comparisons"] == 3
+    assert result["stage_decision"]["rule_category"] == "no_improvement_evidence"
+    assert result["provenance_sha256"]["evaluation_summary"] == (
+        "46affeead827f172eb9acd9dae0ffc26dac7a5d4e9ee5866d0c7f42bc0cfbbe7"
+    )
+    assert result["provenance_sha256"]["raw_prediction_aggregate"] == (
+        "14f01ff60d0a5cde03ef6156af815308291717849f555f1ba66bd31dbc9dc568"
+    )
