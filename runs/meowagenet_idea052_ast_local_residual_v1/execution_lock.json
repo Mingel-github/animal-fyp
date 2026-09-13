@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "status": "locked_for_idea052_initial_evaluation",
+  "outer_test_accessed": false,
+  "protocol_id": "meowagenet-idea052-ast-local-residual-v1",
+  "code_commit": "df86cc862705fd39e99fa252679be1cf32a80077",
+  "protocol_sha256": "a24da7047bd5d1d774964f92e33f7fb78d23c1ca1848b917d77a3d401f661212",
+  "runner_sha256": "445c2688e081c30e6f619254484cf2e3367abedaf7183fab41707359ab1a2639",
+  "idea_sha256": "bd34ab3898190ab1383720feae49d74d95bdd82b74fc0e891ad03f95d7908aaa",
+  "diagnostic_sha256": "00bb22a60af2f4e8f485eb64d09dbf8b0122b054d57a9548974f996eba3d701a",
+  "diagnostic_script_sha256": "416350a9aae4a08aee6b793431f8ff375f29a5b891dfaf68c8596c4afe77078a",
+  "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+  "global_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+  "temporal_token_sha256": "2599cbc3edf836597e893d2fdd2d18bfce38522b71f049e5cbbfec5e536c3920",
+  "environment_lock_sha256": "d4dda11ea18641de55d5065dae13de0c7f47ae74caf002aee46ffe110938adc9",
+  "initial_evaluation": {
+    "base_seeds": [
+      17
+    ],
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "pipelines": [
+      "R0_global_probability_mean",
+      "R1_temporal_mean_residual",
+      "R2_temporal_salience_residual"
+    ],
+    "fits_per_pipeline": 12,
+    "total_outer_fits": 36,
+    "complete_oof_evaluations": 9,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "duration_and_token_count_subgroups",
+      "residual_gate_magnitude",
+      "paired_prediction_changes"
+    ]
+  },
+  "fixed_training": {
+    "embedding_dimension": 768,
+    "hidden_dimension": 128,
+    "classes": 3,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation animal-level cross-entropy",
+    "call_micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "global_normalization": "training-call global embedding mean and standard deviation per fit",
+    "token_normalization": "all temporal tokens belonging to training calls per fit",
+    "local_gate_activation": "tanh",
+    "local_gate_initialization": 0.0,
+    "call_to_animal_aggregation": "arithmetic mean of call probabilities"
+  },
+  "initialization_audit": {
+    "shared_initial_state_equal": true,
+    "R1_initial_max_logit_difference_from_R0": 0.0,
+    "R2_initial_max_logit_difference_from_R0": 0.0,
+    "zero_initialized_residual_gates": true,
+    "single_token_salience_residual_max_abs": 0.0,
+    "single_token_call_index": 85
+  },
+  "smoke_fit_sha256": {
+    "R0_global_probability_mean": "f32e5495e4b9ffeb8dca4f42c4fc637c3ebcc407bfbfdc39267b474ca6b63a9a",
+    "R1_temporal_mean_residual": "7ad6a2908c409897b0060e00725047b9c5a09ffa4f76550db50c24dcc046b019",
+    "R2_temporal_salience_residual": "bfb83635c6ec52390fc4abcba723f322e22787891b64ab93427f8a24089a8f03"
+  }
+}

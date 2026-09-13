@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea052-ast-local-residual-v1",
+  "date": "2026-09-13",
+  "status": "complete_for_initial_nested_paired_evaluation",
+  "candidate_status": "temporal_mean_mixed_and_gate_closed; temporal_salience_below_reference",
+  "scope": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "calls": 792,
+    "cats": 111,
+    "temporal_tokens": 5842,
+    "classes": ["kitten", "adult", "senior"],
+    "pipelines": 3,
+    "outer_fits": 36,
+    "complete_oof_evaluations": 9,
+    "animal_evaluations_per_pipeline": 333
+  },
+  "smoke": {
+    "status": "passed",
+    "outer_test_accessed": false,
+    "completed_fits": 3,
+    "token_count_range_per_call": [1, 72],
+    "shared_initial_state_equal": true,
+    "R1_initial_max_logit_difference_from_R0": 0.0,
+    "R2_initial_max_logit_difference_from_R0": 0.0,
+    "checkpoint_reload_max_probability_difference": 0.0
+  },
+  "complete_oof": {
+    "R0_global_probability_mean": [
+      {"repeat": 0, "n_animals": 111, "macro_f1": 0.7658712606215808, "balanced_accuracy": 0.7698292220113853, "quadratic_weighted_kappa": 0.6897349397590362, "plain_accuracy": 0.7657657657657657},
+      {"repeat": 1, "n_animals": 111, "macro_f1": 0.7564815892600785, "balanced_accuracy": 0.7600253004427578, "quadratic_weighted_kappa": 0.6469397590361445, "plain_accuracy": 0.7567567567567568},
+      {"repeat": 2, "n_animals": 111, "macro_f1": 0.7487090067735229, "balanced_accuracy": 0.7635041113219482, "quadratic_weighted_kappa": 0.6796984082658475, "plain_accuracy": 0.7477477477477478}
+    ],
+    "R1_temporal_mean_residual": [
+      {"repeat": 0, "n_animals": 111, "macro_f1": 0.776563331237607, "balanced_accuracy": 0.7707779886148008, "quadratic_weighted_kappa": 0.6916666666666667, "plain_accuracy": 0.7747747747747747},
+      {"repeat": 1, "n_animals": 111, "macro_f1": 0.7695516775368705, "balanced_accuracy": 0.7778199451823741, "quadratic_weighted_kappa": 0.6577375216804779, "plain_accuracy": 0.7657657657657657},
+      {"repeat": 2, "n_animals": 111, "macro_f1": 0.7223516620068345, "balanced_accuracy": 0.7429475015812778, "quadratic_weighted_kappa": 0.6535071612192435, "plain_accuracy": 0.7207207207207207}
+    ],
+    "R2_temporal_salience_residual": [
+      {"repeat": 0, "n_animals": 111, "macro_f1": 0.7641333804642394, "balanced_accuracy": 0.7654016445287793, "quadratic_weighted_kappa": 0.6853064815720011, "plain_accuracy": 0.7657657657657657},
+      {"repeat": 1, "n_animals": 111, "macro_f1": 0.7360653032207285, "balanced_accuracy": 0.7448450347881087, "quadratic_weighted_kappa": 0.6282652377762893, "plain_accuracy": 0.7387387387387387},
+      {"repeat": 2, "n_animals": 111, "macro_f1": 0.7290227529953558, "balanced_accuracy": 0.7483238456672993, "quadratic_weighted_kappa": 0.6614289675570755, "plain_accuracy": 0.7297297297297297}
+    ]
+  },
+  "aggregate": {
+    "R0_global_probability_mean": {"macro_f1_mean": 0.7570206188850608, "macro_f1_sample_sd": 0.008593814868191605, "balanced_accuracy_mean": 0.7644528779253638, "quadratic_weighted_kappa_mean": 0.6721243690203428, "plain_accuracy_mean": 0.7567567567567567},
+    "R1_temporal_mean_residual": {"macro_f1_mean": 0.756155556927104, "macro_f1_sample_sd": 0.0294842043430076, "balanced_accuracy_mean": 0.7638484784594842, "quadratic_weighted_kappa_mean": 0.6676371165221293, "plain_accuracy_mean": 0.7537537537537536},
+    "R2_temporal_salience_residual": {"macro_f1_mean": 0.7430738122267746, "macro_f1_sample_sd": 0.018574941162236628, "balanced_accuracy_mean": 0.7528568416613958, "quadratic_weighted_kappa_mean": 0.6583335623017886, "plain_accuracy_mean": 0.7447447447447447}
+  },
+  "paired_macro_f1": {
+    "R1_minus_R0": {"differences": [0.010692070616026172, 0.013070088276792013, -0.026357344766688384], "mean_difference": -0.0008650619579567328, "positive_repeats": 2, "gained_correct_animal_evaluations": 8, "lost_correct_animal_evaluations": 9},
+    "R2_minus_R0": {"differences": [-0.0017378801573414426, -0.020416286039349973, -0.01968625377816713], "mean_difference": -0.013946806658286182, "positive_repeats": 0, "gained_correct_animal_evaluations": 8, "lost_correct_animal_evaluations": 12}
+  },
+  "paired_cat_bootstrap": {
+    "iterations": 5000,
+    "seed": 20260913,
+    "R1_minus_R0": {"bootstrap_mean": -0.0008493887568309571, "interval_95_percent": [-0.02473600955919487, 0.024487073142507396], "fraction_above_zero": 0.4634},
+    "R2_minus_R0": {"bootstrap_mean": -0.014125362563037572, "interval_95_percent": [-0.04129428865643134, 0.013541983938518784], "fraction_above_zero": 0.157}
+  },
+  "class_analysis": {
+    "R0_global_probability_mean": {"mean_recall": {"kitten": 0.8, "adult": 0.7580645161290324, "senior": 0.7352941176470589}, "summed_confusion_matrix": [[36, 7, 2], [8, 141, 37], [2, 25, 75]], "cross_two_level_errors": 4},
+    "R1_temporal_mean_residual": {"mean_recall": {"kitten": 0.8222222222222223, "adult": 0.7634408602150536, "senior": 0.7058823529411765}, "summed_confusion_matrix": [[37, 6, 2], [8, 142, 36], [2, 28, 72]], "cross_two_level_errors": 4},
+    "R2_temporal_salience_residual": {"mean_recall": {"kitten": 0.8, "adult": 0.7526881720430106, "senior": 0.7058823529411765}, "summed_confusion_matrix": [[36, 7, 2], [10, 140, 36], [2, 28, 72]], "cross_two_level_errors": 4}
+  },
+  "residual_gate_analysis": {
+    "R1_temporal_mean_residual": {"fold_models": 12, "mean_abs_gate": 0.024020384065806866, "max_abs_gate": 0.14921186864376068, "mean_active_fraction_above_1e_3": 0.9720052083333334},
+    "R2_temporal_salience_residual": {"fold_models": 12, "mean_abs_gate": 0.02481298102065921, "max_abs_gate": 0.21696962416172028, "mean_active_fraction_above_1e_3": 0.974609375}
+  },
+  "decision": {
+    "R1_seed_expansion_gate_passed": false,
+    "R2_seed_expansion_gate_passed": false,
+    "seeds_43_101_executed": false,
+    "retained_reference": "R0_global_probability_mean",
+    "idea052_role": "completed local-residual mechanism ablation with a split-dependent temporal-mean signal",
+    "next_method_direction": "AST-VGGish complementarity diagnosis followed by fusion or distillation"
+  },
+  "integrity_audit": {
+    "failed_outer_fits": 0,
+    "outer_fit_summary_files": 36,
+    "complete_oof_rows_per_pipeline": 3,
+    "animals_per_complete_oof": 111,
+    "all_common_epoch_batch_hashes_match": true,
+    "run_files": 140,
+    "run_bytes": 9231052,
+    "json_files": 46,
+    "csv_files": 91,
+    "checkpoint_files": 3,
+    "fit_train_and_predict_seconds": 306.5613202999957,
+    "peak_vram_bytes": 20787712
+  },
+  "provenance_sha256": {
+    "idea_card": "bd34ab3898190ab1383720feae49d74d95bdd82b74fc0e891ad03f95d7908aaa",
+    "diagnostic": "00bb22a60af2f4e8f485eb64d09dbf8b0122b054d57a9548974f996eba3d701a",
+    "protocol": "a24da7047bd5d1d774964f92e33f7fb78d23c1ca1848b917d77a3d401f661212",
+    "executed_runner": "445c2688e081c30e6f619254484cf2e3367abedaf7183fab41707359ab1a2639",
+    "execution_lock": "ab6f39868036ec85f4c7c336b8777c83bf7269f2157d01899dd927a330596a9a",
+    "environment_lock": "d4dda11ea18641de55d5065dae13de0c7f47ae74caf002aee46ffe110938adc9",
+    "evaluation_summary": "247807f99c238e8de1fdfff26b39983d6122289e0fd67569e179192ce0419e97",
+    "raw_prediction_inventory": "51e53a7cf228adc4dc1c8517cfbb42e09430df98a460fbecd4dae73941c3f696",
+    "raw_prediction_aggregate": "57453d81a1b0be1fc10adab3841666df4a2ca110dc570c5861c21e6380fc60dc"
+  },
+  "code_commit": "df86cc862705fd39e99fa252679be1cf32a80077"
+}

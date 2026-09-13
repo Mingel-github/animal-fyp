@@ -1,0 +1,58 @@
+{
+  "status": "complete",
+  "outer_test_accessed": false,
+  "excluded_from_evaluation_summary": true,
+  "completed_fits": 3,
+  "calls": 792,
+  "cats": 111,
+  "temporal_tokens": 5842,
+  "token_count_range": [
+    1,
+    72
+  ],
+  "initialization_audit": {
+    "shared_initial_state_equal": true,
+    "R1_initial_max_logit_difference_from_R0": 0.0,
+    "R2_initial_max_logit_difference_from_R0": 0.0,
+    "zero_initialized_residual_gates": true,
+    "single_token_salience_residual_max_abs": 0.0,
+    "single_token_call_index": 85
+  },
+  "checkpoint_reload_passed": true,
+  "execution_lock": "runs/meowagenet_idea052_ast_local_residual_v1/execution_lock.json",
+  "execution_lock_sha256": "ab6f39868036ec85f4c7c336b8777c83bf7269f2157d01899dd927a330596a9a",
+  "environment_lock": "runs/meowagenet_idea052_ast_local_residual_v1/environment_lock.json",
+  "environment_lock_sha256": "d4dda11ea18641de55d5065dae13de0c7f47ae74caf002aee46ffe110938adc9",
+  "pipelines": {
+    "R0_global_probability_mean": {
+      "validation_animal_macro_f1": 0.6686274509803921,
+      "validation_animal_cross_entropy": 1.083208995369094,
+      "best_residual_gate": null,
+      "checkpoint_reload_max_probability_difference": 0.0
+    },
+    "R1_temporal_mean_residual": {
+      "validation_animal_macro_f1": 0.6686274509803921,
+      "validation_animal_cross_entropy": 1.11813899645628,
+      "best_residual_gate": {
+        "mean_abs_gate": 0.017210375517606735,
+        "max_abs_gate": 0.05857134610414505,
+        "rms_gate": 0.021443668752908707,
+        "positive_fraction": 0.46875,
+        "active_fraction_above_1e_3": 0.9453125
+      },
+      "checkpoint_reload_max_probability_difference": 0.0
+    },
+    "R2_temporal_salience_residual": {
+      "validation_animal_macro_f1": 0.6686274509803921,
+      "validation_animal_cross_entropy": 1.0959774764293295,
+      "best_residual_gate": {
+        "mean_abs_gate": 0.016246678307652473,
+        "max_abs_gate": 0.058806002140045166,
+        "rms_gate": 0.020842503756284714,
+        "positive_fraction": 0.484375,
+        "active_fraction_above_1e_3": 0.96875
+      },
+      "checkpoint_reload_max_probability_difference": 0.0
+    }
+  }
+}

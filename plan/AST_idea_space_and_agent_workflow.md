@@ -336,6 +336,8 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 | Ordinal learning | A/G | 当前实现无总体提升 |
 | 12-layer scalar fusion | E | 当前实现下降，权重接近均匀 |
 | Cat-balanced loss | C/G | 修正复验缺少改进证据 |
+| Cat-level set aggregation | B/E/C | hidden-mean 与 attention set 低于 matched call-probability mean |
+| AST local acoustic residual | D/E | temporal mean 三次平均与 reference 接近且有 2/3 正向 repeats；salience residual 较低 |
 
 ## 11. 当前优先探索导航
 
@@ -363,3 +365,13 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 - 每个方向先完成问题诊断和 Idea Card，再提出具体结构或运行方案。
 - 排名表示当前探索顺序，不构成预期性能排名。
 - 新证据可以改变优先级；调整时记录证据、理由、日期和决策人。
+
+### 11.3 执行进度（2026-09-13）
+
+- 优先级 1 已完成：IDEA-051 的 hidden-mean set 与 attention set 均低于 matched
+  call-probability mean；animal-level checkpoint selection 保留为轻量正信号。
+- 优先级 2 已完成：IDEA-052 的 temporal-mean residual 在 2/3 repeats 提高，平均
+  macro-F1 差为 `−0.0009`；temporal-salience residual 平均差为 `−0.0139`。两条
+  seed-expansion gate 均关闭。
+- 当前进入优先级 3：先完成 AST–VGGish paired complementarity diagnosis，再以诊断结果
+  选择 probability fusion、feature fusion 或 distillation 的最小候选。

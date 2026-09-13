@@ -313,6 +313,29 @@ pooling ablation. S0's animal-level checkpoint selection also produced a
 +0.0106 seed-17 mean gain over the earlier strict-global C0 recipe and is
 retained as a separate lightweight follow-up candidate.
 
+IDEA-052 AST local acoustic residual has completed its diagnostic, deterministic
+inner-only smoke, execution lock, and 36 seed-17 outer fits:
+
+- Idea Card: `plan/IDEA-052_AST_local_acoustic_residual.md`;
+- executable protocol:
+  `configs/protocol/meowagenet_idea052_ast_local_residual_v1.json`;
+- independent runner:
+  `scripts/run_meowagenet_idea052_ast_local_residual.py`;
+- Chinese result report:
+  `reports/25_IDEA-052_AST_local_acoustic_residual_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea052_ast_local_residual_v1_results.json`.
+
+The matched global R0 reproduced the IDEA-051 reference at mean animal macro F1
+0.7570. Temporal-mean residual R1 achieved 0.7562 and produced paired differences
+of +0.0107, +0.0131, and -0.0264 across the three repeats, for a mean difference
+of -0.0009. Temporal-salience residual R2 achieved 0.7431, a mean difference of
+-0.0139. Both zero-initialized 128-dimensional gates learned active residual
+weights, while neither candidate reached the preset mean-gain threshold for
+seed expansion. This parameterization closes as an informative local/global
+ablation, and the ordered workflow proceeds to AST-VGGish complementarity,
+fusion, or distillation.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,
