@@ -167,3 +167,17 @@ def test_runner_separates_smoke_lock_and_initial_evaluation() -> None:
     assert "include_test=True" in source
     assert "locked_for_idea051_initial_evaluation" in source
     assert "paired_cat_bootstrap" in source
+
+
+def test_git_lock_comparison_uses_clean_filtered_blob_ids() -> None:
+    revision = runner.git_revision()
+    assert revision is not None
+    for path in (
+        runner.PROTOCOL_PATH,
+        Path(runner.__file__).resolve(),
+        runner.PLAN_PATH,
+        runner.DIAGNOSTIC_PATH,
+    ):
+        assert runner.git_blob_object_id(revision, path) == runner.worktree_blob_object_id(
+            path
+        )

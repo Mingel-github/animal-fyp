@@ -109,11 +109,18 @@ def git_revision() -> str | None:
         return None
 
 
-def git_blob_sha256(revision: str, path: Path) -> str:
-    content = subprocess.check_output(
-        ["git", "show", f"{revision}:{repo_relative(path)}"], cwd=REPO_ROOT
-    )
-    return hashlib.sha256(content).hexdigest()
+def git_blob_object_id(revision: str, path: Path) -> str:
+    return subprocess.check_output(
+        ["git", "rev-parse", f"{revision}:{repo_relative(path)}"],
+        cwd=REPO_ROOT,
+        text=True,
+    ).strip()
+
+
+def worktree_blob_object_id(path: Path) -> str:
+    return subprocess.check_output(
+        ["git", "hash-object", repo_relative(path)], cwd=REPO_ROOT, text=True
+    ).strip()
 
 
 def verify_protocol(protocol: dict[str, Any]) -> None:
@@ -1161,7 +1168,7 @@ def verify_execution_lock(run_root: Path, protocol: dict[str, Any]) -> dict[str,
             raise RuntimeError(f"IDEA-051 execution-lock file changed: {path}")
     revision = lock["code_commit"]
     for path in (PROTOCOL_PATH, Path(__file__).resolve(), PLAN_PATH, DIAGNOSTIC_PATH):
-        if git_blob_sha256(revision, path) != sha256(path):
+        if git_blob_object_id(revision, path) != worktree_blob_object_id(path):
             raise RuntimeError(f"Locked commit blob differs from worktree: {path}")
     if lock["initial_evaluation"] != protocol["initial_evaluation"]:
         raise RuntimeError("IDEA-051 evaluation matrix differs from lock")
