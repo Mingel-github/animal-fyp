@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "status": "locked_for_idea051_initial_evaluation",
+  "outer_test_accessed": false,
+  "protocol_id": "meowagenet-idea051-cat-set-v1",
+  "code_commit": "eb8cb828bba40455c26307784121d5f351760ae0",
+  "protocol_sha256": "a8e092418f11e83252fec92b59a8b3cc259a40eb2d68ce7a224cd547f7ac0f48",
+  "runner_sha256": "4e8acdefca96215ae3cec94d9158ac081da82eabce08b73c0fe612334ce5d3d5",
+  "idea_sha256": "cbe36741c3192d9d5a66f928209a005528bef40dc24ee2155ca63bc8d7493b7d",
+  "diagnostic_sha256": "065f260314933d254a762263d864ff530625bc180d2f28c9c2e3cb4b9f317fe6",
+  "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+  "environment_lock_sha256": "42d4e117914605e75051aa2550b6b09d88e0bb93c52990af9c3e273c1190ce2e",
+  "pipelines": [
+    "S0_call_probability_mean",
+    "S1_hidden_mean_set",
+    "S2_attention_set"
+  ],
+  "initial_evaluation": {
+    "base_seeds": [
+      17
+    ],
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "pipelines": [
+      "S0_call_probability_mean",
+      "S1_hidden_mean_set",
+      "S2_attention_set"
+    ],
+    "fits_per_pipeline": 12,
+    "total_outer_fits": 36,
+    "complete_oof_evaluations": 9,
+    "paired_comparisons": [
+      "S1_hidden_mean_set-minus-S0_call_probability_mean",
+      "S2_attention_set-minus-S0_call_probability_mean",
+      "S2_attention_set-minus-S1_hidden_mean_set"
+    ],
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "bag_size_subgroups",
+      "attention_entropy_and_concentration"
+    ]
+  },
+  "fixed_training": {
+    "embedding_dimension": 768,
+    "hidden_dimension": 128,
+    "classes": 3,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation animal-level cross-entropy",
+    "reference_call_micro_batch_size": 8,
+    "reference_gradient_accumulation_steps": 4,
+    "reference_accumulation_window_calls": 32,
+    "reference_partial_window_denominator": 32,
+    "set_cat_batch_size": 4,
+    "set_loss_denominator_cats": 4,
+    "set_gradient_accumulation_steps": 1,
+    "set_partial_batch_denominator": 4,
+    "set_batch_singleton_policy": "redistribute final 4+1 cats as 3+2 cats",
+    "normalization_statistics": "training-call mean and standard deviation per outer/inner fit"
+  },
+  "smoke_fit_sha256": {
+    "S0_call_probability_mean": "abb9fef152441998c915ae9290d1f8fec0bce6d85f6d6deda588b7e8d8ad838e",
+    "S1_hidden_mean_set": "18feb9df883f081b14e619b86ca748226ada8c8d73bb30c97901e575927239d9",
+    "S2_attention_set": "326ac3c38aa16366fca98ead5825c7676b4cc63f245d4ea0e7ccb9175cdba021"
+  }
+}

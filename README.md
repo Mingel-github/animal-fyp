@@ -290,6 +290,29 @@ C1 retained a small adult-recall advantage. Under the preset rule, the strict
 global cat-balancing stage closes with no improvement evidence. C0 remains the
 tuned frozen-AST reference, while future AST accuracy ideas remain open.
 
+IDEA-051 cat-level set aggregation has completed its diagnostic, inner-only
+smoke, execution lock, and 36 seed-17 outer fits:
+
+- Idea Card: `plan/IDEA-051_cat_level_set_aggregation.md`;
+- executable protocol: `configs/protocol/meowagenet_idea051_cat_set_v1.json`;
+- independent runner: `scripts/run_meowagenet_idea051_cat_set.py`;
+- Chinese result report:
+  `reports/24_IDEA-051_cat_level_set_aggregation_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea051_cat_set_v1_results.json`.
+
+The matched call-probability-mean S0 achieved mean animal macro F1 0.7570,
+balanced accuracy 0.7645, and QWK 0.6721. Cat-level hidden-mean S1 achieved
+0.6777 macro F1, and learned-attention S2 achieved 0.6688. Their paired mean
+differences from S0 were -0.0794 and -0.0883, with all six repeat-level
+comparisons favoring S0. S2 learned clearly non-uniform call weights and raised
+QWK by 0.0170 relative to S1, providing a useful pooling-mechanism result while
+remaining below S0 on the primary endpoint. The preset seed-expansion gate did
+not activate, so this implementation closes as a completed prediction-unit and
+pooling ablation. S0's animal-level checkpoint selection also produced a
++0.0106 seed-17 mean gain over the earlier strict-global C0 recipe and is
+retained as a separate lightweight follow-up candidate.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,

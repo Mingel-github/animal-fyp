@@ -29,6 +29,12 @@ DIAGNOSTIC_PATH = (
     / "meowagenet_idea051_cat_set_diagnostics_v1.json"
 )
 RUN_ROOT = REPO_ROOT / "runs" / "meowagenet_idea051_cat_set_v1"
+RESULT_PATH = (
+    REPO_ROOT
+    / "metadata"
+    / "experiments"
+    / "meowagenet_idea051_cat_set_v1_results.json"
+)
 
 
 def load_store_and_inner_train() -> tuple[object, np.ndarray]:
@@ -181,3 +187,54 @@ def test_git_lock_comparison_uses_clean_filtered_blob_ids() -> None:
         assert runner.git_blob_object_id(revision, path) == runner.worktree_blob_object_id(
             path
         )
+
+
+def test_smoke_and_execution_lock_are_complete() -> None:
+    smoke = json.loads((RUN_ROOT / "smoke" / "summary.json").read_text(encoding="utf-8"))
+    lock = json.loads((RUN_ROOT / "execution_lock.json").read_text(encoding="utf-8"))
+    assert smoke["status"] == "complete"
+    assert smoke["outer_test_accessed"] is False
+    assert smoke["completed_fits"] == 3
+    assert smoke["variable_set_audit"] == {
+        "cats": 111,
+        "calls": 792,
+        "single_call_cats": 20,
+        "maximum_calls_per_cat": 45,
+    }
+    assert smoke["set_pair_batch_order_match"] is True
+    assert smoke["checkpoint_reload_passed"] is True
+    assert lock["status"] == "locked_for_idea051_initial_evaluation"
+    assert lock["code_commit"] == "eb8cb828bba40455c26307784121d5f351760ae0"
+
+
+def test_initial_evaluation_and_result_record_exact_outcomes() -> None:
+    summary = json.loads(
+        (RUN_ROOT / "evaluation" / "summary.json").read_text(encoding="utf-8")
+    )
+    result = json.loads(RESULT_PATH.read_text(encoding="utf-8"))
+    assert summary["status"] == "complete"
+    assert summary["completed_outer_fits"] == 36
+    assert summary["set_pair_batch_order_audit"]["pairs"] == 12
+    assert summary["set_pair_batch_order_audit"][
+        "all_common_epoch_hashes_match"
+    ] is True
+    expected = {
+        "S0_call_probability_mean": 0.7570206188850608,
+        "S1_hidden_mean_set": 0.6776634457503339,
+        "S2_attention_set": 0.668753160927971,
+    }
+    for pipeline, value in expected.items():
+        assert len(summary["complete_oof"][pipeline]) == 3
+        assert all(row["n"] == 111 for row in summary["complete_oof"][pipeline])
+        assert summary["aggregate"][pipeline]["macro_f1_mean"] == pytest.approx(value)
+        assert result["aggregate"][pipeline]["macro_f1_mean"] == pytest.approx(value)
+    assert summary["paired_summary"][
+        "S1_hidden_mean_set_minus_S0_call_probability_mean"
+    ]["positive_repeats"] == 0
+    assert summary["paired_summary"][
+        "S2_attention_set_minus_S0_call_probability_mean"
+    ]["positive_repeats"] == 0
+    assert summary["seed_expansion_gate"]["S1_hidden_mean_set"]["passed"] is False
+    assert summary["seed_expansion_gate"]["S2_attention_set"]["passed"] is False
+    assert summary["attention"]["S2_attention_set"]["mean_normalized_entropy"] < 0.95
+    assert result["decision"]["seeds_43_101_executed"] is False
