@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea053-ast-vggish-probability-fusion-v1",
+  "date": "2026-09-13",
+  "status": "authorized_pre_execution_design",
+  "objective": "Test whether inner-validation-selected animal-level probability fusion can convert measured AST-VGGish exclusive correctness into stable complete-OOF gain.",
+  "relationship": {
+    "formal_v2_1": "provides the preserved VGGish baseline recipe; unchanged",
+    "idea052": "provides the matched tuned frozen-AST reference recipe; unchanged",
+    "stage": "exploratory initial screen with a predeclared seed-expansion gate"
+  },
+  "idea": {
+    "path": "plan/IDEA-053_AST_VGGish_probability_fusion.md",
+    "sha256": "ac5318df7c17e5429c956dd98b58eb5d4d7caefb1b6a9bedbc99d2bd5c972aa6",
+    "primary_angle": "H_knowledge_combination",
+    "supporting_angles": ["E_feature_extraction", "J_evaluation_and_robustness"]
+  },
+  "diagnostic": {
+    "path": "metadata/experiments/meowagenet_idea053_ast_vggish_complementarity_v1.json",
+    "sha256": "68c04f5853ea33e5c7e70e005e39152b1b28aaef7bcd3da3a8a9fbd729b11a3d",
+    "script_path": "scripts/diagnose_meowagenet_idea053_ast_vggish_complementarity.py",
+    "script_sha256": "56a63d447c5881833ac895671ed9d65d02b093748c4f7a79d6e1ee439a8deb4e",
+    "located_signal": "Across 333 paired animal evaluations, VGGish uniquely corrected 21 AST errors; a descriptive 0.7-AST fixed blend improved mean macro F1 by 0.0060 and improved two of three repeats."
+  },
+  "dataset": {
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "ast_calls": 792,
+    "ast_embedding_dimension": 768,
+    "vggish_rows": 936,
+    "vggish_embedding_dimension": 128,
+    "fusion_unit": "animal-level class probabilities"
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id",
+    "inner_selection_within_outer_training_role": true
+  },
+  "pipelines": {
+    "A0_ast_reference": {
+      "source": "IDEA-052 R0_global_probability_mean",
+      "architecture": "standardized frozen AST 768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+      "aggregation": "arithmetic mean of call probabilities within cat_id"
+    },
+    "V0_vggish_reference": {
+      "source": "formal-v2.1 VGGish+MLP",
+      "architecture": "standardized VGGish 128 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+      "aggregation": "arithmetic mean of embedding-row probabilities within cat_id"
+    },
+    "F1_inner_ce_probability_fusion": {
+      "formula": "alpha * A0 animal probabilities + (1-alpha) * V0 animal probabilities",
+      "alpha_grid": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      "selection": "minimum unweighted inner-validation animal cross-entropy",
+      "tie_break": "larger AST weight",
+      "additional_trainable_parameters": 0
+    }
+  },
+  "ast_training": {
+    "embedding_dimension": 768,
+    "hidden_dimension": 128,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation animal-level cross-entropy",
+    "call_micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "class_weight": "global class-balanced over current training calls"
+  },
+  "vggish_training": {
+    "embedding_dimension": 128,
+    "hidden_dimension": 128,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.003109800273709165,
+    "batch_size": 128,
+    "maximum_epochs": 500,
+    "early_stopping_patience": 30,
+    "epoch_selection": "minimum inner-validation embedding-row loss",
+    "class_weight": "balanced over current training embedding rows",
+    "tensorflow_device": "CPU"
+  },
+  "smoke": {
+    "base_seed": 17,
+    "repeat": 0,
+    "outer_fold": 0,
+    "epochs": 2,
+    "outer_test_accessed": false,
+    "excluded_from_evaluation_summary": true,
+    "requirements": [
+      "AST inner train and animal validation",
+      "VGGish inner train and animal validation",
+      "111-cat identity and label alignment",
+      "alpha selection from inner validation only",
+      "probability normalization"
+    ]
+  },
+  "initial_evaluation": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "trained_models_per_fold": 2,
+    "total_model_fits": 24,
+    "reported_pipelines": [
+      "A0_ast_reference",
+      "V0_vggish_reference",
+      "F1_inner_ce_probability_fusion"
+    ],
+    "complete_oof_evaluations": 9,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "selected_alpha",
+      "paired_prediction_changes"
+    ]
+  },
+  "bootstrap": {
+    "method": "paired cat-cluster bootstrap for F1 minus A0",
+    "resampling_unit": "cat_id",
+    "iterations": 5000,
+    "seed": 20260913,
+    "interval": [0.025, 0.975]
+  },
+  "seed_expansion_gate": {
+    "minimum_mean_macro_f1_gain": 0.005,
+    "minimum_positive_repeats": 2,
+    "strong_gain": 0.01,
+    "supporting_evidence": "at least one of balanced accuracy, QWK, worst-repeat macro F1, or interpretable class recall supports fusion",
+    "action_when_met": "expand matched A0, V0 and F1 to base seeds 43 and 101",
+    "action_when_not_met": "retain as fusion ablation and proceed to feature fusion or constrained PEFT calibration"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea053_ast_vggish_fusion_v1",
+    "result_metadata": "metadata/experiments/meowagenet_idea053_ast_vggish_fusion_v1_results.json",
+    "report": "reports/26_IDEA-053_AST_VGGish_probability_fusion_results.md"
+  },
+  "dependencies": {
+    "ast_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "ast_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "vggish_embedding_path": "data/meowagenet/official-3d02295bef15/embeddings/vggish_looped_embeddings.csv",
+    "vggish_embedding_sha256": "0c4856c12bb3b829a9731b426619d5f82d3510307374e756555fc8eb0349e641",
+    "ast_reference_runner": "scripts/run_meowagenet_idea052_ast_local_residual.py",
+    "ast_reference_runner_sha256": "445c2688e081c30e6f619254484cf2e3367abedaf7183fab41707359ab1a2639",
+    "vggish_reference_runner": "scripts/run_meowagenet_formal_v2_1.py",
+    "vggish_reference_runner_sha256": "ed3fc855539d37963aa51d17e54f5ce59acba1d023567289b89d5d1f313e6b25",
+    "vggish_recipe": "configs/experiment/meowagenet_formal_v2_1_probe_guided_candidate_v1.json",
+    "vggish_recipe_sha256": "4b54d98734c80f5089482ed88cd6a137ec512ac5b3b502bbb8d0ccc5a06fba92"
+  }
+}
