@@ -336,6 +336,32 @@ seed expansion. This parameterization closes as an informative local/global
 ablation, and the ordered workflow proceeds to AST-VGGish complementarity,
 fusion, or distillation.
 
+IDEA-053 AST-VGGish probability fusion has completed its paired diagnostic,
+inner-only smoke, execution lock, and 24 seed-17 model fits across 12 folds:
+
+- Idea Card: `plan/IDEA-053_AST_VGGish_probability_fusion.md`;
+- complementarity diagnostic:
+  `metadata/experiments/meowagenet_idea053_ast_vggish_complementarity_v1.json`;
+- executable protocol:
+  `configs/protocol/meowagenet_idea053_ast_vggish_probability_fusion_v1.json`;
+- independent runner:
+  `scripts/run_meowagenet_idea053_ast_vggish_fusion.py`;
+- Chinese result report:
+  `reports/26_IDEA-053_AST_VGGish_probability_fusion_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea053_ast_vggish_probability_fusion_v1_results.json`.
+
+Across 333 paired cat evaluations, AST and VGGish were both correct 209 times,
+AST alone was correct 43 times, and VGGish alone was correct 21 times. This
+established measurable complementarity. The executable fusion selected one AST
+probability weight per fold using only 17 inner-validation cats. It achieved
+mean animal macro F1 0.7499 versus 0.7570 for AST, with paired differences of
++0.0082, -0.0149, and -0.0147. The fusion changed 13 AST decisions, gaining five
+correct predictions and losing eight. The seed-expansion gate did not activate;
+the tuned frozen AST remains the reference, and the ordered workflow proceeds
+to constrained LayerNorm / SSF / BitFit calibration. Conditional feature fusion
+remains available as a later independent idea.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,

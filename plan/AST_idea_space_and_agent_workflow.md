@@ -338,6 +338,7 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 | Cat-balanced loss | C/G | 修正复验缺少改进证据 |
 | Cat-level set aggregation | B/E/C | hidden-mean 与 attention set 低于 matched call-probability mean |
 | AST local acoustic residual | D/E | temporal mean 三次平均与 reference 接近且有 2/3 正向 repeats；salience residual 较低 |
+| AST–VGGish probability fusion | E/F | 存在 21 次 VGGish-only 正确；inner-selected scalar fusion 平均低于 AST 0.0071 |
 
 ## 11. 当前优先探索导航
 
@@ -373,5 +374,8 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 - 优先级 2 已完成：IDEA-052 的 temporal-mean residual 在 2/3 repeats 提高，平均
   macro-F1 差为 `−0.0009`；temporal-salience residual 平均差为 `−0.0139`。两条
   seed-expansion gate 均关闭。
-- 当前进入优先级 3：先完成 AST–VGGish paired complementarity diagnosis，再以诊断结果
-  选择 probability fusion、feature fusion 或 distillation 的最小候选。
+- 优先级 3 的直接概率融合已完成：333 次配对评价中包含 21 次 VGGish-only 正确，说明
+  互补空间存在；IDEA-053 的每折 inner-selected scalar fusion 平均 macro F1 为 0.7499，
+  相对 AST 为 `−0.0071`，三个 repeats 中 1 个提高，seed-expansion gate 关闭。
+- 当前进入优先级 4：比较 LayerNorm / SSF / BitFit 等受约束 AST 校准。feature-level 或
+  条件式融合保留为以后可独立启动的候选，不与本轮 scalar probability fusion 混写。

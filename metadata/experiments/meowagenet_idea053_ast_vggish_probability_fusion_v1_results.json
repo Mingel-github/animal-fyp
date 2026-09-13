@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea053-ast-vggish-probability-fusion-v1",
+  "date": "2026-09-13",
+  "status": "complete_for_initial_nested_paired_evaluation",
+  "candidate_status": "global_probability_fusion_gate_closed; complementarity_signal_retained",
+  "scope": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "calls_ast": 792,
+    "rows_vggish": 936,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "pipelines": 3,
+    "trained_models": 24,
+    "complete_oof_evaluations": 9,
+    "animal_evaluations_per_pipeline": 333
+  },
+  "smoke": {
+    "status": "passed",
+    "outer_test_accessed": false,
+    "ast_calls": 792,
+    "vggish_rows": 936,
+    "cats": 111,
+    "inner_validation_cats": 17,
+    "selected_alpha_after_two_smoke_epochs": 0.6,
+    "maximum_probability_sum_error": 2.220446049250313e-16
+  },
+  "diagnostic": {
+    "paired_animal_evaluations": 333,
+    "both_correct": 209,
+    "ast_only_correct": 43,
+    "vggish_only_correct": 21,
+    "both_wrong": 60,
+    "prediction_disagreements": 66,
+    "oracle_either_correct_plain_accuracy": 0.8198198198198198,
+    "descriptive_fixed_ast_weight": 0.7,
+    "descriptive_fixed_blend_macro_f1_mean": 0.7630034041439248,
+    "descriptive_fixed_blend_gain_over_ast": 0.005982785258863976,
+    "interpretation": "The post-hoc fixed blend located complementarity but used complete-OOF outcomes; the executable candidate therefore selected alpha independently inside every outer fold."
+  },
+  "complete_oof": {
+    "A0_ast_reference": [
+      {"repeat": 0, "n_animals": 111, "macro_f1": 0.7658712606215808, "balanced_accuracy": 0.7698292220113853, "quadratic_weighted_kappa": 0.6897349397590362, "plain_accuracy": 0.7657657657657657},
+      {"repeat": 1, "n_animals": 111, "macro_f1": 0.7564815892600785, "balanced_accuracy": 0.7600253004427578, "quadratic_weighted_kappa": 0.6469397590361445, "plain_accuracy": 0.7567567567567568},
+      {"repeat": 2, "n_animals": 111, "macro_f1": 0.7487090067735229, "balanced_accuracy": 0.7635041113219482, "quadratic_weighted_kappa": 0.6796984082658475, "plain_accuracy": 0.7477477477477478}
+    ],
+    "V0_vggish_reference": [
+      {"repeat": 0, "n_animals": 111, "macro_f1": 0.7098310291858678, "balanced_accuracy": 0.7004005903436644, "quadratic_weighted_kappa": 0.6227508996401439, "plain_accuracy": 0.7207207207207207},
+      {"repeat": 1, "n_animals": 111, "macro_f1": 0.6693961479920384, "balanced_accuracy": 0.6859371705671515, "quadratic_weighted_kappa": 0.5383122284869212, "plain_accuracy": 0.6756756756756757},
+      {"repeat": 2, "n_animals": 111, "macro_f1": 0.6593408690626141, "balanced_accuracy": 0.6522454142947501, "quadratic_weighted_kappa": 0.5704078594819887, "plain_accuracy": 0.6756756756756757}
+    ],
+    "F1_inner_ce_probability_fusion": [
+      {"repeat": 0, "n_animals": 111, "macro_f1": 0.7740740740740741, "balanced_accuracy": 0.7796331435800127, "quadratic_weighted_kappa": 0.7025267993874426, "plain_accuracy": 0.7747747747747747},
+      {"repeat": 1, "n_animals": 111, "macro_f1": 0.7415822760252979, "balanced_accuracy": 0.7448450347881087, "quadratic_weighted_kappa": 0.6255421686746988, "plain_accuracy": 0.7387387387387387},
+      {"repeat": 2, "n_animals": 111, "macro_f1": 0.7340019920665082, "balanced_accuracy": 0.7483238456672993, "quadratic_weighted_kappa": 0.6590337894442893, "plain_accuracy": 0.7297297297297297}
+    ]
+  },
+  "aggregate": {
+    "A0_ast_reference": {"macro_f1_mean": 0.7570206188850608, "macro_f1_sample_sd": 0.008593814868191605, "balanced_accuracy_mean": 0.7644528779253638, "quadratic_weighted_kappa_mean": 0.6721243690203428, "plain_accuracy_mean": 0.7567567567567567},
+    "V0_vggish_reference": {"macro_f1_mean": 0.6795226820801735, "macro_f1_sample_sd": 0.026724971221622866, "balanced_accuracy_mean": 0.679527725068522, "quadratic_weighted_kappa_mean": 0.5771569958696845, "plain_accuracy_mean": 0.6906906906906908},
+    "F1_inner_ce_probability_fusion": {"macro_f1_mean": 0.7498861140552934, "macro_f1_sample_sd": 0.021287513561394914, "balanced_accuracy_mean": 0.7576006746784736, "quadratic_weighted_kappa_mean": 0.6623675858354768, "plain_accuracy_mean": 0.7477477477477478}
+  },
+  "paired_macro_f1": {
+    "V0_minus_A0": {"differences": [-0.05604023143571302, -0.08708544126804008, -0.08936813771090879], "mean_difference": -0.0774979368048873, "positive_repeats": 0},
+    "F1_minus_A0": {"differences": [0.008202813452493296, -0.014899313234780553, -0.014707014707014743], "mean_difference": -0.007134504829767334, "positive_repeats": 1, "changed_animal_evaluations": 13, "gained_correct_animal_evaluations": 5, "lost_correct_animal_evaluations": 8}
+  },
+  "paired_cat_bootstrap": {
+    "iterations": 5000,
+    "seed": 20260913,
+    "F1_minus_A0": {"bootstrap_mean": -0.007238253551417809, "interval_95_percent": [-0.03406173311936509, 0.01982471869879764], "fraction_above_zero": 0.2862}
+  },
+  "alpha_selection": {
+    "values": [0.5, 1.0, 1.0, 0.5, 0.5, 0.5, 0.8, 0.4, 0.6, 0.5, 0.2, 0.4],
+    "mean": 0.5750000000000001,
+    "median": 0.5,
+    "ast_only_folds": 2,
+    "vggish_only_folds": 0,
+    "interior_fusion_folds": 10,
+    "selection_unit": "17-cat inner validation in each outer fold",
+    "selection_objective": "unweighted animal-level cross-entropy"
+  },
+  "class_analysis": {
+    "A0_ast_reference": {"mean_recall": {"kitten": 0.8, "adult": 0.7580645161290324, "senior": 0.7352941176470589}, "summed_confusion_matrix": [[36, 7, 2], [8, 141, 37], [2, 25, 75]], "cross_two_level_errors": 4},
+    "V0_vggish_reference": {"mean_recall": {"kitten": 0.6666666666666666, "adult": 0.7150537634408604, "senior": 0.6568627450980392}, "summed_confusion_matrix": [[30, 13, 2], [10, 133, 43], [3, 32, 67]], "cross_two_level_errors": 5},
+    "F1_inner_ce_probability_fusion": {"mean_recall": {"kitten": 0.8, "adult": 0.7473118279569894, "senior": 0.7254901960784315}, "summed_confusion_matrix": [[36, 7, 2], [8, 139, 39], [2, 26, 74]], "cross_two_level_errors": 4}
+  },
+  "decision": {
+    "seed_expansion_gate_passed": false,
+    "seeds_43_101_executed": false,
+    "retained_reference": "A0_ast_reference",
+    "idea053_role": "completed global probability-fusion ablation; model complementarity remains measurable but current inner-selected scalar fusion does not extract it consistently",
+    "next_method_direction": "constrained AST PEFT calibration with LayerNorm, SSF, or BitFit; feature-level conditional fusion remains an optional later idea"
+  },
+  "integrity_audit": {
+    "failed_outer_fits": 0,
+    "outer_fit_summary_files": 12,
+    "trained_models": 24,
+    "complete_oof_rows_per_pipeline": 3,
+    "animals_per_complete_oof": 111,
+    "run_files": 90,
+    "run_bytes": 3032021,
+    "json_files": 20,
+    "csv_files": 70,
+    "model_fit_seconds": 107.35214599999745,
+    "peak_ast_vram_bytes": 20785664,
+    "raw_prediction_files": 70,
+    "raw_prediction_bytes": 600399
+  },
+  "provenance_sha256": {
+    "idea_card": "ac5318df7c17e5429c956dd98b58eb5d4d7caefb1b6a9bedbc99d2bd5c972aa6",
+    "diagnostic": "68c04f5853ea33e5c7e70e005e39152b1b28aaef7bcd3da3a8a9fbd729b11a3d",
+    "protocol": "7cc1b8fbdcf08fe954ae3eb9241b40336a915c25720bc9a55fa1e455a4b5639c",
+    "executed_runner": "773741c74b4769c70e65d3ee7ad5ff5ebd58a2e2d9f47ed091e66e696df4d7fb",
+    "execution_lock": "cea09f1365ccb8c303b59b90dab4848e0513f530abd9d82857e3767160c5f7af",
+    "environment_lock": "226db7739fb12917bd8482289991553aa42ed0989a888ce4626370777f41b0e4",
+    "evaluation_summary": "751cb44e56873dde4b73c224c334fcdac4d34af2137df7641105dfe87341173e",
+    "raw_prediction_inventory": "60e797dd2a1f068997a17978732b37489c0e87ff1dea53802419716bef058a65",
+    "raw_prediction_aggregate": "58051654b6f45957b54b1d55fd99eabca6fb5a5286e7c72db68c5294be3d291f"
+  },
+  "code_commit": "3a6837a4dbec29c43cf04621773fc3e4c3a872b7"
+}

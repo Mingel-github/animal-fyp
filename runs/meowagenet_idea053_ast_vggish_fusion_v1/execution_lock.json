@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "status": "locked_for_idea053_initial_evaluation",
+  "outer_test_accessed": false,
+  "protocol_id": "meowagenet-idea053-ast-vggish-probability-fusion-v1",
+  "code_commit": "3a6837a4dbec29c43cf04621773fc3e4c3a872b7",
+  "protocol_sha256": "7cc1b8fbdcf08fe954ae3eb9241b40336a915c25720bc9a55fa1e455a4b5639c",
+  "runner_sha256": "773741c74b4769c70e65d3ee7ad5ff5ebd58a2e2d9f47ed091e66e696df4d7fb",
+  "idea_sha256": "ac5318df7c17e5429c956dd98b58eb5d4d7caefb1b6a9bedbc99d2bd5c972aa6",
+  "diagnostic_sha256": "68c04f5853ea33e5c7e70e005e39152b1b28aaef7bcd3da3a8a9fbd729b11a3d",
+  "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+  "AST_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+  "VGGish_embedding_sha256": "0c4856c12bb3b829a9731b426619d5f82d3510307374e756555fc8eb0349e641",
+  "environment_lock_sha256": "226db7739fb12917bd8482289991553aa42ed0989a888ce4626370777f41b0e4",
+  "initial_evaluation": {
+    "base_seeds": [
+      17
+    ],
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "trained_models_per_fold": 2,
+    "total_model_fits": 24,
+    "reported_pipelines": [
+      "A0_ast_reference",
+      "V0_vggish_reference",
+      "F1_inner_ce_probability_fusion"
+    ],
+    "complete_oof_evaluations": 9,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "selected_alpha",
+      "paired_prediction_changes"
+    ]
+  }
+}
