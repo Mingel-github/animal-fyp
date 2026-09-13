@@ -1,0 +1,5927 @@
+{
+  "status": "complete",
+  "stage": "idea054_initial_evaluation",
+  "outer_test_accessed": true,
+  "pipeline": "P3_bitfit",
+  "base_seed": 17,
+  "repeat": 0,
+  "outer_fold": 2,
+  "full_seed": 217,
+  "inner_train_calls": 445,
+  "inner_validation_calls": 124,
+  "outer_test_calls": 223,
+  "selected_epoch": 20,
+  "inner": {
+    "best_epoch": 20,
+    "stopped_epoch": 28,
+    "best_validation_animal_cross_entropy": 0.31291989005740745,
+    "best_validation_animal_metrics": {
+      "macro_f1": 0.8136645962732919,
+      "balanced_accuracy": 0.7999999999999999,
+      "quadratic_weighted_kappa": 0.7272727272727273,
+      "plain_accuracy": 0.8235294117647058,
+      "per_class": {
+        "kitten": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "adult": {
+          "precision": 0.7692307692307693,
+          "recall": 1.0,
+          "f1": 0.8695652173913044,
+          "support": 10
+        },
+        "senior": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1": 0.5714285714285715,
+          "support": 5
+        }
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          10,
+          0
+        ],
+        [
+          0,
+          3,
+          2
+        ]
+      ],
+      "n": 17
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "train_weighted_loss": 0.7369069627008273,
+        "validation_animal_cross_entropy": 0.6307350916673247,
+        "validation_animal_macro_f1": 0.7269841269841271,
+        "validation_animal_balanced_accuracy": 0.8333333333333334,
+        "validation_animal_qwk": 0.7038327526132404,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "40e98da357121b2d0171ff71299c1256eae0d75eb36c1666dbb7bad27d2a9480"
+        }
+      },
+      {
+        "epoch": 2,
+        "train_weighted_loss": 0.48158544445076834,
+        "validation_animal_cross_entropy": 0.6220070973416354,
+        "validation_animal_macro_f1": 0.7241830065359477,
+        "validation_animal_balanced_accuracy": 0.8000000000000002,
+        "validation_animal_qwk": 0.6792452830188679,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "72eb923763199169e05c91e78153dc3d7ce125d166c0f87e6e2d8780e2f650b3"
+        }
+      },
+      {
+        "epoch": 3,
+        "train_weighted_loss": 0.3444232395709091,
+        "validation_animal_cross_entropy": 0.6085124189641598,
+        "validation_animal_macro_f1": 0.7241830065359477,
+        "validation_animal_balanced_accuracy": 0.8000000000000002,
+        "validation_animal_qwk": 0.6792452830188679,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "46b513b9684ecc3a6254f65ff1e73583a45414825192de357f1505a3d0241379"
+        }
+      },
+      {
+        "epoch": 4,
+        "train_weighted_loss": 0.26781749604852556,
+        "validation_animal_cross_entropy": 0.46176244149839984,
+        "validation_animal_macro_f1": 0.7683501683501683,
+        "validation_animal_balanced_accuracy": 0.8333333333333334,
+        "validation_animal_qwk": 0.7322834645669292,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "329e5a373980fa16d30fbf94ddbf1bed92583eb59e63d9ec433ffb17220331c6"
+        }
+      },
+      {
+        "epoch": 5,
+        "train_weighted_loss": 0.21868366267716133,
+        "validation_animal_cross_entropy": 0.40300507817809034,
+        "validation_animal_macro_f1": 0.9,
+        "validation_animal_balanced_accuracy": 0.9,
+        "validation_animal_qwk": 0.8454545454545455,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "2549a77fe58f24143f4b6963a539448e378ce9f5e67e6fb8a6ba86c981969431"
+        }
+      },
+      {
+        "epoch": 6,
+        "train_weighted_loss": 0.18344355180985078,
+        "validation_animal_cross_entropy": 0.4244650850615173,
+        "validation_animal_macro_f1": 0.8412698412698413,
+        "validation_animal_balanced_accuracy": 0.8333333333333334,
+        "validation_animal_qwk": 0.7559808612440191,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "78b92c6ab9ed000c409790e315490dcbad3f1a8ddd8f17c127ea822141e01516"
+        }
+      },
+      {
+        "epoch": 7,
+        "train_weighted_loss": 0.13872251358376972,
+        "validation_animal_cross_entropy": 0.39252488066265123,
+        "validation_animal_macro_f1": 0.7727272727272728,
+        "validation_animal_balanced_accuracy": 0.7666666666666666,
+        "validation_animal_qwk": 0.6565656565656566,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "215ada4bc05d025c64f5f5ea3e5ea884584310ddda899412894a6e68df04cd1b"
+        }
+      },
+      {
+        "epoch": 8,
+        "train_weighted_loss": 0.16916277376124927,
+        "validation_animal_cross_entropy": 0.37443539457941405,
+        "validation_animal_macro_f1": 0.8412698412698413,
+        "validation_animal_balanced_accuracy": 0.8333333333333334,
+        "validation_animal_qwk": 0.7559808612440191,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "5449e372cf28999d9beb5f589f36dd5e95be36e0563318a2a3813f3d4c852c12"
+        }
+      },
+      {
+        "epoch": 9,
+        "train_weighted_loss": 0.08753879884760622,
+        "validation_animal_cross_entropy": 0.34372350439531807,
+        "validation_animal_macro_f1": 0.8863636363636364,
+        "validation_animal_balanced_accuracy": 0.8666666666666667,
+        "validation_animal_qwk": 0.8282828282828283,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "448eaf764b69ec14872b53cbb1c5d50435f2310e638933899c37da57a63bc51f"
+        }
+      },
+      {
+        "epoch": 10,
+        "train_weighted_loss": 0.08919600067437954,
+        "validation_animal_cross_entropy": 0.3317025363353982,
+        "validation_animal_macro_f1": 0.8863636363636364,
+        "validation_animal_balanced_accuracy": 0.8666666666666667,
+        "validation_animal_qwk": 0.8282828282828283,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "75ffa783e5b71af3f08b038ec72fac6ca2b7510b6f60c8589843f5ead3d88dc1"
+        }
+      },
+      {
+        "epoch": 11,
+        "train_weighted_loss": 0.06872635915327432,
+        "validation_animal_cross_entropy": 0.3291021707820071,
+        "validation_animal_macro_f1": 0.8863636363636364,
+        "validation_animal_balanced_accuracy": 0.8666666666666667,
+        "validation_animal_qwk": 0.8282828282828283,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "8e4d0b9a11204c101a0f503eee495c5061710a5de46ed74dae66c1bf894f953a"
+        }
+      },
+      {
+        "epoch": 12,
+        "train_weighted_loss": 0.08729165094652798,
+        "validation_animal_cross_entropy": 0.32451672372247503,
+        "validation_animal_macro_f1": 0.8136645962732919,
+        "validation_animal_balanced_accuracy": 0.7999999999999999,
+        "validation_animal_qwk": 0.7272727272727273,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "239d12b02f6391d435327a8c85c1e30a3e1ec59bbb523c42fa70e44e47fac1fd"
+        }
+      },
+      {
+        "epoch": 13,
+        "train_weighted_loss": 0.06918491133704814,
+        "validation_animal_cross_entropy": 0.3453710517802618,
+        "validation_animal_macro_f1": 0.8136645962732919,
+        "validation_animal_balanced_accuracy": 0.7999999999999999,
+        "validation_animal_qwk": 0.7272727272727273,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "36322149ec07bd6d8f9872fb2a0fdb85b5973534d11fd7ce556605d389db7e24"
+        }
+      },
+      {
+        "epoch": 14,
+        "train_weighted_loss": 0.0887102165214765,
+        "validation_animal_cross_entropy": 0.3569491458286357,
+        "validation_animal_macro_f1": 0.8863636363636364,
+        "validation_animal_balanced_accuracy": 0.8666666666666667,
+        "validation_animal_qwk": 0.8282828282828283,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "9af2df24abf44a41d2e91c2700cbcf23ca360b64c756b2c087d47bf34bbd4a6b"
+        }
+      },
+      {
+        "epoch": 15,
+        "train_weighted_loss": 0.05198737260210517,
+        "validation_animal_cross_entropy": 0.3622668427597416,
+        "validation_animal_macro_f1": 0.8136645962732919,
+        "validation_animal_balanced_accuracy": 0.7999999999999999,
+        "validation_animal_qwk": 0.7272727272727273,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "88f19ca45cd68e189c34aef63f37a0c85592b5b838cfeaeda84e12cc98af2b00"
+        }
+      },
+      {
+        "epoch": 16,
+        "train_weighted_loss": 0.07483712499445289,
+        "validation_animal_cross_entropy": 0.3794353452591317,
+        "validation_animal_macro_f1": 0.8136645962732919,
+        "validation_animal_balanced_accuracy": 0.7999999999999999,
+        "validation_animal_qwk": 0.7272727272727273,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "0cc8217d746f2fa5c50e434f3049a81ce587000449da0323575ecbaa09e78f89"
+        }
+      },
+      {
+        "epoch": 17,
+        "train_weighted_loss": 0.04877871825862916,
+        "validation_animal_cross_entropy": 0.38317147322508793,
+        "validation_animal_macro_f1": 0.7727272727272728,
+        "validation_animal_balanced_accuracy": 0.7666666666666666,
+        "validation_animal_qwk": 0.6565656565656566,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "b51ec38979d845dd884fae256f154d6b1c45cc2be28397c2477748900a353c25"
+        }
+      },
+      {
+        "epoch": 18,
+        "train_weighted_loss": 0.0638908407709872,
+        "validation_animal_cross_entropy": 0.34372691007153694,
+        "validation_animal_macro_f1": 0.8136645962732919,
+        "validation_animal_balanced_accuracy": 0.7999999999999999,
+        "validation_animal_qwk": 0.7272727272727273,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "7c0c4470463a6ca92e61724d5e4282f81d2c133112a4c6edff3751dbc6059f75"
+        }
+      },
+      {
+        "epoch": 19,
+        "train_weighted_loss": 0.05661621254520865,
+        "validation_animal_cross_entropy": 0.34260159730473533,
+        "validation_animal_macro_f1": 0.7222222222222222,
+        "validation_animal_balanced_accuracy": 0.7333333333333334,
+        "validation_animal_qwk": 0.6136363636363635,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "9c93120ce6f1fddf74a5feb05195ed1b6467714c20398a27053ddcd2340c6a80"
+        }
+      },
+      {
+        "epoch": 20,
+        "train_weighted_loss": 0.07566837640814333,
+        "validation_animal_cross_entropy": 0.31291989005740745,
+        "validation_animal_macro_f1": 0.8136645962732919,
+        "validation_animal_balanced_accuracy": 0.7999999999999999,
+        "validation_animal_qwk": 0.7272727272727273,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "8ab994c3f7b354d82ba504b783c52447ce0f2b4a4a50ba3370930f7afe5ad7c1"
+        }
+      },
+      {
+        "epoch": 21,
+        "train_weighted_loss": 0.06211972985395569,
+        "validation_animal_cross_entropy": 0.347708145687901,
+        "validation_animal_macro_f1": 0.8136645962732919,
+        "validation_animal_balanced_accuracy": 0.7999999999999999,
+        "validation_animal_qwk": 0.7272727272727273,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "ba2fcd93378ac5f5320ddcb6d5d9111b121a3dd94f66a18c33a3c3c0c2039e16"
+        }
+      },
+      {
+        "epoch": 22,
+        "train_weighted_loss": 0.04027815626010054,
+        "validation_animal_cross_entropy": 0.33621442346207886,
+        "validation_animal_macro_f1": 0.8136645962732919,
+        "validation_animal_balanced_accuracy": 0.7999999999999999,
+        "validation_animal_qwk": 0.7272727272727273,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "e405633b3857997d71ff07870ba7dd57b476a952c8e529a9408c0f8da0a3f6cb"
+        }
+      },
+      {
+        "epoch": 23,
+        "train_weighted_loss": 0.0687444122477374,
+        "validation_animal_cross_entropy": 0.33958070751417224,
+        "validation_animal_macro_f1": 0.7222222222222222,
+        "validation_animal_balanced_accuracy": 0.7333333333333334,
+        "validation_animal_qwk": 0.6136363636363635,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "3fe07313f5728a4aa39bb1de3292ec31061e616e4c73028024d11bb4a90104c1"
+        }
+      },
+      {
+        "epoch": 24,
+        "train_weighted_loss": 0.059373475545925716,
+        "validation_animal_cross_entropy": 0.37347345859355996,
+        "validation_animal_macro_f1": 0.7222222222222222,
+        "validation_animal_balanced_accuracy": 0.7333333333333334,
+        "validation_animal_qwk": 0.6136363636363635,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "f00df1b0a76b24ce09847da02499223efffdb646e3d48ebb5fb5cccec5895e1e"
+        }
+      },
+      {
+        "epoch": 25,
+        "train_weighted_loss": 0.05295079652655993,
+        "validation_animal_cross_entropy": 0.3868653051201618,
+        "validation_animal_macro_f1": 0.7222222222222222,
+        "validation_animal_balanced_accuracy": 0.7333333333333334,
+        "validation_animal_qwk": 0.6136363636363635,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "ca32412556f4394104abe2016b1a76e1abe71d367e7b33a247ff5a8473f92a5a"
+        }
+      },
+      {
+        "epoch": 26,
+        "train_weighted_loss": 0.0734394379532239,
+        "validation_animal_cross_entropy": 0.38451863877154546,
+        "validation_animal_macro_f1": 0.638647342995169,
+        "validation_animal_balanced_accuracy": 0.7000000000000001,
+        "validation_animal_qwk": 0.5728643216080402,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "d99daa9e9fae73898de105967356ca4b55d9acd7bce726eae0ce196e7ca0c5e0"
+        }
+      },
+      {
+        "epoch": 27,
+        "train_weighted_loss": 0.034156166445524196,
+        "validation_animal_cross_entropy": 0.46704574692300677,
+        "validation_animal_macro_f1": 0.7222222222222222,
+        "validation_animal_balanced_accuracy": 0.7333333333333334,
+        "validation_animal_qwk": 0.6136363636363635,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "cc410e79afc287db734e15a4945aba05b487e00368c1e5251690710d3692fc71"
+        }
+      },
+      {
+        "epoch": 28,
+        "train_weighted_loss": 0.05160463993618849,
+        "validation_animal_cross_entropy": 0.3514507049072612,
+        "validation_animal_macro_f1": 0.7222222222222222,
+        "validation_animal_balanced_accuracy": 0.7333333333333334,
+        "validation_animal_qwk": 0.6136363636363635,
+        "train_unit_audit": {
+          "processed_calls": 445,
+          "unique_processed_calls": 445,
+          "batch_count": 56,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 14,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 13.906250018626451,
+          "effective_coefficient_by_class": {
+            "kitten": 4.635416507720947,
+            "adult": 4.635416865348816,
+            "senior": 4.635416645556688
+          },
+          "batch_order_sha256": "180fefe29f60960634295c80f0c8c115b1fbcd9a51b5473b9f2e7868daf948b2"
+        }
+      }
+    ],
+    "train_seconds": 46.88183850000132,
+    "peak_vram_bytes": 991162368,
+    "parameters": {
+      "model_total_parameters": 85466115,
+      "trainable_total_parameters": 201987,
+      "trainable_head_parameters": 99075,
+      "trainable_adaptation_parameters": 102912,
+      "trainable_adaptation_tensors": 98,
+      "adaptation_parameters": [
+        {
+          "name": "embeddings.patch_embeddings.projection.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.0.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.1.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.2.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.3.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.4.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.5.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.6.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.7.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.8.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.9.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.10.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.11.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "layernorm.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        }
+      ],
+      "forbidden_trainable_parameters": [],
+      "expected_reference_adaptation_parameters": null
+    },
+    "maximum_trainable_parameter_updates": {
+      "ast.embeddings.patch_embeddings.projection.bias": 0.011264912784099579,
+      "ast.encoder.layer.0.attention.attention.query.bias": 0.011448293924331665,
+      "ast.encoder.layer.0.attention.attention.key.bias": 0.004561481531709433,
+      "ast.encoder.layer.0.attention.attention.value.bias": 0.01240583136677742,
+      "ast.encoder.layer.0.attention.output.dense.bias": 0.01112261414527893,
+      "ast.encoder.layer.0.intermediate.dense.bias": 0.013202428817749023,
+      "ast.encoder.layer.0.output.dense.bias": 0.010470747947692871,
+      "ast.encoder.layer.0.layernorm_before.bias": 0.012536481022834778,
+      "ast.encoder.layer.0.layernorm_after.bias": 0.010510660707950592,
+      "ast.encoder.layer.1.attention.attention.query.bias": 0.010845914483070374,
+      "ast.encoder.layer.1.attention.attention.key.bias": 0.005114764906466007,
+      "ast.encoder.layer.1.attention.attention.value.bias": 0.011816337704658508,
+      "ast.encoder.layer.1.attention.output.dense.bias": 0.010788500308990479,
+      "ast.encoder.layer.1.intermediate.dense.bias": 0.01689046621322632,
+      "ast.encoder.layer.1.output.dense.bias": 0.010073363780975342,
+      "ast.encoder.layer.1.layernorm_before.bias": 0.010643437504768372,
+      "ast.encoder.layer.1.layernorm_after.bias": 0.011925684288144112,
+      "ast.encoder.layer.2.attention.attention.query.bias": 0.010539405047893524,
+      "ast.encoder.layer.2.attention.attention.key.bias": 0.005627328995615244,
+      "ast.encoder.layer.2.attention.attention.value.bias": 0.010930338874459267,
+      "ast.encoder.layer.2.attention.output.dense.bias": 0.010306119918823242,
+      "ast.encoder.layer.2.intermediate.dense.bias": 0.012942314147949219,
+      "ast.encoder.layer.2.output.dense.bias": 0.009942501783370972,
+      "ast.encoder.layer.2.layernorm_before.bias": 0.01106259971857071,
+      "ast.encoder.layer.2.layernorm_after.bias": 0.00985226035118103,
+      "ast.encoder.layer.3.attention.attention.query.bias": 0.012059498578310013,
+      "ast.encoder.layer.3.attention.attention.key.bias": 0.005807589273899794,
+      "ast.encoder.layer.3.attention.attention.value.bias": 0.01157289557158947,
+      "ast.encoder.layer.3.attention.output.dense.bias": 0.010839730501174927,
+      "ast.encoder.layer.3.intermediate.dense.bias": 0.011859536170959473,
+      "ast.encoder.layer.3.output.dense.bias": 0.011187978088855743,
+      "ast.encoder.layer.3.layernorm_before.bias": 0.011066884733736515,
+      "ast.encoder.layer.3.layernorm_after.bias": 0.010443627834320068,
+      "ast.encoder.layer.4.attention.attention.query.bias": 0.010741204023361206,
+      "ast.encoder.layer.4.attention.attention.key.bias": 0.005382467992603779,
+      "ast.encoder.layer.4.attention.attention.value.bias": 0.010934587568044662,
+      "ast.encoder.layer.4.attention.output.dense.bias": 0.012746632099151611,
+      "ast.encoder.layer.4.intermediate.dense.bias": 0.010659337043762207,
+      "ast.encoder.layer.4.output.dense.bias": 0.011155650019645691,
+      "ast.encoder.layer.4.layernorm_before.bias": 0.012312553822994232,
+      "ast.encoder.layer.4.layernorm_after.bias": 0.011315390467643738,
+      "ast.encoder.layer.5.attention.attention.query.bias": 0.011664681136608124,
+      "ast.encoder.layer.5.attention.attention.key.bias": 0.005174435209482908,
+      "ast.encoder.layer.5.attention.attention.value.bias": 0.010183630511164665,
+      "ast.encoder.layer.5.attention.output.dense.bias": 0.011013731360435486,
+      "ast.encoder.layer.5.intermediate.dense.bias": 0.01263117790222168,
+      "ast.encoder.layer.5.output.dense.bias": 0.01098962128162384,
+      "ast.encoder.layer.5.layernorm_before.bias": 0.009415782988071442,
+      "ast.encoder.layer.5.layernorm_after.bias": 0.009969431906938553,
+      "ast.encoder.layer.6.attention.attention.query.bias": 0.012137414887547493,
+      "ast.encoder.layer.6.attention.attention.key.bias": 0.005291372537612915,
+      "ast.encoder.layer.6.attention.attention.value.bias": 0.009000299498438835,
+      "ast.encoder.layer.6.attention.output.dense.bias": 0.011211276054382324,
+      "ast.encoder.layer.6.intermediate.dense.bias": 0.010492444038391113,
+      "ast.encoder.layer.6.output.dense.bias": 0.00926460325717926,
+      "ast.encoder.layer.6.layernorm_before.bias": 0.011074867099523544,
+      "ast.encoder.layer.6.layernorm_after.bias": 0.011015117168426514,
+      "ast.encoder.layer.7.attention.attention.query.bias": 0.010050127282738686,
+      "ast.encoder.layer.7.attention.attention.key.bias": 0.004782232455909252,
+      "ast.encoder.layer.7.attention.attention.value.bias": 0.010708115994930267,
+      "ast.encoder.layer.7.attention.output.dense.bias": 0.01033097505569458,
+      "ast.encoder.layer.7.intermediate.dense.bias": 0.012635350227355957,
+      "ast.encoder.layer.7.output.dense.bias": 0.01073068380355835,
+      "ast.encoder.layer.7.layernorm_before.bias": 0.00914853811264038,
+      "ast.encoder.layer.7.layernorm_after.bias": 0.010532796382904053,
+      "ast.encoder.layer.8.attention.attention.query.bias": 0.012677228078246117,
+      "ast.encoder.layer.8.attention.attention.key.bias": 0.006873995065689087,
+      "ast.encoder.layer.8.attention.attention.value.bias": 0.012574944645166397,
+      "ast.encoder.layer.8.attention.output.dense.bias": 0.010348767042160034,
+      "ast.encoder.layer.8.intermediate.dense.bias": 0.011220961809158325,
+      "ast.encoder.layer.8.output.dense.bias": 0.00928458571434021,
+      "ast.encoder.layer.8.layernorm_before.bias": 0.012885630130767822,
+      "ast.encoder.layer.8.layernorm_after.bias": 0.011169373989105225,
+      "ast.encoder.layer.9.attention.attention.query.bias": 0.010821226984262466,
+      "ast.encoder.layer.9.attention.attention.key.bias": 0.005144900176674128,
+      "ast.encoder.layer.9.attention.attention.value.bias": 0.01021941751241684,
+      "ast.encoder.layer.9.attention.output.dense.bias": 0.00786576047539711,
+      "ast.encoder.layer.9.intermediate.dense.bias": 0.009675204753875732,
+      "ast.encoder.layer.9.output.dense.bias": 0.0066639333963394165,
+      "ast.encoder.layer.9.layernorm_before.bias": 0.010366172529757023,
+      "ast.encoder.layer.9.layernorm_after.bias": 0.008727490901947021,
+      "ast.encoder.layer.10.attention.attention.query.bias": 0.012131363153457642,
+      "ast.encoder.layer.10.attention.attention.key.bias": 0.00669690128415823,
+      "ast.encoder.layer.10.attention.attention.value.bias": 0.008641958236694336,
+      "ast.encoder.layer.10.attention.output.dense.bias": 0.008431054651737213,
+      "ast.encoder.layer.10.intermediate.dense.bias": 0.010300636291503906,
+      "ast.encoder.layer.10.output.dense.bias": 0.011454224586486816,
+      "ast.encoder.layer.10.layernorm_before.bias": 0.0074732303619384766,
+      "ast.encoder.layer.10.layernorm_after.bias": 0.009617507457733154,
+      "ast.encoder.layer.11.attention.attention.query.bias": 0.011993523687124252,
+      "ast.encoder.layer.11.attention.attention.key.bias": 0.004620634485036135,
+      "ast.encoder.layer.11.attention.attention.value.bias": 0.006041985936462879,
+      "ast.encoder.layer.11.attention.output.dense.bias": 0.006435126066207886,
+      "ast.encoder.layer.11.intermediate.dense.bias": 0.009321928024291992,
+      "ast.encoder.layer.11.output.dense.bias": 0.007695943117141724,
+      "ast.encoder.layer.11.layernorm_before.bias": 0.006599679589271545,
+      "ast.encoder.layer.11.layernorm_after.bias": 0.008485614322125912,
+      "ast.layernorm.bias": 0.007271207869052887,
+      "head.network.0.weight": 0.1485794335603714,
+      "head.network.0.bias": 0.09317360818386078,
+      "head.network.2.weight": 0.1780790090560913,
+      "head.network.2.bias": 0.29743966460227966,
+      "head.network.4.weight": 0.1736930012702942,
+      "head.network.4.bias": 0.2743076682090759
+    },
+    "updated_head_parameter_tensors": 6,
+    "updated_adaptation_parameter_tensors": 98,
+    "target_weight_audit": {
+      "calls": 445,
+      "weight_total": 445.0,
+      "weight_mean": 1.0,
+      "weight_min": 0.5981183052062988,
+      "weight_max": 2.2474746704101562,
+      "weight_by_class": {
+        "kitten": 148.33331298828125,
+        "adult": 148.33334350585938,
+        "senior": 148.33334350585938
+      },
+      "weight_by_cat": {
+        "000A": 23.326610565185547,
+        "001A": 10.190839767456055,
+        "002A": 7.775537967681885,
+        "003A": 2.3924732208251953,
+        "004A": 0.5981183052062988,
+        "008A": 5.6615777015686035,
+        "009A": 2.3924732208251953,
+        "014A": 1.7943549156188965,
+        "014B": 22.474746704101562,
+        "015A": 7.926208972930908,
+        "016A": 10.190839767456055,
+        "019B": 0.5981183052062988,
+        "020A": 11.962364196777344,
+        "022A": 5.3830647468566895,
+        "023A": 3.588709831237793,
+        "023B": 2.3924732208251953,
+        "025A": 11.323155403137207,
+        "025B": 1.1962366104125977,
+        "025C": 4.529262065887451,
+        "026A": 2.3924732208251953,
+        "027A": 4.186828136444092,
+        "028A": 12.45547103881836,
+        "029A": 8.97177505493164,
+        "031A": 4.186828136444092,
+        "034A": 1.7943549156188965,
+        "035A": 1.1962366104125977,
+        "038A": 1.1962366104125977,
+        "039A": 6.793893337249756,
+        "040A": 22.474746704101562,
+        "043A": 2.2474746704101562,
+        "044A": 11.237373352050781,
+        "045A": 8.989898681640625,
+        "047A": 49.44444274902344,
+        "051B": 10.190839767456055,
+        "052A": 1.1962366104125977,
+        "054A": 2.2646310329437256,
+        "059A": 11.323155403137207,
+        "060A": 3.396946430206299,
+        "061A": 2.2646310329437256,
+        "062A": 1.7943549156188965,
+        "063A": 6.579301357269287,
+        "064A": 0.5981183052062988,
+        "065A": 5.3830647468566895,
+        "067A": 6.579301357269287,
+        "068A": 4.784946441650391,
+        "069A": 1.1962366104125977,
+        "070A": 2.990591526031494,
+        "071A": 5.3830647468566895,
+        "074A": 9.569892883300781,
+        "075A": 2.990591526031494,
+        "076A": 0.5981183052062988,
+        "087A": 1.1962366104125977,
+        "090A": 1.1323155164718628,
+        "091A": 1.1323155164718628,
+        "094A": 5.6615777015686035,
+        "095A": 4.186828136444092,
+        "099A": 3.588709831237793,
+        "100A": 0.5981183052062988,
+        "101A": 13.587786674499512,
+        "105A": 1.7943549156188965,
+        "106A": 14.720102310180664,
+        "108A": 5.6615777015686035,
+        "110A": 2.2474746704101562,
+        "111A": 26.969696044921875,
+        "115A": 2.2474746704101562,
+        "117A": 7.926208972930908
+      }
+    },
+    "checkpoint_audit": null
+  },
+  "outer": {
+    "epochs": 20,
+    "history": [
+      {
+        "epoch": 1,
+        "train_weighted_loss": 0.727042479696672,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "df67f3b91e20a75f8e08d93ab7f157b7ce226ecf88fb820533fd4f6a706bc7cd"
+        }
+      },
+      {
+        "epoch": 2,
+        "train_weighted_loss": 0.4725999739453323,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "af6cf3568cac77ecd4f801675460a24b50773e8fe6cc2e8577f487f275f967c6"
+        }
+      },
+      {
+        "epoch": 3,
+        "train_weighted_loss": 0.34076046510964014,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "3426bf870979fc7c5b85c6fb87ea872d7dfc0de49b4457de978dbe36c28b0483"
+        }
+      },
+      {
+        "epoch": 4,
+        "train_weighted_loss": 0.30060401630224987,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "a7a38c5833688ff6f49b84ef63c4ee922ee91a775b2305378c71a391cadcb58d"
+        }
+      },
+      {
+        "epoch": 5,
+        "train_weighted_loss": 0.2201361106434096,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "2d7e9163a2997a03da7c3943fdde95556c5660aeefa9022963de00832f07a1e8"
+        }
+      },
+      {
+        "epoch": 6,
+        "train_weighted_loss": 0.1951689900273349,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "284281d0d4e0d407f5caacf7164a509b5cd05568658ece9dfe91a0a4c234ea48"
+        }
+      },
+      {
+        "epoch": 7,
+        "train_weighted_loss": 0.22063471990907832,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "88c54dcecfef84e23e44be5a8573221a4eeb79df93bada6e4d7e784b44406b0d"
+        }
+      },
+      {
+        "epoch": 8,
+        "train_weighted_loss": 0.14010210476286944,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "3221651a257a3385bec57ea0f66a18fcc18b37e509e46e9eb2c8a47a73713b33"
+        }
+      },
+      {
+        "epoch": 9,
+        "train_weighted_loss": 0.17567758259816793,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "c81e090592a8bddc0571c43c93b7e4daaf3a275f1ec3c006e7798d61f833dc90"
+        }
+      },
+      {
+        "epoch": 10,
+        "train_weighted_loss": 0.10857574773060617,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "95ccebb7c5048a20656b84c3a7296a789d59201eeaf9f07a7bab92dafb172bf8"
+        }
+      },
+      {
+        "epoch": 11,
+        "train_weighted_loss": 0.10705744274599178,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "5e1d21c9201828697cac43815c5a0868261b4f3924ac1660543a2691826fd56f"
+        }
+      },
+      {
+        "epoch": 12,
+        "train_weighted_loss": 0.12356636124355887,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "4290534d81b95edae64b1d29c89f28abad2365a921f24ef030017a98e0f7f35e"
+        }
+      },
+      {
+        "epoch": 13,
+        "train_weighted_loss": 0.07840148421789367,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "7b113df27743eed6f247317e61109a5a84f1a8a994b5a5f6f105ca66649d34cc"
+        }
+      },
+      {
+        "epoch": 14,
+        "train_weighted_loss": 0.09475966430436074,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "f2c215d898368f80b01c186392da65dfaba81a5bacb1eb29913e6e411002d082"
+        }
+      },
+      {
+        "epoch": 15,
+        "train_weighted_loss": 0.0874761608570081,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "b109456c0d479c73c1b28aa4ac23939c5521f164944e837644f845582dfbbf67"
+        }
+      },
+      {
+        "epoch": 16,
+        "train_weighted_loss": 0.10909668921896479,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "2bd8714274dbc76e978a3771ec216d7fe5371e190590a98a426585eb3878b29d"
+        }
+      },
+      {
+        "epoch": 17,
+        "train_weighted_loss": 0.09169632790622582,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "93db65977f9dfc3714010ee7866e955acc89d18a918df6b83ccfc2eb42ec6d88"
+        }
+      },
+      {
+        "epoch": 18,
+        "train_weighted_loss": 0.039244400241077705,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "b196083ac390ee72b5b6db6dc488dd14ec7d3f53d90fa06a397ef9dd030617b8"
+        }
+      },
+      {
+        "epoch": 19,
+        "train_weighted_loss": 0.05527269126729768,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "ebb398106ecd87dcf06ec7aa86cbc2a50c2f7f029a1029874794cd05878fba3a"
+        }
+      },
+      {
+        "epoch": 20,
+        "train_weighted_loss": 0.056269743616437405,
+        "train_unit_audit": {
+          "processed_calls": 569,
+          "unique_processed_calls": 569,
+          "batch_count": 72,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            2
+          ],
+          "optimizer_steps": 18,
+          "final_window_calls": 25,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 17.78124958463013,
+          "effective_coefficient_by_class": {
+            "kitten": 5.927083253860474,
+            "adult": 5.9270830769091845,
+            "senior": 5.927083253860474
+          },
+          "batch_order_sha256": "5e77c5b6fffe654877cb66d4c45f53b1c4db2081784763e31571b78e24e83ce6"
+        }
+      }
+    ],
+    "test_animal_cross_entropy": 0.8194344873174434,
+    "test_animal_metrics": {
+      "macro_f1": 0.6032258064516128,
+      "balanced_accuracy": 0.587037037037037,
+      "quadratic_weighted_kappa": 0.5800000000000001,
+      "plain_accuracy": 0.6785714285714286,
+      "per_class": {
+        "kitten": {
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4,
+          "support": 4
+        },
+        "adult": {
+          "precision": 0.6875,
+          "recall": 0.7333333333333333,
+          "f1": 0.7096774193548386,
+          "support": 15
+        },
+        "senior": {
+          "precision": 0.6363636363636364,
+          "recall": 0.7777777777777778,
+          "f1": 0.7000000000000001,
+          "support": 9
+        }
+      },
+      "confusion_matrix": [
+        [
+          1,
+          3,
+          0
+        ],
+        [
+          0,
+          11,
+          4
+        ],
+        [
+          0,
+          2,
+          7
+        ]
+      ],
+      "n": 28
+    },
+    "train_and_predict_seconds": 38.521405600000435,
+    "peak_vram_bytes": 990416896,
+    "parameters": {
+      "model_total_parameters": 85466115,
+      "trainable_total_parameters": 201987,
+      "trainable_head_parameters": 99075,
+      "trainable_adaptation_parameters": 102912,
+      "trainable_adaptation_tensors": 98,
+      "adaptation_parameters": [
+        {
+          "name": "embeddings.patch_embeddings.projection.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.0.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.1.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.2.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.3.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.4.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.5.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.6.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.7.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.8.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.9.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.10.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.attention.attention.query.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.attention.attention.key.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.attention.attention.value.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.attention.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.intermediate.dense.bias",
+          "shape": [
+            3072
+          ],
+          "numel": 3072
+        },
+        {
+          "name": "encoder.layer.11.output.dense.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.layernorm_before.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.layernorm_after.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "layernorm.bias",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        }
+      ],
+      "forbidden_trainable_parameters": [],
+      "expected_reference_adaptation_parameters": null
+    },
+    "target_weight_audit": {
+      "calls": 569,
+      "weight_total": 569.0,
+      "weight_mean": 1.0,
+      "weight_min": 0.6343366503715515,
+      "weight_max": 2.6342592239379883,
+      "weight_by_class": {
+        "kitten": 189.66665649414062,
+        "adult": 189.66665649414062,
+        "senior": 189.66668701171875
+      },
+      "weight_by_cat": {
+        "000A": 24.73912811279297,
+        "001A": 8.621212005615234,
+        "002A": 8.246376037597656,
+        "003A": 2.537346601486206,
+        "004A": 0.6343366503715515,
+        "006A": 1.9030098915100098,
+        "007A": 3.8060200214385986,
+        "008A": 4.789562225341797,
+        "009A": 2.537346601486206,
+        "011A": 1.9158248901367188,
+        "014A": 1.9030098915100098,
+        "014B": 26.34259033203125,
+        "015A": 6.705387115478516,
+        "016A": 8.621212005615234,
+        "018A": 1.268673300743103,
+        "019A": 10.783722877502441,
+        "019B": 0.6343366503715515,
+        "020A": 12.686732292175293,
+        "022A": 5.709029674530029,
+        "023A": 3.8060200214385986,
+        "023B": 2.537346601486206,
+        "025A": 9.579124450683594,
+        "025B": 1.268673300743103,
+        "025C": 3.8316497802734375,
+        "026A": 2.537346601486206,
+        "026B": 0.6343366503715515,
+        "026C": 0.6343366503715515,
+        "027A": 4.440356731414795,
+        "028A": 10.537036895751953,
+        "029A": 9.51504898071289,
+        "031A": 4.440356731414795,
+        "032A": 1.268673300743103,
+        "033A": 5.709029674530029,
+        "034A": 1.9030098915100098,
+        "035A": 1.268673300743103,
+        "038A": 1.268673300743103,
+        "039A": 5.747474670410156,
+        "040A": 26.34259033203125,
+        "043A": 2.6342592239379883,
+        "044A": 13.171296119689941,
+        "045A": 10.537036895751953,
+        "047A": 57.953697204589844,
+        "048A": 2.6342592239379883,
+        "050A": 13.171296119689941,
+        "051B": 8.621212005615234,
+        "052A": 1.268673300743103,
+        "054A": 1.9158248901367188,
+        "056A": 2.873737335205078,
+        "057A": 16.28451156616211,
+        "059A": 9.579124450683594,
+        "060A": 2.873737335205078,
+        "061A": 1.9158248901367188,
+        "062A": 1.9030098915100098,
+        "063A": 6.977702617645264,
+        "064A": 0.6343366503715515,
+        "065A": 5.709029674530029,
+        "067A": 6.977702617645264,
+        "068A": 5.074693202972412,
+        "069A": 1.268673300743103,
+        "070A": 3.1716833114624023,
+        "071A": 5.709029674530029,
+        "072A": 5.709029674530029,
+        "074A": 10.149386405944824,
+        "075A": 3.1716833114624023,
+        "076A": 0.6343366503715515,
+        "087A": 1.268673300743103,
+        "088A": 0.6343366503715515,
+        "090A": 0.9579124450683594,
+        "091A": 0.9579124450683594,
+        "094A": 4.789562225341797,
+        "095A": 4.440356731414795,
+        "099A": 3.8060200214385986,
+        "100A": 0.6343366503715515,
+        "101A": 11.494949340820312,
+        "103A": 31.61111068725586,
+        "105A": 1.9030098915100098,
+        "106A": 12.452861785888672,
+        "108A": 4.789562225341797,
+        "110A": 2.6342592239379883,
+        "111A": 31.611106872558594,
+        "115A": 2.6342592239379883,
+        "116A": 11.494949340820312,
+        "117A": 6.705387115478516
+      }
+    }
+  }
+}

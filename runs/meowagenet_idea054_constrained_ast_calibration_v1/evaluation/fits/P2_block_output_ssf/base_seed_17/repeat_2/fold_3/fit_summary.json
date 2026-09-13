@@ -1,0 +1,1564 @@
+{
+  "status": "complete",
+  "stage": "idea054_initial_evaluation",
+  "outer_test_accessed": true,
+  "pipeline": "P2_block_output_ssf",
+  "base_seed": 17,
+  "repeat": 2,
+  "outer_fold": 3,
+  "full_seed": 20317,
+  "inner_train_calls": 485,
+  "inner_validation_calls": 137,
+  "outer_test_calls": 170,
+  "selected_epoch": 1,
+  "inner": {
+    "best_epoch": 1,
+    "stopped_epoch": 9,
+    "best_validation_animal_cross_entropy": 0.8735941200253594,
+    "best_validation_animal_metrics": {
+      "macro_f1": 0.6801282051282053,
+      "balanced_accuracy": 0.7666666666666666,
+      "quadratic_weighted_kappa": 0.6304347826086956,
+      "plain_accuracy": 0.6470588235294118,
+      "per_class": {
+        "kitten": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        },
+        "adult": {
+          "precision": 0.8333333333333334,
+          "recall": 0.5,
+          "f1": 0.625,
+          "support": 10
+        },
+        "senior": {
+          "precision": 0.5,
+          "recall": 0.8,
+          "f1": 0.6153846153846154,
+          "support": 5
+        }
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          1,
+          5,
+          4
+        ],
+        [
+          0,
+          1,
+          4
+        ]
+      ],
+      "n": 17
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "train_weighted_loss": 0.6896828519800549,
+        "validation_animal_cross_entropy": 0.8735941200253594,
+        "validation_animal_macro_f1": 0.6801282051282053,
+        "validation_animal_balanced_accuracy": 0.7666666666666666,
+        "validation_animal_qwk": 0.6304347826086956,
+        "train_unit_audit": {
+          "processed_calls": 485,
+          "unique_processed_calls": 485,
+          "batch_count": 61,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 16,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 15.156249912455678,
+          "effective_coefficient_by_class": {
+            "kitten": 5.052083179354668,
+            "adult": 5.052083419635892,
+            "senior": 5.052083313465118
+          },
+          "batch_order_sha256": "ea89d779897defbcf169410645a9802b39e0cfd19786be50f71e5d65f6f103dd"
+        }
+      },
+      {
+        "epoch": 2,
+        "train_weighted_loss": 0.38920151326797564,
+        "validation_animal_cross_entropy": 0.8995833113257184,
+        "validation_animal_macro_f1": 0.8148148148148148,
+        "validation_animal_balanced_accuracy": 0.8333333333333334,
+        "validation_animal_qwk": 0.71900826446281,
+        "train_unit_audit": {
+          "processed_calls": 485,
+          "unique_processed_calls": 485,
+          "batch_count": 61,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 16,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 15.156249912455678,
+          "effective_coefficient_by_class": {
+            "kitten": 5.052083179354668,
+            "adult": 5.052083419635892,
+            "senior": 5.052083313465118
+          },
+          "batch_order_sha256": "9ba76fdea9037bd39ef04bb8f7c5c5d34217e695be62908008084f1263306b66"
+        }
+      },
+      {
+        "epoch": 3,
+        "train_weighted_loss": 0.29411835401183706,
+        "validation_animal_cross_entropy": 0.9332177789463559,
+        "validation_animal_macro_f1": 0.7737556561085972,
+        "validation_animal_balanced_accuracy": 0.8000000000000002,
+        "validation_animal_qwk": 0.6640316205533596,
+        "train_unit_audit": {
+          "processed_calls": 485,
+          "unique_processed_calls": 485,
+          "batch_count": 61,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 16,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 15.156249912455678,
+          "effective_coefficient_by_class": {
+            "kitten": 5.052083179354668,
+            "adult": 5.052083419635892,
+            "senior": 5.052083313465118
+          },
+          "batch_order_sha256": "7f63b3272f50e411b7e8a3fc7cab37f8f020228072920b7d453fcaeafca554f5"
+        }
+      },
+      {
+        "epoch": 4,
+        "train_weighted_loss": 0.21200137707251737,
+        "validation_animal_cross_entropy": 1.0026677075637764,
+        "validation_animal_macro_f1": 0.6650717703349281,
+        "validation_animal_balanced_accuracy": 0.6666666666666666,
+        "validation_animal_qwk": 0.48484848484848486,
+        "train_unit_audit": {
+          "processed_calls": 485,
+          "unique_processed_calls": 485,
+          "batch_count": 61,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 16,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 15.156249912455678,
+          "effective_coefficient_by_class": {
+            "kitten": 5.052083179354668,
+            "adult": 5.052083419635892,
+            "senior": 5.052083313465118
+          },
+          "batch_order_sha256": "b1e985e2b6b2defc55003ad57d9820f370cc4738d22f0726fc3ccbd38bfa351e"
+        }
+      },
+      {
+        "epoch": 5,
+        "train_weighted_loss": 0.1934751108645648,
+        "validation_animal_cross_entropy": 0.9656469034095444,
+        "validation_animal_macro_f1": 0.6650717703349281,
+        "validation_animal_balanced_accuracy": 0.6666666666666666,
+        "validation_animal_qwk": 0.48484848484848486,
+        "train_unit_audit": {
+          "processed_calls": 485,
+          "unique_processed_calls": 485,
+          "batch_count": 61,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 16,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 15.156249912455678,
+          "effective_coefficient_by_class": {
+            "kitten": 5.052083179354668,
+            "adult": 5.052083419635892,
+            "senior": 5.052083313465118
+          },
+          "batch_order_sha256": "ba9f9c1d1ada39e2776815d6933d7de0e21ee4f2531e027e2816b59d3b2e7bc4"
+        }
+      },
+      {
+        "epoch": 6,
+        "train_weighted_loss": 0.15945139300517333,
+        "validation_animal_cross_entropy": 1.0653903354889263,
+        "validation_animal_macro_f1": 0.6650717703349281,
+        "validation_animal_balanced_accuracy": 0.6666666666666666,
+        "validation_animal_qwk": 0.48484848484848486,
+        "train_unit_audit": {
+          "processed_calls": 485,
+          "unique_processed_calls": 485,
+          "batch_count": 61,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 16,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 15.156249912455678,
+          "effective_coefficient_by_class": {
+            "kitten": 5.052083179354668,
+            "adult": 5.052083419635892,
+            "senior": 5.052083313465118
+          },
+          "batch_order_sha256": "cd8324c640acb8eb4081df52b2ceb3035b45fbcb377d8b0592a951922b1a4f95"
+        }
+      },
+      {
+        "epoch": 7,
+        "train_weighted_loss": 0.16521940880454303,
+        "validation_animal_cross_entropy": 0.9790253707282542,
+        "validation_animal_macro_f1": 0.5777777777777778,
+        "validation_animal_balanced_accuracy": 0.5333333333333333,
+        "validation_animal_qwk": 0.3959390862944163,
+        "train_unit_audit": {
+          "processed_calls": 485,
+          "unique_processed_calls": 485,
+          "batch_count": 61,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 16,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 15.156249912455678,
+          "effective_coefficient_by_class": {
+            "kitten": 5.052083179354668,
+            "adult": 5.052083419635892,
+            "senior": 5.052083313465118
+          },
+          "batch_order_sha256": "d40fab45962ee65ac5925842cca5be90b6f4e991df892f9955e559ef1a67988b"
+        }
+      },
+      {
+        "epoch": 8,
+        "train_weighted_loss": 0.11757997701231489,
+        "validation_animal_cross_entropy": 0.965011079122411,
+        "validation_animal_macro_f1": 0.7000000000000001,
+        "validation_animal_balanced_accuracy": 0.7000000000000001,
+        "validation_animal_qwk": 0.5363636363636364,
+        "train_unit_audit": {
+          "processed_calls": 485,
+          "unique_processed_calls": 485,
+          "batch_count": 61,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 16,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 15.156249912455678,
+          "effective_coefficient_by_class": {
+            "kitten": 5.052083179354668,
+            "adult": 5.052083419635892,
+            "senior": 5.052083313465118
+          },
+          "batch_order_sha256": "39dc74f6918e808b2dd745c0c879dc98650ad95df61cf0e939fa86394dac9160"
+        }
+      },
+      {
+        "epoch": 9,
+        "train_weighted_loss": 0.10862510191921017,
+        "validation_animal_cross_entropy": 1.0733460162953934,
+        "validation_animal_macro_f1": 0.7000000000000001,
+        "validation_animal_balanced_accuracy": 0.7000000000000001,
+        "validation_animal_qwk": 0.5363636363636364,
+        "train_unit_audit": {
+          "processed_calls": 485,
+          "unique_processed_calls": 485,
+          "batch_count": 61,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            5
+          ],
+          "optimizer_steps": 16,
+          "final_window_calls": 29,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 15.156249912455678,
+          "effective_coefficient_by_class": {
+            "kitten": 5.052083179354668,
+            "adult": 5.052083419635892,
+            "senior": 5.052083313465118
+          },
+          "batch_order_sha256": "b331bc66ff876de02d98152a6cb59b180bf6d4e499fe6c4824d9af6c1a864dc7"
+        }
+      }
+    ],
+    "train_seconds": 15.291445200000453,
+    "peak_vram_bytes": 1081339904,
+    "parameters": {
+      "model_total_parameters": 85484547,
+      "trainable_total_parameters": 117507,
+      "trainable_head_parameters": 99075,
+      "trainable_adaptation_parameters": 18432,
+      "trainable_adaptation_tensors": 24,
+      "adaptation_parameters": [
+        {
+          "name": "encoder.layer.0.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        }
+      ],
+      "forbidden_trainable_parameters": [],
+      "expected_reference_adaptation_parameters": null
+    },
+    "maximum_trainable_parameter_updates": {
+      "ast.encoder.layer.0.ssf_scale": 0.008063435554504395,
+      "ast.encoder.layer.0.ssf_shift": 0.0077901678159832954,
+      "ast.encoder.layer.1.ssf_scale": 0.007044434547424316,
+      "ast.encoder.layer.1.ssf_shift": 0.008749802596867085,
+      "ast.encoder.layer.2.ssf_scale": 0.007739424705505371,
+      "ast.encoder.layer.2.ssf_shift": 0.0070348698645830154,
+      "ast.encoder.layer.3.ssf_scale": 0.010001659393310547,
+      "ast.encoder.layer.3.ssf_shift": 0.0071678063832223415,
+      "ast.encoder.layer.4.ssf_scale": 0.008340597152709961,
+      "ast.encoder.layer.4.ssf_shift": 0.007141110021620989,
+      "ast.encoder.layer.5.ssf_scale": 0.006811320781707764,
+      "ast.encoder.layer.5.ssf_shift": 0.006942410487681627,
+      "ast.encoder.layer.6.ssf_scale": 0.008925318717956543,
+      "ast.encoder.layer.6.ssf_shift": 0.007654949557036161,
+      "ast.encoder.layer.7.ssf_scale": 0.009807229042053223,
+      "ast.encoder.layer.7.ssf_shift": 0.007489899173378944,
+      "ast.encoder.layer.8.ssf_scale": 0.009203553199768066,
+      "ast.encoder.layer.8.ssf_shift": 0.007375036366283894,
+      "ast.encoder.layer.9.ssf_scale": 0.007968425750732422,
+      "ast.encoder.layer.9.ssf_shift": 0.006719108670949936,
+      "ast.encoder.layer.10.ssf_scale": 0.008059978485107422,
+      "ast.encoder.layer.10.ssf_shift": 0.006769523024559021,
+      "ast.encoder.layer.11.ssf_scale": 0.00684511661529541,
+      "ast.encoder.layer.11.ssf_shift": 0.007307163439691067,
+      "head.network.0.weight": 0.12175668776035309,
+      "head.network.0.bias": 0.077691450715065,
+      "head.network.2.weight": 0.097420334815979,
+      "head.network.2.bias": 0.17908431589603424,
+      "head.network.4.weight": 0.11765596270561218,
+      "head.network.4.bias": 0.1918274164199829
+    },
+    "updated_head_parameter_tensors": 6,
+    "updated_adaptation_parameter_tensors": 24,
+    "target_weight_audit": {
+      "calls": 485,
+      "weight_total": 485.0,
+      "weight_mean": 1.0,
+      "weight_min": 0.6545209288597107,
+      "weight_max": 1.8798449039459229,
+      "weight_by_class": {
+        "kitten": 161.6667022705078,
+        "adult": 161.66665649414062,
+        "senior": 161.66668701171875
+      },
+      "weight_by_cat": {
+        "001A": 9.572368621826172,
+        "002A": 8.508771896362305,
+        "003A": 2.6180837154388428,
+        "005A": 5.890688419342041,
+        "006A": 1.9635627269744873,
+        "010A": 1.9635627269744873,
+        "011A": 2.127192974090576,
+        "013B": 5.2361674308776855,
+        "014A": 1.9635627269744873,
+        "016A": 9.572368621826172,
+        "018A": 1.3090418577194214,
+        "019A": 11.126855850219727,
+        "020A": 13.090418815612793,
+        "022A": 5.890688419342041,
+        "023A": 3.9271256923675537,
+        "023B": 2.6180837154388428,
+        "024A": 1.063596487045288,
+        "028A": 11.699562072753906,
+        "031A": 4.58164644241333,
+        "032A": 1.3090418577194214,
+        "033A": 5.890688419342041,
+        "034A": 1.9635627269744873,
+        "036A": 4.58164644241333,
+        "037A": 1.3090418577194214,
+        "038A": 1.3090418577194214,
+        "041A": 1.8798449039459229,
+        "042A": 20.678293228149414,
+        "043A": 1.8798449039459229,
+        "045A": 7.519379615783691,
+        "046A": 84.593017578125,
+        "050A": 9.399224281311035,
+        "051B": 9.572368621826172,
+        "052A": 1.3090418577194214,
+        "054A": 2.127192974090576,
+        "055A": 12.763158798217773,
+        "059A": 10.635965347290039,
+        "060A": 3.1907894611358643,
+        "062A": 1.9635627269744873,
+        "063A": 7.199730396270752,
+        "065A": 5.890688419342041,
+        "066A": 0.6545209288597107,
+        "067A": 7.199730396270752,
+        "068A": 5.2361674308776855,
+        "070A": 3.2726047039031982,
+        "071A": 5.890688419342041,
+        "072A": 5.890688419342041,
+        "074A": 10.472334861755371,
+        "076A": 0.6545209288597107,
+        "090A": 1.063596487045288,
+        "093A": 2.127192974090576,
+        "094A": 5.3179826736450195,
+        "095A": 4.58164644241333,
+        "096A": 0.6545209288597107,
+        "097B": 9.16329288482666,
+        "099A": 3.9271256923675537,
+        "100A": 0.6545209288597107,
+        "101A": 12.763158798217773,
+        "103A": 35.09868240356445,
+        "104A": 4.254385948181152,
+        "108A": 5.3179826736450195,
+        "109A": 9.399224281311035,
+        "110A": 1.8798449039459229,
+        "111A": 22.558137893676758,
+        "113A": 3.1907894611358643,
+        "115A": 1.8798449039459229,
+        "116A": 12.763158798217773,
+        "117A": 7.445176124572754
+      }
+    },
+    "checkpoint_audit": null
+  },
+  "outer": {
+    "epochs": 1,
+    "history": [
+      {
+        "epoch": 1,
+        "train_weighted_loss": 0.6886520630777717,
+        "train_unit_audit": {
+          "processed_calls": 622,
+          "unique_processed_calls": 622,
+          "batch_count": 78,
+          "batch_sizes": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            6
+          ],
+          "optimizer_steps": 20,
+          "final_window_calls": 30,
+          "final_window_is_partial": true,
+          "effective_coefficient_total": 19.437500409781933,
+          "effective_coefficient_by_class": {
+            "kitten": 6.479166850447655,
+            "adult": 6.479166757315397,
+            "senior": 6.479166802018881
+          },
+          "batch_order_sha256": "b341b240f1bfb66d4a39bc2dd93d210bce0451f51faa2c60aecfa1416a9d4932"
+        }
+      }
+    ],
+    "test_animal_cross_entropy": 0.871525899859648,
+    "test_animal_metrics": {
+      "macro_f1": 0.796092796092796,
+      "balanced_accuracy": 0.8518518518518517,
+      "quadratic_weighted_kappa": 0.7545454545454545,
+      "plain_accuracy": 0.7777777777777778,
+      "per_class": {
+        "kitten": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.8571428571428571,
+          "support": 3
+        },
+        "adult": {
+          "precision": 0.9090909090909091,
+          "recall": 0.6666666666666666,
+          "f1": 0.7692307692307692,
+          "support": 15
+        },
+        "senior": {
+          "precision": 0.6666666666666666,
+          "recall": 0.8888888888888888,
+          "f1": 0.761904761904762,
+          "support": 9
+        }
+      },
+      "confusion_matrix": [
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          1,
+          10,
+          4
+        ],
+        [
+          0,
+          1,
+          8
+        ]
+      ],
+      "n": 27
+    },
+    "train_and_predict_seconds": 2.1731224000031943,
+    "peak_vram_bytes": 1080912896,
+    "parameters": {
+      "model_total_parameters": 85484547,
+      "trainable_total_parameters": 117507,
+      "trainable_head_parameters": 99075,
+      "trainable_adaptation_parameters": 18432,
+      "trainable_adaptation_tensors": 24,
+      "adaptation_parameters": [
+        {
+          "name": "encoder.layer.0.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.0.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.1.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.2.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.3.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.4.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.5.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.6.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.7.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.8.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.9.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.10.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.ssf_scale",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        },
+        {
+          "name": "encoder.layer.11.ssf_shift",
+          "shape": [
+            768
+          ],
+          "numel": 768
+        }
+      ],
+      "forbidden_trainable_parameters": [],
+      "expected_reference_adaptation_parameters": null
+    },
+    "target_weight_audit": {
+      "calls": 622,
+      "weight_total": 622.0,
+      "weight_mean": 1.0,
+      "weight_min": 0.6499477624893188,
+      "weight_max": 1.7570621967315674,
+      "weight_by_class": {
+        "kitten": 207.3333740234375,
+        "adult": 207.33331298828125,
+        "senior": 207.33334350585938
+      },
+      "weight_by_cat": {
+        "000B": 12.349008560180664,
+        "001A": 10.08648681640625,
+        "002A": 8.449320793151855,
+        "002B": 19.49843406677246,
+        "003A": 2.5997910499572754,
+        "005A": 5.84952974319458,
+        "006A": 1.9498432874679565,
+        "008A": 5.603603839874268,
+        "009A": 2.5997910499572754,
+        "010A": 1.9498432874679565,
+        "011A": 2.241441488265991,
+        "013B": 5.199582099914551,
+        "014A": 1.9498432874679565,
+        "015A": 7.845045566558838,
+        "016A": 10.08648681640625,
+        "018A": 1.2998955249786377,
+        "019A": 11.049112319946289,
+        "019B": 0.6499477624893188,
+        "020A": 12.998956680297852,
+        "022A": 5.84952974319458,
+        "023A": 3.899686336517334,
+        "023B": 2.5997910499572754,
+        "024A": 1.1207207441329956,
+        "026B": 0.6499477624893188,
+        "026C": 0.6499477624893188,
+        "027A": 4.549633979797363,
+        "028A": 12.32792854309082,
+        "031A": 4.549633979797363,
+        "032A": 1.2998955249786377,
+        "033A": 5.84952974319458,
+        "034A": 1.9498432874679565,
+        "035A": 1.2998955249786377,
+        "036A": 4.549633979797363,
+        "037A": 1.2998955249786377,
+        "038A": 1.2998955249786377,
+        "039A": 6.724324703216553,
+        "040A": 17.570621490478516,
+        "041A": 1.7570621967315674,
+        "042A": 19.32768440246582,
+        "043A": 1.7570621967315674,
+        "045A": 7.0282487869262695,
+        "046A": 79.06781005859375,
+        "047A": 38.655364990234375,
+        "050A": 8.785310745239258,
+        "051A": 13.448649406433105,
+        "051B": 10.08648681640625,
+        "052A": 1.2998955249786377,
+        "054A": 2.241441488265991,
+        "055A": 13.448649406433105,
+        "058A": 3.3621621131896973,
+        "059A": 11.207207679748535,
+        "060A": 3.3621621131896973,
+        "062A": 1.9498432874679565,
+        "063A": 7.149425029754639,
+        "065A": 5.84952974319458,
+        "066A": 0.6499477624893188,
+        "067A": 7.149425029754639,
+        "068A": 5.199582099914551,
+        "069A": 1.2998955249786377,
+        "070A": 3.2497386932373047,
+        "071A": 5.84952974319458,
+        "072A": 5.84952974319458,
+        "074A": 10.399164199829102,
+        "075A": 3.2497386932373047,
+        "076A": 0.6499477624893188,
+        "090A": 1.1207207441329956,
+        "093A": 2.241441488265991,
+        "094A": 5.603603839874268,
+        "095A": 4.549633979797363,
+        "096A": 0.6499477624893188,
+        "097B": 9.099268913269043,
+        "099A": 3.899686336517334,
+        "100A": 0.6499477624893188,
+        "101A": 13.448649406433105,
+        "103A": 36.98378372192383,
+        "104A": 4.482882976531982,
+        "108A": 5.603603839874268,
+        "109A": 8.785310745239258,
+        "110A": 1.7570621967315674,
+        "111A": 21.084747314453125,
+        "113A": 3.3621621131896973,
+        "115A": 1.7570621967315674,
+        "116A": 13.448649406433105,
+        "117A": 7.845045566558838
+      }
+    }
+  }
+}

@@ -362,6 +362,28 @@ the tuned frozen AST remains the reference, and the ordered workflow proceeds
 to constrained LayerNorm / SSF / BitFit calibration. Conditional feature fusion
 remains available as a later independent idea.
 
+IDEA-054 constrained AST calibration has completed its inner-only smoke,
+execution lock, and 48 seed-17 outer fits:
+
+- Idea Card: `plan/IDEA-054_constrained_AST_calibration.md`;
+- executable protocol:
+  `configs/protocol/meowagenet_idea054_constrained_ast_calibration_v1.json`;
+- independent runner:
+  `scripts/run_meowagenet_idea054_constrained_ast_calibration.py`;
+- Chinese result report:
+  `reports/27_IDEA-054_constrained_AST_calibration_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea054_constrained_ast_calibration_v1_results.json`.
+
+The matched frozen-AST A0 achieved mean animal macro F1 0.7570. LayerNorm
+tuning achieved 0.7429, block-output SSF achieved 0.7356, and BitFit achieved
+0.7372. Their paired mean differences from A0 were -0.0141, -0.0214, and
+-0.0198. LayerNorm improved one of three repeats; SSF and BitFit were lower in
+all six repeat-level comparisons. All seed-expansion gates closed. The three
+parameterizations are retained as a constrained-PEFT ablation, frozen AST
+remains the reference, and the ordered workflow proceeds to checkpoint
+averaging or output calibration.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,

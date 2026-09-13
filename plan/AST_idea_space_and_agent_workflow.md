@@ -339,6 +339,7 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 | Cat-level set aggregation | B/E/C | hidden-mean 与 attention set 低于 matched call-probability mean |
 | AST local acoustic residual | D/E | temporal mean 三次平均与 reference 接近且有 2/3 正向 repeats；salience residual 较低 |
 | AST–VGGish probability fusion | E/F | 存在 21 次 VGGish-only 正确；inner-selected scalar fusion 平均低于 AST 0.0071 |
+| LayerNorm / SSF / BitFit | F/E | 三种受约束校准均低于 frozen AST；LayerNorm 最接近且有 1/3 正向 repeat |
 
 ## 11. 当前优先探索导航
 
@@ -367,7 +368,7 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 - 排名表示当前探索顺序，不构成预期性能排名。
 - 新证据可以改变优先级；调整时记录证据、理由、日期和决策人。
 
-### 11.3 执行进度（2026-09-13）
+### 11.3 执行进度（2026-09-14）
 
 - 优先级 1 已完成：IDEA-051 的 hidden-mean set 与 attention set 均低于 matched
   call-probability mean；animal-level checkpoint selection 保留为轻量正信号。
@@ -377,5 +378,9 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 - 优先级 3 的直接概率融合已完成：333 次配对评价中包含 21 次 VGGish-only 正确，说明
   互补空间存在；IDEA-053 的每折 inner-selected scalar fusion 平均 macro F1 为 0.7499，
   相对 AST 为 `−0.0071`，三个 repeats 中 1 个提高，seed-expansion gate 关闭。
-- 当前进入优先级 4：比较 LayerNorm / SSF / BitFit 等受约束 AST 校准。feature-level 或
-  条件式融合保留为以后可独立启动的候选，不与本轮 scalar probability fusion 混写。
+- 优先级 4 已完成：IDEA-054 的 LayerNorm、block-output SSF、BitFit 平均 macro F1 分别为
+  0.7429、0.7356、0.7372，低于 matched frozen AST 的 0.7570；三条 seed-expansion gate
+  均关闭。LayerNorm 在 1/3 repeats 提高，保留为局部 PEFT 信号。
+- 下一步进入优先级 5：将 checkpoint averaging / output calibration 建立为独立 idea，
+  预先明确可用 checkpoint、inner-only 选择目标和 matched A0，再启动评价。feature-level
+  或条件式融合继续保留为以后可独立启动的候选。
