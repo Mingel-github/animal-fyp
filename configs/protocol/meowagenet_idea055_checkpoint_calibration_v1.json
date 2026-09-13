@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea055-checkpoint-calibration-v1",
+  "date": "2026-09-14",
+  "status": "authorized_pre_execution_design",
+  "objective": "Test tail-checkpoint probability averaging and constrained animal-level class-bias calibration on the matched tuned frozen-AST head.",
+  "relationship": {
+    "formal_v2_1": "historical formal anchor; unchanged",
+    "idea054": "provides the retained 0.7570 tuned frozen-AST reference recipe",
+    "stage": "post-formal exploratory optimization and inference screen"
+  },
+  "idea": {
+    "path": "plan/IDEA-055_checkpoint_ensemble_and_class_bias_calibration.md",
+    "sha256": "4199deea7a50b22726f25ab18272c85bc25c8a4fd7aee130c0dccc00afb9bf0a"
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "input": "locked 768-dimensional standard AST call embeddings"
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id",
+    "inner_selection_within_outer_training_role": true
+  },
+  "pipelines": {
+    "A0_single_selected_checkpoint": {
+      "checkpoint_predictions": "selected epoch only",
+      "animal_class_bias": [0.0, 0.0, 0.0],
+      "role": "matched tuned frozen-AST reference"
+    },
+    "P1_tail3_checkpoint_ensemble": {
+      "checkpoint_predictions": "arithmetic probability mean over max(1,E-2) through E",
+      "animal_class_bias": [0.0, 0.0, 0.0],
+      "role": "trajectory smoothing ablation"
+    },
+    "P2_class_bias_calibration": {
+      "checkpoint_predictions": "selected epoch only",
+      "animal_class_bias": "inner-selected kitten and senior bias; adult fixed zero",
+      "role": "decision-boundary calibration ablation"
+    },
+    "P3_tail3_plus_class_bias": {
+      "checkpoint_predictions": "arithmetic probability mean over max(1,E-2) through E",
+      "animal_class_bias": "inner-selected kitten and senior bias; adult fixed zero",
+      "role": "combined candidate"
+    }
+  },
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "head_trainable_parameters": 99075,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation animal-level cross-entropy",
+    "micro_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "call_weighting": "global class-balanced weights computed once from all calls in the current training role",
+    "call_to_animal_aggregation": "arithmetic mean of call probabilities"
+  },
+  "checkpoint_ensemble": {
+    "maximum_checkpoints": 3,
+    "selection": "consecutive epochs ending at the inner-selected epoch",
+    "combination": "arithmetic mean of probabilities",
+    "minimum_epoch": 1,
+    "batchnorm_policy": "retain each checkpoint's own running statistics through prediction ensembling"
+  },
+  "class_bias_calibration": {
+    "application_unit": "animal probabilities after call-probability averaging",
+    "formula": "softmax(log(p_animal) + [b_kitten, 0, b_senior])",
+    "kitten_bias_grid": [-0.4, -0.2, 0.0, 0.2, 0.4],
+    "adult_bias": 0.0,
+    "senior_bias_grid": [-0.4, -0.2, 0.0, 0.2, 0.4],
+    "grid_points": 25,
+    "selection_order": [
+      "maximum inner animal macro_f1",
+      "maximum inner animal balanced_accuracy",
+      "minimum inner animal cross_entropy",
+      "minimum l1 bias magnitude",
+      "fixed numeric order"
+    ]
+  },
+  "smoke": {
+    "base_seed": 17,
+    "repeat": 0,
+    "outer_fold": 0,
+    "epochs": 2,
+    "outer_test_accessed": false,
+    "requirements": [
+      "head_only_parameter_allowlist",
+      "tail_checkpoint_probability_mean",
+      "probabilities_sum_to_one",
+      "two_independent_25_point_inner_bias_grids",
+      "zero_bias_identity",
+      "outer_test_not_requested"
+    ]
+  },
+  "initial_evaluation": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": [
+      "A0_single_selected_checkpoint",
+      "P1_tail3_checkpoint_ensemble",
+      "P2_class_bias_calibration",
+      "P3_tail3_plus_class_bias"
+    ],
+    "shared_training_trajectories": 12,
+    "pipeline_fold_predictions": 48,
+    "complete_oof_evaluations": 12,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "animal_cross_entropy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "paired_prediction_changes",
+      "selected_biases",
+      "tail_checkpoint_counts",
+      "runtime_and_peak_vram"
+    ]
+  },
+  "bootstrap": {
+    "method": "paired cat-cluster bootstrap for every candidate minus A0",
+    "iterations": 5000,
+    "seed": 20260915,
+    "interval": [0.025, 0.975]
+  },
+  "seed_expansion_gate": {
+    "minimum_mean_macro_f1_gain": 0.005,
+    "minimum_positive_repeats": 2,
+    "strong_gain": 0.01,
+    "supporting_evidence": "at least one of balanced accuracy, QWK, plain accuracy, worst-repeat macro F1, or sample SD supports the candidate",
+    "action_when_met": "expand matched A0 and the passing candidate to base seeds 43 and 101",
+    "action_when_not_met": "retain the 2x2 comparison as an optimization and inference ablation and close the current five-priority stage"
+  },
+  "reference_expectation": {
+    "pipeline": "A0_single_selected_checkpoint",
+    "seed17_repeat_macro_f1": [0.7658712606215808, 0.7564815892600785, 0.7487090067735229],
+    "mean_macro_f1": 0.7570206188850608
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea055_checkpoint_calibration_v1",
+    "result_metadata": "metadata/experiments/meowagenet_idea055_checkpoint_calibration_v1_results.json",
+    "report": "reports/28_IDEA-055_checkpoint_calibration_results.md"
+  },
+  "dependencies": {
+    "global_weighting_runner": "scripts/run_meowagenet_ast_cat_balance_global_weighting_v1.py",
+    "global_weighting_runner_sha256": "a0a217e76a99f2d9f3e00d5caa2d21c81c5e37e53237c6ac311318ad8c39674a",
+    "evaluation_runner": "scripts/run_meowagenet_idea051_cat_set.py",
+    "evaluation_runner_sha256": "4e8acdefca96215ae3cec94d9158ac081da82eabce08b73c0fe612334ce5d3d5",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399"
+  }
+}
