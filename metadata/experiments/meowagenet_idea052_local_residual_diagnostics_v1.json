@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "diagnostic_id": "meowagenet-idea052-local-residual-diagnostics-v1",
+  "status": "complete",
+  "role": "post-evidence diagnostic for IDEA-052; no model fit or method selection",
+  "sources": {
+    "global_embeddings": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "global_embeddings_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "temporal_tokens": "runs/ast_temporal_tokens_v1/ast_standard_temporal_tokens.npz",
+    "temporal_tokens_sha256": "2599cbc3edf836597e893d2fdd2d18bfce38522b71f049e5cbbfec5e536c3920",
+    "temporal_extraction_summary_sha256": "4c4113a14274e7a910526bca7dc85fe304b96ad03e6c560302d81daa105a509f",
+    "idea051_S0_summary_sha256": "b1a11a94ee936f92092fb2a2cb3ba0c57f4d923e0786d28c4a336b2da36ebd2e",
+    "idea013_result_sha256": "a868d63208bd4cc7861071d471d3e962b0a4f3d3383193bcb3420ddd8aa3a09e",
+    "prediction_files": 24,
+    "prediction_aggregate_sha256": "34feb627f77aff5d9f7694632cad10a4d5be5b543ae3c7d7f25c1d11c2235dab"
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "temporal_tokens": 5842,
+    "embedding_dimensions": 768,
+    "token_count_range": [
+      1,
+      72
+    ],
+    "token_count_quantiles": {
+      "0.25": 5.0,
+      "0.5": 7.0,
+      "0.75": 8.25,
+      "0.9": 10.0
+    }
+  },
+  "local_variation": {
+    "token_rms_dispersion": {
+      "mean": 0.44067948140170604,
+      "quartiles": [
+        0.39528356766769346,
+        0.4520079033248745,
+        0.5061515523947515
+      ],
+      "range": [
+        0.0,
+        0.6519809780142577
+      ]
+    },
+    "peak_residual_rms": {
+      "mean": 0.6733211142618785,
+      "quartiles": [
+        0.5669264979394952,
+        0.6940627193398936,
+        0.8087790674371496
+      ],
+      "range": [
+        0.0,
+        1.2032242810159337
+      ]
+    },
+    "mean_token_cosine_distance": 0.1356555958388921,
+    "global_temporal_mean_cosine": {
+      "mean": 0.27283273773910455,
+      "range": [
+        0.07019269659352932,
+        0.4091750292413332
+      ]
+    }
+  },
+  "associations_across_2376_call_evaluations": {
+    "token_dispersion_vs_call_correct": {
+      "rho": -0.01650612225539374,
+      "pvalue": 0.4212759218185397
+    },
+    "token_dispersion_vs_animal_correct": {
+      "rho": 0.03256616410376289,
+      "pvalue": 0.11251305318443446
+    },
+    "peak_residual_vs_call_correct": {
+      "rho": -0.025111728060300244,
+      "pvalue": 0.22110290334907126
+    },
+    "peak_residual_vs_animal_correct": {
+      "rho": -0.017117832476974553,
+      "pvalue": 0.4042710678056175
+    },
+    "global_temporal_cosine_vs_call_correct": {
+      "rho": 0.03888502330022225,
+      "pvalue": 0.0580738764089801
+    },
+    "duration_vs_token_dispersion": {
+      "rho": 0.39990974897540743,
+      "pvalue": 5.957339477815446e-92
+    },
+    "token_count_vs_token_dispersion": {
+      "rho": 0.43426057619367314,
+      "pvalue": 7.060701791431279e-110
+    }
+  },
+  "associations_across_792_unique_calls": {
+    "ordinal_age_label_vs_token_dispersion": {
+      "rho": 0.24696213676716014,
+      "pvalue": 1.8070595781209536e-12
+    },
+    "ordinal_age_label_vs_peak_residual": {
+      "rho": 0.17345340627097072,
+      "pvalue": 9.062553332662167e-07
+    },
+    "duration_vs_token_dispersion": {
+      "rho": 0.3999097489754075,
+      "pvalue": 8.979528031567577e-32
+    }
+  },
+  "outcome_contrasts": {
+    "token_rms_dispersion": {
+      "by_call_correct": {
+        "correct": 0.43960252361751156,
+        "incorrect": 0.4428374815128921
+      },
+      "by_animal_correct": {
+        "correct": 0.4414126361079872,
+        "incorrect": 0.4382568832418203
+      }
+    },
+    "peak_residual_rms": {
+      "by_call_correct": {
+        "correct": 0.6698210076691633,
+        "incorrect": 0.680334602187863
+      },
+      "by_animal_correct": {
+        "correct": 0.6693016832689181,
+        "incorrect": 0.6866027123255742
+      }
+    },
+    "global_temporal_mean_cosine": {
+      "by_call_correct": {
+        "correct": 0.274295024124275,
+        "incorrect": 0.269902619002701
+      },
+      "by_animal_correct": {
+        "correct": 0.27448952117458636,
+        "incorrect": 0.2673581489957733
+      }
+    }
+  },
+  "class_means": {
+    "kitten": {
+      "calls": 134,
+      "token_rms_dispersion": 0.406638726293644,
+      "peak_residual_rms": 0.632143974740656
+    },
+    "adult": {
+      "calls": 405,
+      "token_rms_dispersion": 0.4383384995152611,
+      "peak_residual_rms": 0.6654348051678337
+    },
+    "senior": {
+      "calls": 253,
+      "token_rms_dispersion": 0.46245639384633247,
+      "peak_residual_rms": 0.7077546790007404
+    }
+  },
+  "historical_local_only_control": {
+    "source": "IDEA-013 frozen temporal pooling v2",
+    "temporal_mean_macro_f1": 0.6222222222222222,
+    "temporal_mean_capacity_macro_f1": 0.6329411001977374,
+    "temporal_attention_macro_f1": 0.6031626031626032,
+    "interpretation": "Temporal tokens alone were weaker in the historical pilot; IDEA-052 therefore preserves the strong global embedding and adds zero-initialized residual paths."
+  },
+  "interpretation_boundary": {
+    "located_evidence": "Frozen temporal tokens retain measurable within-call variation and differ from the global pooler representation.",
+    "inference": "A residual path can expose local mean-shift or transient salience while preserving the global reference at initialization.",
+    "discriminating_requirement": "A useful local branch must outperform the matched global reference in paired complete OOF; non-zero gates alone only show that the branch was used."
+  }
+}

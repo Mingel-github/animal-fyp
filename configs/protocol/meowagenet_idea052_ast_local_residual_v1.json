@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea052-ast-local-residual-v1",
+  "date": "2026-09-13",
+  "status": "authorized_pre_execution_design",
+  "objective": "Test whether a zero-initialized local temporal residual can complement the strong frozen-AST global call representation without replacing it.",
+  "relationship": {
+    "formal_v2_1": "historical formal evidence anchor; unchanged",
+    "idea051": "provides the matched animal-checkpoint global reference recipe; unchanged",
+    "idea013": "provides temporal-token extraction and historical local-only controls; unchanged",
+    "stage": "exploratory initial screen with a predeclared seed-expansion gate"
+  },
+  "idea": {
+    "path": "plan/IDEA-052_AST_local_acoustic_residual.md",
+    "sha256": "bd34ab3898190ab1383720feae49d74d95bdd82b74fc0e891ad03f95d7908aaa",
+    "primary_angle": "E_feature_extraction",
+    "supporting_angle": "D_input_representation"
+  },
+  "diagnostic": {
+    "path": "metadata/experiments/meowagenet_idea052_local_residual_diagnostics_v1.json",
+    "sha256": "00bb22a60af2f4e8f485eb64d09dbf8b0122b054d57a9548974f996eba3d701a",
+    "script_path": "scripts/diagnose_meowagenet_idea052_local_residual.py",
+    "script_sha256": "416350a9aae4a08aee6b793431f8ff375f29a5b891dfaf68c8596c4afe77078a",
+    "located_signal": "Mean temporal-token RMS dispersion increases from 0.4066 in kitten calls to 0.4625 in senior calls; ordinal-label rho is 0.2470."
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "global_representation": "locked 768-dimensional final AST call embeddings",
+    "local_representation": "5842 masked final-layer AST temporal tokens with 768 dimensions",
+    "token_count_range_per_call": [1, 72],
+    "all_valid_tokens_retained": true
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id",
+    "inner_selection_within_outer_training_role": true
+  },
+  "pipelines": {
+    "R0_global_probability_mean": {
+      "local_residual": "none",
+      "architecture": "standardized global 768 -> 128 -> 3 head with ReLU, BatchNorm and dropout",
+      "aggregation": "arithmetic mean of call probabilities within cat_id",
+      "role": "matched tuned frozen-AST reference with animal-level checkpoint selection"
+    },
+    "R1_temporal_mean_residual": {
+      "local_residual": "mean(shared_relu_projected_temporal_tokens) minus shared_relu_projected_global_embedding",
+      "fusion": "global_hidden + tanh(128-dimensional zero-initialized gate) * local_residual",
+      "additional_parameters": 128,
+      "role": "local mean-shift candidate"
+    },
+    "R2_temporal_salience_residual": {
+      "local_residual": "max(shared_relu_projected_temporal_tokens) minus mean(shared_relu_projected_temporal_tokens)",
+      "fusion": "global_hidden + tanh(128-dimensional zero-initialized gate) * local_residual",
+      "additional_parameters": 128,
+      "single_token_behavior": "zero residual",
+      "role": "local transient-salience candidate"
+    }
+  },
+  "fixed_training": {
+    "embedding_dimension": 768,
+    "hidden_dimension": 128,
+    "classes": 3,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation animal-level cross-entropy",
+    "call_micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "global_normalization": "training-call global embedding mean and standard deviation per fit",
+    "token_normalization": "all temporal tokens belonging to training calls per fit",
+    "local_gate_activation": "tanh",
+    "local_gate_initialization": 0.0,
+    "call_to_animal_aggregation": "arithmetic mean of call probabilities"
+  },
+  "smoke": {
+    "base_seed": 17,
+    "repeat": 0,
+    "outer_fold": 0,
+    "epochs": 2,
+    "pipelines": [
+      "R0_global_probability_mean",
+      "R1_temporal_mean_residual",
+      "R2_temporal_salience_residual"
+    ],
+    "requirements": [
+      "train",
+      "animal_validation",
+      "checkpoint_save",
+      "checkpoint_reload",
+      "variable_token_collation",
+      "single_token_salience_zero",
+      "zero_gate_initial_logit_match"
+    ],
+    "outer_test_accessed": false,
+    "excluded_from_evaluation_summary": true
+  },
+  "initial_evaluation": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": [
+      "R0_global_probability_mean",
+      "R1_temporal_mean_residual",
+      "R2_temporal_salience_residual"
+    ],
+    "fits_per_pipeline": 12,
+    "total_outer_fits": 36,
+    "complete_oof_evaluations": 9,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "duration_and_token_count_subgroups",
+      "residual_gate_magnitude",
+      "paired_prediction_changes"
+    ]
+  },
+  "bootstrap": {
+    "method": "paired cat-cluster bootstrap for each pipeline contrast",
+    "resampling_unit": "cat_id",
+    "iterations": 5000,
+    "seed": 20260913,
+    "interval": [0.025, 0.975]
+  },
+  "seed_expansion_gate": {
+    "minimum_mean_macro_f1_gain": 0.005,
+    "minimum_positive_repeats": 2,
+    "strong_gain": 0.01,
+    "supporting_evidence": "at least one of balanced accuracy, QWK, worst-repeat Macro F1, or interpretable class recall supports the same candidate",
+    "action_when_met": "expand matched R0 and the passing residual candidate to base seeds 43 and 101",
+    "action_when_not_met": "close this residual parameterization and proceed to AST-VGGish fusion or distillation"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea052_ast_local_residual_v1",
+    "result_metadata": "metadata/experiments/meowagenet_idea052_ast_local_residual_v1_results.json",
+    "report": "reports/25_IDEA-052_AST_local_acoustic_residual_results.md"
+  },
+  "dependencies": {
+    "global_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "global_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "temporal_token_path": "runs/ast_temporal_tokens_v1/ast_standard_temporal_tokens.npz",
+    "temporal_token_sha256": "2599cbc3edf836597e893d2fdd2d18bfce38522b71f049e5cbbfec5e536c3920",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "reference_runner_path": "scripts/run_meowagenet_idea051_cat_set.py",
+    "reference_runner_sha256": "4e8acdefca96215ae3cec94d9158ac081da82eabce08b73c0fe612334ce5d3d5"
+  }
+}
