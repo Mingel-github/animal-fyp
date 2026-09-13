@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea051-cat-set-v1",
+  "date": "2026-09-13",
+  "status": "authorized_pre_execution_design",
+  "objective": "Test whether aligning training and aggregation with the cat-level prediction unit improves frozen-AST age classification, and separate the value of hidden mean aggregation from learned reliability attention.",
+  "relationship": {
+    "formal_v2_1": "historical formal evidence anchor; unchanged",
+    "global_weighting_retest": "current tuned frozen-AST reference evidence and diagnostic source; unchanged",
+    "result_awareness": "existing complete-OOF predictions were used for post-evidence problem diagnosis",
+    "stage": "exploratory initial screen with a predeclared seed-expansion gate"
+  },
+  "idea": {
+    "path": "plan/IDEA-051_cat_level_set_aggregation.md",
+    "sha256": "cbe36741c3192d9d5a66f928209a005528bef40dc24ee2155ca63bc8d7493b7d",
+    "primary_angle": "B_prediction_unit",
+    "supporting_angle": "I_optimization_and_inference"
+  },
+  "diagnostic": {
+    "path": "metadata/experiments/meowagenet_idea051_cat_set_diagnostics_v1.json",
+    "sha256": "065f260314933d254a762263d864ff530625bc180d2f28c9c2e3cb4b9f317fe6",
+    "script_path": "scripts/diagnose_meowagenet_idea051_cat_sets.py",
+    "script_sha256": "036d0cda60d5e6dc2dd1df9d00a425f2222d29261a457855c37041ad881307ed",
+    "located_signal": "48.45% of 999 repeated cat evaluations contain within-cat call argmax disagreement; call count ranges from 1 to 45"
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "representation": "locked 768-dimensional final AST call embeddings",
+    "all_calls_retained_in_each_cat_set": true,
+    "single_call_set_supported": true
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id",
+    "inner_selection_within_outer_training_role": true
+  },
+  "pipelines": {
+    "S0_call_probability_mean": {
+      "training_unit": "call",
+      "training_loss": "strict global class-balanced call cross-entropy",
+      "architecture": "standardized 768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+      "aggregation": "arithmetic mean of call probabilities within cat_id",
+      "role": "matched tuned frozen-AST reference with animal-level checkpoint selection"
+    },
+    "S1_hidden_mean_set": {
+      "training_unit": "cat set",
+      "training_loss": "global class-balanced animal cross-entropy",
+      "architecture": "shared standardized 768 -> 128 call encoder, hidden mean, 128 -> 3 classifier",
+      "aggregation": "uniform mean of hidden call representations",
+      "role": "prediction-unit and hidden-aggregation control"
+    },
+    "S2_attention_set": {
+      "training_unit": "cat set",
+      "training_loss": "global class-balanced animal cross-entropy",
+      "architecture": "shared standardized 768 -> 128 call encoder, scalar reliability attention, 128 -> 3 classifier",
+      "aggregation": "cat-internal softmax attention over hidden call representations",
+      "attention_initialization": "zero weights and bias, exactly uniform at initialization",
+      "additional_parameters_over_S1": 129,
+      "role": "learned reliability-pooling candidate"
+    }
+  },
+  "fixed_training": {
+    "embedding_dimension": 768,
+    "hidden_dimension": 128,
+    "classes": 3,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation animal-level cross-entropy",
+    "reference_call_micro_batch_size": 8,
+    "reference_gradient_accumulation_steps": 4,
+    "reference_accumulation_window_calls": 32,
+    "reference_partial_window_denominator": 32,
+    "set_cat_batch_size": 4,
+    "set_loss_denominator_cats": 4,
+    "set_gradient_accumulation_steps": 1,
+    "set_partial_batch_denominator": 4,
+    "set_batch_singleton_policy": "redistribute final 4+1 cats as 3+2 cats",
+    "normalization_statistics": "training-call mean and standard deviation per outer/inner fit"
+  },
+  "smoke": {
+    "base_seed": 17,
+    "repeat": 0,
+    "outer_fold": 0,
+    "epochs": 2,
+    "pipelines": [
+      "S0_call_probability_mean",
+      "S1_hidden_mean_set",
+      "S2_attention_set"
+    ],
+    "requirements": [
+      "train",
+      "animal_validation",
+      "checkpoint_save",
+      "checkpoint_reload",
+      "variable_set_collation",
+      "single_call_set",
+      "attention_normalization"
+    ],
+    "outer_test_accessed": false,
+    "excluded_from_evaluation_summary": true
+  },
+  "initial_evaluation": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": [
+      "S0_call_probability_mean",
+      "S1_hidden_mean_set",
+      "S2_attention_set"
+    ],
+    "fits_per_pipeline": 12,
+    "total_outer_fits": 36,
+    "complete_oof_evaluations": 9,
+    "paired_comparisons": [
+      "S1_hidden_mean_set-minus-S0_call_probability_mean",
+      "S2_attention_set-minus-S0_call_probability_mean",
+      "S2_attention_set-minus-S1_hidden_mean_set"
+    ],
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "bag_size_subgroups",
+      "attention_entropy_and_concentration"
+    ]
+  },
+  "bootstrap": {
+    "method": "paired cat-cluster bootstrap for each pipeline contrast",
+    "resampling_unit": "cat_id",
+    "iterations": 5000,
+    "seed": 20260913,
+    "interval": [0.025, 0.975]
+  },
+  "seed_expansion_gate": {
+    "minimum_mean_macro_f1_gain": 0.005,
+    "minimum_positive_repeats": 2,
+    "strong_gain": 0.01,
+    "supporting_evidence": "at least one of balanced accuracy, QWK, worst-repeat Macro F1, or interpretable class recall supports the same candidate",
+    "action_when_met": "expand matched S0 and the passing set candidate to base seeds 43 and 101",
+    "action_when_not_met": "close this implementation as an informative set-aggregation ablation"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea051_cat_set_v1",
+    "result_metadata": "metadata/experiments/meowagenet_idea051_cat_set_v1_results.json",
+    "report": "reports/24_IDEA-051_cat_level_set_aggregation_results.md"
+  },
+  "dependencies": {
+    "reference_runner_path": "scripts/run_meowagenet_ast_cat_balance_global_weighting_v1.py",
+    "reference_runner_sha256": "a0a217e76a99f2d9f3e00d5caa2d21c81c5e37e53237c6ac311318ad8c39674a",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399"
+  }
+}

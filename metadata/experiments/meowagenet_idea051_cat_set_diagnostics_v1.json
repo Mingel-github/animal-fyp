@@ -1,0 +1,242 @@
+{
+  "schema_version": "1.0",
+  "diagnostic_id": "meowagenet-idea051-cat-set-diagnostics-v1",
+  "status": "complete",
+  "role": "post-evidence diagnostic for IDEA-051; no new model selection or outer-test fit",
+  "source": {
+    "pipeline": "C0_global_class_balanced",
+    "base_seeds": [
+      17,
+      43,
+      101
+    ],
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "complete_oof_evaluations": 9,
+    "call_rows": 7128,
+    "cat_evaluations": 999,
+    "summary_path": "runs/meowagenet_ast_cat_balance_global_weighting_v1/evaluation/summary.json",
+    "summary_sha256": "46affeead827f172eb9acd9dae0ffc26dac7a5d4e9ee5866d0c7f42bc0cfbbe7",
+    "prediction_files": 36,
+    "prediction_aggregate_sha256": "33da3c3e86d27dd14460c48b5c73c99001242a38d60cf14f6f86e0682c20ec88"
+  },
+  "dataset_structure": {
+    "calls": 792,
+    "cats": 111,
+    "call_count_min": 1,
+    "call_count_quartiles": [
+      2.0,
+      5.0,
+      9.5
+    ],
+    "call_count_mean": 7.135135135135135,
+    "call_count_max": 45,
+    "single_call_cats": 20,
+    "cats_with_at_least_10_calls": 28
+  },
+  "within_cat_signal": {
+    "cat_evaluations_with_any_argmax_disagreement": 484,
+    "fraction_with_any_argmax_disagreement": 0.4844844844844845,
+    "cat_evaluations_with_at_least_25pct_disagreement": 313,
+    "fraction_with_at_least_25pct_disagreement": 0.3133133133133133,
+    "mean_argmax_disagreement_rate": 0.15199339512635004,
+    "mean_probability_total_variation": 0.13983232699959605,
+    "mean_probability_std": 0.1091119598937598,
+    "correct_vs_incorrect": {
+      "correct_cat_evaluations": 728,
+      "incorrect_cat_evaluations": 271,
+      "correct_mean_disagreement_rate": 0.14192559083290932,
+      "incorrect_mean_disagreement_rate": 0.17903900961205063,
+      "correct_mean_probability_total_variation": 0.1384611433263693,
+      "incorrect_mean_probability_total_variation": 0.14351580195940827
+    }
+  },
+  "associations_across_999_cat_evaluations": {
+    "call_count_vs_argmax_disagreement": {
+      "rho": 0.5345270143651306,
+      "pvalue": 6.71645390863852e-75
+    },
+    "call_count_vs_probability_total_variation": {
+      "rho": 0.698484616988808,
+      "pvalue": 4.779264264834255e-147
+    },
+    "disagreement_vs_correct": {
+      "rho": -0.047038200034571646,
+      "pvalue": 0.1373596483178413
+    },
+    "probability_total_variation_vs_correct": {
+      "rho": -0.01663825793456755,
+      "pvalue": 0.5994005560743716
+    }
+  },
+  "bag_size_groups": {
+    "1": {
+      "cat_evaluations": 180,
+      "unique_cats": 20,
+      "unique_cats_by_class": {
+        "kitten": 5,
+        "adult": 12,
+        "senior": 3
+      },
+      "accuracy": 0.7555555555555555,
+      "balanced_accuracy": 0.8253086419753086,
+      "macro_f1": 0.7434705865740349,
+      "mean_disagreement_rate": 0.0,
+      "mean_probability_total_variation": 0.0
+    },
+    "2-4": {
+      "cat_evaluations": 297,
+      "unique_cats": 33,
+      "unique_cats_by_class": {
+        "kitten": 1,
+        "adult": 21,
+        "senior": 11
+      },
+      "accuracy": 0.6296296296296297,
+      "balanced_accuracy": 0.7578964245630914,
+      "macro_f1": 0.5594538630337623,
+      "mean_disagreement_rate": 0.13692480359147025,
+      "mean_probability_total_variation": 0.11881222240114442
+    },
+    "5-9": {
+      "cat_evaluations": 270,
+      "unique_cats": 30,
+      "unique_cats_by_class": {
+        "kitten": 3,
+        "adult": 18,
+        "senior": 9
+      },
+      "accuracy": 0.7703703703703704,
+      "balanced_accuracy": 0.8333333333333334,
+      "macro_f1": 0.8151405951405951,
+      "mean_disagreement_rate": 0.2014756025867137,
+      "mean_probability_total_variation": 0.19057708842933538
+    },
+    "10+": {
+      "cat_evaluations": 252,
+      "unique_cats": 28,
+      "unique_cats_by_class": {
+        "kitten": 6,
+        "adult": 11,
+        "senior": 11
+      },
+      "accuracy": 0.7817460317460317,
+      "balanced_accuracy": 0.7839506172839507,
+      "macro_f1": 0.7999542482670691,
+      "mean_disagreement_rate": 0.22530286653231882,
+      "mean_probability_total_variation": 0.210116868029905
+    }
+  },
+  "highest_mean_disagreement_cats": [
+    {
+      "cat_id": "033A",
+      "label": "adult",
+      "call_count": 9,
+      "mean_disagreement_rate": 0.48148148148148145,
+      "mean_probability_total_variation": 0.30297014002582195,
+      "repeat_accuracy": 0.7777777777777778
+    },
+    {
+      "cat_id": "095A",
+      "label": "adult",
+      "call_count": 7,
+      "mean_disagreement_rate": 0.46031746031746024,
+      "mean_probability_total_variation": 0.3293431364340378,
+      "repeat_accuracy": 0.3333333333333333
+    },
+    {
+      "cat_id": "105A",
+      "label": "adult",
+      "call_count": 3,
+      "mean_disagreement_rate": 0.4444444444444444,
+      "mean_probability_total_variation": 0.2602005242630566,
+      "repeat_accuracy": 0.8888888888888888
+    },
+    {
+      "cat_id": "063A",
+      "label": "adult",
+      "call_count": 11,
+      "mean_disagreement_rate": 0.4343434343434343,
+      "mean_probability_total_variation": 0.29533913479478113,
+      "repeat_accuracy": 0.7777777777777778
+    },
+    {
+      "cat_id": "015A",
+      "label": "senior",
+      "call_count": 7,
+      "mean_disagreement_rate": 0.42857142857142855,
+      "mean_probability_total_variation": 0.3421332334448809,
+      "repeat_accuracy": 0.2222222222222222
+    },
+    {
+      "cat_id": "072A",
+      "label": "adult",
+      "call_count": 9,
+      "mean_disagreement_rate": 0.4074074074074074,
+      "mean_probability_total_variation": 0.31636079092029695,
+      "repeat_accuracy": 1.0
+    },
+    {
+      "cat_id": "025A",
+      "label": "senior",
+      "call_count": 10,
+      "mean_disagreement_rate": 0.4,
+      "mean_probability_total_variation": 0.314570686828261,
+      "repeat_accuracy": 0.2222222222222222
+    },
+    {
+      "cat_id": "020A",
+      "label": "adult",
+      "call_count": 20,
+      "mean_disagreement_rate": 0.39444444444444443,
+      "mean_probability_total_variation": 0.31194358748582746,
+      "repeat_accuracy": 0.7777777777777778
+    },
+    {
+      "cat_id": "013B",
+      "label": "adult",
+      "call_count": 8,
+      "mean_disagreement_rate": 0.3888888888888889,
+      "mean_probability_total_variation": 0.31553457325733486,
+      "repeat_accuracy": 1.0
+    },
+    {
+      "cat_id": "057A",
+      "label": "senior",
+      "call_count": 17,
+      "mean_disagreement_rate": 0.38562091503267976,
+      "mean_probability_total_variation": 0.23099105708215223,
+      "repeat_accuracy": 0.4444444444444444
+    },
+    {
+      "cat_id": "042A",
+      "label": "kitten",
+      "call_count": 11,
+      "mean_disagreement_rate": 0.3838383838383838,
+      "mean_probability_total_variation": 0.29199101700070357,
+      "repeat_accuracy": 0.7777777777777778
+    },
+    {
+      "cat_id": "060A",
+      "label": "senior",
+      "call_count": 3,
+      "mean_disagreement_rate": 0.37037037037037035,
+      "mean_probability_total_variation": 0.19146568510238726,
+      "repeat_accuracy": 0.0
+    }
+  ],
+  "interpretation_boundary": {
+    "located_evidence": "Repeated complete-OOF predictions show whether calls from the same cat carry heterogeneous model evidence.",
+    "inference": "Higher disagreement and dispersion among errors would support testing learned cat-level aggregation.",
+    "limitation": "These completed OOF results motivate a post-evidence exploratory idea and do not constitute independent confirmation of a new model."
+  }
+}
