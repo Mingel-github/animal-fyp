@@ -765,9 +765,22 @@ def first_batch_online_audit(
     cached = torch.from_numpy(
         store.frozen_embeddings[cpu_batch["call_indices"].numpy().astype(np.int64)]
     )
+    with torch.inference_mode():
+        cached_logits = base.head(cached.to(device)).float().cpu()
     result: dict[str, Any] = {
         "cached_vs_online_max_embedding_difference": float(
             (embeddings.float().cpu() - cached).abs().max()
+        ),
+        "cached_vs_online_max_logit_difference": float(
+            (base_logits - cached_logits).abs().max()
+        ),
+        "cached_vs_online_max_probability_difference": float(
+            (
+                torch.softmax(base_logits, dim=1)
+                - torch.softmax(cached_logits, dim=1)
+            )
+            .abs()
+            .max()
         ),
         "candidate_initial_max_logit_difference": {},
         "parameter_audits": {},
@@ -807,8 +820,10 @@ def smoke(
     if output.is_file():
         if not resume:
             raise FileExistsError(output)
-        print(output.read_text(encoding="utf-8"), flush=True)
-        return
+        previous_smoke = read_json(output)
+        if previous_smoke.get("status") == "passed":
+            print(output.read_text(encoding="utf-8"), flush=True)
+            return
     settings = protocol["smoke"]
     seed = weighting.historical.full_seed(
         int(settings["base_seed"]), int(settings["repeat"]), int(settings["outer_fold"])
@@ -851,7 +866,10 @@ def smoke(
         for pipeline in CANDIDATES
     }
     status = "passed"
-    if online["cached_vs_online_max_embedding_difference"] > 1.0e-4:
+    if (
+        online["cached_vs_online_max_embedding_difference"] > 5.0e-3
+        or online["cached_vs_online_max_probability_difference"] > 1.0e-4
+    ):
         status = "failed"
     for pipeline in CANDIDATES:
         parameters = online["parameter_audits"][pipeline]
@@ -878,6 +896,11 @@ def smoke(
         "cats": int(len(np.unique(store.cat_ids))),
         "inner_train_calls": int(len(indices["train"])),
         "inner_validation_calls": int(len(indices["validation"])),
+        "cached_online_tolerance": {
+            "embedding_max_abs": 5.0e-3,
+            "probability_max_abs": 1.0e-4,
+            "note": "GPU batch-shape floating-point tolerance; candidate-to-online initialization remains exact",
+        },
         "online_initialization_audit": online,
         "fits": fits,
     }

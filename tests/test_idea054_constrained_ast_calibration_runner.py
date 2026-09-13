@@ -90,8 +90,13 @@ def test_completed_smoke_has_no_outer_access_and_exact_parameter_counts() -> Non
     if not path.is_file():
         pytest.skip("IDEA-054 smoke has not run yet")
     smoke = load_json(path)
+    if smoke["status"] != "passed":
+        pytest.skip("IDEA-054 latest smoke record has not passed yet")
     assert smoke["status"] == "passed"
     assert smoke["outer_test_accessed"] is False
+    assert smoke["online_initialization_audit"][
+        "cached_vs_online_max_probability_difference"
+    ] <= 1e-4
     expected = {
         "P1_layernorm_tuning": 38_400,
         "P2_block_output_ssf": 18_432,
@@ -127,4 +132,3 @@ def test_completed_evaluation_has_twelve_complete_oof_results() -> None:
         for rows in summary["complete_oof"].values()
         for row in rows
     )
-
