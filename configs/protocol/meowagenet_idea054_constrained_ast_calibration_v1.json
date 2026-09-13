@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea054-constrained-ast-calibration-v1",
+  "date": "2026-09-14",
+  "status": "authorized_pre_execution_design",
+  "objective": "Compare three constrained AST adaptation parameter sets while preserving the tuned head, corrected global call weighting, animal-level epoch selection, splits, and evaluation unit.",
+  "relationship": {
+    "formal_v2_1": "historical formal anchor; unchanged",
+    "idea050": "historical Q/V LoRA evidence; unchanged",
+    "idea052": "provides the current 0.7570 tuned frozen-AST reference recipe",
+    "stage": "post-formal exploratory initial PEFT screen"
+  },
+  "idea": {
+    "path": "plan/IDEA-054_constrained_AST_calibration.md",
+    "sha256": "8f30a7c61115e1c15c3446c6fc5910a5f62321ce0108b3b10e60772ecb12fdee"
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "online_input": "locked 128-bin AST fbank segments",
+    "reference_input": "locked 768-dimensional AST call embeddings"
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id",
+    "inner_selection_within_outer_training_role": true
+  },
+  "ast": {
+    "locked_model_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_model_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "encoder_blocks": 12,
+    "hidden_dimension": 768
+  },
+  "pipelines": {
+    "A0_frozen_ast_reference": {
+      "adaptation": "none",
+      "ast_trainable_parameters": 0,
+      "execution": "cached frozen call embeddings",
+      "role": "matched tuned frozen-AST reference"
+    },
+    "P1_layernorm_tuning": {
+      "adaptation": "all AST LayerNorm weight and bias parameters",
+      "layernorm_modules": 25,
+      "ast_trainable_parameters": 38400,
+      "initialization": "pretrained values",
+      "role": "normalization calibration"
+    },
+    "P2_block_output_ssf": {
+      "adaptation": "one 768-dimensional scale and shift after each encoder block",
+      "ssf_sites": 12,
+      "ast_trainable_parameters": 18432,
+      "initialization": "scale one and shift zero",
+      "role": "feature scale-and-shift calibration"
+    },
+    "P3_bitfit": {
+      "adaptation": "all existing AST parameters whose names end in bias",
+      "bias_tensors": 98,
+      "ast_trainable_parameters": 102912,
+      "initialization": "pretrained values",
+      "role": "bias-only calibration"
+    }
+  },
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "head_trainable_parameters": 99075,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "adaptation_learning_rate": 0.0003,
+    "optimizer_epsilon": 1e-7,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation animal-level cross-entropy",
+    "call_micro_batch_size": 8,
+    "evaluation_batch_size": 16,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "call_weighting": "global class-balanced weights computed once from all calls in the current training role",
+    "call_to_animal_aggregation": "arithmetic mean of call probabilities"
+  },
+  "smoke": {
+    "base_seed": 17,
+    "repeat": 0,
+    "outer_fold": 0,
+    "epochs": 2,
+    "outer_test_accessed": false,
+    "pipelines": [
+      "P1_layernorm_tuning",
+      "P2_block_output_ssf",
+      "P3_bitfit"
+    ],
+    "requirements": [
+      "parameter_allowlist_and_count",
+      "cached_vs_online_embedding_match",
+      "initial_logit_equivalence",
+      "two_epoch_parameter_update",
+      "checkpoint_reload",
+      "outer_test_not_requested"
+    ]
+  },
+  "initial_evaluation": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": [
+      "A0_frozen_ast_reference",
+      "P1_layernorm_tuning",
+      "P2_block_output_ssf",
+      "P3_bitfit"
+    ],
+    "fits_per_pipeline": 12,
+    "total_outer_fits": 48,
+    "complete_oof_evaluations": 12,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "paired_prediction_changes",
+      "trainable_parameters",
+      "runtime_and_peak_vram"
+    ]
+  },
+  "bootstrap": {
+    "method": "paired cat-cluster bootstrap for every candidate minus A0",
+    "iterations": 5000,
+    "seed": 20260914,
+    "interval": [0.025, 0.975]
+  },
+  "seed_expansion_gate": {
+    "minimum_mean_macro_f1_gain": 0.005,
+    "minimum_positive_repeats": 2,
+    "strong_gain": 0.01,
+    "supporting_evidence": "at least one of balanced accuracy, QWK, worst-repeat macro F1, or interpretable class recall supports the candidate",
+    "action_when_met": "expand matched A0 and the passing candidate to base seeds 43 and 101",
+    "action_when_not_met": "retain the family comparison as a PEFT ablation and proceed to checkpoint averaging or calibration"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea054_constrained_ast_calibration_v1",
+    "result_metadata": "metadata/experiments/meowagenet_idea054_constrained_ast_calibration_v1_results.json",
+    "report": "reports/27_IDEA-054_constrained_AST_calibration_results.md"
+  },
+  "dependencies": {
+    "ast_base_runner": "scripts/run_ast_finetuning.py",
+    "ast_base_runner_sha256": "e3f887fc5750804ef90743588e2a2bd295bb36426161321a1163a331894a6664",
+    "global_weighting_runner": "scripts/run_meowagenet_ast_cat_balance_global_weighting_v1.py",
+    "global_weighting_runner_sha256": "a0a217e76a99f2d9f3e00d5caa2d21c81c5e37e53237c6ac311318ad8c39674a",
+    "reference_runner": "scripts/run_meowagenet_idea052_ast_local_residual.py",
+    "reference_runner_sha256": "445c2688e081c30e6f619254484cf2e3367abedaf7183fab41707359ab1a2639",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399"
+  }
+}
