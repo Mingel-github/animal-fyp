@@ -320,20 +320,17 @@ class GlobalLocalResidualClassifier(nn.Module):
             return global_hidden, torch.zeros_like(global_hidden)
         standardized_tokens = (temporal_tokens - self.token_mean) / self.token_scale
         token_hidden = torch.relu(self.projection(standardized_tokens))
-        token_sum = torch.zeros(
-            call_count,
-            token_hidden.shape[1],
-            dtype=token_hidden.dtype,
-            device=token_hidden.device,
+        token_groups = [
+            token_hidden[token_to_call == index] for index in range(call_count)
+        ]
+        token_mean_hidden = torch.stack(
+            [group.mean(dim=0) for group in token_groups]
         )
-        token_sum.index_add_(0, token_to_call, token_hidden)
-        counts = torch.bincount(token_to_call, minlength=call_count).clamp_min(1)
-        token_mean_hidden = token_sum / counts[:, None]
         if self.residual_mode == "mean":
             residual = token_mean_hidden - global_hidden
         else:
             token_max_hidden = torch.stack(
-                [token_hidden[token_to_call == index].max(dim=0).values for index in range(call_count)]
+                [group.max(dim=0).values for group in token_groups]
             )
             residual = token_max_hidden - token_mean_hidden
         gate = torch.tanh(self.residual_gate)[None, :]
@@ -638,6 +635,7 @@ def fit_inner(
         if max_epochs_override is None and epochs_without_improvement >= values["patience"]:
             break
     model.load_state_dict(best_state)
+    _, best_calls = predict_calls(model, validation_loader, store, device)
     audit = {
         "best_epoch": int(best_epoch),
         "stopped_epoch": int(len(history)),
@@ -942,6 +940,13 @@ def run_smoke(
         }
         write_json(output_dir / "fit_summary.json", fit)
         fits.append(fit)
+    checkpoint_reload_passed = all(
+        fit["checkpoint_reload_max_probability_difference"] == 0.0 for fit in fits
+    )
+    if not checkpoint_reload_passed:
+        raise RuntimeError(
+            "IDEA-052 checkpoint reload audit failed; outer evaluation remains locked"
+        )
     environment_path = run_root / "environment_lock.json"
     write_json(environment_path, environment_lock(protocol, device))
     code_commit = git_revision()
@@ -985,9 +990,7 @@ def run_smoke(
             int(max(len(value) for value in store.call_token_indices)),
         ],
         "initialization_audit": initial,
-        "checkpoint_reload_passed": all(
-            fit["checkpoint_reload_max_probability_difference"] == 0.0 for fit in fits
-        ),
+        "checkpoint_reload_passed": checkpoint_reload_passed,
         "execution_lock": repo_relative(lock_path),
         "execution_lock_sha256": sha256(lock_path),
         "environment_lock": repo_relative(environment_path),

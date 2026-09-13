@@ -154,3 +154,15 @@ def test_runner_separates_inner_smoke_and_outer_evaluation() -> None:
     assert "include_test=True" in source
     assert "locked_for_idea052_initial_evaluation" in source
     assert "paired_cat_bootstrap" in source
+
+
+def test_temporal_pooling_and_best_checkpoint_predictions_are_deterministic() -> None:
+    pooling_source = inspect.getsource(runner.GlobalLocalResidualClassifier.hidden_and_residual)
+    fit_source = inspect.getsource(runner.fit_inner)
+    assert "index_add_" not in pooling_source
+    assert "token_groups" in pooling_source
+    assert "model.load_state_dict(best_state)" in fit_source
+    assert "_, best_calls = predict_calls(model, validation_loader, store, device)" in fit_source
+    assert "outer evaluation remains locked" in Path(runner.__file__).read_text(
+        encoding="utf-8"
+    )
