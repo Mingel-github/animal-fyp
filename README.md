@@ -384,6 +384,30 @@ parameterizations are retained as a constrained-PEFT ablation, frozen AST
 remains the reference, and the ordered workflow proceeds to checkpoint
 averaging or output calibration.
 
+IDEA-055 checkpoint ensemble and animal-level class-bias calibration has
+completed its inner-only smoke, execution lock, and 12 shared seed-17 head
+training trajectories across the 12 outer folds. Four inference pipelines were
+derived from those trajectories, producing 48 fold-level predictions:
+
+- Idea Card: `plan/IDEA-055_checkpoint_ensemble_and_class_bias_calibration.md`;
+- executable protocol:
+  `configs/protocol/meowagenet_idea055_checkpoint_calibration_v1.json`;
+- independent runner:
+  `scripts/run_meowagenet_idea055_checkpoint_calibration.py`;
+- Chinese result report:
+  `reports/28_IDEA-055_checkpoint_calibration_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea055_checkpoint_calibration_v1_results.json`.
+
+The matched single-checkpoint A0 reproduced mean animal macro F1 0.7570.
+Tail-three checkpoint probability averaging achieved 0.7552, improved balanced
+accuracy from 0.7645 to 0.7665, and reduced animal cross-entropy from 0.7160 to
+0.7059. Class-bias calibration alone achieved 0.7513, while ensemble plus bias
+achieved 0.7457. All seed-expansion gates closed. This completes the current
+five-priority exploration sequence as a stage checkpoint: A0 remains the main
+performance reference, checkpoint averaging is retained as supporting evidence
+for probability quality, and future ideas remain open for later evaluation.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,

@@ -340,6 +340,7 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 | AST local acoustic residual | D/E | temporal mean 三次平均与 reference 接近且有 2/3 正向 repeats；salience residual 较低 |
 | AST–VGGish probability fusion | E/F | 存在 21 次 VGGish-only 正确；inner-selected scalar fusion 平均低于 AST 0.0071 |
 | LayerNorm / SSF / BitFit | F/E | 三种受约束校准均低于 frozen AST；LayerNorm 最接近且有 1/3 正向 repeat |
+| Checkpoint ensemble / class-bias calibration | I/J | tail-3 平均与 A0 主指标接近，并改善 balanced accuracy 与 animal CE；类别 bias 的主指标较低 |
 
 ## 11. 当前优先探索导航
 
@@ -381,6 +382,10 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 - 优先级 4 已完成：IDEA-054 的 LayerNorm、block-output SSF、BitFit 平均 macro F1 分别为
   0.7429、0.7356、0.7372，低于 matched frozen AST 的 0.7570；三条 seed-expansion gate
   均关闭。LayerNorm 在 1/3 repeats 提高，保留为局部 PEFT 信号。
-- 下一步进入优先级 5：将 checkpoint averaging / output calibration 建立为独立 idea，
-  预先明确可用 checkpoint、inner-only 选择目标和 matched A0，再启动评价。feature-level
-  或条件式融合继续保留为以后可独立启动的候选。
+- 优先级 5 已完成：IDEA-055 的 tail-3 checkpoint 概率平均取得 0.7552 macro F1，
+  相对 matched A0 的 0.7570 为 `−0.0018`；balanced accuracy 提高 0.0020，animal CE
+  降低 0.0100。类别 bias 与 ensemble+bias 分别取得 0.7513 和 0.7457。三条
+  seed-expansion gate 均关闭，P1 保留为概率质量与类别均衡方面的支持性结果。
+- 当前五项优先探索形成阶段性收尾，A0 继续作为性能参考。该节点用于整理现有证据，
+  不锁定最终模型，也不限制后续新 idea；feature-level、条件式融合和新的 AST 改进仍可
+  按独立 Idea Card 进入下一轮。

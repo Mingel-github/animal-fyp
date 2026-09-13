@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "status": "locked_after_inner_only_smoke",
+  "protocol_id": "meowagenet-idea055-checkpoint-calibration-v1",
+  "outer_test_accessed": false,
+  "code_commit": "de14d9939caa234086ec19bfb588e9fc4905c8bd",
+  "plan_sha256": "4199deea7a50b22726f25ab18272c85bc25c8a4fd7aee130c0dccc00afb9bf0a",
+  "protocol_sha256": "6df469103f75871225f3bf2f6a6ba989f63622ad3770fb14e43d1d61daa11134",
+  "runner_sha256": "dc384a1309b8f585d96488b977a07a9b7d4c9d89d27bd9a1d5f9a6cfb496a1b8",
+  "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+  "smoke_summary_sha256": "2cab3664aa8ed2ca9d6d00e36fdf17f426cf7d75d8b049f32f38d5df8ff1ae73",
+  "environment_lock_sha256": "3bdbb48a97bf180927941a9ec0f600d94bf4c0376722a0d68cfff0519d832a2e",
+  "initial_evaluation": {
+    "base_seeds": [
+      17
+    ],
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "pipelines": [
+      "A0_single_selected_checkpoint",
+      "P1_tail3_checkpoint_ensemble",
+      "P2_class_bias_calibration",
+      "P3_tail3_plus_class_bias"
+    ],
+    "shared_training_trajectories": 12,
+    "pipeline_fold_predictions": 48,
+    "complete_oof_evaluations": 12,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "animal_cross_entropy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "paired_prediction_changes",
+      "selected_biases",
+      "tail_checkpoint_counts",
+      "runtime_and_peak_vram"
+    ]
+  },
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "head_trainable_parameters": 99075,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation animal-level cross-entropy",
+    "micro_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "call_weighting": "global class-balanced weights computed once from all calls in the current training role",
+    "call_to_animal_aggregation": "arithmetic mean of call probabilities"
+  },
+  "checkpoint_ensemble": {
+    "maximum_checkpoints": 3,
+    "selection": "consecutive epochs ending at the inner-selected epoch",
+    "combination": "arithmetic mean of probabilities",
+    "minimum_epoch": 1,
+    "batchnorm_policy": "retain each checkpoint's own running statistics through prediction ensembling"
+  },
+  "class_bias_calibration": {
+    "application_unit": "animal probabilities after call-probability averaging",
+    "formula": "softmax(log(p_animal) + [b_kitten, 0, b_senior])",
+    "kitten_bias_grid": [
+      -0.4,
+      -0.2,
+      0.0,
+      0.2,
+      0.4
+    ],
+    "adult_bias": 0.0,
+    "senior_bias_grid": [
+      -0.4,
+      -0.2,
+      0.0,
+      0.2,
+      0.4
+    ],
+    "grid_points": 25,
+    "selection_order": [
+      "maximum inner animal macro_f1",
+      "maximum inner animal balanced_accuracy",
+      "minimum inner animal cross_entropy",
+      "minimum l1 bias magnitude",
+      "fixed numeric order"
+    ]
+  }
+}
