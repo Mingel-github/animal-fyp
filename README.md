@@ -56,6 +56,10 @@ The initial baseline assessment is in `reports/00_baseline_assessment.md`.
 
 ## Current research status
 
+The reusable idea-space taxonomy, priority navigation, Idea Card template, and
+`IDEATE / PLAN / RUN` handoff prompt for new collaborators and Agents are in
+`plan/AST_idea_space_and_agent_workflow.md`.
+
 The MeowAgeNet dataset manifest, checksums, cat-ID-disjoint folds, VGGish
 baseline, standard AST comparisons, and the IDEA-013/003/019 candidate studies
 are recorded in this repository.
