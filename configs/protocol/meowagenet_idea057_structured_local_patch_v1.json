@@ -1,0 +1,193 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea057-structured-local-patch-v1",
+  "date": "2026-09-15",
+  "status": "authorized_pre_execution_design",
+  "objective": "Test whether a lightweight position-aware time-frequency patch branch adds stable animal-level age-classification information beyond the tuned frozen-AST global embedding.",
+  "relationship": {
+    "formal_v2_1": "historical formal evidence anchor; unchanged",
+    "idea056": "defines the tuned frozen-AST reference and animal-level validation cross-entropy checkpoint rule",
+    "ast_internal_diagnosis": "provides the middle-frequency and middle-time located signals",
+    "idea052": "provides the audited frozen-feature training and complete-OOF evaluation framework",
+    "stage": "IDEA-057 independent initial validation before any IDEA-057/IDEA-058 combination"
+  },
+  "idea": {
+    "path": "plan/IDEA-057_structured_local_patch_branch.md",
+    "sha256": "759b902d95863dbb157d950f789cab8f0b6c53456d2c11dd588ef2a6353b02b8"
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "segments": 843,
+    "global_representation": "locked 768-dimensional final AST call embedding",
+    "local_representation": "nine 768-dimensional call representations from a 3 x 3 relative frequency-time grid",
+    "ast_patch_grid": [12, 12],
+    "relative_grid": [3, 3]
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id",
+    "inner_selection_within_outer_training_role": true,
+    "selection_roles": ["train", "validation"],
+    "excluded_selection_role": "test"
+  },
+  "feature_preparation": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "minimum_real_patch_overlap_fraction": 0.5,
+    "time_partition": "three relative groups over valid AST time positions; an empty short-call group reuses its nearest valid position",
+    "frequency_partition": "three contiguous relative groups over the 12 AST frequency positions",
+    "cell_pooling": "mean final-layer patch token within each frequency-time cell, followed by arithmetic mean across segments belonging to one call",
+    "output_path": "runs/meowagenet_idea057_structured_local_patch_v1/features/ast_final_3x3_grid_embeddings.npz",
+    "outer_test_accessed": false
+  },
+  "inner_selection": {
+    "base_seed": 17,
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "candidate_fits": 24,
+    "candidate_recipes": {
+      "middle_frequency_strip": {
+        "selected_cells": "all three relative-time cells in the middle relative-frequency band",
+        "local_projection_dimension": 32,
+        "position_readout": "ordered concatenation followed by a linear 96 -> 128 map"
+      },
+      "full_3x3_grid": {
+        "selected_cells": "all nine relative frequency-time cells in row-major frequency-time order",
+        "local_projection_dimension": 16,
+        "position_readout": "ordered concatenation followed by a linear 144 -> 128 map"
+      }
+    },
+    "selection_rule": "highest mean inner-validation animal Macro F1 across 12 splits; ties within 1e-6 use lower mean animal cross-entropy, then fewer trainable parameters, then lexical recipe ID",
+    "selected_recipe_output": "runs/meowagenet_idea057_structured_local_patch_v1/selection/selection_record.json",
+    "outer_test_accessed": false
+  },
+  "pipelines": {
+    "R0_tuned_frozen_ast": {
+      "architecture": "standardized global 768 -> 128 -> 3 head with ReLU, BatchNorm and dropout",
+      "local_branch": "none",
+      "role": "matched IDEA-056 tuned frozen-AST reference"
+    },
+    "M1_position_aware_local_patch": {
+      "architecture": "R0 global path plus the selected ordered local-grid branch and a zero-initialized 128-dimensional residual gate",
+      "local_input": "selected time-frequency cells retain their fixed relative positions",
+      "role": "target mechanism"
+    },
+    "C1_position_removed_control": {
+      "architecture": "identical to M1 with exactly the same trainable parameters",
+      "local_input": "the mean of all nine cells is repeated at every selected position",
+      "role": "capacity-matched control with local position removed"
+    }
+  },
+  "fixed_training": {
+    "embedding_dimension": 768,
+    "hidden_dimension": 128,
+    "classes": 3,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation animal-level cross-entropy",
+    "call_micro_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "call_weighting": "fixed global class-balanced call weights from the current training role",
+    "global_normalization": "training-call global embedding mean and standard deviation per fit",
+    "local_normalization": "all nine grid cells from training calls per fit",
+    "local_gate_activation": "tanh",
+    "local_gate_initialization": 0.0,
+    "call_to_animal_aggregation": "arithmetic mean of call probabilities"
+  },
+  "smoke": {
+    "base_seed": 17,
+    "repeat": 0,
+    "outer_fold": 0,
+    "epochs": 2,
+    "pipelines": [
+      "R0_tuned_frozen_ast",
+      "M1_position_aware_local_patch",
+      "C1_position_removed_control"
+    ],
+    "requirements": [
+      "inner-only train and animal validation",
+      "R0/M1/C1 common initialization audit",
+      "M1/C1 exact trainable-parameter match",
+      "zero-gate initial-logit match",
+      "checkpoint save and reload",
+      "no outer-test prediction"
+    ],
+    "outer_test_accessed": false,
+    "excluded_from_evaluation_summary": true
+  },
+  "initial_evaluation": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": [
+      "R0_tuned_frozen_ast",
+      "M1_position_aware_local_patch",
+      "C1_position_removed_control"
+    ],
+    "fits_per_pipeline": 12,
+    "total_outer_fits": 36,
+    "complete_oof_evaluations": 9,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "animal_cross_entropy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "duration_valid_frame_fraction_and_energy_subgroups",
+      "local_gate_magnitude",
+      "paired_prediction_changes",
+      "trainable_parameters_and_runtime"
+    ]
+  },
+  "bootstrap": {
+    "method": "paired cat-cluster bootstrap for each pipeline contrast",
+    "resampling_unit": "cat_id",
+    "iterations": 5000,
+    "seed": 20260915,
+    "interval": [0.025, 0.975]
+  },
+  "seed_expansion_gate": {
+    "minimum_mean_macro_f1_gain_over_R0": 0.005,
+    "minimum_positive_repeats_over_R0": 2,
+    "minimum_mean_macro_f1_gain_over_C1": 0.0,
+    "minimum_positive_repeats_over_C1": 2,
+    "maximum_tolerated_mean_balanced_accuracy_drop": 0.02,
+    "maximum_tolerated_mean_qwk_drop": 0.02,
+    "maximum_tolerated_mean_animal_ce_increase": 0.03,
+    "maximum_tolerated_class_recall_drop": 0.10,
+    "action_when_met": "freeze the selected IDEA-057 recipe and expand matched R0/M1/C1 to base seeds 43 and 101",
+    "action_when_not_met": "close IDEA-057 as a structured local-patch mechanism ablation and continue independently to IDEA-058"
+  },
+  "dependencies": {
+    "locked_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "global_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "global_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "diagnostic_feature_path": "runs/meowagenet_ast_internal_diagnosis_v1/features/ast_internal_diagnostic_features.npz",
+    "diagnostic_feature_sha256": "300cc3a90768f68134d9c05688d913524979cd13310e69168381454bb7822d67",
+    "diagnostic_report_path": "reports/30_AST_internal_diagnosis_results.md",
+    "diagnostic_report_sha256": "2aee828c0e9938b35fed23c7ff86487e446feda0e78432f0d8b2abe2627155d1",
+    "reference_runner_path": "scripts/run_meowagenet_idea052_ast_local_residual.py",
+    "reference_runner_sha256": "445c2688e081c30e6f619254484cf2e3367abedaf7183fab41707359ab1a2639"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea057_structured_local_patch_v1",
+    "result_metadata": "metadata/experiments/meowagenet_idea057_structured_local_patch_v1_results.json",
+    "report": "reports/31_IDEA-057_structured_local_patch_results.md"
+  }
+}
