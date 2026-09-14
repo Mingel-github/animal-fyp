@@ -461,6 +461,16 @@ strongest provisional mechanism lead:
 - machine-readable result:
   `metadata/experiments/meowagenet_ast_internal_diagnosis_v1_results.json`.
 
+On 2026-09-15, the project team decided to advance both diagnostic leads as
+separate experiments. IDEA-057 tests a position-aware local time-frequency
+patch branch; IDEA-058 tests constrained top-block adaptation against a
+parameter-matched block-location control. The two routes share the IDEA-056
+reference and remain independent until each has produced stable evidence:
+
+- joint stage decision: `plan/AST_dual_direction_validation_plan.md`;
+- IDEA-057: `plan/IDEA-057_structured_local_patch_branch.md`;
+- IDEA-058: `plan/IDEA-058_constrained_top_block_adaptation.md`.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,

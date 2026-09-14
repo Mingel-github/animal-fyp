@@ -431,3 +431,15 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 - 三条完整支持规则均未通过，decision record 状态为 `awaiting_team_selection`。建议团队优先
   讨论保留 final AST 主路径的中频—时间局部分支；有限领域适配列为第二方向，中间层仅作为
   局部分支的可选输入。
+
+### 11.6 诊断后的双方向决定（2026-09-15）
+
+- 团队查看完整诊断后，决定同时保留局部 patch 和受约束顶层适配，不采用“只选一个方向”
+  的原执行分支；这是诊断完成后的人工 decision，诊断数据和原计划继续保持不变。
+- IDEA-057 检验保留二维位置的局部分支，设置原始 AST 和移除局部位置结构的参数量匹配对照。
+- IDEA-058 检验 top-block adaptation，设置原始 AST 和更新相同数量 bottom blocks 的位置对照。
+- 两条路线分别完成 inner-only selection、execution lock 和 R0/M1/C1 complete-OOF；任一
+  路线的结果不用于修改另一条已冻结的 recipe。
+- 两条路线均出现稳定正信号后，才建立新的四组组合消融。完整计划见
+  `plan/AST_dual_direction_validation_plan.md`、`plan/IDEA-057_structured_local_patch_branch.md`
+  和 `plan/IDEA-058_constrained_top_block_adaptation.md`。
