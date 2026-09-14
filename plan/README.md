@@ -16,13 +16,17 @@
 ## 当前活动计划
 
 - [`AST_dual_direction_validation_plan.md`](AST_dual_direction_validation_plan.md)：团队决定将诊断得到的两个候选方向分别开展，首轮保持独立验证。
-- [`IDEA-057_structured_local_patch_branch.md`](IDEA-057_structured_local_patch_branch.md)：保留 final AST 主路径，检验位置感知的局部时间—频率分支。
+- [`IDEA-057_structured_local_patch_branch.md`](IDEA-057_structured_local_patch_branch.md)：首轮独立验证已完成；结果见 `reports/31_IDEA-057_structured_local_patch_results.md`。
 - [`IDEA-058_constrained_top_block_adaptation.md`](IDEA-058_constrained_top_block_adaptation.md)：检验受约束的 AST 顶层更新，并以同参数量的非顶部 block 更新作为位置对照。
 
 第一阶段 inner-only 诊断已经完成，结果见
 `reports/30_AST_internal_diagnosis_results.md`。三条完整支持规则均未通过，局部 patch 形成
 当前最强机制线索，Last-2 形成有实际幅度的 mixed signal。2026-09-15 团队决定两条路线
 均继续，各自完成 R0/M1/C1 比较；首轮不组合模块。
+
+IDEA-057 选择中频三段局部分支后完成 36 个 outer fits。R0、M1 和 C1 的 mean animal Macro
+F1 分别为 `0.7570`、`0.7265` 和 `0.7348`；M1 相对 R0 为 `-0.0305`，相对 C1 为
+`-0.0083`。seed expansion gate 关闭，当前活动执行顺序进入 IDEA-058。
 
 `AST_internal_diagnosis_and_single_module_plan.md` 已完成诊断阶段并进入审计记录，作为原始
 设计历史保留，不反向修改。

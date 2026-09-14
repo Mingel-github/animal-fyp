@@ -443,3 +443,14 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 - 两条路线均出现稳定正信号后，才建立新的四组组合消融。完整计划见
   `plan/AST_dual_direction_validation_plan.md`、`plan/IDEA-057_structured_local_patch_branch.md`
   和 `plan/IDEA-058_constrained_top_block_adaptation.md`。
+
+### 11.7 IDEA-057 首轮结果（2026-09-15）
+
+- Inner-only 候选选择中，中频带前/中/后三段取得 `0.7514` Macro F1，高于完整九格的
+  `0.7213`，因此锁定 `middle_frequency_strip`。
+- Complete-OOF 中 R0、位置感知 M1、去位置 C1 的 mean animal Macro F1 分别为
+  `0.7570`、`0.7265`、`0.7348`。
+- M1 相对 R0 的三个 repeat 差为 `0.0000、-0.0496、-0.0419`，平均 `-0.0305`；M1
+  相对 C1 平均 `-0.0083`。本参数化的 seed expansion gate 关闭。
+- 中频定位对候选收缩具有作用，当前有序拼接局部分支增加了 split 敏感性。完整结果见
+  `reports/31_IDEA-057_structured_local_patch_results.md`；双方向流程继续独立执行 IDEA-058。

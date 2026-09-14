@@ -471,6 +471,18 @@ reference and remain independent until each has produced stable evidence:
 - IDEA-057: `plan/IDEA-057_structured_local_patch_branch.md`;
 - IDEA-058: `plan/IDEA-058_constrained_top_block_adaptation.md`.
 
+IDEA-057 has completed its bounded inner-only selection, execution lock, and
+36-fit R0/M1/C1 complete-OOF evaluation. The selected middle-frequency temporal
+strip achieved mean animal macro F1 0.7265, versus 0.7570 for matched R0 and
+0.7348 for the parameter-matched position-removed control. Its paired mean
+differences were -0.0305 versus R0 and -0.0083 versus C1, so the seed-expansion
+gate closed. The structured local-patch implementation is retained as a
+mechanism ablation, and the independent workflow proceeds to IDEA-058:
+
+- Chinese result report: `reports/31_IDEA-057_structured_local_patch_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea057_structured_local_patch_v1_results.json`.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,
