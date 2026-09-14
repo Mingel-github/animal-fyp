@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "status": "locked_after_inner_only_smoke",
+  "protocol_id": "meowagenet-idea056-checkpoint-selection-confirmation-v1",
+  "outer_test_accessed": false,
+  "code_commit": "8018ccbff00a9a08b6b24ccb29cc34f12b0a2d86",
+  "plan_sha256": "81bf3ba0baf5db6ed3fa33eb141a9a04ae64ebcce878df4f5056b7f81f651791",
+  "protocol_sha256": "71bc38c05237fddf25724c7822f9c706c489453b03129a625d5357f2703069c3",
+  "runner_sha256": "94186639855c46ea52c04142d135eaaba5cf0a36dd51d7ba19fa4d7bc35b768d",
+  "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+  "smoke_summary_sha256": "405d28fad447ea5eb3300f5057532188b703bab045d1f5580e08261a68370c39",
+  "environment_lock_sha256": "6bc5a8f2e8b2224de7e14bd18e039c67f6c2d6565980545e77afe023f547ef26",
+  "confirmation_evaluation": {
+    "base_seeds": [
+      43,
+      101
+    ],
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "pipelines": [
+      "C0_call_level_CE_selection",
+      "C1_animal_level_CE_selection"
+    ],
+    "shared_training_trajectories": 24,
+    "pipeline_fold_predictions": 48,
+    "complete_oof_evaluations": 12,
+    "paired_complete_oof_comparisons": 6,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "animal_cross_entropy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "paired_prediction_changes",
+      "selected_epochs",
+      "runtime_and_peak_vram"
+    ]
+  },
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "head_trainable_parameters": 99075,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "micro_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "call_weighting": "global class-balanced weights computed once from all calls in the current training role",
+    "call_to_animal_aggregation": "arithmetic mean of call probabilities"
+  },
+  "shared_training": {
+    "inner": "one trajectory records both selection metrics at every epoch",
+    "outer": "one trajectory runs to max(E_call,E_animal) and emits both checkpoint predictions",
+    "tie_break": "earliest epoch",
+    "early_stop": "stop only after both selection metrics have failed to improve for eight consecutive epochs"
+  },
+  "primary_confirmation_rule": {
+    "minimum_mean_macro_f1_gain": 0.005,
+    "minimum_positive_pairs": 4,
+    "comparison_count": 6,
+    "supporting_evidence": "at least one of balanced accuracy, QWK, plain accuracy, worst-repeat macro F1, repeat dispersion, or paired bootstrap supports C1",
+    "decision_when_met": "adopt animal-level CE checkpoint selection as part of the tuned frozen-AST reference",
+    "decision_when_positive_but_not_met": "retain mixed evidence and return the reference decision to the team",
+    "decision_when_nonpositive": "retain call-level CE selection and record seed-17 as exploratory"
+  }
+}

@@ -398,6 +398,15 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 - IDEA-056 的主要判断只使用尚未查看的 seeds 43/101；seed 17 保留为历史探索性证据。
 - IDEA-056 完成后再进入新的 AST architecture idea，避免把训练流程确认和模型结构改造
   混为同一个实验。
+- IDEA-056 已完成 24 条共享训练轨迹与 6 组新 complete-OOF 配对。C0-call 与 C1-animal
+  的 mean animal macro F1 分别为 `0.7368` 和 `0.7426`，平均差 `+0.0059`，4/6 组为正，
+  达到预先声明的两项确认门槛。
+- C1 将普通 accuracy 提高 `0.0150`、animal CE 降低 `0.0260`，并将 macro-F1 sample SD
+  从 `0.0321` 降至 `0.0186`。类别变化集中为 adult 正确数增加 27，kitten 和 senior 正确数
+  分别减少 8 和 9，因此 balanced accuracy 变化 `−0.0201`，QWK 变化 `−0.0029`。
+- 后续 tuned frozen-AST reference 采用 animal-level validation CE checkpoint selection；
+  C0 作为匹配消融保留。该流程结论不锁定新的模型结构，下一阶段按既定顺序进入 AST 内部
+  诊断，再据此选择一个 architecture direction。
 
 后续固定阶段顺序为：完成 IDEA-056 并确定 AST 参考流程；诊断局部 patch、中间层和预训练
 领域差异；依据诊断只选择一个 AST 内部方向；完成单模块、参数量匹配和原始 AST 对照；

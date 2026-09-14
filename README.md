@@ -414,7 +414,25 @@ checkpoint selection on new base seeds 43 and 101. Seed 17 remains historical
 exploratory evidence and is excluded from the primary confirmation decision:
 
 - readable plan:
-  `plan/IDEA-056_animal_level_checkpoint_selection_confirmation.md`.
+  `plan/IDEA-056_animal_level_checkpoint_selection_confirmation.md`;
+- executable protocol:
+  `configs/protocol/meowagenet_idea056_checkpoint_selection_confirmation_v1.json`;
+- independent runner:
+  `scripts/run_meowagenet_idea056_checkpoint_selection.py`;
+- Chinese result report:
+  `reports/29_IDEA-056_checkpoint_selection_confirmation_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea056_checkpoint_selection_confirmation_v1_results.json`.
+
+IDEA-056 completed 24 shared fold trajectories and six new complete-OOF paired
+comparisons. Animal-level-CE checkpoint selection increased mean animal macro
+F1 from 0.7368 to 0.7426 (`+0.0059`), with 4/6 positive pairs, meeting both
+predeclared confirmation thresholds. It also improved plain accuracy by 0.0150,
+reduced animal CE by 0.0260, and reduced macro-F1 SD from 0.0321 to 0.0186.
+Balanced accuracy changed by -0.0201 and QWK by -0.0029 because the new rule
+improved adult recognition while trading kitten and senior recall. Animal-level
+CE selection is now the tuned frozen-AST reference checkpoint procedure; C0 is
+retained as its matched ablation.
 
 After IDEA-056, the ordered method stage is: diagnose where AST is losing or
 underusing information; select one AST-internal direction; test that single

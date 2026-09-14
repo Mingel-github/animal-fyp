@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea056-checkpoint-selection-confirmation-v1",
+  "date": "2026-09-14",
+  "status": "complete_confirmation_rule_passed",
+  "reference_decision": "adopt animal-level validation cross-entropy checkpoint selection as the tuned frozen-AST reference procedure",
+  "scope": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "primary_base_seeds": [43, 101],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "shared_training_trajectories": 24,
+    "pipeline_fold_predictions": 48,
+    "complete_oof_evaluations": 12,
+    "paired_complete_oof_comparisons": 6,
+    "historical_seed17_excluded_from_primary_decision": true
+  },
+  "pipelines": {
+    "C0_call_level_CE_selection": "minimum unweighted inner-validation call-level cross-entropy",
+    "C1_animal_level_CE_selection": "minimum unweighted inner-validation animal-level cross-entropy after call-probability averaging",
+    "matched_trajectory": "each fold shares one inner trajectory and one outer trajectory; only the selected epoch differs"
+  },
+  "smoke": {
+    "status": "passed",
+    "outer_test_accessed": false,
+    "base_seed": 43,
+    "repeat": 0,
+    "outer_fold": 0,
+    "inner_train_calls": 517,
+    "inner_validation_calls": 112,
+    "selected_call_epoch": 2,
+    "selected_animal_epoch": 2,
+    "trainable_head_parameters": 99075,
+    "updated_trainable_parameter_tensors": 6,
+    "last_probability_sum_max_error": 9.010545909404755e-08,
+    "earliest_tie_epoch_test": 1,
+    "dual_patience_test_passed": true
+  },
+  "aggregate": {
+    "C0_call_level_CE_selection": {
+      "macro_f1_mean": 0.7367810587206178,
+      "macro_f1_sample_sd": 0.03210197307958307,
+      "macro_f1_range": [0.6976849237718804, 0.7918505942275041],
+      "balanced_accuracy_mean": 0.761427366645583,
+      "quadratic_weighted_kappa_mean": 0.6508125246971458,
+      "plain_accuracy_mean": 0.7222222222222222,
+      "animal_cross_entropy_mean": 0.7781081930994315
+    },
+    "C1_animal_level_CE_selection": {
+      "macro_f1_mean": 0.7426364592838377,
+      "macro_f1_sample_sd": 0.01864392366569787,
+      "macro_f1_range": [0.7148148148148149, 0.7629976580796253],
+      "balanced_accuracy_mean": 0.7412854030501089,
+      "quadratic_weighted_kappa_mean": 0.6479602106571516,
+      "plain_accuracy_mean": 0.7372372372372372,
+      "animal_cross_entropy_mean": 0.7520831458067178
+    }
+  },
+  "paired_confirmation": {
+    "macro_f1_differences": [
+      0.027252044044537516,
+      -0.0027672448927090754,
+      0.030309825083202013,
+      -0.039170344045239336,
+      0.0023782321465936063,
+      0.017129891042934497
+    ],
+    "mean_macro_f1_difference": 0.00585540056321987,
+    "positive_pairs": 4,
+    "comparison_count": 6,
+    "mean_balanced_accuracy_difference": -0.020141963595474044,
+    "mean_qwk_difference": -0.002852314039994234,
+    "mean_plain_accuracy_difference": 0.015015015015015029,
+    "mean_animal_cross_entropy_difference": -0.02602504729271371,
+    "changed_animal_evaluations": 68,
+    "gained_correct_animal_evaluations": 37,
+    "lost_correct_animal_evaluations": 27
+  },
+  "per_seed": {
+    "43": {
+      "C0_macro_f1_mean": 0.7271810586061195,
+      "C1_macro_f1_mean": 0.7454459333511297,
+      "C1_minus_C0_mean": 0.01826487474501015,
+      "positive_pairs": 2
+    },
+    "101": {
+      "C0_macro_f1_mean": 0.7463810588351162,
+      "C1_macro_f1_mean": 0.7398269852165457,
+      "C1_minus_C0_mean": -0.006554073618570411,
+      "positive_pairs": 2
+    }
+  },
+  "paired_cat_bootstrap": {
+    "resampling_unit": "cat_id",
+    "paired_complete_oof_comparisons": 6,
+    "iterations": 5000,
+    "seed": 20260916,
+    "mean_difference": 0.005305972244104738,
+    "interval_95pct": [-0.030074332811992014, 0.038784806381659896],
+    "fraction_above_zero": 0.6248
+  },
+  "class_analysis": {
+    "C0_summed_confusion_matrix": [[78, 8, 4], [20, 252, 100], [4, 49, 151]],
+    "C1_summed_confusion_matrix": [[70, 15, 5], [13, 279, 80], [2, 60, 142]],
+    "correct_count_changes": {
+      "kitten": -8,
+      "adult": 27,
+      "senior": -9,
+      "all": 10
+    },
+    "recall_changes": {
+      "kitten": -0.088888888888889,
+      "adult": 0.07258064516129037,
+      "senior": -0.04411764705882337
+    },
+    "interpretation": "C1 improves adult recognition and overall correct count while trading kitten and senior recall; this raises macro F1 and plain accuracy but lowers balanced accuracy."
+  },
+  "selection_analysis": {
+    "mean_C0_selected_epoch": 4.70833333333333,
+    "mean_C1_selected_epoch": 11.9166666666667,
+    "C1_later_folds": 20,
+    "same_epoch_folds": 2,
+    "C1_earlier_folds": 2,
+    "interpretation": "animal-level CE usually continues improving after call-level CE has reached its minimum"
+  },
+  "historical_context": {
+    "seed17_C0_macro_f1_mean": 0.7464264321280533,
+    "seed17_C1_macro_f1_mean": 0.7570206188850608,
+    "seed17_C1_minus_C0_mean": 0.0105941867570076,
+    "combined_nine_C0_macro_f1_mean": 0.739996183189763,
+    "combined_nine_C1_macro_f1_mean": 0.747431179150912,
+    "combined_nine_mean_difference": 0.00743499596114905,
+    "combined_positive_pairs": 6,
+    "combined_pair_count": 9,
+    "decision_role": "descriptive context only; primary confirmation uses seeds 43 and 101"
+  },
+  "confirmation_decision": {
+    "passed": true,
+    "mean_gain_threshold": 0.005,
+    "observed_mean_gain": 0.00585540056321987,
+    "positive_pair_threshold": 4,
+    "observed_positive_pairs": 4,
+    "supporting_signals": [
+      "plain accuracy +0.0150",
+      "worst complete-OOF macro F1 +0.0171",
+      "macro-F1 sample SD reduction 0.0135",
+      "paired bootstrap center +0.0053"
+    ],
+    "tradeoffs": [
+      "balanced accuracy -0.0201",
+      "QWK -0.0029",
+      "seed 43 mean +0.0183 and seed 101 mean -0.0066"
+    ],
+    "next_reference": "C1 animal-level validation cross-entropy checkpoint selection",
+    "next_stage": "AST-internal diagnostic before selecting one new architecture direction"
+  },
+  "implementation_validation": {
+    "C0_historical_reproduction_max_abs_macro_f1_difference": 1.59999791193854e-11,
+    "test_suite": "128 passed, 1 warning",
+    "probability_outputs_normalized": true,
+    "execution_lock_verified": true
+  },
+  "execution_audit": {
+    "code_commit": "8018ccbff00a9a08b6b24ccb29cc34f12b0a2d86",
+    "device": "NVIDIA GeForce RTX 4060 Ti",
+    "summed_inner_training_seconds": 64.4636610000161,
+    "summed_outer_training_and_prediction_seconds": 41.4797262000066,
+    "peak_recorded_vram_bytes": 20240384,
+    "run_root": "runs/meowagenet_idea056_checkpoint_selection_confirmation_v1",
+    "run_files": 140,
+    "run_bytes": 5441198,
+    "versioned_json_files": 31,
+    "local_prediction_csv_files": 109
+  },
+  "provenance_sha256": {
+    "plan": "81bf3ba0baf5db6ed3fa33eb141a9a04ae64ebcce878df4f5056b7f81f651791",
+    "protocol": "71bc38c05237fddf25724c7822f9c706c489453b03129a625d5357f2703069c3",
+    "runner": "94186639855c46ea52c04142d135eaaba5cf0a36dd51d7ba19fa4d7bc35b768d",
+    "smoke_summary": "405d28fad447ea5eb3300f5057532188b703bab045d1f5580e08261a68370c39",
+    "execution_lock": "d9828e447a6d304f2b2d701c5bafed10dd06b99dffec80fecea78cf102fb3201",
+    "environment_lock": "6bc5a8f2e8b2224de7e14bd18e039c67f6c2d6565980545e77afe023f547ef26",
+    "evaluation_summary": "c82329943495cea148fab4a0d529aec6e98694acf5b65a6443a326cb8121c533",
+    "evaluation_run_summary": "6ec8fa8784057a79fc54e586330f9cdb0948ffe367dfb940a1e010581ae9ae3a",
+    "evaluation_run_manifest": "b21f47a397ce852bd2674e08b7d2e658a3c133f5a7bced30fbccd02f0f526898",
+    "raw_prediction_inventory": "0615432a0ddc61036719df04e4463de3b2ebdf8f3661284bf970ba5d12c805ac",
+    "raw_prediction_aggregate": "b62e9c9b5c0cf0157aadf121afb5369f55565e1329c3fb4e445f842519f41001"
+  }
+}
