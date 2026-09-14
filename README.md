@@ -445,6 +445,22 @@ time-frequency patches, intermediate-layer representations, and pretraining
 domain mismatch as competing diagnostic directions. No new architecture is
 selected until the diagnostic decision record is complete.
 
+The inner-only diagnostic stage has completed across 12 train/validation
+splits. The final AST layer outperformed the best standalone intermediate layer
+by 0.0297 macro F1. The middle-frequency regional probe achieved 0.7437 versus
+0.7649 for the global probe, while middle-time mean replacement reduced true-
+class probability in all 12 splits. Last-two-block adaptation improved mean
+inner-validation macro F1 by 0.0249, with 5/12 positive and 3/12 tied splits,
+while animal CE increased by 0.0023. No axis passed its full diagnostic support
+rule; the decision record remains open, with local patch retained as the
+strongest provisional mechanism lead:
+
+- protocol: `configs/protocol/meowagenet_ast_internal_diagnosis_v1.json`;
+- runner: `scripts/run_meowagenet_ast_internal_diagnosis.py`;
+- Chinese report: `reports/30_AST_internal_diagnosis_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_ast_internal_diagnosis_v1_results.json`.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,

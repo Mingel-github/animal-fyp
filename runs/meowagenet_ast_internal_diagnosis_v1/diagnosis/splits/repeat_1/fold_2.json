@@ -1,0 +1,4303 @@
+{
+  "status": "complete",
+  "outer_test_accessed": false,
+  "repeat": 1,
+  "outer_fold": 2,
+  "full_seed": 10217,
+  "inner_train_calls": 467,
+  "inner_validation_calls": 81,
+  "inner_train_cats": 66,
+  "inner_validation_cats": 17,
+  "layer_probes": [
+    {
+      "layer": 1,
+      "metrics": {
+        "macro_f1": 0.3873015873015873,
+        "balanced_accuracy": 0.4000000000000001,
+        "quadratic_weighted_kappa": -0.12182741116751261,
+        "plain_accuracy": 0.5882352941176471,
+        "per_class": {
+          "kitten": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7272727272727273,
+            "recall": 0.8,
+            "f1": 0.761904761904762,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.4,
+            "recall": 0.4,
+            "f1": 0.4000000000000001,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            8,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.0475087881955518,
+        "call_macro_f1": 0.3896435224653469,
+        "call_accuracy": 0.4567901234567901,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          422
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 2,
+      "metrics": {
+        "macro_f1": 0.6127946127946128,
+        "balanced_accuracy": 0.5666666666666668,
+        "quadratic_weighted_kappa": 0.4516129032258065,
+        "plain_accuracy": 0.6470588235294118,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.6666666666666666,
+            "recall": 0.8,
+            "f1": 0.7272727272727272,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.5,
+            "recall": 0.4,
+            "f1": 0.4444444444444445,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            8,
+            2
+          ],
+          [
+            0,
+            3,
+            2
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.5984761851717654,
+        "call_macro_f1": 0.43951418951418947,
+        "call_accuracy": 0.41975308641975306,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          588
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 3,
+      "metrics": {
+        "macro_f1": 0.6497584541062801,
+        "balanced_accuracy": 0.6,
+        "quadratic_weighted_kappa": 0.5142857142857143,
+        "plain_accuracy": 0.7058823529411765,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.6923076923076923,
+            "recall": 0.9,
+            "f1": 0.7826086956521738,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.6666666666666666,
+            "recall": 0.4,
+            "f1": 0.5,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            9,
+            1
+          ],
+          [
+            0,
+            3,
+            2
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.7517119426874714,
+        "call_macro_f1": 0.4287749287749289,
+        "call_accuracy": 0.41975308641975306,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          356
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 4,
+      "metrics": {
+        "macro_f1": 0.7354497354497355,
+        "balanced_accuracy": 0.7333333333333334,
+        "quadratic_weighted_kappa": 0.5933014354066986,
+        "plain_accuracy": 0.7058823529411765,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7272727272727273,
+            "recall": 0.8,
+            "f1": 0.761904761904762,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.5,
+            "recall": 0.4,
+            "f1": 0.4444444444444445,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            2
+          ],
+          [
+            0,
+            3,
+            2
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.47951169178111724,
+        "call_macro_f1": 0.5163264555518775,
+        "call_accuracy": 0.5061728395061729,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          343
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 5,
+      "metrics": {
+        "macro_f1": 0.7000000000000001,
+        "balanced_accuracy": 0.7000000000000001,
+        "quadratic_weighted_kappa": 0.5363636363636364,
+        "plain_accuracy": 0.6470588235294118,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7,
+            "recall": 0.7,
+            "f1": 0.7,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.4,
+            "recall": 0.4,
+            "f1": 0.4000000000000001,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            0,
+            3,
+            2
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.6326030344581483,
+        "call_macro_f1": 0.5285353535353535,
+        "call_accuracy": 0.48148148148148145,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          271
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 6,
+      "metrics": {
+        "macro_f1": 0.6832579185520361,
+        "balanced_accuracy": 0.7000000000000001,
+        "quadratic_weighted_kappa": 0.5296442687747036,
+        "plain_accuracy": 0.5882352941176471,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7142857142857143,
+            "recall": 0.5,
+            "f1": 0.588235294117647,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.375,
+            "recall": 0.6,
+            "f1": 0.4615384615384615,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            5,
+            5
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.2303234100407194,
+        "call_macro_f1": 0.5790322580645162,
+        "call_accuracy": 0.5185185185185185,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          235
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 7,
+      "metrics": {
+        "macro_f1": 0.7222222222222222,
+        "balanced_accuracy": 0.7333333333333334,
+        "quadratic_weighted_kappa": 0.5785123966942148,
+        "plain_accuracy": 0.6470588235294118,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.6666666666666665,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.42857142857142855,
+            "recall": 0.6,
+            "f1": 0.5,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            4
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.8342114978028953,
+        "call_macro_f1": 0.5630619964420807,
+        "call_accuracy": 0.5061728395061729,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          243
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 8,
+      "metrics": {
+        "macro_f1": 0.7222222222222222,
+        "balanced_accuracy": 0.7333333333333334,
+        "quadratic_weighted_kappa": 0.5785123966942148,
+        "plain_accuracy": 0.6470588235294118,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.6666666666666665,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.42857142857142855,
+            "recall": 0.6,
+            "f1": 0.5,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            4
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.1107507853509266,
+        "call_macro_f1": 0.5676672792866381,
+        "call_accuracy": 0.5061728395061729,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          180
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 9,
+      "metrics": {
+        "macro_f1": 0.6650717703349281,
+        "balanced_accuracy": 0.6666666666666666,
+        "quadratic_weighted_kappa": 0.48484848484848486,
+        "plain_accuracy": 0.5882352941176471,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6,
+            "f1": 0.631578947368421,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.3333333333333333,
+            "recall": 0.4,
+            "f1": 0.3636363636363636,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            4
+          ],
+          [
+            0,
+            3,
+            2
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.0345124929118723,
+        "call_macro_f1": 0.5780514504652435,
+        "call_accuracy": 0.49382716049382713,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          187
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 10,
+      "metrics": {
+        "macro_f1": 0.7607655502392344,
+        "balanced_accuracy": 0.7666666666666666,
+        "quadratic_weighted_kappa": 0.6320346320346321,
+        "plain_accuracy": 0.7058823529411765,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7777777777777778,
+            "recall": 0.7,
+            "f1": 0.7368421052631577,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.5,
+            "recall": 0.6,
+            "f1": 0.5454545454545454,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.5556049388274401,
+        "call_macro_f1": 0.6531795590671594,
+        "call_accuracy": 0.6049382716049383,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          181
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 11,
+      "metrics": {
+        "macro_f1": 0.7607655502392344,
+        "balanced_accuracy": 0.7666666666666666,
+        "quadratic_weighted_kappa": 0.6320346320346321,
+        "plain_accuracy": 0.7058823529411765,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7777777777777778,
+            "recall": 0.7,
+            "f1": 0.7368421052631577,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.5,
+            "recall": 0.6,
+            "f1": 0.5454545454545454,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.5280916609969286,
+        "call_macro_f1": 0.6562238930659983,
+        "call_accuracy": 0.5802469135802469,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          166
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "layer": 12,
+      "metrics": {
+        "macro_f1": 0.8148148148148148,
+        "balanced_accuracy": 0.8333333333333334,
+        "quadratic_weighted_kappa": 0.71900826446281,
+        "plain_accuracy": 0.7647058823529411,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.875,
+            "recall": 0.7,
+            "f1": 0.7777777777777777,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.5714285714285714,
+            "recall": 0.8,
+            "f1": 0.6666666666666666,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            0,
+            1,
+            4
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.6555224445334008,
+        "call_macro_f1": 0.6307017543859649,
+        "call_accuracy": 0.5802469135802469,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          165
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 2
+        }
+      ]
+    }
+  ],
+  "regional_probes": [
+    {
+      "region": "time_early",
+      "metrics": {
+        "macro_f1": 0.5740740740740741,
+        "balanced_accuracy": 0.6333333333333333,
+        "quadratic_weighted_kappa": 0.26724137931034486,
+        "plain_accuracy": 0.5882352941176471,
+        "per_class": {
+          "kitten": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1": 0.8,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7,
+            "recall": 0.7,
+            "f1": 0.7,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.25,
+            "recall": 0.2,
+            "f1": 0.22222222222222224,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            1,
+            3,
+            1
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.3373839004242014,
+        "call_macro_f1": 0.481962481962482,
+        "call_accuracy": 0.4567901234567901,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          170
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "region": "time_middle",
+      "metrics": {
+        "macro_f1": 0.5407407407407407,
+        "balanced_accuracy": 0.6,
+        "quadratic_weighted_kappa": 0.4137931034482759,
+        "plain_accuracy": 0.5294117647058824,
+        "per_class": {
+          "kitten": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1": 0.8,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.6,
+            "recall": 0.6,
+            "f1": 0.6,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.25,
+            "recall": 0.2,
+            "f1": 0.22222222222222224,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            1,
+            6,
+            3
+          ],
+          [
+            0,
+            4,
+            1
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.8778633603539573,
+        "call_macro_f1": 0.47257772703906215,
+        "call_accuracy": 0.43209876543209874,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          137
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "region": "time_late",
+      "metrics": {
+        "macro_f1": 0.6832579185520361,
+        "balanced_accuracy": 0.7000000000000001,
+        "quadratic_weighted_kappa": 0.5296442687747036,
+        "plain_accuracy": 0.5882352941176471,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7142857142857143,
+            "recall": 0.5,
+            "f1": 0.588235294117647,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.375,
+            "recall": 0.6,
+            "f1": 0.4615384615384615,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            5,
+            5
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.1905622068427824,
+        "call_macro_f1": 0.4950029394473838,
+        "call_accuracy": 0.4444444444444444,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          137
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 2
+        }
+      ]
+    },
+    {
+      "region": "frequency_low",
+      "metrics": {
+        "macro_f1": 0.7000000000000001,
+        "balanced_accuracy": 0.7000000000000001,
+        "quadratic_weighted_kappa": 0.5363636363636364,
+        "plain_accuracy": 0.6470588235294118,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7,
+            "recall": 0.7,
+            "f1": 0.7,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.4,
+            "recall": 0.4,
+            "f1": 0.4000000000000001,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            0,
+            3,
+            2
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.1734268131259256,
+        "call_macro_f1": 0.5032668881506092,
+        "call_accuracy": 0.4567901234567901,
+        "probability_sum_max_error": 3.3306690738754696e-16,
+        "probe_iterations": [
+          156
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "region": "frequency_middle",
+      "metrics": {
+        "macro_f1": 0.7607655502392344,
+        "balanced_accuracy": 0.7666666666666666,
+        "quadratic_weighted_kappa": 0.6320346320346321,
+        "plain_accuracy": 0.7058823529411765,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7777777777777778,
+            "recall": 0.7,
+            "f1": 0.7368421052631577,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.5,
+            "recall": 0.6,
+            "f1": 0.5454545454545454,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.3251239198955864,
+        "call_macro_f1": 0.6016813639035862,
+        "call_accuracy": 0.5432098765432098,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          152
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "region": "frequency_high",
+      "metrics": {
+        "macro_f1": 0.6456140350877193,
+        "balanced_accuracy": 0.7000000000000001,
+        "quadratic_weighted_kappa": 0.37037037037037035,
+        "plain_accuracy": 0.6470588235294118,
+        "per_class": {
+          "kitten": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1": 0.8,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7777777777777778,
+            "recall": 0.7,
+            "f1": 0.7368421052631577,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.4,
+            "recall": 0.4,
+            "f1": 0.4000000000000001,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.9200666281818156,
+        "call_macro_f1": 0.47389969966417594,
+        "call_accuracy": 0.43209876543209874,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          150
+        ]
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    }
+  ],
+  "global_probe": {
+    "metrics": {
+      "macro_f1": 0.8148148148148148,
+      "balanced_accuracy": 0.8333333333333334,
+      "quadratic_weighted_kappa": 0.71900826446281,
+      "plain_accuracy": 0.7647058823529411,
+      "per_class": {
+        "kitten": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "adult": {
+          "precision": 0.875,
+          "recall": 0.7,
+          "f1": 0.7777777777777777,
+          "support": 10
+        },
+        "senior": {
+          "precision": 0.5714285714285714,
+          "recall": 0.8,
+          "f1": 0.6666666666666666,
+          "support": 5
+        }
+      },
+      "confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ]
+      ],
+      "n": 17,
+      "animal_cross_entropy": 0.6555021585705563,
+      "call_macro_f1": 0.6307017543859649,
+      "call_accuracy": 0.5802469135802469,
+      "probability_sum_max_error": 2.220446049250313e-16,
+      "probe_iterations": [
+        148
+      ]
+    },
+    "animal_predictions": [
+      {
+        "cat_id": "014A",
+        "true_label": 1,
+        "predicted_label": 1
+      },
+      {
+        "cat_id": "014B",
+        "true_label": 0,
+        "predicted_label": 0
+      },
+      {
+        "cat_id": "025B",
+        "true_label": 1,
+        "predicted_label": 2
+      },
+      {
+        "cat_id": "026C",
+        "true_label": 1,
+        "predicted_label": 1
+      },
+      {
+        "cat_id": "029A",
+        "true_label": 1,
+        "predicted_label": 2
+      },
+      {
+        "cat_id": "043A",
+        "true_label": 0,
+        "predicted_label": 0
+      },
+      {
+        "cat_id": "054A",
+        "true_label": 2,
+        "predicted_label": 2
+      },
+      {
+        "cat_id": "065A",
+        "true_label": 1,
+        "predicted_label": 1
+      },
+      {
+        "cat_id": "073A",
+        "true_label": 1,
+        "predicted_label": 2
+      },
+      {
+        "cat_id": "087A",
+        "true_label": 1,
+        "predicted_label": 1
+      },
+      {
+        "cat_id": "088A",
+        "true_label": 1,
+        "predicted_label": 1
+      },
+      {
+        "cat_id": "090A",
+        "true_label": 2,
+        "predicted_label": 2
+      },
+      {
+        "cat_id": "095A",
+        "true_label": 1,
+        "predicted_label": 1
+      },
+      {
+        "cat_id": "100A",
+        "true_label": 1,
+        "predicted_label": 1
+      },
+      {
+        "cat_id": "106A",
+        "true_label": 2,
+        "predicted_label": 1
+      },
+      {
+        "cat_id": "108A",
+        "true_label": 2,
+        "predicted_label": 2
+      },
+      {
+        "cat_id": "117A",
+        "true_label": 2,
+        "predicted_label": 2
+      }
+    ]
+  },
+  "masked_sensitivity": [
+    {
+      "region": "time_early",
+      "metrics": {
+        "macro_f1": 0.7321428571428572,
+        "balanced_accuracy": 0.7999999999999999,
+        "quadratic_weighted_kappa": 0.6433566433566433,
+        "plain_accuracy": 0.6470588235294118,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 1.0,
+            "recall": 0.4,
+            "f1": 0.5714285714285715,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.45454545454545453,
+            "recall": 1.0,
+            "f1": 0.625,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            6
+          ],
+          [
+            0,
+            0,
+            5
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.3639259850445256,
+        "call_macro_f1": 0.6054187192118227,
+        "call_accuracy": 0.5308641975308642,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          148
+        ]
+      },
+      "sensitivity": {
+        "animal_macro_f1_drop": 0.08267195767195756,
+        "animal_balanced_accuracy_drop": 0.03333333333333344,
+        "mean_true_class_probability_drop": 0.041521929196074656,
+        "median_true_class_probability_drop": 1.3512350504174542e-05,
+        "positive_call_fraction": 0.5061728395061729,
+        "associations": {
+          "duration": {
+            "rho": 0.1309846431797651,
+            "pvalue": 0.24378888790441294
+          },
+          "valid_frame_fraction": {
+            "rho": 0.13047308349814077,
+            "pvalue": 0.24565120924301947
+          },
+          "mean_abs_fbank": {
+            "rho": 0.1343044263775971,
+            "pvalue": 0.23193970575107498
+          },
+          "fbank_std": {
+            "rho": 0.3141824751580849,
+            "pvalue": 0.004284717629320625
+          }
+        }
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 2
+        }
+      ]
+    },
+    {
+      "region": "time_middle",
+      "metrics": {
+        "macro_f1": 0.5219421101774042,
+        "balanced_accuracy": 0.5333333333333333,
+        "quadratic_weighted_kappa": 0.25547445255474455,
+        "plain_accuracy": 0.47058823529411764,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.75,
+            "recall": 0.3,
+            "f1": 0.4285714285714285,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.3333333333333333,
+            "recall": 0.8,
+            "f1": 0.47058823529411764,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            3,
+            7
+          ],
+          [
+            0,
+            1,
+            4
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.7965813241426958,
+        "call_macro_f1": 0.5413640764947955,
+        "call_accuracy": 0.49382716049382713,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          148
+        ]
+      },
+      "sensitivity": {
+        "animal_macro_f1_drop": 0.29287270463741055,
+        "animal_balanced_accuracy_drop": 0.30000000000000004,
+        "mean_true_class_probability_drop": 0.09549337188219471,
+        "median_true_class_probability_drop": 0.0124776397426161,
+        "positive_call_fraction": 0.5925925925925926,
+        "associations": {
+          "duration": {
+            "rho": -0.012443541102077687,
+            "pvalue": 0.9122067907840373
+          },
+          "valid_frame_fraction": {
+            "rho": -0.012829345005962774,
+            "pvalue": 0.9094961273608624
+          },
+          "mean_abs_fbank": {
+            "rho": 0.024570912375790423,
+            "pvalue": 0.8276364100542557
+          },
+          "fbank_std": {
+            "rho": 0.23466576332429992,
+            "pvalue": 0.03496984316439287
+          }
+        }
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 2
+        }
+      ]
+    },
+    {
+      "region": "time_late",
+      "metrics": {
+        "macro_f1": 0.6296296296296297,
+        "balanced_accuracy": 0.7333333333333334,
+        "quadratic_weighted_kappa": 0.5584415584415584,
+        "plain_accuracy": 0.5294117647058824,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 1.0,
+            "recall": 0.2,
+            "f1": 0.33333333333333337,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.38461538461538464,
+            "recall": 1.0,
+            "f1": 0.5555555555555556,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            8
+          ],
+          [
+            0,
+            0,
+            5
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.4418476938246139,
+        "call_macro_f1": 0.5034933513635339,
+        "call_accuracy": 0.4567901234567901,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          148
+        ]
+      },
+      "sensitivity": {
+        "animal_macro_f1_drop": 0.18518518518518512,
+        "animal_balanced_accuracy_drop": 0.09999999999999998,
+        "mean_true_class_probability_drop": 0.12305115956320416,
+        "median_true_class_probability_drop": 0.025198493745706124,
+        "positive_call_fraction": 0.6296296296296297,
+        "associations": {
+          "duration": {
+            "rho": -0.024841915085817522,
+            "pvalue": 0.8257651096775018
+          },
+          "valid_frame_fraction": {
+            "rho": -0.025308593449262833,
+            "pvalue": 0.8225449297022556
+          },
+          "mean_abs_fbank": {
+            "rho": 0.09704155374887082,
+            "pvalue": 0.3887778667460583
+          },
+          "fbank_std": {
+            "rho": 0.36567299006323395,
+            "pvalue": 0.0007880206513384176
+          }
+        }
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 2
+        }
+      ]
+    },
+    {
+      "region": "frequency_low",
+      "metrics": {
+        "macro_f1": 0.6650717703349281,
+        "balanced_accuracy": 0.6666666666666666,
+        "quadratic_weighted_kappa": 0.48484848484848486,
+        "plain_accuracy": 0.5882352941176471,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6,
+            "f1": 0.631578947368421,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.3333333333333333,
+            "recall": 0.4,
+            "f1": 0.3636363636363636,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            4
+          ],
+          [
+            0,
+            3,
+            2
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.8066977953208837,
+        "call_macro_f1": 0.611879160266257,
+        "call_accuracy": 0.5802469135802469,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          148
+        ]
+      },
+      "sensitivity": {
+        "animal_macro_f1_drop": 0.14974304447988662,
+        "animal_balanced_accuracy_drop": 0.16666666666666674,
+        "mean_true_class_probability_drop": 0.006390525974764005,
+        "median_true_class_probability_drop": 0.00010676048177240536,
+        "positive_call_fraction": 0.5432098765432098,
+        "associations": {
+          "duration": {
+            "rho": -0.07974254742547425,
+            "pvalue": 0.47915878398825873
+          },
+          "valid_frame_fraction": {
+            "rho": -0.0822275184757174,
+            "pvalue": 0.4655232086922171
+          },
+          "mean_abs_fbank": {
+            "rho": 0.1992095754290876,
+            "pvalue": 0.074596702208021
+          },
+          "fbank_std": {
+            "rho": -0.05354561878952123,
+            "pvalue": 0.6349572269481852
+          }
+        }
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "region": "frequency_middle",
+      "metrics": {
+        "macro_f1": 0.6650717703349281,
+        "balanced_accuracy": 0.6666666666666666,
+        "quadratic_weighted_kappa": 0.48484848484848486,
+        "plain_accuracy": 0.5882352941176471,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6,
+            "f1": 0.631578947368421,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.3333333333333333,
+            "recall": 0.4,
+            "f1": 0.3636363636363636,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            4
+          ],
+          [
+            0,
+            3,
+            2
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 0.7952348236412864,
+        "call_macro_f1": 0.6324929971988796,
+        "call_accuracy": 0.5802469135802469,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          148
+        ]
+      },
+      "sensitivity": {
+        "animal_macro_f1_drop": 0.14974304447988662,
+        "animal_balanced_accuracy_drop": 0.16666666666666674,
+        "mean_true_class_probability_drop": 0.014930709358998576,
+        "median_true_class_probability_drop": -0.00016799258784017113,
+        "positive_call_fraction": 0.4691358024691358,
+        "associations": {
+          "duration": {
+            "rho": 0.0242773261065944,
+            "pvalue": 0.8296647354731583
+          },
+          "valid_frame_fraction": {
+            "rho": 0.022609461885508338,
+            "pvalue": 0.8412084177885457
+          },
+          "mean_abs_fbank": {
+            "rho": 0.021702800361336948,
+            "pvalue": 0.8474978790337435
+          },
+          "fbank_std": {
+            "rho": 0.07710027100271002,
+            "pvalue": 0.4938888979433691
+          }
+        }
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 1
+        }
+      ]
+    },
+    {
+      "region": "frequency_high",
+      "metrics": {
+        "macro_f1": 0.6888888888888888,
+        "balanced_accuracy": 0.7333333333333334,
+        "quadratic_weighted_kappa": 0.5672727272727274,
+        "plain_accuracy": 0.5882352941176471,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.8,
+            "recall": 0.4,
+            "f1": 0.5333333333333333,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.4,
+            "recall": 0.8,
+            "f1": 0.5333333333333333,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            6
+          ],
+          [
+            0,
+            1,
+            4
+          ]
+        ],
+        "n": 17,
+        "animal_cross_entropy": 1.1228836176644954,
+        "call_macro_f1": 0.4867105911882031,
+        "call_accuracy": 0.43209876543209874,
+        "probability_sum_max_error": 2.220446049250313e-16,
+        "probe_iterations": [
+          148
+        ]
+      },
+      "sensitivity": {
+        "animal_macro_f1_drop": 0.125925925925926,
+        "animal_balanced_accuracy_drop": 0.09999999999999998,
+        "mean_true_class_probability_drop": 0.11730156938617788,
+        "median_true_class_probability_drop": 0.007632536938432799,
+        "positive_call_fraction": 0.5925925925925926,
+        "associations": {
+          "duration": {
+            "rho": -0.06668925022583559,
+            "pvalue": 0.554163006881069
+          },
+          "valid_frame_fraction": {
+            "rho": -0.06883350159449217,
+            "pvalue": 0.541466015829909
+          },
+          "mean_abs_fbank": {
+            "rho": 0.04275067750677507,
+            "pvalue": 0.7047255661311486
+          },
+          "fbank_std": {
+            "rho": 0.2005645889792231,
+            "pvalue": 0.07260347184986032
+          }
+        }
+      },
+      "animal_predictions": [
+        {
+          "cat_id": "014A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "014B",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "025B",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "026C",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "029A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "043A",
+          "true_label": 0,
+          "predicted_label": 0
+        },
+        {
+          "cat_id": "054A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "065A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "073A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "087A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "088A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "090A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "095A",
+          "true_label": 1,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "100A",
+          "true_label": 1,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "106A",
+          "true_label": 2,
+          "predicted_label": 1
+        },
+        {
+          "cat_id": "108A",
+          "true_label": 2,
+          "predicted_label": 2
+        },
+        {
+          "cat_id": "117A",
+          "true_label": 2,
+          "predicted_label": 2
+        }
+      ]
+    }
+  ],
+  "nuisance_probes": {
+    "log_duration": {
+      "validation_r2": 0.8765861874617322,
+      "prediction_vs_observed_spearman": {
+        "rho": 0.949728997289973,
+        "pvalue": 1.347714202689368e-41
+      }
+    },
+    "valid_frame_fraction": {
+      "validation_r2": 0.9048735627046446,
+      "prediction_vs_observed_spearman": {
+        "rho": 0.9606310876339784,
+        "pvalue": 1.0640097683194901e-45
+      }
+    },
+    "mean_abs_fbank": {
+      "validation_r2": 0.7548273233979788,
+      "prediction_vs_observed_spearman": {
+        "rho": 0.7873532068654019,
+        "pvalue": 2.8654180633677943e-18
+      }
+    },
+    "fbank_std": {
+      "validation_r2": 0.7296463629177488,
+      "prediction_vs_observed_spearman": {
+        "rho": 0.836698283649503,
+        "pvalue": 2.3417657948610042e-22
+      }
+    }
+  },
+  "domain_adaptation": {
+    "frozen": {
+      "mode": "frozen",
+      "selected_epoch": 15,
+      "stopped_epoch": 23,
+      "best_validation_animal_cross_entropy": 0.6886786608234851,
+      "selected_validation_metrics": {
+        "macro_f1": 0.7607655502392344,
+        "balanced_accuracy": 0.7666666666666666,
+        "quadratic_weighted_kappa": 0.6320346320346321,
+        "plain_accuracy": 0.7058823529411765,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7777777777777778,
+            "recall": 0.7,
+            "f1": 0.7368421052631577,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.5,
+            "recall": 0.6,
+            "f1": 0.5454545454545454,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "n": 17
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_weighted_loss": 0.7020233610367488,
+          "validation_call_cross_entropy": 1.6177671514911416,
+          "validation_animal_cross_entropy": 1.0941105864359488,
+          "validation_animal_macro_f1": 0.6832579185520361,
+          "validation_animal_balanced_accuracy": 0.7000000000000001,
+          "validation_animal_qwk": 0.5296442687747036,
+          "validation_plain_accuracy": 0.5882352941176471
+        },
+        {
+          "epoch": 2,
+          "train_weighted_loss": 0.4426456097512059,
+          "validation_call_cross_entropy": 1.7092348528497012,
+          "validation_animal_cross_entropy": 1.1133920273401419,
+          "validation_animal_macro_f1": 0.6832579185520361,
+          "validation_animal_balanced_accuracy": 0.7000000000000001,
+          "validation_animal_qwk": 0.5296442687747036,
+          "validation_plain_accuracy": 0.5882352941176471
+        },
+        {
+          "epoch": 3,
+          "train_weighted_loss": 0.34546073375802494,
+          "validation_call_cross_entropy": 1.9335477793658222,
+          "validation_animal_cross_entropy": 1.0956248419323857,
+          "validation_animal_macro_f1": 0.7222222222222222,
+          "validation_animal_balanced_accuracy": 0.7333333333333334,
+          "validation_animal_qwk": 0.5785123966942148,
+          "validation_plain_accuracy": 0.6470588235294118
+        },
+        {
+          "epoch": 4,
+          "train_weighted_loss": 0.24692675367263756,
+          "validation_call_cross_entropy": 1.9239064940699824,
+          "validation_animal_cross_entropy": 1.048646713254833,
+          "validation_animal_macro_f1": 0.7222222222222222,
+          "validation_animal_balanced_accuracy": 0.7333333333333334,
+          "validation_animal_qwk": 0.5785123966942148,
+          "validation_plain_accuracy": 0.6470588235294118
+        },
+        {
+          "epoch": 5,
+          "train_weighted_loss": 0.22601420298202482,
+          "validation_call_cross_entropy": 1.6320695317821738,
+          "validation_animal_cross_entropy": 0.9275473269699843,
+          "validation_animal_macro_f1": 0.7222222222222222,
+          "validation_animal_balanced_accuracy": 0.7333333333333334,
+          "validation_animal_qwk": 0.5785123966942148,
+          "validation_plain_accuracy": 0.6470588235294118
+        },
+        {
+          "epoch": 6,
+          "train_weighted_loss": 0.18892228548247633,
+          "validation_call_cross_entropy": 1.5634832470505327,
+          "validation_animal_cross_entropy": 0.7979839087679174,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 7,
+          "train_weighted_loss": 0.15263412947866917,
+          "validation_call_cross_entropy": 1.7125198958832542,
+          "validation_animal_cross_entropy": 0.8438658403089676,
+          "validation_animal_macro_f1": 0.7000000000000001,
+          "validation_animal_balanced_accuracy": 0.7000000000000001,
+          "validation_animal_qwk": 0.5363636363636364,
+          "validation_plain_accuracy": 0.6470588235294118
+        },
+        {
+          "epoch": 8,
+          "train_weighted_loss": 0.11967171500466876,
+          "validation_call_cross_entropy": 1.8431989940596216,
+          "validation_animal_cross_entropy": 0.8407936841568482,
+          "validation_animal_macro_f1": 0.8148148148148148,
+          "validation_animal_balanced_accuracy": 0.8333333333333334,
+          "validation_animal_qwk": 0.71900826446281,
+          "validation_plain_accuracy": 0.7647058823529411
+        },
+        {
+          "epoch": 9,
+          "train_weighted_loss": 0.11849434581252186,
+          "validation_call_cross_entropy": 1.8477582372265098,
+          "validation_animal_cross_entropy": 0.8775807278662981,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 10,
+          "train_weighted_loss": 0.15820014402488622,
+          "validation_call_cross_entropy": 1.8478743058663827,
+          "validation_animal_cross_entropy": 0.7877424017282548,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 11,
+          "train_weighted_loss": 0.1032859686289804,
+          "validation_call_cross_entropy": 1.9143232224900046,
+          "validation_animal_cross_entropy": 0.7596876152031299,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 12,
+          "train_weighted_loss": 0.073400674386236,
+          "validation_call_cross_entropy": 2.0669613164148215,
+          "validation_animal_cross_entropy": 0.8117419895787137,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 13,
+          "train_weighted_loss": 0.08245168502578044,
+          "validation_call_cross_entropy": 1.9012865490383573,
+          "validation_animal_cross_entropy": 0.898601117972557,
+          "validation_animal_macro_f1": 0.8148148148148148,
+          "validation_animal_balanced_accuracy": 0.8333333333333334,
+          "validation_animal_qwk": 0.71900826446281,
+          "validation_plain_accuracy": 0.7647058823529411
+        },
+        {
+          "epoch": 14,
+          "train_weighted_loss": 0.0715171824958247,
+          "validation_call_cross_entropy": 1.8062860951011563,
+          "validation_animal_cross_entropy": 0.6924816318869725,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 15,
+          "train_weighted_loss": 0.07661959508857796,
+          "validation_call_cross_entropy": 1.85322297796791,
+          "validation_animal_cross_entropy": 0.6886786608234851,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 16,
+          "train_weighted_loss": 0.08567943644924841,
+          "validation_call_cross_entropy": 1.8664605014118147,
+          "validation_animal_cross_entropy": 0.7737656503145252,
+          "validation_animal_macro_f1": 0.8148148148148148,
+          "validation_animal_balanced_accuracy": 0.8333333333333334,
+          "validation_animal_qwk": 0.71900826446281,
+          "validation_plain_accuracy": 0.7647058823529411
+        },
+        {
+          "epoch": 17,
+          "train_weighted_loss": 0.07210728776562987,
+          "validation_call_cross_entropy": 2.0947210376645313,
+          "validation_animal_cross_entropy": 0.8743015731795465,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 18,
+          "train_weighted_loss": 0.0686979084806803,
+          "validation_call_cross_entropy": 2.133532847887204,
+          "validation_animal_cross_entropy": 0.8597976128581448,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 19,
+          "train_weighted_loss": 0.08265739725012883,
+          "validation_call_cross_entropy": 2.0417049431506498,
+          "validation_animal_cross_entropy": 0.8699823500602358,
+          "validation_animal_macro_f1": 0.8148148148148148,
+          "validation_animal_balanced_accuracy": 0.8333333333333334,
+          "validation_animal_qwk": 0.71900826446281,
+          "validation_plain_accuracy": 0.7647058823529411
+        },
+        {
+          "epoch": 20,
+          "train_weighted_loss": 0.08393552870817704,
+          "validation_call_cross_entropy": 1.9628474388593509,
+          "validation_animal_cross_entropy": 0.8441749413478999,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 21,
+          "train_weighted_loss": 0.07118616047287231,
+          "validation_call_cross_entropy": 2.0873522228664823,
+          "validation_animal_cross_entropy": 0.8200575534472156,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 22,
+          "train_weighted_loss": 0.073112507543957,
+          "validation_call_cross_entropy": 2.1345019899768594,
+          "validation_animal_cross_entropy": 0.7661160428556911,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 23,
+          "train_weighted_loss": 0.09570091999708266,
+          "validation_call_cross_entropy": 2.015976917596511,
+          "validation_animal_cross_entropy": 0.9388786684463996,
+          "validation_animal_macro_f1": 0.8148148148148148,
+          "validation_animal_balanced_accuracy": 0.8333333333333334,
+          "validation_animal_qwk": 0.71900826446281,
+          "validation_plain_accuracy": 0.7647058823529411
+        }
+      ],
+      "parameters": {
+        "trainable": 99075,
+        "total": 99075
+      },
+      "train_seconds": 2.925131299998611,
+      "peak_vram_bytes": 20240384,
+      "loss_implementation": "fixed_global_class_weights_and_denominator_32",
+      "outer_test_accessed": false
+    },
+    "last2": {
+      "mode": "last2",
+      "selected_epoch": 15,
+      "stopped_epoch": 23,
+      "best_validation_animal_cross_entropy": 0.6869264144240506,
+      "selected_validation_metrics": {
+        "macro_f1": 0.7607655502392344,
+        "balanced_accuracy": 0.7666666666666666,
+        "quadratic_weighted_kappa": 0.6320346320346321,
+        "plain_accuracy": 0.7058823529411765,
+        "per_class": {
+          "kitten": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 2
+          },
+          "adult": {
+            "precision": 0.7777777777777778,
+            "recall": 0.7,
+            "f1": 0.7368421052631577,
+            "support": 10
+          },
+          "senior": {
+            "precision": 0.5,
+            "recall": 0.6,
+            "f1": 0.5454545454545454,
+            "support": 5
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "n": 17
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_weighted_loss": 0.7001426154603702,
+          "validation_call_cross_entropy": 1.5563345367525832,
+          "validation_animal_cross_entropy": 1.036640809706828,
+          "validation_animal_macro_f1": 0.6832579185520361,
+          "validation_animal_balanced_accuracy": 0.7000000000000001,
+          "validation_animal_qwk": 0.5296442687747036,
+          "validation_plain_accuracy": 0.5882352941176471
+        },
+        {
+          "epoch": 2,
+          "train_weighted_loss": 0.43884891360658873,
+          "validation_call_cross_entropy": 1.6542461742589503,
+          "validation_animal_cross_entropy": 1.018467351887162,
+          "validation_animal_macro_f1": 0.6832579185520361,
+          "validation_animal_balanced_accuracy": 0.7000000000000001,
+          "validation_animal_qwk": 0.5296442687747036,
+          "validation_plain_accuracy": 0.5882352941176471
+        },
+        {
+          "epoch": 3,
+          "train_weighted_loss": 0.35499201046572415,
+          "validation_call_cross_entropy": 1.797251969207952,
+          "validation_animal_cross_entropy": 0.9710534832313104,
+          "validation_animal_macro_f1": 0.7222222222222222,
+          "validation_animal_balanced_accuracy": 0.7333333333333334,
+          "validation_animal_qwk": 0.5785123966942148,
+          "validation_plain_accuracy": 0.6470588235294118
+        },
+        {
+          "epoch": 4,
+          "train_weighted_loss": 0.25302147351933657,
+          "validation_call_cross_entropy": 1.872576548729414,
+          "validation_animal_cross_entropy": 0.9560210082268356,
+          "validation_animal_macro_f1": 0.7222222222222222,
+          "validation_animal_balanced_accuracy": 0.7333333333333334,
+          "validation_animal_qwk": 0.5785123966942148,
+          "validation_plain_accuracy": 0.6470588235294118
+        },
+        {
+          "epoch": 5,
+          "train_weighted_loss": 0.22989277901285524,
+          "validation_call_cross_entropy": 1.5382631443164967,
+          "validation_animal_cross_entropy": 0.8587674107838107,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 6,
+          "train_weighted_loss": 0.18453567832673737,
+          "validation_call_cross_entropy": 1.676767846684397,
+          "validation_animal_cross_entropy": 0.7726685099203869,
+          "validation_animal_macro_f1": 0.7000000000000001,
+          "validation_animal_balanced_accuracy": 0.7000000000000001,
+          "validation_animal_qwk": 0.5363636363636364,
+          "validation_plain_accuracy": 0.6470588235294118
+        },
+        {
+          "epoch": 7,
+          "train_weighted_loss": 0.14178119387659552,
+          "validation_call_cross_entropy": 1.6886851360768447,
+          "validation_animal_cross_entropy": 0.7795178717474973,
+          "validation_animal_macro_f1": 0.7000000000000001,
+          "validation_animal_balanced_accuracy": 0.7000000000000001,
+          "validation_animal_qwk": 0.5363636363636364,
+          "validation_plain_accuracy": 0.6470588235294118
+        },
+        {
+          "epoch": 8,
+          "train_weighted_loss": 0.11924185989947084,
+          "validation_call_cross_entropy": 1.884753383236167,
+          "validation_animal_cross_entropy": 0.8170208751745935,
+          "validation_animal_macro_f1": 0.8148148148148148,
+          "validation_animal_balanced_accuracy": 0.8333333333333334,
+          "validation_animal_qwk": 0.71900826446281,
+          "validation_plain_accuracy": 0.7647058823529411
+        },
+        {
+          "epoch": 9,
+          "train_weighted_loss": 0.122262180090844,
+          "validation_call_cross_entropy": 2.0232742568592967,
+          "validation_animal_cross_entropy": 0.8232368776218041,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 10,
+          "train_weighted_loss": 0.14468078595705372,
+          "validation_call_cross_entropy": 2.0614755948384604,
+          "validation_animal_cross_entropy": 0.8340968414906618,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 11,
+          "train_weighted_loss": 0.09669944040208027,
+          "validation_call_cross_entropy": 2.1304956012301974,
+          "validation_animal_cross_entropy": 0.8799737407526651,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 12,
+          "train_weighted_loss": 0.07013867182837503,
+          "validation_call_cross_entropy": 2.300144890208303,
+          "validation_animal_cross_entropy": 0.8911866700010771,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 13,
+          "train_weighted_loss": 0.07097557852631217,
+          "validation_call_cross_entropy": 2.044013461948913,
+          "validation_animal_cross_entropy": 0.8975381589753824,
+          "validation_animal_macro_f1": 0.8148148148148148,
+          "validation_animal_balanced_accuracy": 0.8333333333333334,
+          "validation_animal_qwk": 0.71900826446281,
+          "validation_plain_accuracy": 0.7647058823529411
+        },
+        {
+          "epoch": 14,
+          "train_weighted_loss": 0.06824022322074892,
+          "validation_call_cross_entropy": 2.131512952439579,
+          "validation_animal_cross_entropy": 0.7282914910960407,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 15,
+          "train_weighted_loss": 0.057687541584067456,
+          "validation_call_cross_entropy": 2.148943402149059,
+          "validation_animal_cross_entropy": 0.6869264144240506,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 16,
+          "train_weighted_loss": 0.07538280403061233,
+          "validation_call_cross_entropy": 2.0384082705886275,
+          "validation_animal_cross_entropy": 0.877965274876217,
+          "validation_animal_macro_f1": 0.8148148148148148,
+          "validation_animal_balanced_accuracy": 0.8333333333333334,
+          "validation_animal_qwk": 0.71900826446281,
+          "validation_plain_accuracy": 0.7647058823529411
+        },
+        {
+          "epoch": 17,
+          "train_weighted_loss": 0.06539288489639072,
+          "validation_call_cross_entropy": 2.3251585518872298,
+          "validation_animal_cross_entropy": 0.8802803537662746,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 18,
+          "train_weighted_loss": 0.04825935437638379,
+          "validation_call_cross_entropy": 2.4304608503977456,
+          "validation_animal_cross_entropy": 0.896966987803022,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 19,
+          "train_weighted_loss": 0.08577141807339826,
+          "validation_call_cross_entropy": 2.4120609289334145,
+          "validation_animal_cross_entropy": 0.9230654780092377,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 20,
+          "train_weighted_loss": 0.06535382069059159,
+          "validation_call_cross_entropy": 2.2958202214888583,
+          "validation_animal_cross_entropy": 0.9021473406455978,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 21,
+          "train_weighted_loss": 0.04151006080950601,
+          "validation_call_cross_entropy": 2.508163543395054,
+          "validation_animal_cross_entropy": 0.8997271579470497,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 22,
+          "train_weighted_loss": 0.05762009258579092,
+          "validation_call_cross_entropy": 2.4937395401942877,
+          "validation_animal_cross_entropy": 0.7856618217065386,
+          "validation_animal_macro_f1": 0.7607655502392344,
+          "validation_animal_balanced_accuracy": 0.7666666666666666,
+          "validation_animal_qwk": 0.6320346320346321,
+          "validation_plain_accuracy": 0.7058823529411765
+        },
+        {
+          "epoch": 23,
+          "train_weighted_loss": 0.07743347439879045,
+          "validation_call_cross_entropy": 2.332846994753237,
+          "validation_animal_cross_entropy": 0.8449856644650133,
+          "validation_animal_macro_f1": 0.8148148148148148,
+          "validation_animal_balanced_accuracy": 0.8333333333333334,
+          "validation_animal_qwk": 0.71900826446281,
+          "validation_plain_accuracy": 0.7647058823529411
+        }
+      ],
+      "parameters": {
+        "trainable": 14276355,
+        "total": 85466115
+      },
+      "train_seconds": 26.608924000000115,
+      "peak_vram_bytes": 714372608,
+      "loss_implementation": "fixed_global_class_weights_and_denominator_32",
+      "outer_test_accessed": false
+    }
+  }
+}

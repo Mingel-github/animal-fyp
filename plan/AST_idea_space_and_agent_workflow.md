@@ -415,3 +415,19 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 该阶段的完整执行边界、诊断问题、方向选择依据、三组核心对照和术语解释见
 `plan/AST_internal_diagnosis_and_single_module_plan.md`。IDEA-056 已完成，因此当前活动步骤
 从 AST 内部诊断开始；诊断完成前不预设新模块，也不分配新的 IDEA 编号。
+
+### 11.5 AST 内部诊断执行结果（2026-09-15）
+
+- inner-only 诊断已覆盖 3 repeats × 4 folds，合计 12 个 train/validation splits；outer-test
+  未访问。
+- 中间层轴：final L12 probe 为 `0.7649`，最佳中间层 L11 为 `0.7353`，差 `−0.0297`，
+  L11 只在 3/12 splits 提高。独立中间层与全层平均暂缓。
+- 局部 patch 轴：中频区域 probe 为 `0.7437`，距 global probe `0.7649` 为 `−0.0213`；
+  中段时间均值替换使真实类别概率平均下降 `0.1781`，12/12 splits 方向一致。该轴形成当前
+  最强机制线索，完整支持规则因区域差值和互补纠正数略低于门槛而关闭。
+- 预训练领域轴：Last-2 相对 frozen 的 mean inner-validation macro F1 为 `+0.0249`，
+  5/12 提高、3/12 持平；animal CE 变化 `+0.0023`，因此归为有分类收益中心、跨 split 与
+  概率质量混合的第二候选。
+- 三条完整支持规则均未通过，decision record 状态为 `awaiting_team_selection`。建议团队优先
+  讨论保留 final AST 主路径的中频—时间局部分支；有限领域适配列为第二方向，中间层仅作为
+  局部分支的可选输入。

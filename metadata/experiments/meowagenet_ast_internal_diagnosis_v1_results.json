@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-ast-internal-diagnosis-v1",
+  "date": "2026-09-15",
+  "status": "complete_awaiting_team_selection",
+  "scope": {
+    "calls": 792,
+    "cats": 111,
+    "segments": 843,
+    "diagnostic_splits": 12,
+    "inner_validation_cat_evaluations": 204,
+    "outer_test_accessed": false,
+    "layer_probe_fits": 144,
+    "regional_probe_fits": 72,
+    "masked_evaluations": 72,
+    "domain_training_trajectories": 24
+  },
+  "axis_decision": {
+    "local_patch_support_rule_passed": false,
+    "intermediate_layer_support_rule_passed": false,
+    "pretraining_domain_support_rule_passed": false,
+    "supported_axes": [],
+    "decision_status": "awaiting_team_selection",
+    "provisional_recommendation": "local patch is the strongest mechanism lead; pretraining-domain adaptation is secondary mixed evidence; standalone intermediate-layer fusion is deferred"
+  },
+  "intermediate_layer": {
+    "reference_layer": 12,
+    "best_intermediate_layer": 11,
+    "macro_f1_by_layer": {
+      "1": 0.5468377726504662,
+      "2": 0.6283564799302672,
+      "3": 0.6531323106024726,
+      "4": 0.6613948849758964,
+      "5": 0.6826197375679698,
+      "6": 0.6914425238599645,
+      "7": 0.728975873532117,
+      "8": 0.7276942355889724,
+      "9": 0.694343100522151,
+      "10": 0.7293426115794537,
+      "11": 0.7352840223454259,
+      "12": 0.7649346430048185
+    },
+    "layer11_minus_layer12_macro_f1": -0.029650620659392612,
+    "layer11_positive_splits": 3,
+    "comparison_count": 12,
+    "layer11_vs_layer12_complementarity": {
+      "both_correct": 142,
+      "layer12_only_correct": 11,
+      "layer11_only_correct": 5,
+      "both_wrong": 46
+    },
+    "interpretation": "linearly accessible age information increases through the AST stack and is strongest in the final layer; a standalone intermediate-layer readout is not selected"
+  },
+  "local_patch": {
+    "global_probe": {
+      "macro_f1": 0.7649346430048185,
+      "balanced_accuracy": 0.777777777777778,
+      "quadratic_weighted_kappa": 0.6239432018294798,
+      "plain_accuracy": 0.7499999999999999,
+      "animal_cross_entropy": 0.8169528227035455
+    },
+    "regional_macro_f1": {
+      "time_early": 0.6687802517781879,
+      "time_middle": 0.6716298445658611,
+      "time_late": 0.6675930250233656,
+      "frequency_low": 0.6651151220490971,
+      "frequency_middle": 0.7436636097820307,
+      "frequency_high": 0.7034769950746753
+    },
+    "best_region": "frequency_middle",
+    "best_region_minus_global_macro_f1": -0.021271033222787783,
+    "best_region_vs_global_complementarity": {
+      "both_correct": 138,
+      "global_only_correct": 15,
+      "region_only_correct": 7,
+      "both_wrong": 44
+    },
+    "mean_true_class_probability_drop_after_mask": {
+      "time_early": 0.1650482905078833,
+      "time_middle": 0.1781212132621092,
+      "time_late": 0.14434994118465097,
+      "frequency_low": 0.03943303469298907,
+      "frequency_middle": 0.048868785914301355,
+      "frequency_high": 0.03894178020517058
+    },
+    "mean_macro_f1_drop_after_mask": {
+      "time_early": 0.19992790410102068,
+      "time_middle": 0.25403782544520426,
+      "time_late": 0.18879083544976213,
+      "frequency_low": 0.10763026616158489,
+      "frequency_middle": 0.09637714867978031,
+      "frequency_high": 0.08936543428287497
+    },
+    "strongest_mask": "time_middle",
+    "strongest_mask_positive_splits": 12,
+    "rule_margins": {
+      "best_region_macro_f1_gap_threshold": -0.02,
+      "observed_gap": -0.021271033222787783,
+      "region_only_correct_threshold": 10,
+      "observed_region_only_correct": 7
+    },
+    "interpretation": "AST consistently depends on the middle temporal region, and the middle-frequency regional representation retains most global-probe performance; conditional information beyond the global representation remains limited"
+  },
+  "pretraining_domain": {
+    "frozen": {
+      "macro_f1": 0.7189187860647119,
+      "macro_f1_sample_sd": 0.09196281832842858,
+      "balanced_accuracy": 0.7527777777777779,
+      "quadratic_weighted_kappa": 0.5748497474618027,
+      "plain_accuracy": 0.7058823529411765,
+      "animal_cross_entropy": 0.7179353751775531,
+      "mean_selected_epoch": 10.166666666666666,
+      "trainable_parameters": 99075,
+      "summed_train_seconds": 27.719275899944478,
+      "peak_vram_bytes": 20240384
+    },
+    "last2": {
+      "macro_f1": 0.7438563574463988,
+      "macro_f1_sample_sd": 0.1033108696061993,
+      "balanced_accuracy": 0.7805555555555556,
+      "quadratic_weighted_kappa": 0.6123238834144108,
+      "plain_accuracy": 0.7303921568627451,
+      "animal_cross_entropy": 0.7202592512834891,
+      "mean_selected_epoch": 9.5,
+      "trainable_parameters": 14276355,
+      "summed_train_seconds": 257.5454495999875,
+      "peak_vram_bytes": 780967424
+    },
+    "last2_minus_frozen": {
+      "macro_f1": 0.024937571381686785,
+      "balanced_accuracy": 0.02777777777777768,
+      "quadratic_weighted_kappa": 0.0374741359526081,
+      "plain_accuracy": 0.02450980392156865,
+      "animal_cross_entropy": 0.002323876105936077,
+      "positive_splits": 5,
+      "tied_splits": 3,
+      "negative_splits": 4
+    },
+    "mean_macro_f1_difference_by_repeat": {
+      "0": 0.050621230820450086,
+      "1": 0.03481620718462822,
+      "2": -0.010624723860017948
+    },
+    "mean_class_recall": {
+      "frozen": {
+        "kitten": 0.9583333333333334,
+        "adult": 0.7166666666666667,
+        "senior": 0.5833333333333333
+      },
+      "last2": {
+        "kitten": 0.9583333333333334,
+        "adult": 0.7166666666666667,
+        "senior": 0.6666666666666666
+      }
+    },
+    "nuisance_linear_probe_validation_r2": {
+      "log_duration": 0.7294712441305681,
+      "valid_frame_fraction": 0.8861896911698314,
+      "mean_abs_fbank": 0.7616747484289951,
+      "fbank_std": 0.7831685001055261
+    },
+    "interpretation": "last-two-block adaptation raises mean inner-validation classification metrics and senior recall, while split direction and animal cross-entropy remain mixed; AST embeddings also preserve strong duration, padding, and energy information"
+  },
+  "feature_preparation": {
+    "regional_shape": [792, 6, 768],
+    "masked_shape": [792, 6, 768],
+    "valid_time_token_range": [1, 12],
+    "reconstructed_final_embedding_max_abs_difference": 1.9311904907226562e-05,
+    "inference_seconds": 18.762107300004573,
+    "peak_vram_bytes": 554755072
+  },
+  "implementation_validation": {
+    "test_suite": "135 passed, 1 warning",
+    "json_files": 19,
+    "json_parse_errors": 0,
+    "execution_lock_verified": true,
+    "outer_test_accessed": false
+  },
+  "execution_audit": {
+    "code_commit": "7dddf79e94bf726ecbedd32f4c51d209447ecd64",
+    "device": "NVIDIA GeForce RTX 4060 Ti",
+    "run_root": "runs/meowagenet_ast_internal_diagnosis_v1",
+    "run_files": 20,
+    "run_bytes": 28150867,
+    "versioned_json_files": 19,
+    "local_binary_feature_files": 1
+  },
+  "provenance_sha256": {
+    "plan": "b5db11d59aa3b6ada46ae2de58e9a9751c33bfdfb4fbdf6a649a14a28a7825eb",
+    "protocol": "7209a033e06c22d0c15c5896315454d34b9e3d44a3334a03021ff2ae5adb45e4",
+    "runner": "3e3b6ee85c4af51aad01415a88227b536e0023a7c71d9248a2ae6115feb2ec23",
+    "prepared_features": "300cc3a90768f68134d9c05688d913524979cd13310e69168381454bb7822d67",
+    "feature_summary": "d1468190b1e4ff3a462d047fcf7c9617fc62c92e9e40bafcaa68926da26680e8",
+    "smoke_summary": "f18c9adc608bfc38c31c7545414ca716168e3c072d811126581169a4a558fc74",
+    "execution_lock": "bd272440e52b12796b0ef3dd3c111647b3bea762fd725a8ef6a47dd0028f546d",
+    "diagnostic_summary": "72b4f970a8cc17d9dd1c448515a47ccc3f99492c3add6a146fdaa2a6a5fa9651",
+    "decision_record_draft": "0f7ad9732c1fc4ed4cbd16a1d96be4d869390c477d3505b96ded3f60007e3cbc",
+    "run_summary": "ec047c711294ae4300440bc8acf2f710c0a8386072420d1dfd056eda3f9f5ad7"
+  }
+}
