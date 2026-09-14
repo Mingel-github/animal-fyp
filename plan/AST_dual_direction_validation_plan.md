@@ -1,8 +1,8 @@
 # AST 双方向独立验证计划
 
-> 决策日期：2026-09-15  
-> 决策主体：项目团队  
-> 前置结果：`reports/30_AST_internal_diagnosis_results.md`  
+> 决策日期：2026-09-15
+> 决策主体：项目团队
+> 前置结果：`reports/30_AST_internal_diagnosis_results.md`
 > 状态：两条路线均进入独立计划阶段
 
 ## 1. 团队决定
@@ -107,4 +107,3 @@ IDEA-057 优先回答“利用什么信息”，IDEA-058 优先回答“更新 A
 - IDEA-058：`plan/IDEA-058_constrained_top_block_adaptation.md`；
 - 已完成诊断：`reports/30_AST_internal_diagnosis_results.md`；
 - 冻结的原阶段计划：`plan/AST_internal_diagnosis_and_single_module_plan.md`。
-

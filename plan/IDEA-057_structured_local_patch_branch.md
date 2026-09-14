@@ -1,7 +1,7 @@
 # IDEA-057｜AST 结构化局部 patch 分支
 
-> 阶段：诊断后候选，等待 executable protocol  
-> 来源：AST internal diagnosis 的局部 patch 证据  
+> 阶段：诊断后候选，等待 executable protocol
+> 来源：AST internal diagnosis 的局部 patch 证据
 > 主要 claim 类型：predictive / mechanistic candidate
 
 ## 1. 已观察结果
@@ -96,4 +96,3 @@ complete-OOF repeats 至少两个为正，并且 M1 相对 C1 的结果支持局
 | global path（全局主路径） | 使用 AST 最终汇总向量完成分类的原参考路径。新模块保留这条路径，使局部信息只作为增量。 |
 | position-aware（位置感知） | 模型能够区分一个 token 位于叫声的前、中、后段或不同频率区域，而不是只看到全部 token 的平均值。 |
 | separable projection（可分离投影） | 分别处理时间和频率关系的轻量映射，用较少参数保留二维结构。它是可选实现类别，最终结构需要在 protocol 中明确。 |
-

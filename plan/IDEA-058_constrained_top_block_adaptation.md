@@ -1,7 +1,7 @@
 # IDEA-058｜受约束的 AST 顶层适配
 
-> 阶段：诊断后候选，等待 executable protocol  
-> 来源：AST internal diagnosis 的 Last-2 mixed signal  
+> 阶段：诊断后候选，等待 executable protocol
+> 来源：AST internal diagnosis 的 Last-2 mixed signal
 > 主要 claim 类型：predictive / adaptation-location candidate
 
 ## 1. 已观察结果
@@ -97,4 +97,3 @@ CE、repeat/seed 方差、训练时间、显存和可训练参数。满足条件
 | bottom-block control（底层 block 对照） | 更新相同数量的前部 Transformer blocks，保持参数量和训练方式接近，用来检验“更新位置”是否重要。 |
 | constrained adaptation（受约束适配） | 通过限制更新层数、learning rate 和 regularization 控制模型改动，降低小数据上的过拟合风险。 |
 | domain mismatch（领域差异） | 通用 AudioSet 预训练数据与家猫短叫年龄任务之间的数据和目标差异。Last-2 提升只能提示这种可能性，不能单独证明它。 |
-
