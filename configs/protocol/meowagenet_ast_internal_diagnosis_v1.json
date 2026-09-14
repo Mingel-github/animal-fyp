@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-ast-internal-diagnosis-v1",
+  "date": "2026-09-14",
+  "status": "authorized_pre_execution_diagnostic_design",
+  "objective": "Locate reproducible local-patch, intermediate-layer, or cat-domain signals inside standard AST before selecting one architecture direction.",
+  "stage_boundary": {
+    "reference": "IDEA-056 C1 animal-level validation cross-entropy checkpoint selection",
+    "method_selection_scope": "inner-training and inner-validation roles only",
+    "outer_test_accessed": false,
+    "new_idea_number": "assigned only after the diagnostic decision record"
+  },
+  "plan": {
+    "path": "plan/AST_internal_diagnosis_and_single_module_plan.md",
+    "sha256": "b5db11d59aa3b6ada46ae2de58e9a9751c33bfdfb4fbdf6a649a14a28a7825eb"
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "segments": 843,
+    "ast_patch_grid": [12, 12],
+    "hidden_size": 768
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "diagnostic_split_count": 12,
+    "roles_used": ["train", "validation"],
+    "excluded_role": "test",
+    "independence_unit": "cat_id"
+  },
+  "feature_preparation": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "regional_representations": [
+      "time_early",
+      "time_middle",
+      "time_late",
+      "frequency_low",
+      "frequency_middle",
+      "frequency_high"
+    ],
+    "time_regions": "three relative groups over valid AST time positions; short segments reuse the nearest valid position for an empty group",
+    "frequency_regions": "three contiguous groups over the 12 AST frequency positions",
+    "masking": "replace one input region by its within-segment mean while preserving the complementary spectral or temporal profile",
+    "call_aggregation": "arithmetic mean across fbank segments"
+  },
+  "shared_probe": {
+    "model": "multinomial logistic regression",
+    "solver": "lbfgs",
+    "C": 1.0,
+    "maximum_iterations": 1000,
+    "scaling": "StandardScaler fitted on current inner-training calls only",
+    "sample_weighting": "global class-balanced call weights fitted on current inner-training calls only",
+    "animal_aggregation": "arithmetic mean of call probabilities"
+  },
+  "diagnostic_axes": {
+    "intermediate_layer": {
+      "representations": "12 cached AST block outputs after common final LayerNorm and CLS/distillation-token mean",
+      "reference_layer": 12,
+      "selection": "highest mean inner-validation animal macro F1",
+      "support_rule": {
+        "minimum_mean_macro_f1_gain_over_layer12": 0.005,
+        "minimum_positive_splits": 8,
+        "comparison_count": 12
+      }
+    },
+    "local_patch": {
+      "evidence": [
+        "six standalone regional probes",
+        "six matched input-region mean-replacement sensitivity tests",
+        "regional versus global error complementarity",
+        "duration, valid-frame-fraction, and fbank-energy associations"
+      ],
+      "support_rule": {
+        "minimum_mask_true_class_probability_drop": 0.005,
+        "minimum_positive_mask_splits": 8,
+        "maximum_region_macro_f1_gap_below_global": 0.02,
+        "minimum_candidate_only_correct_events": 10
+      }
+    },
+    "pretraining_domain": {
+      "comparison": "frozen AST head versus pretrained last-two-block adaptation",
+      "selection": "minimum inner-validation animal-level cross-entropy with earliest-epoch tie break",
+      "encoder_learning_rate": 0.00001,
+      "support_rule": {
+        "minimum_mean_macro_f1_gain": 0.005,
+        "minimum_positive_splits": 8,
+        "require_mean_animal_cross_entropy_improvement": true,
+        "comparison_count": 12
+      },
+      "interpretation_boundary": "positive evidence motivates a parameter-matched module test; it does not by itself establish an architecture gain"
+    }
+  },
+  "fixed_training": {
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "micro_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "call_weighting": "fixed global class-balanced weights from the current inner-training role",
+    "checkpoint_selection": "minimum inner-validation animal-level cross-entropy"
+  },
+  "smoke": {
+    "base_seed": 17,
+    "repeat": 0,
+    "outer_fold": 0,
+    "domain_epochs": 2,
+    "layer_indices": [1, 12],
+    "region_indices": [0, 5],
+    "outer_test_accessed": false
+  },
+  "diagnosis": {
+    "base_seed": 17,
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "layer_probe_fits": 144,
+    "regional_probe_fits": 72,
+    "masked_evaluations": 72,
+    "domain_training_trajectories": 24,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "supporting_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "animal_cross_entropy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "true_class_probability_change",
+      "paired_prediction_changes",
+      "selected_epochs",
+      "runtime_and_peak_vram"
+    ]
+  },
+  "decision": {
+    "automatic_output": "evidence table and support-rule audit for each axis",
+    "human_output": "one selected direction plus reasons for deferring the other two",
+    "status_after_diagnosis": "awaiting_team_selection",
+    "next_experiment": "new IDEA card with R0 original AST, M1 selected module, and C1 parameter-matched control"
+  },
+  "dependencies": {
+    "locked_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "final_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "final_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "layer_embedding_path": "runs/ast_layer_embeddings_v2_float32/ast_standard_layer_call_embeddings.npz",
+    "layer_embedding_sha256": "2d3aa7929d26e53f3ad1bf8fb67734e97693c38377f585d1679e53b95ea4c884",
+    "ast_runner_path": "scripts/run_ast_finetuning.py",
+    "ast_runner_sha256": "e3f887fc5750804ef90743588e2a2bd295bb36426161321a1163a331894a6664",
+    "global_weighting_runner_path": "scripts/run_meowagenet_ast_cat_balance_global_weighting_v1.py",
+    "global_weighting_runner_sha256": "a0a217e76a99f2d9f3e00d5caa2d21c81c5e37e53237c6ac311318ad8c39674a",
+    "evaluation_runner_path": "scripts/run_meowagenet_idea051_cat_set.py",
+    "evaluation_runner_sha256": "4e8acdefca96215ae3cec94d9158ac081da82eabce08b73c0fe612334ce5d3d5"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_ast_internal_diagnosis_v1",
+    "prepared_features": "runs/meowagenet_ast_internal_diagnosis_v1/features/ast_internal_diagnostic_features.npz",
+    "diagnostic_summary": "runs/meowagenet_ast_internal_diagnosis_v1/diagnosis/summary.json",
+    "decision_record": "runs/meowagenet_ast_internal_diagnosis_v1/diagnosis/decision_record_draft.json",
+    "result_metadata": "metadata/experiments/meowagenet_ast_internal_diagnosis_v1_results.json",
+    "report": "reports/30_AST_internal_diagnosis_results.md"
+  }
+}
