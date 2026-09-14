@@ -389,3 +389,16 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 - 当前五项优先探索形成阶段性收尾，A0 继续作为性能参考。该节点用于整理现有证据，
   不锁定最终模型，也不限制后续新 idea；feature-level、条件式融合和新的 AST 改进仍可
   按独立 Idea Card 进入下一轮。
+
+### 11.4 五项路线完成后的确认决策（2026-09-14）
+
+- IDEA-051 至 IDEA-055 的候选方法暂不扩展 base seeds 43/101。
+- 新 A0 使用 animal-level validation cross-entropy 选择训练轮次，seed-17 相对旧 C0 的
+  观察差为 `+0.0106`、2/3 repeats 为正。该结果另立为 IDEA-056 确认计划。
+- IDEA-056 的主要判断只使用尚未查看的 seeds 43/101；seed 17 保留为历史探索性证据。
+- IDEA-056 完成后再进入新的 AST architecture idea，避免把训练流程确认和模型结构改造
+  混为同一个实验。
+
+后续固定阶段顺序为：完成 IDEA-056 并确定 AST 参考流程；诊断局部 patch、中间层和预训练
+领域差异；依据诊断只选择一个 AST 内部方向；完成单模块、参数量匹配和原始 AST 对照；
+出现稳定正信号后再进入模块组合。

@@ -408,6 +408,19 @@ five-priority exploration sequence as a stage checkpoint: A0 remains the main
 performance reference, checkpoint averaging is retained as supporting evidence
 for probability quality, and future ideas remain open for later evaluation.
 
+The next confirmation plan is IDEA-056. It compares the historical
+call-level-validation-loss checkpoint rule with animal-level-validation-loss
+checkpoint selection on new base seeds 43 and 101. Seed 17 remains historical
+exploratory evidence and is excluded from the primary confirmation decision:
+
+- readable plan:
+  `plan/IDEA-056_animal_level_checkpoint_selection_confirmation.md`.
+
+After IDEA-056, the ordered method stage is: diagnose where AST is losing or
+underusing information; select one AST-internal direction; test that single
+module against a parameter-matched control and original AST; combine modules
+only after a stable positive signal.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,
