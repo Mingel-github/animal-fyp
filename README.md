@@ -439,6 +439,12 @@ underusing information; select one AST-internal direction; test that single
 module against a parameter-matched control and original AST; combine modules
 only after a stable positive signal.
 
+The active stage plan is documented in
+`plan/AST_internal_diagnosis_and_single_module_plan.md`. It treats local
+time-frequency patches, intermediate-layer representations, and pretraining
+domain mismatch as competing diagnostic directions. No new architecture is
+selected until the diagnostic decision record is complete.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,

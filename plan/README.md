@@ -15,4 +15,7 @@
 
 ## 当前活动计划
 
-- [`AST_cat_balance_global_weighting_retest.md`](AST_cat_balance_global_weighting_retest.md)：修正 micro-batch 内权重归一化，对严格 global class-balanced 与 global cat-balanced loss 进行配对复验。
+- [`AST_internal_diagnosis_and_single_module_plan.md`](AST_internal_diagnosis_and_single_module_plan.md)：在 IDEA-056 确定 AST 参考流程后，依次诊断局部 patch、中间层和预训练领域差异；根据证据只选择一个 AST 内部方向，并完成单模块、参数量匹配和原始 AST 对照。
+
+`AST_cat_balance_global_weighting_retest.md` 已执行完毕，对应结果保存在
+`reports/23_AST_cat_balance_global_weighting_results.md`，现作为设计历史保留。

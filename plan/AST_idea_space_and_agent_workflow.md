@@ -411,3 +411,7 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 后续固定阶段顺序为：完成 IDEA-056 并确定 AST 参考流程；诊断局部 patch、中间层和预训练
 领域差异；依据诊断只选择一个 AST 内部方向；完成单模块、参数量匹配和原始 AST 对照；
 出现稳定正信号后再进入模块组合。
+
+该阶段的完整执行边界、诊断问题、方向选择依据、三组核心对照和术语解释见
+`plan/AST_internal_diagnosis_and_single_module_plan.md`。IDEA-056 已完成，因此当前活动步骤
+从 AST 内部诊断开始；诊断完成前不预设新模块，也不分配新的 IDEA 编号。
