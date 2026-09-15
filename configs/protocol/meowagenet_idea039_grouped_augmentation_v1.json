@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea039-grouped-augmentation-v1",
+  "date": "2026-09-16",
+  "status": "authorized_pre_execution_design",
+  "objective": "Test whether a fixed light training-side AST-fbank augmentation or per-outer-fold nested policy selection improves the tuned frozen-AST animal-level age classifier.",
+  "relationship": {
+    "idea058_strict": "completed reference-stage evidence; top-block stabilization paused",
+    "idea056": "defines the tuned frozen-AST head and animal-level validation cross-entropy checkpoint rule",
+    "stage": "active independent performance route after IDEA-058 strict closeout"
+  },
+  "idea": {
+    "path": "plan/IDEA-039_grouped_augmentation_policy.md",
+    "sha256": "6b16c6453fba0c0d128bb7fc59a9fc200331ee9de34815441c43ca9e07fb8bd7"
+  },
+  "dataset": {
+    "manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "calls": 792,
+    "cats": 111,
+    "segments": 843,
+    "classes": ["kitten", "adult", "senior"],
+    "duration_seconds": {
+      "median": 0.698,
+      "p10": 0.3408,
+      "p90": 1.0929,
+      "maximum": 4.4253
+    },
+    "input": "locked normalized 128-frame by 128-bin AST filterbank segments",
+    "call_representation": "arithmetic mean of AST pooler outputs across segments belonging to one call",
+    "animal_aggregation": "arithmetic mean of call probabilities belonging to one cat"
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id",
+    "selection_boundary": "per_repeat_outer_fold",
+    "augmentation_roles": ["train"],
+    "identity_roles": ["validation", "test"],
+    "outer_test_excluded_until_execution_lock": true
+  },
+  "augmentation": {
+    "unit": "one stochastic view per original call per epoch",
+    "view_budget": "one call remains one optimizer example; batch count and optimizer-step count match the reference",
+    "valid_region": "operations affect real fbank frames only; padding remains bitwise unchanged",
+    "candidate_policies": {
+      "P0_identity": {
+        "description": "online no-op input",
+        "severity_rank": 0,
+        "operations": []
+      },
+      "P1_specaugment_light": {
+        "description": "at most one narrow time mask and one narrow frequency mask",
+        "severity_rank": 2,
+        "operations": [
+          {"type": "time_mask", "probability": 0.5, "maximum_frames": 4, "maximum_valid_fraction": 0.125, "fill": 0.0},
+          {"type": "frequency_mask", "probability": 0.5, "maximum_bins": 4, "fill": 0.0}
+        ]
+      },
+      "P2_gain_noise_light": {
+        "description": "small normalized log-fbank offset plus small Gaussian perturbation",
+        "severity_rank": 1,
+        "operations": [
+          {"type": "gain_offset", "probability": 0.75, "minimum": -0.1, "maximum": 0.1},
+          {"type": "gaussian_noise", "probability": 0.5, "standard_deviation": 0.015}
+        ]
+      },
+      "P3_shift_combo_light": {
+        "description": "small circular shift inside the valid time region plus reduced gain jitter",
+        "severity_rank": 3,
+        "operations": [
+          {"type": "valid_time_roll", "probability": 0.75, "maximum_frames": 3},
+          {"type": "gain_offset", "probability": 0.5, "minimum": -0.05, "maximum": 0.05}
+        ]
+      }
+    },
+    "fixed_policy_id": "P1_specaugment_light",
+    "selection_streams": [39001, 39002, 39003],
+    "outer_stream_seed_base": 49039,
+    "seed_derivation": "outer_stream_seed_base + repeat*10000 + outer_fold*100; segment views additionally hash epoch, call index, and segment ordinal",
+    "excluded_first_round": ["pitch_shift", "time_stretch", "wide_time_mask", "wide_frequency_mask"]
+  },
+  "inner_selection": {
+    "base_seed": 17,
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "candidates": 4,
+    "augmentation_rng_streams_per_candidate": 3,
+    "logical_candidate_fits": 144,
+    "selection_rule": "within each repeat-by-outer-fold boundary, rank candidate policies by mean animal Macro F1 across three paired augmentation streams; ties within 1e-6 use lower mean animal cross-entropy, lower severity rank, then lexical policy ID",
+    "selected_epoch_rule": "median of the three best epochs for the selected policy",
+    "stream_stability_rule": "the selected policy must rank in the top two for at least two of three streams",
+    "outer_test_accessed": false
+  },
+  "pipelines": {
+    "R0_cached_frozen_ast": {
+      "input": "locked cached AST call embeddings",
+      "augmentation": "none",
+      "role": "tuned frozen-AST reference"
+    },
+    "C0_online_identity": {
+      "input": "locked fbank passed through online frozen AST",
+      "augmentation": "P0_identity",
+      "role": "online-path and view-budget control"
+    },
+    "A1_fixed_specaugment": {
+      "input": "training fbank passed through online frozen AST",
+      "augmentation": "P1_specaugment_light",
+      "role": "H039-A fixed augmentation"
+    },
+    "A2_nested_policy": {
+      "input": "training fbank passed through online frozen AST",
+      "augmentation": "current-fold selected policy",
+      "role": "H039-B nested policy selection"
+    }
+  },
+  "fixed_training": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "encoder": "fully frozen and held in evaluation mode",
+    "frozen_encoder_execution": "encode each epoch's augmented calls in deterministic batches of 32, then preserve the original 8-call head batches, BatchNorm behavior, dropout stream, weights, and optimizer-step count",
+    "head": "768 -> 128 -> 3 with ReLU, BatchNorm and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "head_weight_decay": 0.0,
+    "optimizer_epsilon": 1e-7,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted current-fold inner-validation animal-level cross-entropy",
+    "micro_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "gradient_clip": 1.0,
+    "call_weighting": "fixed global class-balanced call weights from the current training role",
+    "normalization": "mean and standard deviation of locked frozen AST embeddings from current training calls",
+    "call_to_animal_aggregation": "arithmetic mean of call probabilities"
+  },
+  "smoke": {
+    "base_seed": 17,
+    "repeat": 0,
+    "outer_fold": 0,
+    "epochs": 2,
+    "requirements": [
+      "P0 leaves fbank bitwise unchanged",
+      "all stochastic policies are deterministic for the same stream and change for a different stream",
+      "padding remains bitwise unchanged",
+      "one-view batch and optimizer-step counts match R0",
+      "online identity AST embeddings agree with the locked cache within 3e-5",
+      "all augmented calls inherit the original cat_id and training role",
+      "validation remains identity",
+      "outer test is not requested"
+    ],
+    "outer_test_accessed": false
+  },
+  "initial_evaluation": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": [
+      "R0_cached_frozen_ast",
+      "C0_online_identity",
+      "A1_fixed_specaugment",
+      "A2_nested_policy"
+    ],
+    "outer_fits": 48,
+    "complete_oof_evaluations": 12,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "animal_cross_entropy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "paired_prediction_changes",
+      "policy_stream_ranking",
+      "selected_epochs",
+      "runtime_and_peak_vram"
+    ]
+  },
+  "bootstrap": {
+    "method": "paired cat-cluster bootstrap for R0-C0, R0-A1, R0-A2, and A1-A2 contrasts",
+    "resampling_unit": "cat_id",
+    "iterations": 5000,
+    "seed": 20260916,
+    "interval": [0.025, 0.975]
+  },
+  "path_equivalence_gate": {
+    "maximum_absolute_mean_macro_f1_difference_C0_vs_R0": 0.005,
+    "minimum_mean_prediction_agreement_C0_vs_R0": 0.99
+  },
+  "seed_expansion_gate": {
+    "minimum_mean_macro_f1_gain_over_R0": 0.005,
+    "minimum_positive_repeats_over_R0": 2,
+    "maximum_tolerated_mean_balanced_accuracy_drop": 0.02,
+    "maximum_tolerated_mean_qwk_drop": 0.02,
+    "maximum_tolerated_mean_animal_ce_increase": 0.03,
+    "maximum_tolerated_class_recall_drop": 0.1,
+    "minimum_stable_A2_fold_locks": 8,
+    "action_when_A1_met": "authorize seeds 43 and 101 for the fixed light augmentation",
+    "action_when_A2_met": "authorize seeds 43 and 101 for the nested-selected augmentation policy",
+    "action_when_unmet": "close the current finite augmentation pool and retain the complete negative or mixed result"
+  },
+  "dependencies": {
+    "locked_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "global_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "global_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "idea058_base_runner_path": "scripts/run_meowagenet_idea058_top_block_adaptation.py",
+    "idea058_base_runner_sha256": "47e49873a81df248ef84ff023b71732a8471a2251b3485f2d4f400dd6a20daef",
+    "idea058_strict_results_path": "metadata/experiments/meowagenet_idea058_strict_nested_v1_results.json",
+    "idea058_strict_results_sha256": "c8cf714dc9d0e5ec9de19c596b202bd9099086d7994d22d0d6f7fe938efb2bff"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea039_grouped_augmentation_v1",
+    "selection_record": "runs/meowagenet_idea039_grouped_augmentation_v1/selection/per_fold_policy_locks.json",
+    "result_metadata": "metadata/experiments/meowagenet_idea039_grouped_augmentation_v1_results.json",
+    "report": "reports/34_IDEA-039_grouped_augmentation_results.md"
+  }
+}
