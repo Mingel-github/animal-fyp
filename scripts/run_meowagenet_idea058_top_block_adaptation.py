@@ -1395,8 +1395,12 @@ def run_evaluation(
                 indices = split_utils.fold_indices(
                     store, roles, int(repeat), int(outer_fold), include_test=True
                 )
-                outer_train = np.sort(
-                    np.concatenate((indices["train"], indices["validation"]))
+                # Preserve the locked reference order: current outer-training
+                # calls first, followed by current validation calls.  The
+                # deterministic sampler permutes dataset positions, so sorting
+                # these indices would change the seed-to-call mapping.
+                outer_train = np.concatenate(
+                    (indices["train"], indices["validation"])
                 )
                 seed = split_utils.full_seed(
                     int(base_seed), int(repeat), int(outer_fold)

@@ -72,6 +72,13 @@ def test_only_evaluation_requests_outer_test_indices() -> None:
     assert "include_test=True" in inspect.getsource(runner.run_evaluation)
 
 
+def test_outer_training_preserves_locked_train_then_validation_order() -> None:
+    runner = load_runner()
+    source = inspect.getsource(runner.run_evaluation)
+    assert 'outer_train = np.concatenate(' in source
+    assert 'outer_train = np.sort(' not in source
+
+
 def test_top_and_bottom_controls_use_expected_blocks_and_equal_parameters(monkeypatch) -> None:
     runner = load_runner()
     monkeypatch.setattr(runner.ast_base, "ASTModel", FakeASTFactory)
