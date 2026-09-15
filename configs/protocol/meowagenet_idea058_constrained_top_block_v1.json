@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea058-constrained-top-block-v1",
+  "date": "2026-09-15",
+  "status": "authorized_pre_execution_design",
+  "objective": "Test whether a narrowly tuned AST top-block update provides a stable animal-level age-classification gain beyond the tuned frozen-AST reference and a same-capacity bottom-block control.",
+  "relationship": {
+    "formal_v2_1": "historical formal evidence anchor; unchanged",
+    "idea056": "defines the tuned frozen-AST reference and animal-level validation cross-entropy checkpoint rule",
+    "ast_internal_diagnosis": "provides the mixed Last-2 inner-only signal motivating this bounded test",
+    "stage": "IDEA-058 independent initial validation after IDEA-057 stage closeout"
+  },
+  "idea": {
+    "path": "plan/IDEA-058_constrained_top_block_adaptation.md",
+    "sha256": "ea72449ca6ba330523de4cc625a5801c887c8b875665c9a99451edf9e50d1c89"
+  },
+  "dataset": {
+    "calls": 792,
+    "cats": 111,
+    "classes": ["kitten", "adult", "senior"],
+    "segments": 843,
+    "input": "locked 128-frame AST filterbank segments",
+    "call_representation": "arithmetic mean of AST pooler outputs across segments belonging to one call",
+    "animal_aggregation": "arithmetic mean of call probabilities belonging to one cat"
+  },
+  "splits": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id",
+    "inner_selection_within_outer_training_role": true,
+    "selection_roles": ["train", "validation"],
+    "excluded_selection_role": "test"
+  },
+  "inner_selection": {
+    "base_seed": 17,
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "candidate_fits": 48,
+    "candidate_recipes": {
+      "top1_lr3e-6": {
+        "block_count": 1,
+        "encoder_learning_rate": 0.000003
+      },
+      "top1_lr1e-5": {
+        "block_count": 1,
+        "encoder_learning_rate": 0.00001
+      },
+      "top2_lr3e-6": {
+        "block_count": 2,
+        "encoder_learning_rate": 0.000003
+      },
+      "top2_lr1e-5": {
+        "block_count": 2,
+        "encoder_learning_rate": 0.00001
+      }
+    },
+    "fixed_candidate_constraints": {
+      "update_final_layernorm": true,
+      "encoder_weight_decay": 0.0001,
+      "head_weight_decay": 0.0,
+      "gradient_clip": 1.0
+    },
+    "selection_rule": "highest mean inner-validation animal Macro F1 across 12 splits; ties within 1e-6 use lower mean animal cross-entropy, then fewer trainable parameters, then lexical recipe ID",
+    "selected_recipe_output": "runs/meowagenet_idea058_constrained_top_block_v1/selection/selection_record.json",
+    "outer_test_accessed": false
+  },
+  "pipelines": {
+    "R0_tuned_frozen_ast": {
+      "trainable_encoder": "none",
+      "architecture": "cached frozen AST call embedding followed by the standardized 768 -> 128 -> 3 head",
+      "role": "matched IDEA-056 tuned frozen-AST reference"
+    },
+    "M1_top_block_adaptation": {
+      "trainable_encoder": "the selected number of final AST encoder blocks plus final LayerNorm",
+      "architecture": "online standard AST followed by the same standardized 768 -> 128 -> 3 head",
+      "role": "target adaptation-location mechanism"
+    },
+    "C1_bottom_block_control": {
+      "trainable_encoder": "the same number of initial AST encoder blocks plus final LayerNorm",
+      "architecture": "online standard AST followed by the same standardized 768 -> 128 -> 3 head",
+      "role": "same-parameter-count update-location control"
+    }
+  },
+  "fixed_training": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "hidden_dimension": 128,
+    "classes": 3,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "epoch_selection": "minimum unweighted inner-validation animal-level cross-entropy",
+    "micro_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "gradient_accumulation_steps": 4,
+    "accumulation_window_calls": 32,
+    "partial_window_denominator": 32,
+    "call_weighting": "fixed global class-balanced call weights from the current training role",
+    "normalization": "mean and standard deviation of locked frozen AST embeddings from current training calls",
+    "call_to_animal_aggregation": "arithmetic mean of call probabilities"
+  },
+  "smoke": {
+    "base_seed": 17,
+    "repeat": 0,
+    "outer_fold": 0,
+    "epochs": 2,
+    "pipelines": [
+      "R0_tuned_frozen_ast",
+      "M1_top_block_adaptation",
+      "C1_bottom_block_control"
+    ],
+    "requirements": [
+      "inner-only train and animal validation",
+      "M1/C1 exact trainable-parameter-count match",
+      "top/bottom trainable-name and block-index audit",
+      "M1/C1 common head initialization and training RNG audit",
+      "checkpoint save and reload",
+      "no outer-test prediction"
+    ],
+    "outer_test_accessed": false,
+    "excluded_from_evaluation_summary": true
+  },
+  "initial_evaluation": {
+    "base_seeds": [17],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "pipelines": [
+      "R0_tuned_frozen_ast",
+      "M1_top_block_adaptation",
+      "C1_bottom_block_control"
+    ],
+    "fits_per_pipeline": 12,
+    "total_outer_fits": 36,
+    "complete_oof_evaluations": 9,
+    "primary_unit": "animal",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "quadratic_weighted_kappa",
+      "plain_accuracy",
+      "animal_cross_entropy",
+      "per_class_precision_recall_f1",
+      "confusion_matrix",
+      "paired_prediction_changes",
+      "selected_epochs",
+      "trainable_parameters",
+      "runtime_and_peak_vram"
+    ]
+  },
+  "bootstrap": {
+    "method": "paired cat-cluster bootstrap for each pipeline contrast",
+    "resampling_unit": "cat_id",
+    "iterations": 5000,
+    "seed": 20260915,
+    "interval": [0.025, 0.975]
+  },
+  "seed_expansion_gate": {
+    "minimum_mean_macro_f1_gain_over_R0": 0.005,
+    "minimum_positive_repeats_over_R0": 2,
+    "minimum_mean_macro_f1_gain_over_C1": 0.0,
+    "minimum_positive_repeats_over_C1": 2,
+    "maximum_tolerated_mean_balanced_accuracy_drop": 0.02,
+    "maximum_tolerated_mean_qwk_drop": 0.02,
+    "maximum_tolerated_mean_animal_ce_increase": 0.03,
+    "maximum_tolerated_class_recall_drop": 0.10,
+    "action_when_met": "freeze the selected IDEA-058 recipe and expand matched R0/M1/C1 to base seeds 43 and 101",
+    "action_when_not_met": "close IDEA-058 as a constrained top-block and update-location ablation"
+  },
+  "dependencies": {
+    "locked_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "global_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "global_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "diagnostic_report_path": "reports/30_AST_internal_diagnosis_results.md",
+    "diagnostic_report_sha256": "2aee828c0e9938b35fed23c7ff86487e446feda0e78432f0d8b2abe2627155d1",
+    "ast_runner_path": "scripts/run_ast_finetuning.py",
+    "ast_runner_sha256": "e3f887fc5750804ef90743588e2a2bd295bb36426161321a1163a331894a6664",
+    "split_runner_path": "scripts/run_meowagenet_ast_accuracy_enhancement_v1.py",
+    "split_runner_sha256": "edfdd2787fb32c8d8970d49222994be236a12af4fe32a4104b0cde5f678f11d9",
+    "global_weighting_runner_path": "scripts/run_meowagenet_ast_cat_balance_global_weighting_v1.py",
+    "global_weighting_runner_sha256": "a0a217e76a99f2d9f3e00d5caa2d21c81c5e37e53237c6ac311318ad8c39674a",
+    "evaluation_runner_path": "scripts/run_meowagenet_idea051_cat_set.py",
+    "evaluation_runner_sha256": "4e8acdefca96215ae3cec94d9158ac081da82eabce08b73c0fe612334ce5d3d5"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea058_constrained_top_block_v1",
+    "result_metadata": "metadata/experiments/meowagenet_idea058_constrained_top_block_v1_results.json",
+    "report": "reports/32_IDEA-058_constrained_top_block_results.md"
+  }
+}
