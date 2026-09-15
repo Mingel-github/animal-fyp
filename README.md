@@ -477,11 +477,32 @@ strip achieved mean animal macro F1 0.7265, versus 0.7570 for matched R0 and
 0.7348 for the parameter-matched position-removed control. Its paired mean
 differences were -0.0305 versus R0 and -0.0083 versus C1, so the seed-expansion
 gate closed. The structured local-patch implementation is retained as a
-mechanism ablation, and the independent workflow proceeds to IDEA-058:
+mechanism ablation; the independent workflow then proceeded to IDEA-058:
 
 - Chinese result report: `reports/31_IDEA-057_structured_local_patch_results.md`;
 - machine-readable result:
   `metadata/experiments/meowagenet_idea057_structured_local_patch_v1_results.json`.
+
+IDEA-058 has also completed its bounded selection and 36-fit R0/M1/C1
+complete-OOF evaluation. Top-block M1 achieved mean animal macro F1 0.7607
+versus 0.7570 for matched frozen R0 and 0.7385 for the parameter-matched
+bottom-block C1. M1 exceeded R0 in two of three repeats and C1 in all three,
+while its repeat SD increased to 0.0371. The mean M1-R0 gain of 0.0037 remained
+below the prespecified 0.005 seed-expansion gate:
+
+- Chinese result report: `reports/32_IDEA-058_constrained_top_block_results.md`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea058_constrained_top_block_v1_results.json`.
+
+A post-result audit found that IDEA-058 selected one global recipe after
+aggregating inner-validation results across all outer folds. Because animals
+change roles across folds, the next step is a per-outer-fold strict nested
+confirmation before extending the method. The complete post-IDEA-058 roadmap
+is in `plan/POST_IDEA058_next_stage_plan.md`. It separates four roles: mandatory
+evaluation correction, conditional top-block stabilization, the pre-existing
+IDEA-039 grouped-augmentation route, and a nuisance-variable diagnostic that
+must establish prediction dependence before a new method is proposed. IDEA-021
+is excluded from this stage by the current team decision.
 
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before

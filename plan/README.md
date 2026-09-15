@@ -15,18 +15,22 @@
 
 ## 当前活动计划
 
-- [`AST_dual_direction_validation_plan.md`](AST_dual_direction_validation_plan.md)：团队决定将诊断得到的两个候选方向分别开展，首轮保持独立验证。
-- [`IDEA-057_structured_local_patch_branch.md`](IDEA-057_structured_local_patch_branch.md)：首轮独立验证已完成；结果见 `reports/31_IDEA-057_structured_local_patch_results.md`。
-- [`IDEA-058_constrained_top_block_adaptation.md`](IDEA-058_constrained_top_block_adaptation.md)：检验受约束的 AST 顶层更新，并以同参数量的非顶部 block 更新作为位置对照。
+- [`POST_IDEA058_next_stage_plan.md`](POST_IDEA058_next_stage_plan.md)：当前总计划。先修正
+  IDEA-058 的跨 outer-fold recipe selection 边界，再按证据决定 top-block stabilization，
+  同时保留 IDEA-039 grouped augmentation 和 nuisance-variable 诊断两条独立路线。
+- [`IDEA-058_constrained_top_block_adaptation.md`](IDEA-058_constrained_top_block_adaptation.md)：
+  原始冻结计划，已经执行；结果见 `reports/32_IDEA-058_constrained_top_block_results.md`。
+- [`IDEA-057_structured_local_patch_branch.md`](IDEA-057_structured_local_patch_branch.md)：
+  原始冻结计划，已经执行；结果见 `reports/31_IDEA-057_structured_local_patch_results.md`。
 
-第一阶段 inner-only 诊断已经完成，结果见
-`reports/30_AST_internal_diagnosis_results.md`。三条完整支持规则均未通过，局部 patch 形成
-当前最强机制线索，Last-2 形成有实际幅度的 mixed signal。2026-09-15 团队决定两条路线
-均继续，各自完成 R0/M1/C1 比较；首轮不组合模块。
+IDEA-057 和 IDEA-058 的首轮独立验证均已完成。IDEA-057 的位置感知局部分支低于 matched R0
+`0.0305` Macro F1，当前参数化关闭。IDEA-058 的 top-block M1 相对 R0 为 `+0.0037`，2/3
+repeats 为正；相对同参数量 bottom-block C1 为 `+0.0222`，3/3 为正。M1 没有达到原
+`+0.005` seed expansion gate，且 repeat SD 为 `0.0371`。
 
-IDEA-057 选择中频三段局部分支后完成 36 个 outer fits。R0、M1 和 C1 的 mean animal Macro
-F1 分别为 `0.7570`、`0.7265` 和 `0.7348`；M1 相对 R0 为 `-0.0305`，相对 C1 为
-`-0.0083`。seed expansion gate 关闭，当前活动执行顺序进入 IDEA-058。
+后续代码审查确认 IDEA-058 通过全部 12 个 inner splits 汇总选择一个全局 recipe。为确保每个
+outer fold 的测试猫不影响该 fold 的模型选择，当前第一任务是 per-outer-fold strict nested
+复核。原报告作为探索性历史证据保留，不反向修改。IDEA-021 本阶段不考虑。
 
 `AST_internal_diagnosis_and_single_module_plan.md` 已完成诊断阶段并进入审计记录，作为原始
 设计历史保留，不反向修改。

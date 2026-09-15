@@ -454,3 +454,32 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
   相对 C1 平均 `-0.0083`。本参数化的 seed expansion gate 关闭。
 - 中频定位对候选收缩具有作用，当前有序拼接局部分支增加了 split 敏感性。完整结果见
   `reports/31_IDEA-057_structured_local_patch_results.md`；双方向流程继续独立执行 IDEA-058。
+
+### 11.8 IDEA-058 首轮结果与评价边界（2026-09-15）
+
+- Inner-only 候选选择锁定最后一个 block、final LayerNorm 和 encoder LR `1×10⁻⁵`。
+- Complete-OOF 中 R0、top-block M1 和同参数量 bottom-block C1 的 mean animal Macro F1
+  分别为 `0.7570`、`0.7607` 和 `0.7385`。
+- M1 相对 R0 的三个 repeat 差为 `+0.0067、+0.0339、-0.0297`，平均 `+0.0037`；相对 C1
+  平均 `+0.0222`，3/3 repeats 为正。原 `+0.005` seed expansion gate 关闭。
+- M1 的 Balanced Accuracy 相对 R0 提高 `0.0095`，QWK 提高 `0.0003`，Accuracy 不变，
+  animal CE 增加 `0.0089`；Kitten recall 提高而 Senior recall 回落。repeat SD 从 R0 的
+  `0.0086` 增至 `0.0371`。
+- 代码审查发现，四个候选在全部 `3 repeats × 4 folds` 的 inner-validation 结果上汇总后只
+  选择一个全局 recipe。由于同一只猫在不同 outer folds 中会改变 train/validation/test 角色，
+  该选择边界允许某 fold 的测试猫通过其他 folds 间接影响 recipe selection。后续应执行
+  per-outer-fold strict nested 复核；原结果保留为探索性证据。
+- 完整结果见 `reports/32_IDEA-058_constrained_top_block_results.md`。
+
+### 11.9 IDEA-058 后续路线决定（2026-09-15）
+
+- 第一任务是 IDEA-058 strict nested 复核；它属于评价修正，不另立方法 claim。
+- strict 结果保留正信号后，先诊断参数漂移与 update norm，再从 gradual unfreezing、L2-SP
+  或 top-block component adaptation 中选择一个稳定化方法。诊断前不分配新 IDEA 编号。
+- IDEA-039 grouped augmentation 是此前 shortlist 的独立路线；其新增要求是训练侧增强、
+  animal group 不跨角色、每个 outer fold 独立选择 policy。
+- nuisance-variable robustness 是从现有 duration、padding、energy 高可解码性证据产生的新
+  诊断方向。高 R² 只证明表示含有信息；证实预测依赖后才建立方法 Idea Card。
+- IDEA-021 本阶段不考虑；首轮不组合 stabilization、augmentation 和 nuisance module。
+- 完整执行顺序、证据边界、停止规则和术语见
+  `plan/POST_IDEA058_next_stage_plan.md`。
