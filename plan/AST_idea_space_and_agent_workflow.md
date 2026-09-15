@@ -341,6 +341,8 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 | AST–VGGish probability fusion | E/F | 存在 21 次 VGGish-only 正确；inner-selected scalar fusion 平均低于 AST 0.0071 |
 | LayerNorm / SSF / BitFit | F/E | 三种受约束校准均低于 frozen AST；LayerNorm 最接近且有 1/3 正向 repeat |
 | Checkpoint ensemble / class-bias calibration | I/J | tail-3 平均与 A0 主指标接近，并改善 balanced accuracy 与 animal CE；类别 bias 的主指标较低 |
+| Constrained top-/bottom-block adaptation | F/J | IDEA-058 strict M1 低于 R0 0.0077；相对 C1 保留有限位置线索，Stage B 暂停 |
+| IDEA-039 grouped augmentation policy | D/I/J | 当前计划；固定增强与 nested selector 分开验证，尚无新实验结果 |
 
 ## 11. 当前优先探索导航
 
@@ -483,3 +485,20 @@ selection、complete-OOF evaluation 和必要的 seed 扩展。结果分别写�
 - IDEA-021 本阶段不考虑；首轮不组合 stabilization、augmentation 和 nuisance module。
 - 完整执行顺序、证据边界、停止规则和术语见
   `plan/POST_IDEA058_next_stage_plan.md`。
+
+### 11.10 IDEA-058 strict 结果与 IDEA-039 启动（2026-09-15）
+
+- per-repeat/outer-fold strict nested 复核已完成 48 个 inner fits 和 36 个 outer fits，R0 锚点
+  逐位复现。
+- R0、M1、C1 的 mean animal Macro F1 分别为 `0.7570`、`0.7493`、`0.7337`。M1 相对
+  R0 为 `−0.0077`，仅 1/3 repeats 为正；strict gate 未通过。
+- M1 相对 C1 平均为 `+0.0156`，2/3 repeats 为正，保留为有限的 top-vs-bottom 位置线索。
+  bootstrap 区间跨过零，因此不升级为已确认机制。
+- IDEA-058 状态更新为“探索性弱正、strict confirmation 未确认”；Stage B top-block
+  stabilization 暂停，tuned frozen AST 继续作为参考。
+- 当前性能路线转入 IDEA-039。固定增强收益和 nested policy selection 收益分为 H039-A 与
+  H039-B，并加入 online/no-op control。计划见
+  `plan/IDEA-039_grouped_augmentation_policy.md`。
+- nuisance-variable robustness 保留为独立诊断路线；IDEA-021 当前不进入执行队列。
+- 当前路线状态与执行顺序见 `plan/POST_IDEA058_strict_stage_update.md`。Strict 运行前的
+  `plan/POST_IDEA058_next_stage_plan.md` 已进入哈希审计历史，保持原文。

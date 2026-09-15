@@ -504,6 +504,31 @@ IDEA-039 grouped-augmentation route, and a nuisance-variable diagnostic that
 must establish prediction dependence before a new method is proposed. IDEA-021
 is excluded from this stage by the current team decision.
 
+The IDEA-058 strict nested confirmation has now completed. Per-fold recipe
+selection retained the exact R0 anchor at 0.7570 mean animal macro F1. M1
+top-block adaptation achieved 0.7493, a paired mean difference of -0.0077 from
+R0 with one of three repeats positive. M1 remained 0.0156 above the matched
+bottom-block C1 on average, while the paired bootstrap interval crossed zero.
+The strict seed-expansion gate therefore closed, IDEA-058 is recorded as an
+exploratory weak-positive that was not confirmed, and top-block stabilization
+is paused:
+
+- Chinese result report:
+  `reports/33_IDEA-058_strict_nested_confirmation_results.md`;
+- executable protocol:
+  `configs/protocol/meowagenet_idea058_strict_nested_v1.json`;
+- machine-readable result:
+  `metadata/experiments/meowagenet_idea058_strict_nested_v1_results.json`.
+
+The active performance plan is now IDEA-039 grouped augmentation. It separates
+the effect of a fixed mild augmentation policy from the incremental value of
+per-outer-fold nested policy selection and includes an online/no-op execution
+control. The readable plan is
+`plan/IDEA-039_grouped_augmentation_policy.md`; the current roadmap is
+`plan/POST_IDEA058_strict_stage_update.md`. The pre-strict
+`plan/POST_IDEA058_next_stage_plan.md` remains unchanged because its SHA-256 is
+part of the executed strict protocol.
+
 Formal v2.1 freezes the evidence-critical core while leaving the exact adapter,
 three-to-five split repeats, and optional diagnostic modules selectable before
 formal outcomes. The minimum core is three pipelines, three repeats, four folds,
