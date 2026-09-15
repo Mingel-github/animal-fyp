@@ -1,0 +1,2452 @@
+{
+  "status": "complete",
+  "stage": "idea058_strict_nested_evaluation",
+  "outer_test_accessed": true,
+  "protocol_id": "meowagenet-idea058-strict-nested-v1",
+  "primary_unit": "animal",
+  "primary_metric": "macro_f1",
+  "metrics_by_repeat": {
+    "R0_tuned_frozen_ast": [
+      {
+        "base_seed": 17,
+        "repeat": 0,
+        "animal_cross_entropy": 0.7120858170521598,
+        "macro_f1": 0.7658712606215808,
+        "balanced_accuracy": 0.7698292220113853,
+        "quadratic_weighted_kappa": 0.6897349397590362,
+        "plain_accuracy": 0.7657657657657657,
+        "per_class": {
+          "kitten": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8000000000000002,
+            "support": 15
+          },
+          "adult": {
+            "precision": 0.8135593220338984,
+            "recall": 0.7741935483870968,
+            "f1": 0.7933884297520662,
+            "support": 62
+          },
+          "senior": {
+            "precision": 0.6756756756756757,
+            "recall": 0.7352941176470589,
+            "f1": 0.7042253521126761,
+            "support": 34
+          }
+        },
+        "confusion_matrix": [
+          [
+            12,
+            3,
+            0
+          ],
+          [
+            2,
+            48,
+            12
+          ],
+          [
+            1,
+            8,
+            25
+          ]
+        ],
+        "n": 111
+      },
+      {
+        "base_seed": 17,
+        "repeat": 1,
+        "animal_cross_entropy": 0.6739470877199711,
+        "macro_f1": 0.7564815892600785,
+        "balanced_accuracy": 0.7600253004427578,
+        "quadratic_weighted_kappa": 0.6469397590361445,
+        "plain_accuracy": 0.7567567567567568,
+        "per_class": {
+          "kitten": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8000000000000002,
+            "support": 15
+          },
+          "adult": {
+            "precision": 0.8135593220338984,
+            "recall": 0.7741935483870968,
+            "f1": 0.7933884297520662,
+            "support": 62
+          },
+          "senior": {
+            "precision": 0.6486486486486487,
+            "recall": 0.7058823529411765,
+            "f1": 0.676056338028169,
+            "support": 34
+          }
+        },
+        "confusion_matrix": [
+          [
+            12,
+            2,
+            1
+          ],
+          [
+            2,
+            48,
+            12
+          ],
+          [
+            1,
+            9,
+            24
+          ]
+        ],
+        "n": 111
+      },
+      {
+        "base_seed": 17,
+        "repeat": 2,
+        "animal_cross_entropy": 0.7618772238476468,
+        "macro_f1": 0.7487090067735229,
+        "balanced_accuracy": 0.7635041113219482,
+        "quadratic_weighted_kappa": 0.6796984082658475,
+        "plain_accuracy": 0.7477477477477478,
+        "per_class": {
+          "kitten": {
+            "precision": 0.75,
+            "recall": 0.8,
+            "f1": 0.7741935483870969,
+            "support": 15
+          },
+          "adult": {
+            "precision": 0.8181818181818182,
+            "recall": 0.7258064516129032,
+            "f1": 0.7692307692307693,
+            "support": 62
+          },
+          "senior": {
+            "precision": 0.65,
+            "recall": 0.7647058823529411,
+            "f1": 0.7027027027027027,
+            "support": 34
+          }
+        },
+        "confusion_matrix": [
+          [
+            12,
+            2,
+            1
+          ],
+          [
+            4,
+            45,
+            13
+          ],
+          [
+            0,
+            8,
+            26
+          ]
+        ],
+        "n": 111
+      }
+    ],
+    "M1_top_block_adaptation": [
+      {
+        "base_seed": 17,
+        "repeat": 0,
+        "animal_cross_entropy": 0.6699264929686018,
+        "macro_f1": 0.7509719473868003,
+        "balanced_accuracy": 0.7546489563567363,
+        "quadratic_weighted_kappa": 0.6683373493975904,
+        "plain_accuracy": 0.7477477477477478,
+        "per_class": {
+          "kitten": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8000000000000002,
+            "support": 15
+          },
+          "adult": {
+            "precision": 0.7966101694915254,
+            "recall": 0.7580645161290323,
+            "f1": 0.7768595041322315,
+            "support": 62
+          },
+          "senior": {
+            "precision": 0.6486486486486487,
+            "recall": 0.7058823529411765,
+            "f1": 0.676056338028169,
+            "support": 34
+          }
+        },
+        "confusion_matrix": [
+          [
+            12,
+            3,
+            0
+          ],
+          [
+            2,
+            47,
+            13
+          ],
+          [
+            1,
+            9,
+            24
+          ]
+        ],
+        "n": 111
+      },
+      {
+        "base_seed": 17,
+        "repeat": 1,
+        "animal_cross_entropy": 0.6881898338885927,
+        "macro_f1": 0.7695534346647815,
+        "balanced_accuracy": 0.7707779886148008,
+        "quadratic_weighted_kappa": 0.6636034803011047,
+        "plain_accuracy": 0.7747747747747747,
+        "per_class": {
+          "kitten": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8000000000000002,
+            "support": 15
+          },
+          "adult": {
+            "precision": 0.819672131147541,
+            "recall": 0.8064516129032258,
+            "f1": 0.8130081300813008,
+            "support": 62
+          },
+          "senior": {
+            "precision": 0.6857142857142857,
+            "recall": 0.7058823529411765,
+            "f1": 0.6956521739130436,
+            "support": 34
+          }
+        },
+        "confusion_matrix": [
+          [
+            12,
+            2,
+            1
+          ],
+          [
+            2,
+            50,
+            10
+          ],
+          [
+            1,
+            9,
+            24
+          ]
+        ],
+        "n": 111
+      },
+      {
+        "base_seed": 17,
+        "repeat": 2,
+        "animal_cross_entropy": 0.7191826896910568,
+        "macro_f1": 0.7274529530121908,
+        "balanced_accuracy": 0.7438962681846933,
+        "quadratic_weighted_kappa": 0.6567975264686592,
+        "plain_accuracy": 0.7297297297297297,
+        "per_class": {
+          "kitten": {
+            "precision": 0.7058823529411765,
+            "recall": 0.8,
+            "f1": 0.7500000000000001,
+            "support": 15
+          },
+          "adult": {
+            "precision": 0.7894736842105263,
+            "recall": 0.7258064516129032,
+            "f1": 0.7563025210084033,
+            "support": 62
+          },
+          "senior": {
+            "precision": 0.6486486486486487,
+            "recall": 0.7058823529411765,
+            "f1": 0.676056338028169,
+            "support": 34
+          }
+        },
+        "confusion_matrix": [
+          [
+            12,
+            2,
+            1
+          ],
+          [
+            5,
+            45,
+            12
+          ],
+          [
+            0,
+            10,
+            24
+          ]
+        ],
+        "n": 111
+      }
+    ],
+    "C1_bottom_block_control": [
+      {
+        "base_seed": 17,
+        "repeat": 0,
+        "animal_cross_entropy": 0.7271018932548937,
+        "macro_f1": 0.7202021247515239,
+        "balanced_accuracy": 0.717246468479865,
+        "quadratic_weighted_kappa": 0.6309407392920008,
+        "plain_accuracy": 0.7207207207207207,
+        "per_class": {
+          "kitten": {
+            "precision": 0.7857142857142857,
+            "recall": 0.7333333333333333,
+            "f1": 0.7586206896551724,
+            "support": 15
+          },
+          "adult": {
+            "precision": 0.7666666666666667,
+            "recall": 0.7419354838709677,
+            "f1": 0.7540983606557377,
+            "support": 62
+          },
+          "senior": {
+            "precision": 0.6216216216216216,
+            "recall": 0.6764705882352942,
+            "f1": 0.6478873239436619,
+            "support": 34
+          }
+        },
+        "confusion_matrix": [
+          [
+            11,
+            4,
+            0
+          ],
+          [
+            2,
+            46,
+            14
+          ],
+          [
+            1,
+            10,
+            23
+          ]
+        ],
+        "n": 111
+      },
+      {
+        "base_seed": 17,
+        "repeat": 1,
+        "animal_cross_entropy": 0.6704097610434379,
+        "macro_f1": 0.7480093676814988,
+        "balanced_accuracy": 0.7502213788741304,
+        "quadratic_weighted_kappa": 0.6336633663366337,
+        "plain_accuracy": 0.7477477477477478,
+        "per_class": {
+          "kitten": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8000000000000002,
+            "support": 15
+          },
+          "adult": {
+            "precision": 0.8,
+            "recall": 0.7741935483870968,
+            "f1": 0.7868852459016393,
+            "support": 62
+          },
+          "senior": {
+            "precision": 0.6388888888888888,
+            "recall": 0.6764705882352942,
+            "f1": 0.6571428571428571,
+            "support": 34
+          }
+        },
+        "confusion_matrix": [
+          [
+            12,
+            2,
+            1
+          ],
+          [
+            2,
+            48,
+            12
+          ],
+          [
+            1,
+            10,
+            23
+          ]
+        ],
+        "n": 111
+      },
+      {
+        "base_seed": 17,
+        "repeat": 2,
+        "animal_cross_entropy": 0.7635876531805085,
+        "macro_f1": 0.7329536633216186,
+        "balanced_accuracy": 0.7625553447185326,
+        "quadratic_weighted_kappa": 0.6527219093590775,
+        "plain_accuracy": 0.7387387387387387,
+        "per_class": {
+          "kitten": {
+            "precision": 0.6666666666666666,
+            "recall": 0.8,
+            "f1": 0.7272727272727272,
+            "support": 15
+          },
+          "adult": {
+            "precision": 0.8431372549019608,
+            "recall": 0.6935483870967742,
+            "f1": 0.7610619469026549,
+            "support": 62
+          },
+          "senior": {
+            "precision": 0.6428571428571429,
+            "recall": 0.7941176470588235,
+            "f1": 0.7105263157894737,
+            "support": 34
+          }
+        },
+        "confusion_matrix": [
+          [
+            12,
+            2,
+            1
+          ],
+          [
+            5,
+            43,
+            14
+          ],
+          [
+            1,
+            6,
+            27
+          ]
+        ],
+        "n": 111
+      }
+    ]
+  },
+  "aggregate": {
+    "R0_tuned_frozen_ast": {
+      "macro_f1_mean": 0.7570206188850608,
+      "macro_f1_sample_sd": 0.008593814868191605,
+      "macro_f1_range": [
+        0.7487090067735229,
+        0.7658712606215808
+      ],
+      "balanced_accuracy_mean": 0.7644528779253638,
+      "balanced_accuracy_sample_sd": 0.0049703458714426526,
+      "balanced_accuracy_range": [
+        0.7600253004427578,
+        0.7698292220113853
+      ],
+      "quadratic_weighted_kappa_mean": 0.6721243690203428,
+      "quadratic_weighted_kappa_sample_sd": 0.022380380384291382,
+      "quadratic_weighted_kappa_range": [
+        0.6469397590361445,
+        0.6897349397590362
+      ],
+      "plain_accuracy_mean": 0.7567567567567567,
+      "plain_accuracy_sample_sd": 0.009009009009008973,
+      "plain_accuracy_range": [
+        0.7477477477477478,
+        0.7657657657657657
+      ],
+      "mean_per_class": {
+        "kitten": {
+          "precision": 0.7833333333333333,
+          "recall": 0.8000000000000002,
+          "f1": 0.7913978494623657
+        },
+        "adult": {
+          "precision": 0.815100154083205,
+          "recall": 0.7580645161290324,
+          "f1": 0.7853358762449673
+        },
+        "senior": {
+          "precision": 0.6581081081081082,
+          "recall": 0.7352941176470589,
+          "f1": 0.6943281309478492
+        }
+      }
+    },
+    "M1_top_block_adaptation": {
+      "macro_f1_mean": 0.7493261116879242,
+      "macro_f1_sample_sd": 0.02109844117952327,
+      "macro_f1_range": [
+        0.7274529530121908,
+        0.7695534346647815
+      ],
+      "balanced_accuracy_mean": 0.7564410710520768,
+      "balanced_accuracy_sample_sd": 0.013530169238836457,
+      "balanced_accuracy_range": [
+        0.7438962681846933,
+        0.7707779886148008
+      ],
+      "quadratic_weighted_kappa_mean": 0.662912785389118,
+      "quadratic_weighted_kappa_sample_sd": 0.00580083381108739,
+      "quadratic_weighted_kappa_range": [
+        0.6567975264686592,
+        0.6683373493975904
+      ],
+      "plain_accuracy_mean": 0.7507507507507508,
+      "plain_accuracy_sample_sd": 0.022672175481293532,
+      "plain_accuracy_range": [
+        0.7297297297297297,
+        0.7747747747747747
+      ],
+      "mean_per_class": {
+        "kitten": {
+          "precision": 0.7686274509803922,
+          "recall": 0.8000000000000002,
+          "f1": 0.7833333333333335
+        },
+        "adult": {
+          "precision": 0.801918661616531,
+          "recall": 0.7634408602150536,
+          "f1": 0.7820567184073118
+        },
+        "senior": {
+          "precision": 0.661003861003861,
+          "recall": 0.7058823529411765,
+          "f1": 0.6825882833231272
+        }
+      }
+    },
+    "C1_bottom_block_control": {
+      "macro_f1_mean": 0.7337217185848804,
+      "macro_f1_sample_sd": 0.013919523034473144,
+      "macro_f1_range": [
+        0.7202021247515239,
+        0.7480093676814988
+      ],
+      "balanced_accuracy_mean": 0.7433410640241761,
+      "balanced_accuracy_sample_sd": 0.023424935769999516,
+      "balanced_accuracy_range": [
+        0.717246468479865,
+        0.7625553447185326
+      ],
+      "quadratic_weighted_kappa_mean": 0.6391086716625707,
+      "quadratic_weighted_kappa_sample_sd": 0.011867744307248854,
+      "quadratic_weighted_kappa_range": [
+        0.6309407392920008,
+        0.6527219093590775
+      ],
+      "plain_accuracy_mean": 0.7357357357357358,
+      "plain_accuracy_sample_sd": 0.01376148857344099,
+      "plain_accuracy_range": [
+        0.7207207207207207,
+        0.7477477477477478
+      ],
+      "mean_per_class": {
+        "kitten": {
+          "precision": 0.7507936507936508,
+          "recall": 0.7777777777777777,
+          "f1": 0.7619644723092999
+        },
+        "adult": {
+          "precision": 0.8032679738562093,
+          "recall": 0.7365591397849464,
+          "f1": 0.7673485178200107
+        },
+        "senior": {
+          "precision": 0.6344558844558844,
+          "recall": 0.7156862745098039,
+          "f1": 0.671852165625331
+        }
+      }
+    }
+  },
+  "animal_cross_entropy": {
+    "R0_tuned_frozen_ast": {
+      "by_repeat": [
+        0.7120858170521598,
+        0.6739470877199711,
+        0.7618772238476468
+      ],
+      "mean": 0.7159700428732592,
+      "sample_sd": 0.044093566622919765
+    },
+    "M1_top_block_adaptation": {
+      "by_repeat": [
+        0.6699264929686018,
+        0.6881898338885927,
+        0.7191826896910568
+      ],
+      "mean": 0.6924330055160838,
+      "sample_sd": 0.024900735089261015
+    },
+    "C1_bottom_block_control": {
+      "by_repeat": [
+        0.7271018932548937,
+        0.6704097610434379,
+        0.7635876531805085
+      ],
+      "mean": 0.7203664358262801,
+      "sample_sd": 0.04695268560856122
+    }
+  },
+  "paired": {
+    "M1_top_block_adaptation_minus_R0_tuned_frozen_ast": [
+      {
+        "repeat": 0,
+        "left_macro_f1": 0.7658712606215808,
+        "right_macro_f1": 0.7509719473868003,
+        "macro_f1_difference": -0.014899313234780553,
+        "balanced_accuracy_difference": -0.015180265654648917,
+        "qwk_difference": -0.02139759036144584,
+        "plain_accuracy_difference": -0.018018018018017945,
+        "animal_cross_entropy_difference": -0.042159324083557936,
+        "changed_animals": 4,
+        "gained_correct_animals": 1,
+        "lost_correct_animals": 3
+      },
+      {
+        "repeat": 1,
+        "left_macro_f1": 0.7564815892600785,
+        "right_macro_f1": 0.7695534346647815,
+        "macro_f1_difference": 0.013071845404703075,
+        "balanced_accuracy_difference": 0.010752688172043001,
+        "qwk_difference": 0.016663721264960185,
+        "plain_accuracy_difference": 0.018018018018017945,
+        "animal_cross_entropy_difference": 0.014242746168621534,
+        "changed_animals": 2,
+        "gained_correct_animals": 2,
+        "lost_correct_animals": 0
+      },
+      {
+        "repeat": 2,
+        "left_macro_f1": 0.7487090067735229,
+        "right_macro_f1": 0.7274529530121908,
+        "macro_f1_difference": -0.021256053761332105,
+        "balanced_accuracy_difference": -0.019607843137254832,
+        "qwk_difference": -0.0229008817971883,
+        "plain_accuracy_difference": -0.018018018018018056,
+        "animal_cross_entropy_difference": -0.04269453415658997,
+        "changed_animals": 4,
+        "gained_correct_animals": 1,
+        "lost_correct_animals": 3
+      }
+    ],
+    "C1_bottom_block_control_minus_R0_tuned_frozen_ast": [
+      {
+        "repeat": 0,
+        "left_macro_f1": 0.7658712606215808,
+        "right_macro_f1": 0.7202021247515239,
+        "macro_f1_difference": -0.04566913587005694,
+        "balanced_accuracy_difference": -0.05258275353152031,
+        "qwk_difference": -0.05879420046703543,
+        "plain_accuracy_difference": -0.04504504504504503,
+        "animal_cross_entropy_difference": 0.01501607620273393,
+        "changed_animals": 7,
+        "gained_correct_animals": 1,
+        "lost_correct_animals": 6
+      },
+      {
+        "repeat": 1,
+        "left_macro_f1": 0.7564815892600785,
+        "right_macro_f1": 0.7480093676814988,
+        "macro_f1_difference": -0.00847222157857963,
+        "balanced_accuracy_difference": -0.009803921568627416,
+        "qwk_difference": -0.013276392699510864,
+        "plain_accuracy_difference": -0.009009009009009028,
+        "animal_cross_entropy_difference": -0.003537326676533281,
+        "changed_animals": 5,
+        "gained_correct_animals": 2,
+        "lost_correct_animals": 3
+      },
+      {
+        "repeat": 2,
+        "left_macro_f1": 0.7487090067735229,
+        "right_macro_f1": 0.7329536633216186,
+        "macro_f1_difference": -0.015755343451904325,
+        "balanced_accuracy_difference": -0.000948766603415585,
+        "qwk_difference": -0.026976498906770008,
+        "plain_accuracy_difference": -0.009009009009009028,
+        "animal_cross_entropy_difference": 0.001710429332861696,
+        "changed_animals": 6,
+        "gained_correct_animals": 2,
+        "lost_correct_animals": 3
+      }
+    ],
+    "C1_bottom_block_control_minus_M1_top_block_adaptation": [
+      {
+        "repeat": 0,
+        "left_macro_f1": 0.7509719473868003,
+        "right_macro_f1": 0.7202021247515239,
+        "macro_f1_difference": -0.03076982263527639,
+        "balanced_accuracy_difference": -0.03740248787687139,
+        "qwk_difference": -0.03739661010558959,
+        "plain_accuracy_difference": -0.027027027027027084,
+        "animal_cross_entropy_difference": 0.057175400286291866,
+        "changed_animals": 7,
+        "gained_correct_animals": 2,
+        "lost_correct_animals": 5
+      },
+      {
+        "repeat": 1,
+        "left_macro_f1": 0.7695534346647815,
+        "right_macro_f1": 0.7480093676814988,
+        "macro_f1_difference": -0.021544066983282706,
+        "balanced_accuracy_difference": -0.020556609740670417,
+        "qwk_difference": -0.02994011396447105,
+        "plain_accuracy_difference": -0.027027027027026973,
+        "animal_cross_entropy_difference": -0.017780072845154815,
+        "changed_animals": 5,
+        "gained_correct_animals": 1,
+        "lost_correct_animals": 4
+      },
+      {
+        "repeat": 2,
+        "left_macro_f1": 0.7274529530121908,
+        "right_macro_f1": 0.7329536633216186,
+        "macro_f1_difference": 0.005500710309427781,
+        "balanced_accuracy_difference": 0.018659076533839247,
+        "qwk_difference": -0.004075617109581708,
+        "plain_accuracy_difference": 0.009009009009009028,
+        "animal_cross_entropy_difference": 0.044404963489451665,
+        "changed_animals": 8,
+        "gained_correct_animals": 4,
+        "lost_correct_animals": 3
+      }
+    ]
+  },
+  "paired_summary": {
+    "M1_top_block_adaptation_minus_R0_tuned_frozen_ast": {
+      "mean_macro_f1_difference": -0.007694507197136528,
+      "sample_sd_macro_f1_difference": 0.018262888266055387,
+      "macro_f1_differences_by_repeat": [
+        -0.014899313234780553,
+        0.013071845404703075,
+        -0.021256053761332105
+      ],
+      "positive_repeats": 1,
+      "tied_repeats": 0,
+      "negative_repeats": 2,
+      "mean_balanced_accuracy_difference": -0.008011806873286917,
+      "mean_qwk_difference": -0.009211583631224651,
+      "mean_plain_accuracy_difference": -0.006006006006006019,
+      "mean_changed_animals": 3.3333333333333335,
+      "mean_gained_correct_animals": 1.3333333333333333,
+      "mean_lost_correct_animals": 2.0
+    },
+    "C1_bottom_block_control_minus_R0_tuned_frozen_ast": {
+      "mean_macro_f1_difference": -0.023298900300180298,
+      "sample_sd_macro_f1_difference": 0.01971247182989124,
+      "macro_f1_differences_by_repeat": [
+        -0.04566913587005694,
+        -0.00847222157857963,
+        -0.015755343451904325
+      ],
+      "positive_repeats": 0,
+      "tied_repeats": 0,
+      "negative_repeats": 3,
+      "mean_balanced_accuracy_difference": -0.02111181390118777,
+      "mean_qwk_difference": -0.0330156973577721,
+      "mean_plain_accuracy_difference": -0.02102102102102103,
+      "mean_changed_animals": 6.0,
+      "mean_gained_correct_animals": 1.6666666666666667,
+      "mean_lost_correct_animals": 4.0
+    },
+    "C1_bottom_block_control_minus_M1_top_block_adaptation": {
+      "mean_macro_f1_difference": -0.01560439310304377,
+      "sample_sd_macro_f1_difference": 0.01885066800874473,
+      "macro_f1_differences_by_repeat": [
+        -0.03076982263527639,
+        -0.021544066983282706,
+        0.005500710309427781
+      ],
+      "positive_repeats": 1,
+      "tied_repeats": 0,
+      "negative_repeats": 2,
+      "mean_balanced_accuracy_difference": -0.013100007027900854,
+      "mean_qwk_difference": -0.02380411372654745,
+      "mean_plain_accuracy_difference": -0.01501501501501501,
+      "mean_changed_animals": 6.666666666666667,
+      "mean_gained_correct_animals": 2.3333333333333335,
+      "mean_lost_correct_animals": 4.0
+    }
+  },
+  "paired_cat_bootstrap": {
+    "M1_top_block_adaptation_minus_R0_tuned_frozen_ast": {
+      "left": "R0_tuned_frozen_ast",
+      "right": "M1_top_block_adaptation",
+      "iterations": 5000,
+      "seed": 20260915,
+      "mean_difference": -0.00784111361482085,
+      "interval": [
+        -0.02439136895417465,
+        0.00769622801591185
+      ],
+      "fraction_above_zero": 0.1678
+    },
+    "C1_bottom_block_control_minus_R0_tuned_frozen_ast": {
+      "left": "R0_tuned_frozen_ast",
+      "right": "C1_bottom_block_control",
+      "iterations": 5000,
+      "seed": 20260915,
+      "mean_difference": -0.023590844765398775,
+      "interval": [
+        -0.046115553401069015,
+        -0.0035605805896563565
+      ],
+      "fraction_above_zero": 0.0082
+    },
+    "C1_bottom_block_control_minus_M1_top_block_adaptation": {
+      "left": "M1_top_block_adaptation",
+      "right": "C1_bottom_block_control",
+      "iterations": 5000,
+      "seed": 20260915,
+      "mean_difference": -0.015749731150577928,
+      "interval": [
+        -0.040493662964650755,
+        0.007373310321006151
+      ],
+      "fraction_above_zero": 0.1004
+    }
+  },
+  "training_and_parameters": {
+    "R0_tuned_frozen_ast": {
+      "selected_epochs": [
+        6,
+        19,
+        12,
+        11,
+        7,
+        16,
+        15,
+        4,
+        9,
+        11,
+        11,
+        1
+      ],
+      "mean_selected_epoch": 10.166666666666666,
+      "selected_epoch_range": [
+        1,
+        19
+      ],
+      "mean_inner_train_seconds": 2.308677641665175,
+      "mean_outer_train_and_predict_seconds": 1.4290211333354819,
+      "maximum_peak_vram_bytes": 20240384,
+      "parameters": {
+        "trainable": 99075,
+        "total": 99075,
+        "trainable_encoder": 0,
+        "trainable_head": 99075,
+        "trainable_parameter_names": [
+          "head.network.0.bias",
+          "head.network.0.weight",
+          "head.network.2.bias",
+          "head.network.2.weight",
+          "head.network.4.bias",
+          "head.network.4.weight"
+        ],
+        "trainable_encoder_parameter_names": [],
+        "block_indices_zero_based": [],
+        "update_final_layernorm": false
+      }
+    },
+    "M1_top_block_adaptation": {
+      "selected_epochs": [
+        6,
+        16,
+        20,
+        11,
+        5,
+        4,
+        15,
+        4,
+        6,
+        7,
+        11,
+        1
+      ],
+      "mean_selected_epoch": 8.833333333333334,
+      "selected_epoch_range": [
+        1,
+        20
+      ],
+      "mean_inner_train_seconds": 20.07249859166768,
+      "mean_outer_train_and_predict_seconds": 11.27198434999688,
+      "maximum_peak_vram_bytes": 772172288,
+      "parameters_vary_by_fold": true
+    },
+    "C1_bottom_block_control": {
+      "selected_epochs": [
+        6,
+        25,
+        9,
+        11,
+        8,
+        4,
+        15,
+        4,
+        25,
+        4,
+        11,
+        1
+      ],
+      "mean_selected_epoch": 10.25,
+      "selected_epoch_range": [
+        1,
+        25
+      ],
+      "mean_inner_train_seconds": 31.88919075832867,
+      "mean_outer_train_and_predict_seconds": 19.931670824997127,
+      "maximum_peak_vram_bytes": 1399563776,
+      "parameters_vary_by_fold": true
+    }
+  },
+  "complete_oof": {
+    "calls_per_pipeline_repeat": 792,
+    "animals_per_pipeline_repeat": 111,
+    "evaluations": 9
+  },
+  "selection_boundary": "per_repeat_outer_fold",
+  "per_fold_recipe_locks": [
+    {
+      "repeat": 0,
+      "outer_fold": 0,
+      "selected_recipe_id": "top1_lr1e-5",
+      "selected_recipe": {
+        "block_count": 1,
+        "encoder_learning_rate": 1e-05
+      },
+      "selected_inner_animal_macro_f1": 0.7473684210526317,
+      "selected_inner_animal_cross_entropy": 0.8720542363775481,
+      "candidate_ranking": [
+        "top1_lr1e-5",
+        "top2_lr3e-6",
+        "top1_lr3e-6",
+        "top2_lr1e-5"
+      ],
+      "candidate_scores": {
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.7473684210526317,
+          "animal_cross_entropy": 0.8720542363775481,
+          "best_epoch": 6,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.7473684210526317,
+          "animal_cross_entropy": 0.8990651537970579,
+          "best_epoch": 6,
+          "trainable_parameters": 14276355
+        },
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.7077441077441078,
+          "animal_cross_entropy": 0.8781698408696164,
+          "best_epoch": 6,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.7077441077441078,
+          "animal_cross_entropy": 0.9705490217639052,
+          "best_epoch": 4,
+          "trainable_parameters": 14276355
+        }
+      }
+    },
+    {
+      "repeat": 0,
+      "outer_fold": 1,
+      "selected_recipe_id": "top1_lr1e-5",
+      "selected_recipe": {
+        "block_count": 1,
+        "encoder_learning_rate": 1e-05
+      },
+      "selected_inner_animal_macro_f1": 0.849122807017544,
+      "selected_inner_animal_cross_entropy": 0.3495734258999223,
+      "candidate_ranking": [
+        "top1_lr1e-5",
+        "top2_lr1e-5",
+        "top1_lr3e-6",
+        "top2_lr3e-6"
+      ],
+      "candidate_scores": {
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.849122807017544,
+          "animal_cross_entropy": 0.3495734258999223,
+          "best_epoch": 22,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.849122807017544,
+          "animal_cross_entropy": 0.3857869611077024,
+          "best_epoch": 16,
+          "trainable_parameters": 14276355
+        },
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.849122807017544,
+          "animal_cross_entropy": 0.3937718556027565,
+          "best_epoch": 22,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.849122807017544,
+          "animal_cross_entropy": 0.41492360481811413,
+          "best_epoch": 16,
+          "trainable_parameters": 14276355
+        }
+      }
+    },
+    {
+      "repeat": 0,
+      "outer_fold": 2,
+      "selected_recipe_id": "top1_lr3e-6",
+      "selected_recipe": {
+        "block_count": 1,
+        "encoder_learning_rate": 3e-06
+      },
+      "selected_inner_animal_macro_f1": 0.8863636363636364,
+      "selected_inner_animal_cross_entropy": 0.29089313597988753,
+      "candidate_ranking": [
+        "top1_lr3e-6",
+        "top2_lr3e-6",
+        "top2_lr1e-5",
+        "top1_lr1e-5"
+      ],
+      "candidate_scores": {
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.8863636363636364,
+          "animal_cross_entropy": 0.29089313597988753,
+          "best_epoch": 20,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.8863636363636364,
+          "animal_cross_entropy": 0.3345313994555878,
+          "best_epoch": 9,
+          "trainable_parameters": 14276355
+        },
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.8136645962732919,
+          "animal_cross_entropy": 0.30872902045472916,
+          "best_epoch": 11,
+          "trainable_parameters": 14276355
+        },
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.8136645962732919,
+          "animal_cross_entropy": 0.31893033845588364,
+          "best_epoch": 12,
+          "trainable_parameters": 7188483
+        }
+      }
+    },
+    {
+      "repeat": 0,
+      "outer_fold": 3,
+      "selected_recipe_id": "top2_lr3e-6",
+      "selected_recipe": {
+        "block_count": 2,
+        "encoder_learning_rate": 3e-06
+      },
+      "selected_inner_animal_macro_f1": 0.7000000000000001,
+      "selected_inner_animal_cross_entropy": 0.9218860875279276,
+      "candidate_ranking": [
+        "top2_lr3e-6",
+        "top1_lr1e-5",
+        "top2_lr1e-5",
+        "top1_lr3e-6"
+      ],
+      "candidate_scores": {
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.7000000000000001,
+          "animal_cross_entropy": 0.9218860875279276,
+          "best_epoch": 11,
+          "trainable_parameters": 14276355
+        },
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.7000000000000001,
+          "animal_cross_entropy": 0.9280985337705377,
+          "best_epoch": 11,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.7000000000000001,
+          "animal_cross_entropy": 0.9825180299427745,
+          "best_epoch": 7,
+          "trainable_parameters": 14276355
+        },
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.6650717703349281,
+          "animal_cross_entropy": 0.8788637537645773,
+          "best_epoch": 11,
+          "trainable_parameters": 7188483
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "outer_fold": 0,
+      "selected_recipe_id": "top1_lr1e-5",
+      "selected_recipe": {
+        "block_count": 1,
+        "encoder_learning_rate": 1e-05
+      },
+      "selected_inner_animal_macro_f1": 0.7607655502392344,
+      "selected_inner_animal_cross_entropy": 0.845454199302284,
+      "candidate_ranking": [
+        "top1_lr1e-5",
+        "top1_lr3e-6",
+        "top2_lr1e-5",
+        "top2_lr3e-6"
+      ],
+      "candidate_scores": {
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.7607655502392344,
+          "animal_cross_entropy": 0.845454199302284,
+          "best_epoch": 5,
+          "trainable_parameters": 7188483
+        },
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.7607655502392344,
+          "animal_cross_entropy": 0.8569170202391428,
+          "best_epoch": 5,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.7000000000000001,
+          "animal_cross_entropy": 0.7877280157944662,
+          "best_epoch": 5,
+          "trainable_parameters": 14276355
+        },
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.7000000000000001,
+          "animal_cross_entropy": 0.8545644368038653,
+          "best_epoch": 8,
+          "trainable_parameters": 14276355
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "outer_fold": 1,
+      "selected_recipe_id": "top1_lr1e-5",
+      "selected_recipe": {
+        "block_count": 1,
+        "encoder_learning_rate": 1e-05
+      },
+      "selected_inner_animal_macro_f1": 0.6393345216874629,
+      "selected_inner_animal_cross_entropy": 0.7213111538889901,
+      "candidate_ranking": [
+        "top1_lr1e-5",
+        "top1_lr3e-6",
+        "top2_lr3e-6",
+        "top2_lr1e-5"
+      ],
+      "candidate_scores": {
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.6393345216874629,
+          "animal_cross_entropy": 0.7213111538889901,
+          "best_epoch": 4,
+          "trainable_parameters": 7188483
+        },
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.5714285714285715,
+          "animal_cross_entropy": 0.6062523070830494,
+          "best_epoch": 17,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.5714285714285715,
+          "animal_cross_entropy": 0.6426102468499407,
+          "best_epoch": 17,
+          "trainable_parameters": 14276355
+        },
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.5388888888888889,
+          "animal_cross_entropy": 0.7218607873602755,
+          "best_epoch": 4,
+          "trainable_parameters": 14276355
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "outer_fold": 2,
+      "selected_recipe_id": "top1_lr3e-6",
+      "selected_recipe": {
+        "block_count": 1,
+        "encoder_learning_rate": 3e-06
+      },
+      "selected_inner_animal_macro_f1": 0.7607655502392344,
+      "selected_inner_animal_cross_entropy": 0.6861124816304416,
+      "candidate_ranking": [
+        "top1_lr3e-6",
+        "top1_lr1e-5",
+        "top2_lr1e-5",
+        "top2_lr3e-6"
+      ],
+      "candidate_scores": {
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.7607655502392344,
+          "animal_cross_entropy": 0.6861124816304416,
+          "best_epoch": 15,
+          "trainable_parameters": 7188483
+        },
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.7607655502392344,
+          "animal_cross_entropy": 0.7156261499221878,
+          "best_epoch": 20,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.7607655502392344,
+          "animal_cross_entropy": 0.7358562252288091,
+          "best_epoch": 17,
+          "trainable_parameters": 14276355
+        },
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.7607655502392344,
+          "animal_cross_entropy": 0.7579451487137239,
+          "best_epoch": 15,
+          "trainable_parameters": 14276355
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "outer_fold": 3,
+      "selected_recipe_id": "top2_lr3e-6",
+      "selected_recipe": {
+        "block_count": 2,
+        "encoder_learning_rate": 3e-06
+      },
+      "selected_inner_animal_macro_f1": 0.8000000000000002,
+      "selected_inner_animal_cross_entropy": 0.7999153015115618,
+      "candidate_ranking": [
+        "top2_lr3e-6",
+        "top1_lr1e-5",
+        "top1_lr3e-6",
+        "top2_lr1e-5"
+      ],
+      "candidate_scores": {
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.8000000000000002,
+          "animal_cross_entropy": 0.7999153015115618,
+          "best_epoch": 4,
+          "trainable_parameters": 14276355
+        },
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.8000000000000002,
+          "animal_cross_entropy": 0.8106993265471962,
+          "best_epoch": 4,
+          "trainable_parameters": 7188483
+        },
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.712280701754386,
+          "animal_cross_entropy": 0.753959709341093,
+          "best_epoch": 4,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.6159844054580896,
+          "animal_cross_entropy": 0.846234653963333,
+          "best_epoch": 4,
+          "trainable_parameters": 14276355
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "outer_fold": 0,
+      "selected_recipe_id": "top1_lr3e-6",
+      "selected_recipe": {
+        "block_count": 1,
+        "encoder_learning_rate": 3e-06
+      },
+      "selected_inner_animal_macro_f1": 0.6547049441786283,
+      "selected_inner_animal_cross_entropy": 0.7314737218955886,
+      "candidate_ranking": [
+        "top1_lr3e-6",
+        "top1_lr1e-5",
+        "top2_lr1e-5",
+        "top2_lr3e-6"
+      ],
+      "candidate_scores": {
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.6547049441786283,
+          "animal_cross_entropy": 0.7314737218955886,
+          "best_epoch": 6,
+          "trainable_parameters": 7188483
+        },
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.611111111111111,
+          "animal_cross_entropy": 0.7684151702107848,
+          "best_epoch": 3,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.611111111111111,
+          "animal_cross_entropy": 0.7755658486817361,
+          "best_epoch": 3,
+          "trainable_parameters": 14276355
+        },
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.611111111111111,
+          "animal_cross_entropy": 0.7945926921268524,
+          "best_epoch": 7,
+          "trainable_parameters": 14276355
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "outer_fold": 1,
+      "selected_recipe_id": "top2_lr1e-5",
+      "selected_recipe": {
+        "block_count": 2,
+        "encoder_learning_rate": 1e-05
+      },
+      "selected_inner_animal_macro_f1": 0.8642533936651584,
+      "selected_inner_animal_cross_entropy": 0.8127273844839826,
+      "candidate_ranking": [
+        "top2_lr1e-5",
+        "top1_lr1e-5",
+        "top2_lr3e-6",
+        "top1_lr3e-6"
+      ],
+      "candidate_scores": {
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.8642533936651584,
+          "animal_cross_entropy": 0.8127273844839826,
+          "best_epoch": 2,
+          "trainable_parameters": 14276355
+        },
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.8148148148148148,
+          "animal_cross_entropy": 0.7821594979503744,
+          "best_epoch": 4,
+          "trainable_parameters": 7188483
+        },
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.8148148148148148,
+          "animal_cross_entropy": 0.7843141724467513,
+          "best_epoch": 7,
+          "trainable_parameters": 14276355
+        },
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.8148148148148148,
+          "animal_cross_entropy": 0.8291932594962679,
+          "best_epoch": 7,
+          "trainable_parameters": 7188483
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "outer_fold": 2,
+      "selected_recipe_id": "top2_lr3e-6",
+      "selected_recipe": {
+        "block_count": 2,
+        "encoder_learning_rate": 3e-06
+      },
+      "selected_inner_animal_macro_f1": 0.8148148148148148,
+      "selected_inner_animal_cross_entropy": 0.707593388359191,
+      "candidate_ranking": [
+        "top2_lr3e-6",
+        "top2_lr1e-5",
+        "top1_lr3e-6",
+        "top1_lr1e-5"
+      ],
+      "candidate_scores": {
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.8148148148148148,
+          "animal_cross_entropy": 0.707593388359191,
+          "best_epoch": 11,
+          "trainable_parameters": 14276355
+        },
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.7737556561085972,
+          "animal_cross_entropy": 0.5952809468962451,
+          "best_epoch": 11,
+          "trainable_parameters": 14276355
+        },
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.7607655502392344,
+          "animal_cross_entropy": 0.6132609805493697,
+          "best_epoch": 9,
+          "trainable_parameters": 7188483
+        },
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.7222222222222222,
+          "animal_cross_entropy": 0.6547812461516828,
+          "best_epoch": 11,
+          "trainable_parameters": 7188483
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "outer_fold": 3,
+      "selected_recipe_id": "top2_lr1e-5",
+      "selected_recipe": {
+        "block_count": 2,
+        "encoder_learning_rate": 1e-05
+      },
+      "selected_inner_animal_macro_f1": 0.6801282051282053,
+      "selected_inner_animal_cross_entropy": 0.8689006201210121,
+      "candidate_ranking": [
+        "top2_lr1e-5",
+        "top2_lr3e-6",
+        "top1_lr3e-6",
+        "top1_lr1e-5"
+      ],
+      "candidate_scores": {
+        "top2_lr1e-5": {
+          "animal_macro_f1": 0.6801282051282053,
+          "animal_cross_entropy": 0.8689006201210121,
+          "best_epoch": 1,
+          "trainable_parameters": 14276355
+        },
+        "top2_lr3e-6": {
+          "animal_macro_f1": 0.6801282051282053,
+          "animal_cross_entropy": 0.8988963834670942,
+          "best_epoch": 1,
+          "trainable_parameters": 14276355
+        },
+        "top1_lr3e-6": {
+          "animal_macro_f1": 0.6801282051282053,
+          "animal_cross_entropy": 0.9032419958740682,
+          "best_epoch": 1,
+          "trainable_parameters": 7188483
+        },
+        "top1_lr1e-5": {
+          "animal_macro_f1": 0.6801282051282053,
+          "animal_cross_entropy": 0.9146395563134622,
+          "best_epoch": 1,
+          "trainable_parameters": 7188483
+        }
+      }
+    }
+  ],
+  "selected_recipe_counts": {
+    "top1_lr1e-5": 4,
+    "top1_lr3e-6": 3,
+    "top2_lr1e-5": 2,
+    "top2_lr3e-6": 3
+  },
+  "parameter_profiles": {
+    "R0_tuned_frozen_ast": {
+      "trainable_parameter_range": [
+        99075,
+        99075
+      ],
+      "profiles": {
+        "fixed_frozen_head": {
+          "trainable": 99075,
+          "total": 99075,
+          "trainable_encoder": 0,
+          "trainable_head": 99075,
+          "trainable_parameter_names": [
+            "head.network.0.bias",
+            "head.network.0.weight",
+            "head.network.2.bias",
+            "head.network.2.weight",
+            "head.network.4.bias",
+            "head.network.4.weight"
+          ],
+          "trainable_encoder_parameter_names": [],
+          "block_indices_zero_based": [],
+          "update_final_layernorm": false
+        }
+      }
+    },
+    "M1_top_block_adaptation": {
+      "trainable_parameter_range": [
+        7188483,
+        14276355
+      ],
+      "profiles": {
+        "top1_lr1e-5": {
+          "trainable": 7188483,
+          "total": 85466115,
+          "trainable_encoder": 7089408,
+          "trainable_head": 99075,
+          "trainable_parameter_names": [
+            "ast.encoder.layer.11.attention.attention.key.bias",
+            "ast.encoder.layer.11.attention.attention.key.weight",
+            "ast.encoder.layer.11.attention.attention.query.bias",
+            "ast.encoder.layer.11.attention.attention.query.weight",
+            "ast.encoder.layer.11.attention.attention.value.bias",
+            "ast.encoder.layer.11.attention.attention.value.weight",
+            "ast.encoder.layer.11.attention.output.dense.bias",
+            "ast.encoder.layer.11.attention.output.dense.weight",
+            "ast.encoder.layer.11.intermediate.dense.bias",
+            "ast.encoder.layer.11.intermediate.dense.weight",
+            "ast.encoder.layer.11.layernorm_after.bias",
+            "ast.encoder.layer.11.layernorm_after.weight",
+            "ast.encoder.layer.11.layernorm_before.bias",
+            "ast.encoder.layer.11.layernorm_before.weight",
+            "ast.encoder.layer.11.output.dense.bias",
+            "ast.encoder.layer.11.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight",
+            "head.network.0.bias",
+            "head.network.0.weight",
+            "head.network.2.bias",
+            "head.network.2.weight",
+            "head.network.4.bias",
+            "head.network.4.weight"
+          ],
+          "trainable_encoder_parameter_names": [
+            "ast.encoder.layer.11.attention.attention.key.bias",
+            "ast.encoder.layer.11.attention.attention.key.weight",
+            "ast.encoder.layer.11.attention.attention.query.bias",
+            "ast.encoder.layer.11.attention.attention.query.weight",
+            "ast.encoder.layer.11.attention.attention.value.bias",
+            "ast.encoder.layer.11.attention.attention.value.weight",
+            "ast.encoder.layer.11.attention.output.dense.bias",
+            "ast.encoder.layer.11.attention.output.dense.weight",
+            "ast.encoder.layer.11.intermediate.dense.bias",
+            "ast.encoder.layer.11.intermediate.dense.weight",
+            "ast.encoder.layer.11.layernorm_after.bias",
+            "ast.encoder.layer.11.layernorm_after.weight",
+            "ast.encoder.layer.11.layernorm_before.bias",
+            "ast.encoder.layer.11.layernorm_before.weight",
+            "ast.encoder.layer.11.output.dense.bias",
+            "ast.encoder.layer.11.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight"
+          ],
+          "block_indices_zero_based": [
+            11
+          ],
+          "update_final_layernorm": true
+        },
+        "top1_lr3e-6": {
+          "trainable": 7188483,
+          "total": 85466115,
+          "trainable_encoder": 7089408,
+          "trainable_head": 99075,
+          "trainable_parameter_names": [
+            "ast.encoder.layer.11.attention.attention.key.bias",
+            "ast.encoder.layer.11.attention.attention.key.weight",
+            "ast.encoder.layer.11.attention.attention.query.bias",
+            "ast.encoder.layer.11.attention.attention.query.weight",
+            "ast.encoder.layer.11.attention.attention.value.bias",
+            "ast.encoder.layer.11.attention.attention.value.weight",
+            "ast.encoder.layer.11.attention.output.dense.bias",
+            "ast.encoder.layer.11.attention.output.dense.weight",
+            "ast.encoder.layer.11.intermediate.dense.bias",
+            "ast.encoder.layer.11.intermediate.dense.weight",
+            "ast.encoder.layer.11.layernorm_after.bias",
+            "ast.encoder.layer.11.layernorm_after.weight",
+            "ast.encoder.layer.11.layernorm_before.bias",
+            "ast.encoder.layer.11.layernorm_before.weight",
+            "ast.encoder.layer.11.output.dense.bias",
+            "ast.encoder.layer.11.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight",
+            "head.network.0.bias",
+            "head.network.0.weight",
+            "head.network.2.bias",
+            "head.network.2.weight",
+            "head.network.4.bias",
+            "head.network.4.weight"
+          ],
+          "trainable_encoder_parameter_names": [
+            "ast.encoder.layer.11.attention.attention.key.bias",
+            "ast.encoder.layer.11.attention.attention.key.weight",
+            "ast.encoder.layer.11.attention.attention.query.bias",
+            "ast.encoder.layer.11.attention.attention.query.weight",
+            "ast.encoder.layer.11.attention.attention.value.bias",
+            "ast.encoder.layer.11.attention.attention.value.weight",
+            "ast.encoder.layer.11.attention.output.dense.bias",
+            "ast.encoder.layer.11.attention.output.dense.weight",
+            "ast.encoder.layer.11.intermediate.dense.bias",
+            "ast.encoder.layer.11.intermediate.dense.weight",
+            "ast.encoder.layer.11.layernorm_after.bias",
+            "ast.encoder.layer.11.layernorm_after.weight",
+            "ast.encoder.layer.11.layernorm_before.bias",
+            "ast.encoder.layer.11.layernorm_before.weight",
+            "ast.encoder.layer.11.output.dense.bias",
+            "ast.encoder.layer.11.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight"
+          ],
+          "block_indices_zero_based": [
+            11
+          ],
+          "update_final_layernorm": true
+        },
+        "top2_lr3e-6": {
+          "trainable": 14276355,
+          "total": 85466115,
+          "trainable_encoder": 14177280,
+          "trainable_head": 99075,
+          "trainable_parameter_names": [
+            "ast.encoder.layer.10.attention.attention.key.bias",
+            "ast.encoder.layer.10.attention.attention.key.weight",
+            "ast.encoder.layer.10.attention.attention.query.bias",
+            "ast.encoder.layer.10.attention.attention.query.weight",
+            "ast.encoder.layer.10.attention.attention.value.bias",
+            "ast.encoder.layer.10.attention.attention.value.weight",
+            "ast.encoder.layer.10.attention.output.dense.bias",
+            "ast.encoder.layer.10.attention.output.dense.weight",
+            "ast.encoder.layer.10.intermediate.dense.bias",
+            "ast.encoder.layer.10.intermediate.dense.weight",
+            "ast.encoder.layer.10.layernorm_after.bias",
+            "ast.encoder.layer.10.layernorm_after.weight",
+            "ast.encoder.layer.10.layernorm_before.bias",
+            "ast.encoder.layer.10.layernorm_before.weight",
+            "ast.encoder.layer.10.output.dense.bias",
+            "ast.encoder.layer.10.output.dense.weight",
+            "ast.encoder.layer.11.attention.attention.key.bias",
+            "ast.encoder.layer.11.attention.attention.key.weight",
+            "ast.encoder.layer.11.attention.attention.query.bias",
+            "ast.encoder.layer.11.attention.attention.query.weight",
+            "ast.encoder.layer.11.attention.attention.value.bias",
+            "ast.encoder.layer.11.attention.attention.value.weight",
+            "ast.encoder.layer.11.attention.output.dense.bias",
+            "ast.encoder.layer.11.attention.output.dense.weight",
+            "ast.encoder.layer.11.intermediate.dense.bias",
+            "ast.encoder.layer.11.intermediate.dense.weight",
+            "ast.encoder.layer.11.layernorm_after.bias",
+            "ast.encoder.layer.11.layernorm_after.weight",
+            "ast.encoder.layer.11.layernorm_before.bias",
+            "ast.encoder.layer.11.layernorm_before.weight",
+            "ast.encoder.layer.11.output.dense.bias",
+            "ast.encoder.layer.11.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight",
+            "head.network.0.bias",
+            "head.network.0.weight",
+            "head.network.2.bias",
+            "head.network.2.weight",
+            "head.network.4.bias",
+            "head.network.4.weight"
+          ],
+          "trainable_encoder_parameter_names": [
+            "ast.encoder.layer.10.attention.attention.key.bias",
+            "ast.encoder.layer.10.attention.attention.key.weight",
+            "ast.encoder.layer.10.attention.attention.query.bias",
+            "ast.encoder.layer.10.attention.attention.query.weight",
+            "ast.encoder.layer.10.attention.attention.value.bias",
+            "ast.encoder.layer.10.attention.attention.value.weight",
+            "ast.encoder.layer.10.attention.output.dense.bias",
+            "ast.encoder.layer.10.attention.output.dense.weight",
+            "ast.encoder.layer.10.intermediate.dense.bias",
+            "ast.encoder.layer.10.intermediate.dense.weight",
+            "ast.encoder.layer.10.layernorm_after.bias",
+            "ast.encoder.layer.10.layernorm_after.weight",
+            "ast.encoder.layer.10.layernorm_before.bias",
+            "ast.encoder.layer.10.layernorm_before.weight",
+            "ast.encoder.layer.10.output.dense.bias",
+            "ast.encoder.layer.10.output.dense.weight",
+            "ast.encoder.layer.11.attention.attention.key.bias",
+            "ast.encoder.layer.11.attention.attention.key.weight",
+            "ast.encoder.layer.11.attention.attention.query.bias",
+            "ast.encoder.layer.11.attention.attention.query.weight",
+            "ast.encoder.layer.11.attention.attention.value.bias",
+            "ast.encoder.layer.11.attention.attention.value.weight",
+            "ast.encoder.layer.11.attention.output.dense.bias",
+            "ast.encoder.layer.11.attention.output.dense.weight",
+            "ast.encoder.layer.11.intermediate.dense.bias",
+            "ast.encoder.layer.11.intermediate.dense.weight",
+            "ast.encoder.layer.11.layernorm_after.bias",
+            "ast.encoder.layer.11.layernorm_after.weight",
+            "ast.encoder.layer.11.layernorm_before.bias",
+            "ast.encoder.layer.11.layernorm_before.weight",
+            "ast.encoder.layer.11.output.dense.bias",
+            "ast.encoder.layer.11.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight"
+          ],
+          "block_indices_zero_based": [
+            10,
+            11
+          ],
+          "update_final_layernorm": true
+        },
+        "top2_lr1e-5": {
+          "trainable": 14276355,
+          "total": 85466115,
+          "trainable_encoder": 14177280,
+          "trainable_head": 99075,
+          "trainable_parameter_names": [
+            "ast.encoder.layer.10.attention.attention.key.bias",
+            "ast.encoder.layer.10.attention.attention.key.weight",
+            "ast.encoder.layer.10.attention.attention.query.bias",
+            "ast.encoder.layer.10.attention.attention.query.weight",
+            "ast.encoder.layer.10.attention.attention.value.bias",
+            "ast.encoder.layer.10.attention.attention.value.weight",
+            "ast.encoder.layer.10.attention.output.dense.bias",
+            "ast.encoder.layer.10.attention.output.dense.weight",
+            "ast.encoder.layer.10.intermediate.dense.bias",
+            "ast.encoder.layer.10.intermediate.dense.weight",
+            "ast.encoder.layer.10.layernorm_after.bias",
+            "ast.encoder.layer.10.layernorm_after.weight",
+            "ast.encoder.layer.10.layernorm_before.bias",
+            "ast.encoder.layer.10.layernorm_before.weight",
+            "ast.encoder.layer.10.output.dense.bias",
+            "ast.encoder.layer.10.output.dense.weight",
+            "ast.encoder.layer.11.attention.attention.key.bias",
+            "ast.encoder.layer.11.attention.attention.key.weight",
+            "ast.encoder.layer.11.attention.attention.query.bias",
+            "ast.encoder.layer.11.attention.attention.query.weight",
+            "ast.encoder.layer.11.attention.attention.value.bias",
+            "ast.encoder.layer.11.attention.attention.value.weight",
+            "ast.encoder.layer.11.attention.output.dense.bias",
+            "ast.encoder.layer.11.attention.output.dense.weight",
+            "ast.encoder.layer.11.intermediate.dense.bias",
+            "ast.encoder.layer.11.intermediate.dense.weight",
+            "ast.encoder.layer.11.layernorm_after.bias",
+            "ast.encoder.layer.11.layernorm_after.weight",
+            "ast.encoder.layer.11.layernorm_before.bias",
+            "ast.encoder.layer.11.layernorm_before.weight",
+            "ast.encoder.layer.11.output.dense.bias",
+            "ast.encoder.layer.11.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight",
+            "head.network.0.bias",
+            "head.network.0.weight",
+            "head.network.2.bias",
+            "head.network.2.weight",
+            "head.network.4.bias",
+            "head.network.4.weight"
+          ],
+          "trainable_encoder_parameter_names": [
+            "ast.encoder.layer.10.attention.attention.key.bias",
+            "ast.encoder.layer.10.attention.attention.key.weight",
+            "ast.encoder.layer.10.attention.attention.query.bias",
+            "ast.encoder.layer.10.attention.attention.query.weight",
+            "ast.encoder.layer.10.attention.attention.value.bias",
+            "ast.encoder.layer.10.attention.attention.value.weight",
+            "ast.encoder.layer.10.attention.output.dense.bias",
+            "ast.encoder.layer.10.attention.output.dense.weight",
+            "ast.encoder.layer.10.intermediate.dense.bias",
+            "ast.encoder.layer.10.intermediate.dense.weight",
+            "ast.encoder.layer.10.layernorm_after.bias",
+            "ast.encoder.layer.10.layernorm_after.weight",
+            "ast.encoder.layer.10.layernorm_before.bias",
+            "ast.encoder.layer.10.layernorm_before.weight",
+            "ast.encoder.layer.10.output.dense.bias",
+            "ast.encoder.layer.10.output.dense.weight",
+            "ast.encoder.layer.11.attention.attention.key.bias",
+            "ast.encoder.layer.11.attention.attention.key.weight",
+            "ast.encoder.layer.11.attention.attention.query.bias",
+            "ast.encoder.layer.11.attention.attention.query.weight",
+            "ast.encoder.layer.11.attention.attention.value.bias",
+            "ast.encoder.layer.11.attention.attention.value.weight",
+            "ast.encoder.layer.11.attention.output.dense.bias",
+            "ast.encoder.layer.11.attention.output.dense.weight",
+            "ast.encoder.layer.11.intermediate.dense.bias",
+            "ast.encoder.layer.11.intermediate.dense.weight",
+            "ast.encoder.layer.11.layernorm_after.bias",
+            "ast.encoder.layer.11.layernorm_after.weight",
+            "ast.encoder.layer.11.layernorm_before.bias",
+            "ast.encoder.layer.11.layernorm_before.weight",
+            "ast.encoder.layer.11.output.dense.bias",
+            "ast.encoder.layer.11.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight"
+          ],
+          "block_indices_zero_based": [
+            10,
+            11
+          ],
+          "update_final_layernorm": true
+        }
+      }
+    },
+    "C1_bottom_block_control": {
+      "trainable_parameter_range": [
+        7188483,
+        14276355
+      ],
+      "profiles": {
+        "top1_lr1e-5": {
+          "trainable": 7188483,
+          "total": 85466115,
+          "trainable_encoder": 7089408,
+          "trainable_head": 99075,
+          "trainable_parameter_names": [
+            "ast.encoder.layer.0.attention.attention.key.bias",
+            "ast.encoder.layer.0.attention.attention.key.weight",
+            "ast.encoder.layer.0.attention.attention.query.bias",
+            "ast.encoder.layer.0.attention.attention.query.weight",
+            "ast.encoder.layer.0.attention.attention.value.bias",
+            "ast.encoder.layer.0.attention.attention.value.weight",
+            "ast.encoder.layer.0.attention.output.dense.bias",
+            "ast.encoder.layer.0.attention.output.dense.weight",
+            "ast.encoder.layer.0.intermediate.dense.bias",
+            "ast.encoder.layer.0.intermediate.dense.weight",
+            "ast.encoder.layer.0.layernorm_after.bias",
+            "ast.encoder.layer.0.layernorm_after.weight",
+            "ast.encoder.layer.0.layernorm_before.bias",
+            "ast.encoder.layer.0.layernorm_before.weight",
+            "ast.encoder.layer.0.output.dense.bias",
+            "ast.encoder.layer.0.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight",
+            "head.network.0.bias",
+            "head.network.0.weight",
+            "head.network.2.bias",
+            "head.network.2.weight",
+            "head.network.4.bias",
+            "head.network.4.weight"
+          ],
+          "trainable_encoder_parameter_names": [
+            "ast.encoder.layer.0.attention.attention.key.bias",
+            "ast.encoder.layer.0.attention.attention.key.weight",
+            "ast.encoder.layer.0.attention.attention.query.bias",
+            "ast.encoder.layer.0.attention.attention.query.weight",
+            "ast.encoder.layer.0.attention.attention.value.bias",
+            "ast.encoder.layer.0.attention.attention.value.weight",
+            "ast.encoder.layer.0.attention.output.dense.bias",
+            "ast.encoder.layer.0.attention.output.dense.weight",
+            "ast.encoder.layer.0.intermediate.dense.bias",
+            "ast.encoder.layer.0.intermediate.dense.weight",
+            "ast.encoder.layer.0.layernorm_after.bias",
+            "ast.encoder.layer.0.layernorm_after.weight",
+            "ast.encoder.layer.0.layernorm_before.bias",
+            "ast.encoder.layer.0.layernorm_before.weight",
+            "ast.encoder.layer.0.output.dense.bias",
+            "ast.encoder.layer.0.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight"
+          ],
+          "block_indices_zero_based": [
+            0
+          ],
+          "update_final_layernorm": true
+        },
+        "top1_lr3e-6": {
+          "trainable": 7188483,
+          "total": 85466115,
+          "trainable_encoder": 7089408,
+          "trainable_head": 99075,
+          "trainable_parameter_names": [
+            "ast.encoder.layer.0.attention.attention.key.bias",
+            "ast.encoder.layer.0.attention.attention.key.weight",
+            "ast.encoder.layer.0.attention.attention.query.bias",
+            "ast.encoder.layer.0.attention.attention.query.weight",
+            "ast.encoder.layer.0.attention.attention.value.bias",
+            "ast.encoder.layer.0.attention.attention.value.weight",
+            "ast.encoder.layer.0.attention.output.dense.bias",
+            "ast.encoder.layer.0.attention.output.dense.weight",
+            "ast.encoder.layer.0.intermediate.dense.bias",
+            "ast.encoder.layer.0.intermediate.dense.weight",
+            "ast.encoder.layer.0.layernorm_after.bias",
+            "ast.encoder.layer.0.layernorm_after.weight",
+            "ast.encoder.layer.0.layernorm_before.bias",
+            "ast.encoder.layer.0.layernorm_before.weight",
+            "ast.encoder.layer.0.output.dense.bias",
+            "ast.encoder.layer.0.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight",
+            "head.network.0.bias",
+            "head.network.0.weight",
+            "head.network.2.bias",
+            "head.network.2.weight",
+            "head.network.4.bias",
+            "head.network.4.weight"
+          ],
+          "trainable_encoder_parameter_names": [
+            "ast.encoder.layer.0.attention.attention.key.bias",
+            "ast.encoder.layer.0.attention.attention.key.weight",
+            "ast.encoder.layer.0.attention.attention.query.bias",
+            "ast.encoder.layer.0.attention.attention.query.weight",
+            "ast.encoder.layer.0.attention.attention.value.bias",
+            "ast.encoder.layer.0.attention.attention.value.weight",
+            "ast.encoder.layer.0.attention.output.dense.bias",
+            "ast.encoder.layer.0.attention.output.dense.weight",
+            "ast.encoder.layer.0.intermediate.dense.bias",
+            "ast.encoder.layer.0.intermediate.dense.weight",
+            "ast.encoder.layer.0.layernorm_after.bias",
+            "ast.encoder.layer.0.layernorm_after.weight",
+            "ast.encoder.layer.0.layernorm_before.bias",
+            "ast.encoder.layer.0.layernorm_before.weight",
+            "ast.encoder.layer.0.output.dense.bias",
+            "ast.encoder.layer.0.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight"
+          ],
+          "block_indices_zero_based": [
+            0
+          ],
+          "update_final_layernorm": true
+        },
+        "top2_lr3e-6": {
+          "trainable": 14276355,
+          "total": 85466115,
+          "trainable_encoder": 14177280,
+          "trainable_head": 99075,
+          "trainable_parameter_names": [
+            "ast.encoder.layer.0.attention.attention.key.bias",
+            "ast.encoder.layer.0.attention.attention.key.weight",
+            "ast.encoder.layer.0.attention.attention.query.bias",
+            "ast.encoder.layer.0.attention.attention.query.weight",
+            "ast.encoder.layer.0.attention.attention.value.bias",
+            "ast.encoder.layer.0.attention.attention.value.weight",
+            "ast.encoder.layer.0.attention.output.dense.bias",
+            "ast.encoder.layer.0.attention.output.dense.weight",
+            "ast.encoder.layer.0.intermediate.dense.bias",
+            "ast.encoder.layer.0.intermediate.dense.weight",
+            "ast.encoder.layer.0.layernorm_after.bias",
+            "ast.encoder.layer.0.layernorm_after.weight",
+            "ast.encoder.layer.0.layernorm_before.bias",
+            "ast.encoder.layer.0.layernorm_before.weight",
+            "ast.encoder.layer.0.output.dense.bias",
+            "ast.encoder.layer.0.output.dense.weight",
+            "ast.encoder.layer.1.attention.attention.key.bias",
+            "ast.encoder.layer.1.attention.attention.key.weight",
+            "ast.encoder.layer.1.attention.attention.query.bias",
+            "ast.encoder.layer.1.attention.attention.query.weight",
+            "ast.encoder.layer.1.attention.attention.value.bias",
+            "ast.encoder.layer.1.attention.attention.value.weight",
+            "ast.encoder.layer.1.attention.output.dense.bias",
+            "ast.encoder.layer.1.attention.output.dense.weight",
+            "ast.encoder.layer.1.intermediate.dense.bias",
+            "ast.encoder.layer.1.intermediate.dense.weight",
+            "ast.encoder.layer.1.layernorm_after.bias",
+            "ast.encoder.layer.1.layernorm_after.weight",
+            "ast.encoder.layer.1.layernorm_before.bias",
+            "ast.encoder.layer.1.layernorm_before.weight",
+            "ast.encoder.layer.1.output.dense.bias",
+            "ast.encoder.layer.1.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight",
+            "head.network.0.bias",
+            "head.network.0.weight",
+            "head.network.2.bias",
+            "head.network.2.weight",
+            "head.network.4.bias",
+            "head.network.4.weight"
+          ],
+          "trainable_encoder_parameter_names": [
+            "ast.encoder.layer.0.attention.attention.key.bias",
+            "ast.encoder.layer.0.attention.attention.key.weight",
+            "ast.encoder.layer.0.attention.attention.query.bias",
+            "ast.encoder.layer.0.attention.attention.query.weight",
+            "ast.encoder.layer.0.attention.attention.value.bias",
+            "ast.encoder.layer.0.attention.attention.value.weight",
+            "ast.encoder.layer.0.attention.output.dense.bias",
+            "ast.encoder.layer.0.attention.output.dense.weight",
+            "ast.encoder.layer.0.intermediate.dense.bias",
+            "ast.encoder.layer.0.intermediate.dense.weight",
+            "ast.encoder.layer.0.layernorm_after.bias",
+            "ast.encoder.layer.0.layernorm_after.weight",
+            "ast.encoder.layer.0.layernorm_before.bias",
+            "ast.encoder.layer.0.layernorm_before.weight",
+            "ast.encoder.layer.0.output.dense.bias",
+            "ast.encoder.layer.0.output.dense.weight",
+            "ast.encoder.layer.1.attention.attention.key.bias",
+            "ast.encoder.layer.1.attention.attention.key.weight",
+            "ast.encoder.layer.1.attention.attention.query.bias",
+            "ast.encoder.layer.1.attention.attention.query.weight",
+            "ast.encoder.layer.1.attention.attention.value.bias",
+            "ast.encoder.layer.1.attention.attention.value.weight",
+            "ast.encoder.layer.1.attention.output.dense.bias",
+            "ast.encoder.layer.1.attention.output.dense.weight",
+            "ast.encoder.layer.1.intermediate.dense.bias",
+            "ast.encoder.layer.1.intermediate.dense.weight",
+            "ast.encoder.layer.1.layernorm_after.bias",
+            "ast.encoder.layer.1.layernorm_after.weight",
+            "ast.encoder.layer.1.layernorm_before.bias",
+            "ast.encoder.layer.1.layernorm_before.weight",
+            "ast.encoder.layer.1.output.dense.bias",
+            "ast.encoder.layer.1.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight"
+          ],
+          "block_indices_zero_based": [
+            0,
+            1
+          ],
+          "update_final_layernorm": true
+        },
+        "top2_lr1e-5": {
+          "trainable": 14276355,
+          "total": 85466115,
+          "trainable_encoder": 14177280,
+          "trainable_head": 99075,
+          "trainable_parameter_names": [
+            "ast.encoder.layer.0.attention.attention.key.bias",
+            "ast.encoder.layer.0.attention.attention.key.weight",
+            "ast.encoder.layer.0.attention.attention.query.bias",
+            "ast.encoder.layer.0.attention.attention.query.weight",
+            "ast.encoder.layer.0.attention.attention.value.bias",
+            "ast.encoder.layer.0.attention.attention.value.weight",
+            "ast.encoder.layer.0.attention.output.dense.bias",
+            "ast.encoder.layer.0.attention.output.dense.weight",
+            "ast.encoder.layer.0.intermediate.dense.bias",
+            "ast.encoder.layer.0.intermediate.dense.weight",
+            "ast.encoder.layer.0.layernorm_after.bias",
+            "ast.encoder.layer.0.layernorm_after.weight",
+            "ast.encoder.layer.0.layernorm_before.bias",
+            "ast.encoder.layer.0.layernorm_before.weight",
+            "ast.encoder.layer.0.output.dense.bias",
+            "ast.encoder.layer.0.output.dense.weight",
+            "ast.encoder.layer.1.attention.attention.key.bias",
+            "ast.encoder.layer.1.attention.attention.key.weight",
+            "ast.encoder.layer.1.attention.attention.query.bias",
+            "ast.encoder.layer.1.attention.attention.query.weight",
+            "ast.encoder.layer.1.attention.attention.value.bias",
+            "ast.encoder.layer.1.attention.attention.value.weight",
+            "ast.encoder.layer.1.attention.output.dense.bias",
+            "ast.encoder.layer.1.attention.output.dense.weight",
+            "ast.encoder.layer.1.intermediate.dense.bias",
+            "ast.encoder.layer.1.intermediate.dense.weight",
+            "ast.encoder.layer.1.layernorm_after.bias",
+            "ast.encoder.layer.1.layernorm_after.weight",
+            "ast.encoder.layer.1.layernorm_before.bias",
+            "ast.encoder.layer.1.layernorm_before.weight",
+            "ast.encoder.layer.1.output.dense.bias",
+            "ast.encoder.layer.1.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight",
+            "head.network.0.bias",
+            "head.network.0.weight",
+            "head.network.2.bias",
+            "head.network.2.weight",
+            "head.network.4.bias",
+            "head.network.4.weight"
+          ],
+          "trainable_encoder_parameter_names": [
+            "ast.encoder.layer.0.attention.attention.key.bias",
+            "ast.encoder.layer.0.attention.attention.key.weight",
+            "ast.encoder.layer.0.attention.attention.query.bias",
+            "ast.encoder.layer.0.attention.attention.query.weight",
+            "ast.encoder.layer.0.attention.attention.value.bias",
+            "ast.encoder.layer.0.attention.attention.value.weight",
+            "ast.encoder.layer.0.attention.output.dense.bias",
+            "ast.encoder.layer.0.attention.output.dense.weight",
+            "ast.encoder.layer.0.intermediate.dense.bias",
+            "ast.encoder.layer.0.intermediate.dense.weight",
+            "ast.encoder.layer.0.layernorm_after.bias",
+            "ast.encoder.layer.0.layernorm_after.weight",
+            "ast.encoder.layer.0.layernorm_before.bias",
+            "ast.encoder.layer.0.layernorm_before.weight",
+            "ast.encoder.layer.0.output.dense.bias",
+            "ast.encoder.layer.0.output.dense.weight",
+            "ast.encoder.layer.1.attention.attention.key.bias",
+            "ast.encoder.layer.1.attention.attention.key.weight",
+            "ast.encoder.layer.1.attention.attention.query.bias",
+            "ast.encoder.layer.1.attention.attention.query.weight",
+            "ast.encoder.layer.1.attention.attention.value.bias",
+            "ast.encoder.layer.1.attention.attention.value.weight",
+            "ast.encoder.layer.1.attention.output.dense.bias",
+            "ast.encoder.layer.1.attention.output.dense.weight",
+            "ast.encoder.layer.1.intermediate.dense.bias",
+            "ast.encoder.layer.1.intermediate.dense.weight",
+            "ast.encoder.layer.1.layernorm_after.bias",
+            "ast.encoder.layer.1.layernorm_after.weight",
+            "ast.encoder.layer.1.layernorm_before.bias",
+            "ast.encoder.layer.1.layernorm_before.weight",
+            "ast.encoder.layer.1.output.dense.bias",
+            "ast.encoder.layer.1.output.dense.weight",
+            "ast.layernorm.bias",
+            "ast.layernorm.weight"
+          ],
+          "block_indices_zero_based": [
+            0,
+            1
+          ],
+          "update_final_layernorm": true
+        }
+      }
+    }
+  },
+  "comparison_with_exploratory_idea058": {
+    "exploratory_protocol_id": "meowagenet-idea058-constrained-top-block-v1",
+    "selection_boundary_change": "global_across_12_inner_splits_to_per_repeat_outer_fold",
+    "pipelines": {
+      "R0_tuned_frozen_ast": {
+        "exploratory_macro_f1_mean": 0.7570206188850608,
+        "strict_macro_f1_mean": 0.7570206188850608,
+        "strict_minus_exploratory": 0.0
+      },
+      "M1_top_block_adaptation": {
+        "exploratory_macro_f1_mean": 0.7606775521568222,
+        "strict_macro_f1_mean": 0.7493261116879242,
+        "strict_minus_exploratory": -0.011351440468898022
+      },
+      "C1_bottom_block_control": {
+        "exploratory_macro_f1_mean": 0.7384972960637125,
+        "strict_macro_f1_mean": 0.7337217185848804,
+        "strict_minus_exploratory": -0.00477557747883206
+      }
+    }
+  },
+  "idea058_strict_seed_expansion_gate": {
+    "passed": false,
+    "checks": {
+      "mean_macro_f1_gain_over_R0": false,
+      "positive_repeats_over_R0": false,
+      "mean_macro_f1_gain_over_C1": true,
+      "positive_repeats_over_C1": true,
+      "balanced_accuracy_cost": true,
+      "qwk_cost": true,
+      "animal_ce_cost": true,
+      "class_recall_cost": true
+    },
+    "M1_minus_R0_mean_macro_f1": -0.007694507197136528,
+    "M1_minus_R0_positive_repeats": 1,
+    "M1_minus_C1_mean_macro_f1": 0.01560439310304377,
+    "M1_minus_C1_positive_repeats": 2,
+    "M1_minus_R0_mean_animal_cross_entropy": -0.023537037357175383,
+    "class_recall_drop_from_R0": {
+      "kitten": 0.0,
+      "adult": -0.0053763440860212786,
+      "senior": 0.02941176470588236
+    },
+    "action": "close IDEA-058 as exploratory weak-positive evidence with strict confirmation not retained"
+  },
+  "per_fold_selection_sha256": "01d426c936cc88e64a35f823e2f782ffa805b9459698359dc36c8bee0f859a4a",
+  "code_commit": "9fe2b02676fa4e01b3be979c588a923dc25fd05f",
+  "execution_lock_sha256": "a6d114771e149768c53e62cec2934eb5a238348e87515fb8518d925a78ac998b",
+  "environment_lock_sha256": "04ffc0fe65432702c6c6338b1b27d0d7bcbb964c2f15f4c3024d49a60f90c617",
+  "runner_sha256": "34a4048e2bca4258dee4429e03cb886607652592c8d3865c65fa7a19b6fe153f",
+  "protocol_sha256": "51bb51ee068d7633df086c11014f3b7f5cf8782b5646f5656d3b6ff1e488b0f7",
+  "batch_order_audit": {
+    "fold_groups": 12,
+    "all_common_epoch_hashes_match": true,
+    "details": [
+      {
+        "base_seed": 17,
+        "repeat": 0,
+        "outer_fold": 0,
+        "selected_recipe_id": "top1_lr1e-5",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 14,
+            "outer_common_epochs": 6
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 14,
+            "outer_common_epochs": 6
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 14,
+            "outer_common_epochs": 6
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 0,
+        "outer_fold": 1,
+        "selected_recipe_id": "top1_lr1e-5",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 24,
+            "outer_common_epochs": 16
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 27,
+            "outer_common_epochs": 19
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 24,
+            "outer_common_epochs": 16
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 0,
+        "outer_fold": 2,
+        "selected_recipe_id": "top1_lr3e-6",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 20,
+            "outer_common_epochs": 12
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 17,
+            "outer_common_epochs": 9
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 17,
+            "outer_common_epochs": 9
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 0,
+        "outer_fold": 3,
+        "selected_recipe_id": "top2_lr3e-6",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 19,
+            "outer_common_epochs": 11
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 19,
+            "outer_common_epochs": 11
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 19,
+            "outer_common_epochs": 11
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 1,
+        "outer_fold": 0,
+        "selected_recipe_id": "top1_lr1e-5",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 13,
+            "outer_common_epochs": 5
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 15,
+            "outer_common_epochs": 7
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 13,
+            "outer_common_epochs": 5
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 1,
+        "outer_fold": 1,
+        "selected_recipe_id": "top1_lr1e-5",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 12,
+            "outer_common_epochs": 4
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 12,
+            "outer_common_epochs": 4
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 12,
+            "outer_common_epochs": 4
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 1,
+        "outer_fold": 2,
+        "selected_recipe_id": "top1_lr3e-6",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 23,
+            "outer_common_epochs": 15
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 23,
+            "outer_common_epochs": 15
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 23,
+            "outer_common_epochs": 15
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 1,
+        "outer_fold": 3,
+        "selected_recipe_id": "top2_lr3e-6",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 12,
+            "outer_common_epochs": 4
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 12,
+            "outer_common_epochs": 4
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 12,
+            "outer_common_epochs": 4
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 2,
+        "outer_fold": 0,
+        "selected_recipe_id": "top1_lr3e-6",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 14,
+            "outer_common_epochs": 6
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 17,
+            "outer_common_epochs": 9
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 14,
+            "outer_common_epochs": 6
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 2,
+        "outer_fold": 1,
+        "selected_recipe_id": "top2_lr1e-5",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 15,
+            "outer_common_epochs": 7
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 12,
+            "outer_common_epochs": 4
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 12,
+            "outer_common_epochs": 4
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 2,
+        "outer_fold": 2,
+        "selected_recipe_id": "top2_lr3e-6",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 19,
+            "outer_common_epochs": 11
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 19,
+            "outer_common_epochs": 11
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 19,
+            "outer_common_epochs": 11
+          }
+        ]
+      },
+      {
+        "base_seed": 17,
+        "repeat": 2,
+        "outer_fold": 3,
+        "selected_recipe_id": "top2_lr1e-5",
+        "all_common_epoch_hashes_match": true,
+        "comparisons": [
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "M1_top_block_adaptation",
+            "inner_common_epochs": 9,
+            "outer_common_epochs": 1
+          },
+          {
+            "left": "R0_tuned_frozen_ast",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 9,
+            "outer_common_epochs": 1
+          },
+          {
+            "left": "M1_top_block_adaptation",
+            "right": "C1_bottom_block_control",
+            "inner_common_epochs": 9,
+            "outer_common_epochs": 1
+          }
+        ]
+      }
+    ]
+  },
+  "raw_prediction_inventory": {
+    "path": "runs/meowagenet_idea058_strict_nested_v1/evaluation/raw_prediction_inventory.json",
+    "inventory_sha256": "2327cbcc3b1875781a87cb5910cc9615b18e674142063c45913d88fe54005a21",
+    "files": 91,
+    "bytes": 1430727,
+    "aggregate_sha256": "48f60d63bb06e459fbd69c4d432f0051833bb5301be21f6fccace4b55426be8f"
+  }
+}
