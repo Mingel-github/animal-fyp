@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea089-unified-core-v1",
+  "date": "2026-09-20",
+  "status": "locked_before_cpu_preflight",
+  "objective": "Run a publication-oriented unified internal comparison of VGGish, frozen-AST, direct acoustic concatenation, unbounded acoustic residual, and bounded acoustic residual models under the same complete-OOF role bank.",
+  "claim_boundary": {
+    "scope": "Internal validation on the historically reused clean111 MeowAgeNet animals.",
+    "not_external_confirmation": true,
+    "not_new_animals": true,
+    "no_result_driven_extension": true,
+    "no_new_hpo": true
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "vggish_rows": 936,
+    "independence_unit": "cat_id",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "dataset_manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "dataset_manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "vggish_path": "data/meowagenet/official-3d02295bef15/embeddings/vggish_looped_embeddings.csv",
+    "vggish_sha256": "0c4856c12bb3b829a9731b426619d5f82d3510307374e756555fc8eb0349e641",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "feature_count": 20,
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "roles": "Use existing train, validation, and test roles without generating a new split.",
+    "complete_oof": "For each pipeline, repeat, and model seed, concatenate four mutually exclusive test folds into exactly one 111-cat OOF prediction set."
+  },
+  "models": {
+    "pipelines": [
+      "VGG128_no_f0",
+      "VGG129_with_f0",
+      "A0_ast_only",
+      "D0_direct_concat",
+      "U1_wide_unbounded_additive",
+      "C1_bounded_wide_additive"
+    ],
+    "definitions": {
+      "VGG128_no_f0": "128 VGGish embedding columns -> 128 ReLU -> BatchNorm -> dropout -> 3.",
+      "VGG129_with_f0": "The same Keras head with the author's mean_freq scalar appended as input 129.",
+      "A0_ast_only": "Training-side standardized frozen AST768 -> 128 ReLU -> BatchNorm -> dropout -> 3.",
+      "D0_direct_concat": "Separately training-side standardized [AST768, acoustic20] -> 128 ReLU -> BatchNorm -> dropout -> 3.",
+      "U1_wide_unbounded_additive": "AST head plus an unbounded 20->60->128 acoustic residual.",
+      "C1_bounded_wide_additive": "AST head plus 0.25*stopgrad(RMS(h))*tanh(raw_shift) from the same 20->60->128 branch."
+    },
+    "trainable_parameter_counts": {
+      "VGG128_no_f0": 17155,
+      "VGG129_with_f0": 17283,
+      "A0_ast_only": 99075,
+      "D0_direct_concat": 101635,
+      "U1_wide_unbounded_additive": 108143,
+      "C1_bounded_wide_additive": 108143
+    },
+    "total_state_parameter_counts": {
+      "VGG128_no_f0": 17411,
+      "VGG129_with_f0": 17539,
+      "A0_ast_only": 99075,
+      "D0_direct_concat": 101635,
+      "U1_wide_unbounded_additive": 108143,
+      "C1_bounded_wide_additive": 108143
+    },
+    "paired_initialization": {
+      "AST": "A0/D0/U1/C1 share the public AST head state; D0 acoustic input columns and U1/C1 60->128 projections are zero-initialized; U1/C1 full initial states match.",
+      "VGG": "VGG129 copies all VGG128 state and has a zero-initialized mean_freq input column.",
+      "initial_logit_tolerance": 1e-06,
+      "extra_columns_must_receive_nonzero_gradient": true
+    }
+  },
+  "training": {
+    "model_seeds": [17, 43, 101],
+    "full_seed_rule": "base_seed + 10000*repeat + 100*fold",
+    "post_build_seed_offset": 1000000,
+    "selection_metric": "unweighted validation cat-level cross-entropy after arithmetic probability averaging",
+    "minimum_delta": 1e-06,
+    "selection_rule": "A strict improvement updates the best 1-based epoch and resets stale; otherwise stale increments.",
+    "refit": "Reinitialize from scratch and train on train+validation for the selected fixed epoch count.",
+    "preprocessing": "Fit imputation, standardization, and unit class weights only on the current fit training side.",
+    "ast": {
+      "optimizer": "Adamax",
+      "learning_rate": 0.006,
+      "optimizer_epsilon": 1e-07,
+      "weight_decay": 0.0,
+      "dropout": 0.44571035356880917,
+      "cat_batch_size": 4,
+      "maximum_epochs": 50,
+      "early_stopping_patience": 8,
+      "gradient_clip": 1.0,
+      "mixed_precision_on_cuda": true
+    },
+    "vgg": {
+      "optimizer": "Adamax",
+      "learning_rate": 0.003109800273709165,
+      "optimizer_epsilon": 1e-07,
+      "dropout": 0.44571035356880917,
+      "row_batch_size": 128,
+      "batch_size": 128,
+      "maximum_epochs": 500,
+      "early_stopping_patience": 30,
+      "deviation_from_formal_v2_1": "Monitor unweighted validation cat CE instead of row-level val_loss, with the unified 1e-6 strict-improvement threshold."
+    }
+  },
+  "budget": {
+    "pipelines": 6,
+    "repeat_fold_seed_cells_per_pipeline": 36,
+    "selection_fits": 216,
+    "outer_fits": 216,
+    "physical_fits": 432,
+    "complete_oof_sets_per_pipeline": 9
+  },
+  "evaluation": {
+    "primary_unit": "cat",
+    "primary_metric": "macro_f1",
+    "metrics": [
+      "accuracy",
+      "macro_f1",
+      "balanced_accuracy",
+      "recall_kitten",
+      "recall_adult",
+      "recall_senior",
+      "cross_entropy",
+      "brier"
+    ],
+    "summary": "Calculate nine complete 111-cat OOF metrics first, then report their mean and sample SD.",
+    "no_cross_seed_probability_ensemble_as_primary": true,
+    "prediction_occurrences_per_pipeline": 999,
+    "unique_animals": 111,
+    "comparisons": [
+      "C1_minus_A0",
+      "C1_minus_U1",
+      "C1_minus_D0",
+      "U1_minus_A0",
+      "D0_minus_A0",
+      "U1_minus_D0",
+      "VGG129_minus_VGG128",
+      "A0_minus_VGG129",
+      "C1_minus_VGG129"
+    ],
+    "bootstrap": {
+      "replicates": 10000,
+      "seed": 20260920,
+      "unit": "cat",
+      "stratified_by": "age group",
+      "shared_draws": "Use the same sampled cat indices for every model and all nine OOF prediction sets.",
+      "interval": [0.025, 0.975],
+      "interpretation": "Descriptive paired interval conditional on these animals, predictions, and prior development history."
+    }
+  },
+  "gates": {
+    "selection_requires_director_authorization": true,
+    "selection_requires_exact_preflight_sha256": true,
+    "lock_requires_all_selection_fits": true,
+    "outer_requires_director_authorization": true,
+    "outer_requires_exact_selection_lock_sha256": true,
+    "checkpoint_lock_before_test_prediction": true,
+    "test_prediction_calls_per_outer_fit": 1,
+    "resume_validates_identity_and_artifact_hashes": true
+  },
+  "dependencies": {
+    "plan_path": "plan/IDEA-089_unified_core.md",
+    "plan_sha256": "29402baed28b28491e913414096590ec7e765d55a509df73a5d4731ea426692b",
+    "runner_path": "scripts/run_meowagenet_idea089_unified_core.py",
+    "runner_sha256": "44f28e1bc809035c4f6793bc250c3d6566f2944c6c3dc6c05378df4d69328e70",
+    "tests_path": "tests/test_idea089_unified_core.py",
+    "tests_sha256": "589df957618d3bab3e9bd922c140b3af4a6f4776e14c94a6ccdadf2f3946b605",
+    "idea068_runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "idea068_runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "idea071_runner_path": "scripts/run_meowagenet_idea071_bounded_dual_path_fusion.py",
+    "idea071_runner_sha256": "f232dc6971bf550052c9a846460e164d29c12dd2b0acfffd234ffbff772a0fcc",
+    "idea076_runner_path": "scripts/run_meowagenet_idea076_C1_final_seed_confirmation.py",
+    "idea076_runner_sha256": "55bf29ab02fa46651609c8f981dd91fa8cd9069236b146114974e9a94178e717",
+    "independent_design_audit_path": "reports/84_IDEA-089_baseline_protocol_design_audit.md",
+    "independent_design_audit_sha256": "cb9809b50054f8d81672e2e2ae4df1a0e384590156aea2bfc360f85dfac2cf08"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea089_unified_core_v1",
+    "cpu_preflight": "preflight/cpu_preflight.json",
+    "selection_lock": "selection/epoch_selection_lock.json",
+    "aggregate_results": "idea089_aggregate_results.json",
+    "metadata": "metadata/experiments/meowagenet_idea089_unified_core_v1_results.json"
+  }
+}
