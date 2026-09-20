@@ -8,6 +8,108 @@ pipeline. The authors' repository is kept as an upstream Git submodule under
 `src/baselines/feline-age-prediction`; its code is not vendored as original
 project work.
 
+## 当前研究入口 / Current research overview
+
+更新日期：2026-09-21。当前阶段是 **MeowAgeNet 猫年龄分类的声学残差融合研究与论文整理**。
+统一核心对照已完成并通过独立复核；最新主结果来自 IDEA-089。
+本研究版本位于
+[`research/ast-acoustic-idea065-088-20260920`](https://github.com/Mingel-github/animal-fyp/tree/research/ast-acoustic-idea065-088-20260920)
+分支；分支名保留了早期归档范围，该分支现已包含 IDEA-089。
+
+研究问题是：**显式声学描述量如何补充冻结 Audio Spectrogram Transformer（AST）的表示，
+以及不同融合方式带来怎样的分类收益与波动？** 当前方法在冻结 AST 之后的分类隐藏表示处
+引入声学分支。AST 骨干保持冻结，可训练部分是分类／融合头。早期的 Probe-guided AST
+adapter 属于历史探索，其结果单独保留。
+
+### 最新结果
+
+下面是同一内部协议下的六条完整流程。数值为 9 份完整猫级评估的均值 ± 样本标准差，
+单位为百分数；Macro-F1 对三个年龄类别的 F1 等权平均，Accuracy 表示猫级正确率。
+
+| 方法名称 | Macro-F1 (%) | Accuracy (%) |
+| --- | ---: | ---: |
+| VGGish 分类基线 | 66.37 ± 4.32 | 67.07 ± 3.63 |
+| VGGish 与作者频率标量融合 | 68.82 ± 4.50 | 70.07 ± 3.95 |
+| 冻结 AST 分类基线 | 72.87 ± 3.63 | 72.17 ± 3.81 |
+| AST 与声学特征直接拼接 | 73.30 ± 3.35 | 72.47 ± 3.28 |
+| 加性声学残差融合 | **74.47 ± 3.79** | **73.87 ± 3.93** |
+| 幅度受限的声学残差融合 | 73.49 ± 4.73 | 72.97 ± 4.64 |
+
+加性声学残差融合把 20 项声学描述量经过 `20→60→128` 的非线性分支，得到对 AST
+分类隐藏表示的加性修正；幅度受限版本使用相同分支，并以主表示的 RMS 尺度和 `tanh`
+限制修正量。直接拼接则把同一组声学描述量与 AST 表示拼接后送入分类头。
+
+相对于冻结 AST 分类基线，加性声学残差融合的平均 Macro-F1 提高 **1.60 个百分点**，
+9 组配对中 7 组为正；幅度受限版本提高 **0.62 个百分点**，5 组为正。两者的描述性
+配对区间均跨过零，当前证据体现为正向平均收益及对划分／训练随机性的敏感性。
+加性版本本轮平均分类表现最高；相对加性版本，幅度受限版本的平均交叉熵略低，F1 波动更大。
+完整正负结果及各年龄组表现见[最新中文结果报告](reports/87_IDEA-089_unified_core_results.md)。
+
+### 评估口径与证据范围
+
+- 数据包含 111 只分析猫。AST 使用清洗后的 792 条去重叫声；VGGish 使用作者表示表
+  按清洗后的猫 ID 保留的 936 条记录。二者在猫身份和标签上对齐，VGG 行与 AST 叫声的
+  逐条对应关系未完整恢复。
+  因此跨家族结果是完整流程比较，AST 家族内的融合对照使用相同输入缓存。
+- 沿用 3 组既有猫隔离划分，每组 4 折，训练种子为 17、43、101。每折训练、验证和
+  测试猫互不重叠。训练侧用验证猫级交叉熵确定轮数，再从头在训练加验证数据上按固定轮数
+  重训，锁定模型后进行测试。两模型家族保留各自训练配方，具体差异在报告中披露。
+- 每只猫的类别概率由其输入单位的概率取算术平均。每组划分／种子先合并 4 个测试折，
+  得到 111 猫各出现一次的完整折外预测（OOF），再计算指标。主表汇总这 9 份完整结果。
+- 六条流程共完成 216 次选轮训练和 216 次固定轮数重训。每条流程的 999 次猫预测出现
+  来自同一批 111 只猫；独立动物数是 111。该数据也参与过历史开发，本轮定位为统一内部验证。
+- 作者频率列 `mean_freq` 的代码线索指向平均基频；确切生成链及逐行音频映射仍有缺口。
+  正文使用“作者提供的频率标量”这一可核实描述，并与本项目的 20 维声学特征区分。
+
+### 新协作者与论文写作者的阅读顺序
+
+1. [统一对照结果与解释](reports/87_IDEA-089_unified_core_results.md)：正文主表、模型定义、
+   训练配方、波动、历史协议差异和相关文献入口。
+2. [基线与协议设计核查](reports/84_IDEA-089_baseline_protocol_design_audit.md)和
+   [独立复核](reports/86_IDEA-089_independent_engineering_audit.md)：数据来源、猫角色、
+   特征对应关系及独立结果复算。
+3. [机器可读结果](metadata/experiments/meowagenet_idea089_unified_core_v1_results.json)、
+   [冻结协议](configs/protocol/meowagenet_idea089_unified_core_v1.json)及
+   [执行代码](scripts/run_meowagenet_idea089_unified_core.py)：核对数值、实现和训练规则。
+   若报告、配置或代码存在疑问，列明具体差异再核实。
+4. [历史 v3 汇总](reports/58_Formal_Research_Summary_v3.md)及其引用的专题报告：用于
+   交代既往探索。v2.1、v3、调参阶段、原作者风格评估和本轮结果分别保留协议标签。
+
+论文标题、摘要、正文和主表使用**描述性方法名称**；内部实验代号仅用于代码与记录追溯，
+不作为论文方法名称。确有必要使用正式缩写时，先定义完整名称并保持全文一致。
+下方映射专供复现者定位既有代码，不代表已经确定的论文品牌名，也不改动冻结文件中的键名。
+
+<details>
+<summary>复现附表：当前方法名称与 IDEA-089 内部标识的映射</summary>
+
+| 方法名称 / Descriptive name | IDEA-089 内部别名 | 结果 JSON / 代码标识 |
+| --- | --- | --- |
+| VGGish 分类基线 / VGGish classifier | VGG128 | `VGG128_no_f0` |
+| VGGish 与作者频率标量融合 / VGGish with author-provided frequency scalar | VGG129 | `VGG129_with_f0` |
+| 冻结 AST 分类基线 / Frozen AST classifier | A0 | `A0_ast_only` |
+| AST 与声学特征直接拼接 / AST–acoustic feature concatenation | D0 | `D0_direct_concat` |
+| 加性声学残差融合 / Additive acoustic residual fusion | U1 | `U1_wide_unbounded_additive` |
+| 幅度受限的声学残差融合 / Bounded acoustic residual fusion | C1 | `C1_bounded_wide_additive` |
+
+此映射只适用于 IDEA-089。不同历史实验可能复用同一代号表示不同结构，应按实验编号
+和具体定义辨认。例如早期猫权重或局部适配对照中的 `C1` 与当前幅度受限声学残差不同。
+内部键名中的 `f0` 是既有命名，其物理来源表述以上方证据范围为准。
+
+</details>
+
+### 写作与交接约定
+
+- 正文以当前统一协议的完整结果为主，历史探索作为单独标注的背景或补充材料。
+- 同时呈现平均收益、配对差、标准差和不确定性区间；SD描述波动，不能直接解释为偶然概率。
+- 方法位于冻结 AST 后的融合／分类头；两条分支来自同一音频的不同表征。
+  声学生理解释作为研究动机或待验证假设，分类结果与机制归因分别论述。
+- 以 MeowAgeNet 猫年龄任务为核心；其他猫情境任务、狗实验和新动物验证具有各自的
+  研究问题与优先级。引用文献前核对原文，区分已有思想与本项目的具体实现贡献。
+- GitHub 提供报告、代码、协议和紧凑结果。原始音频、模型权重及逐猫预测保留在本地；
+  新增逐猫分析或图表需要相应数据，缺失材料列入待确认项。
+- 先整理完整初稿和证据对应关系。补充实验另行明确问题与固定预算，历史审计报告和
+  已冻结结果保持原样。
+
 ## Setup
 
 Clone the project together with the baseline submodule:
@@ -54,7 +156,14 @@ collaborators can reconstruct and verify permitted results.
 
 The initial baseline assessment is in `reports/00_baseline_assessment.md`.
 
-## Current research status
+## Historical research archive / 历史研究记录
+
+以下为早期研究阶段的原始记录，保留当时的结果和决策。原文中的 `current`、`active`
+和 `next` 均指记录当时的状态；当前主线和写作入口以上方概览为准。历史代号按对应
+实验解释，跨协议分数分别呈现。
+
+<details>
+<summary>展开历史阶段记录：formal v2.1、Probe-guided adapter 及早期后续探索</summary>
 
 The reusable idea-space taxonomy, priority navigation, Idea Card template, and
 `IDEATE / PLAN / RUN` handoff prompt for new collaborators and Agents are in
@@ -567,3 +676,5 @@ The prior stage checkpoint remains historical pilot evidence:
 The pilot checkpoint is documented in
 `reports/08_IDEA-048_stage_checkpoint.md`; formal results must not overwrite
 that record.
+
+</details>
