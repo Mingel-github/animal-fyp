@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea081-ast-tail-convpass-c1-factorial-v1",
+  "date": "2026-09-18",
+  "status": "complete_audited",
+  "decision": "REJECT_FIXED_TAIL_CONVPASS_AND_NO_POSITIVE_C1_INTERACTION",
+  "protocol_sha256": "50d30df1ece31dacfa33bc33307f8c7992b2d2f0c5d9863b08214821c0dbccd4",
+  "runner_sha256": "def87e10852506c3ac26d1133a232594f92768d9d81912d47de1d47227f97903",
+  "design": {
+    "pipelines": [
+      "A0_frozen_tail",
+      "C1_bounded_age",
+      "V1_tail_full_convpass",
+      "CV1_C1_plus_tail_full_convpass"
+    ],
+    "base_seeds": [9217, 7339, 4211],
+    "repeats": 3,
+    "folds": 4,
+    "fits": 144,
+    "seed_repeat_primary_units": 9,
+    "split_cells": 12,
+    "outer_test_predictions": false
+  },
+  "pipeline_means": {
+    "A0_frozen_tail": {
+      "macro_f1": 0.7301752374506728,
+      "balanced_accuracy": 0.7731481481481481,
+      "cross_entropy": 0.6901952509597638,
+      "brier": 0.41173971409482096,
+      "senior_recall": 0.6722222222222222
+    },
+    "C1_bounded_age": {
+      "macro_f1": 0.7387287314278077,
+      "balanced_accuracy": 0.7833333333333333,
+      "cross_entropy": 0.6931444446631072,
+      "brier": 0.41470503514786217,
+      "senior_recall": 0.6833333333333333
+    },
+    "V1_tail_full_convpass": {
+      "macro_f1": 0.7365229291398188,
+      "balanced_accuracy": 0.7694444444444445,
+      "cross_entropy": 0.6859124334870979,
+      "brier": 0.4076774270889583,
+      "senior_recall": 0.65
+    },
+    "CV1_C1_plus_tail_full_convpass": {
+      "macro_f1": 0.7395584149944843,
+      "balanced_accuracy": 0.7759259259259259,
+      "cross_entropy": 0.7003490448144888,
+      "brier": 0.4171533593894225,
+      "senior_recall": 0.6555555555555556
+    }
+  },
+  "contrasts": {
+    "V1_minus_A0": {
+      "mean_macro_f1": 0.00634769168914589,
+      "sd_macro_f1": 0.042985931632717,
+      "median_macro_f1": 0.006722497886258005,
+      "positive_tied_negative_seed_repeats": [5, 0, 4],
+      "positive_base_seeds": 2,
+      "nonnegative_split_cells": 8,
+      "worst_split_cell": -0.03361061596355711,
+      "mean_cross_entropy_gain": 0.004282817472666012,
+      "mean_brier_gain": 0.00406228700586266,
+      "gate_passed": false
+    },
+    "CV1_minus_C1": {
+      "mean_macro_f1": 0.0008296835666766386,
+      "sd_macro_f1": 0.03301278914129655,
+      "median_macro_f1": 0.0,
+      "positive_tied_negative_seed_repeats": [4, 1, 4],
+      "positive_base_seeds": 1,
+      "nonnegative_split_cells": 7,
+      "worst_split_cell": -0.0989979156645824,
+      "mean_cross_entropy_gain": -0.007204600151381567,
+      "mean_brier_gain": -0.0024483242415603104,
+      "gate_passed": false
+    },
+    "interaction": {
+      "formula": "(CV1-C1)-(V1-A0)",
+      "mean_macro_f1": -0.005518008122469251,
+      "sd_macro_f1": 0.043161164397842545,
+      "median_macro_f1": -0.005085458319651792,
+      "positive_tied_negative_seed_repeats": [3, 0, 6],
+      "positive_base_seeds": 1,
+      "nonnegative_split_cells": 6,
+      "worst_split_cell": -0.0738795825752348,
+      "mean_cross_entropy_gain": -0.011487417624047579,
+      "mean_brier_gain": -0.0065106112474229705,
+      "gate_passed": false
+    }
+  },
+  "gate_results": {
+    "V1_minus_A0": false,
+    "CV1_minus_C1": false,
+    "interaction": false,
+    "full_factorial": false
+  },
+  "audit": {
+    "status": "PASS",
+    "fit_summaries": 144,
+    "unique_fit_identities": 144,
+    "prediction_hashes_valid": true,
+    "validation_role_coverage_valid": true,
+    "paired_prediction_populations_equal": true,
+    "probabilities_finite_and_normalized": true,
+    "call_to_animal_aggregation_valid": true,
+    "training_role_coverage_valid_every_epoch": true,
+    "trainable_parameter_counts_valid": true,
+    "checkpoint_reload_max_probability_difference": 0.0,
+    "aggregate_semantic_match": true,
+    "aggregate_canonical_byte_match": true,
+    "aggregate_sha256": "9ded82a815b081ecc9fb9fb800ce76eb8972b9be63223b44cd621b614f1ecfbd",
+    "outer_test_accessed": false
+  },
+  "artifacts": {
+    "report": "reports/53_IDEA-081_AST_tail_ConvPass_C1_factorial_results.md",
+    "literature_report": "reports/52_IDEA-081_ConvPass_AST_literature_and_preflight_basis.md",
+    "summary": "runs/meowagenet_idea081_ast_tail_convpass_c1_factorial_v1/initial_evaluation_summary.json",
+    "summary_sha256": "9ded82a815b081ecc9fb9fb800ce76eb8972b9be63223b44cd621b614f1ecfbd",
+    "independent_audit": "runs/meowagenet_idea081_ast_tail_convpass_c1_factorial_v1/independent_audit.json",
+    "independent_audit_sha256": "636b81510a3485b241d7d033754ccb671b81d34bc9941303ee3ce94b6eb1ee4f",
+    "audit_script": "scripts/verify_idea081_ast_tail_convpass_c1_results.py",
+    "audit_script_sha256": "67e249dbf63741273d1977166b0ae7155801be8f0013af6a62cd469d93369d5a"
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea081-ast-tail-convpass-c1-factorial-v1",
+  "date": "2026-09-18",
+  "status": "locked_before_formal_evaluation",
+  "objective": "Test a literature-faithful full ConvPass in frozen AST block 12 on A0 and fixed C1 backgrounds, and preregister their factorial interaction, using only MeowAgeNet inner train/validation roles.",
+  "relationship": {
+    "idea077_frozen": true,
+    "idea079_frozen": true,
+    "idea079_is_not_convpass": "IDEA-079 is a project-specific serial patch-only depthwise adapter between blocks 11 and 12; it must not be relabeled as ConvPass.",
+    "scope": "Internal new-seed representation-module screen; not external or confirmatory evidence.",
+    "post_outcome_topology_selection": false,
+    "post_outcome_width_selection": false,
+    "post_outcome_scale_selection": false,
+    "post_outcome_seed_selection": false,
+    "post_outcome_gate_selection": false,
+    "outer_test_accessed": false
+  },
+  "literature_lock": {
+    "convpass": {
+      "paper": "Jie and Deng, Convolutional Bypasses Are Better Vision Transformer Adapters, ECCV 2022, arXiv:2207.07039",
+      "paper_url": "https://arxiv.org/abs/2207.07039",
+      "official_code": "https://github.com/JieShibo/PETL-ViT",
+      "official_commit": "026e4f12cfbe1e46bfb4d3ed5ba09f2d9f83e91e",
+      "official_module_sha256": "74370a31228af4624441914d8173193b3b74bd42e4643d7ce0d58d56cc549ab0"
+    },
+    "adaptformer": {
+      "paper": "Chen et al., AdaptFormer: Adapting Vision Transformers for Scalable Visual Recognition, NeurIPS 2022",
+      "paper_url": "https://papers.nips.cc/paper_files/paper/2022/hash/69e2f49ab0837b71b0e0cb7c555990f8-Abstract-Conference.html",
+      "official_code": "https://github.com/ShoufaChen/AdaptFormer",
+      "official_commit": "6967d676c1a5e5a11be2e2768a6e5c604bb043ed",
+      "official_adapter_sha256": "6b70565f0ddc50837ee4bff8da777dd437150f471caa1093a3246388478cabc1",
+      "official_block_sha256": "8d151406075fd5c834c4cc595e598d547824becf9b6dfb4edd99d3617e12d4cb"
+    },
+    "ast": {
+      "paper": "Gong, Chung, and Glass, AST: Audio Spectrogram Transformer, Interspeech 2021, arXiv:2104.01778",
+      "paper_url": "https://arxiv.org/abs/2104.01778",
+      "official_code": "https://github.com/YuanGongND/ast"
+    },
+    "local_pdfs": [
+      {
+        "path": "C:/Users/zhu/Desktop/essay_article/Audio/02_Core_Audio_Models/2021_Gong_AST_Audio_Spectrogram_Transformer.pdf",
+        "sha256": "c237e981755e9ba5047e7290ffcb7d38d8292e166730ae3cd180b7833f184303"
+      },
+      {
+        "path": "C:/Users/zhu/Desktop/essay_article/Audio/03_Training_And_Adaptation/Parameter_Efficient_Tuning/2024_Cappellazzo_PETL_AST.pdf",
+        "sha256": "9ff59f6b4569b2202a320048a561884032fa86f4175458032b8935ec1d0b108d"
+      },
+      {
+        "path": "C:/Users/zhu/Desktop/essay_article/Audio/03_Training_And_Adaptation/Parameter_Efficient_Tuning/2024_Cappellazzo_Soft_Mixture_of_Adapters_AST.pdf",
+        "sha256": "345f0542e26f61da92dbb70a70632d8e6c9310a48834f70354a54366b4b9ba3b"
+      }
+    ],
+    "topology_authority": "Original ConvPass paper and its official implementation determine V1 topology; AdaptFormer and AST sources establish the parallel residual and AST-special-token context."
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "segments": 843,
+    "multi_segment_calls": 42,
+    "segment_count_range": [1, 6],
+    "independence_unit": "cat_id",
+    "locked_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "ast_embedding_audit_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_embedding_audit.json",
+    "ast_embedding_audit_sha256": "47d1e632f1ec091e14a40d169f54d2b90b19b27e896247923c08b944f662e41d",
+    "age_feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "age_feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "age_feature_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/extraction_summary.json",
+    "age_feature_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "audio_manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "audio_manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "audio_checksums_path": "metadata/datasets/meowagenet/checksums.sha256",
+    "audio_checksums_sha256": "7c1b51ce1a18b1253d3099e9ce3ea034385cd1851ed121a1a5b82a50a20e6a12",
+    "audio_source_commit": "3d02295bef1500d2b2500a124596f77010181391",
+    "audio_source_tree_git_sha1": "6a10ede379615a52441b0b80e9f4783f7b182ebf",
+    "segment_seconds": 1.28,
+    "segment_hop_seconds": 0.64,
+    "max_length_frames": 128,
+    "num_mel_bins": 128,
+    "frequency_stride": 10,
+    "time_stride": 10
+  },
+  "shared_cache": {
+    "owner": "IDEA-078",
+    "reuse_mode": "read_only_single_shared_cache_no_duplicate_extraction",
+    "root": "runs/ast_prelast_tokens_idea078_v1",
+    "cache_manifest_path": "runs/ast_prelast_tokens_idea078_v1/cache_manifest.json",
+    "cache_manifest_sha256": "af14eb7b8a2f9c362f37484d06af4381fe89f1a497a89c62f1142ab49baf8e94",
+    "resolved": {
+      "artifact": "idea078-label-free-ast-prelast-token-cache-v1",
+      "owner_protocol_id": "meowagenet-idea078-ast-prelast-special-token-age-injection-v1",
+      "owner_protocol_path": "configs/protocol/meowagenet_idea078_ast_prelast_special_token_age_injection_v1.json",
+      "owner_protocol_sha256": "d2d2397ab9fed1a1b6302bc248ff2a43f56f511c592d9b28097d79b63a364e13",
+      "cache_schema_path": "metadata/experiments/ast_prelast_token_cache_idea078_v1_schema.json",
+      "cache_schema_sha256": "5183b9d5e7e689a0337e0e6b0cfb2d5cf6dc7c6402af39ccafdbc11964dc0f3b",
+      "tokens_path": "runs/ast_prelast_tokens_idea078_v1/prelast_tokens.float32.npy",
+      "tokens_sha256": "9fb7b32973560d31ad1906c07349e745054683d5a6a3486e3e33182fc6947ca9",
+      "tokens_format": "npy_float32_mmap",
+      "index_path": "runs/ast_prelast_tokens_idea078_v1/prelast_token_index.npz",
+      "index_sha256": "aa46820aa15a0812ef4437c80c29f28fd515f0228a9d0fd10bac266b734b9bb2",
+      "index_keys": {
+        "segment_call_indices": "segment_call_indices",
+        "segment_counts": "segment_counts",
+        "call_ids": "call_ids",
+        "source_paths": "source_paths",
+        "prelast_block_output_one_based": "prelast_block_output_one_based",
+        "last_block_input_one_based": "last_block_input_one_based",
+        "special_token_indices": "special_token_indices",
+        "patch_token_start": "patch_token_start"
+      },
+      "extractor_path": "scripts/extract_ast_prelast_tokens_idea078.py",
+      "extractor_sha256": "ad9b596cd39f7502c8d4cfe7a63192cb71dbde10e3151cd808186f710ad8b698",
+      "read_only_verifier_path": "scripts/verify_idea078_ast_prelast_token_cache.py",
+      "read_only_verifier_sha256": "f8e757fa938b0602fdc45586e212376d4a2c54c8093445db2e095b15f705e0a7",
+      "reconstruction_vs_locked_A0": {
+        "mean_absolute_difference": 0.0000004022432733563619,
+        "maximum_absolute_difference": 0.000008463859558105469
+      }
+    },
+    "required_tensor_shape": [843, 146, 768],
+    "required_tensor_dtype": "float32",
+    "required_token_storage": "mmap-compatible .npy",
+    "raw_token_bytes": 378095616,
+    "raw_token_mib": 360.58,
+    "label_free_requirement": "The cache contains no labels, roles, or cat IDs.",
+    "reconstruction_path": "block-11 cache -> frozen block 12 with optional in-block ConvPass -> final LayerNorm -> mean(CLS,distillation) -> segment-to-call mean",
+    "reconstruction_batch_size": 16,
+    "reconstruction_tolerance": {
+      "mean_absolute_maximum": 0.000002,
+      "absolute_maximum": 0.00002
+    }
+  },
+  "convpass": {
+    "variant": "full ConvPass, not convpass_attn",
+    "target_block_one_based": 12,
+    "parallel_to": ["MSA", "MLP"],
+    "formula_attention": "x1 = x0 + MSA(LN1(x0)) + s*CP_attn(LN1(x0))",
+    "formula_mlp": "x2 = x1 + MLP(LN2(x1)) + s*CP_mlp(LN2(x1))",
+    "modules_per_block": 2,
+    "patch_grid": [12, 12],
+    "patch_tokens": 144,
+    "patch_flatten_order": "frequency-major then time-minor, matching HF Conv2d flatten(2).transpose(1,2)",
+    "special_tokens": 2,
+    "special_token_policy": "CLS and distillation tokens are each processed as an independent 1x1 grid through the shared dense 3x3 convolution",
+    "hidden_size": 768,
+    "bottleneck_width": 8,
+    "down": "Linear(768,8,bias=true), Xavier-uniform weight, zero bias",
+    "activation": "QuickGELU: x*sigmoid(1.702*x)",
+    "spatial_mixer": "dense Conv2d(8,8,kernel=3,stride=1,padding=1,groups=1,bias=true)",
+    "conv_initialization": "zero weight plus 8x8 identity at kernel center; zero bias",
+    "dropout": 0.1,
+    "up": "Linear(8,768,bias=true)",
+    "up_initialization": "zero weight and zero bias",
+    "scale": 0.1,
+    "scale_boundary": "Fixed before outcomes to an official ConvPass-config and official AdaptFormer scalar value; not claimed as the unique ConvPass default.",
+    "parameters_each": 13648,
+    "parameters": 27296,
+    "mac_per_segment_each": 1878144,
+    "mac_per_segment": 3756288,
+    "cache_tail_fidelity": "Exact: the cache is the input to frozen block 12, so both LN1/MSA and LN2/MLP parallel bypasses are explicitly replayed."
+  },
+  "model": {
+    "pipelines": [
+      "A0_frozen_tail",
+      "C1_bounded_age",
+      "V1_tail_full_convpass",
+      "CV1_C1_plus_tail_full_convpass"
+    ],
+    "factor_C1_present": {
+      "A0_frozen_tail": false,
+      "C1_bounded_age": true,
+      "V1_tail_full_convpass": false,
+      "CV1_C1_plus_tail_full_convpass": true
+    },
+    "factor_convpass_present": {
+      "A0_frozen_tail": false,
+      "C1_bounded_age": false,
+      "V1_tail_full_convpass": true,
+      "CV1_C1_plus_tail_full_convpass": true
+    },
+    "C1": {
+      "age_features": 20,
+      "hidden_width": 60,
+      "output_width": 128,
+      "cap": 0.25,
+      "rms_epsilon": 1e-08,
+      "formula": "h=ReLU(W_ast z); residual=0.25*stopgrad(RMS(h))*tanh(W2 GELU(W1 a)); h'=h+residual",
+      "output_zero_initialized": true,
+      "parameters": 9068
+    },
+    "trainable_parameters": {
+      "A0_frozen_tail": 99075,
+      "C1_bounded_age": 108143,
+      "V1_tail_full_convpass": 126371,
+      "CV1_C1_plus_tail_full_convpass": 135439
+    },
+    "base_seeds": [9217, 7339, 4211],
+    "seed_derivation_text": "IDEA-081-Meow-tail-ConvPass-x-C1-v1",
+    "seed_derivation_encoding": "UTF-8",
+    "seed_derivation_sha256": "12f7cae12bf10b3bcfcaf31330ea5abb96f3e692034e33858e3ed419274b98e0",
+    "seed_derivation_rule": "Read successive non-overlapping digest uint32 values in big-endian order, reduce modulo 10000, and skip base/full-seed collisions with IDEA-065 through IDEA-080; the first three values were eligible.",
+    "excluded_base_seeds_IDEA065_through_IDEA080": [
+      17, 151, 307, 509, 2326, 3550, 4426, 4412, 5703, 3120,
+      6530, 3562, 3846, 4025, 5118, 9821, 6346, 7243, 9617,
+      8075, 4270, 1872, 8807, 268, 6915, 5994, 9330, 4322,
+      6917, 1398, 5934, 9763, 3230, 9726, 8058, 2495, 2473,
+      59, 7031, 1855
+    ],
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 36,
+    "total_fits": 144,
+    "initialization_fairness": "All four pipelines share the identical common head; C1/CV1 share identical age state; V1/CV1 share identical two-branch ConvPass state; zero age-output and zero ConvPass-up make all initial logits and loss exactly equal."
+  },
+  "fixed_training": {
+    "head": "Training-role locked A0 final representation standardization, then 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout.",
+    "age_standardization": "Training-role mean and standard deviation only; missing values imputed with training-role median.",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "convpass_learning_rate": 0.001,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "Globally class-balanced call cross-entropy; every complete-cat batch is divided by its call-weight sum.",
+    "checkpoint_selection": "Minimum unweighted inner-validation animal cross-entropy with a 1e-6 improvement threshold.",
+    "post_build_seed_offset": 1000000,
+    "initialization_seed_offsets": {
+      "head": 0,
+      "age": 100003,
+      "convpass": 200003
+    }
+  },
+  "aggregation": {
+    "primary_metric": "animal-level Macro-F1",
+    "primary_units": "Nine equally weighted base_seed by repeat estimates per pipeline, each pooling all four validation folds.",
+    "split_units": "Twelve repeat by fold cells, each averaged equally across the three base seeds.",
+    "interaction": "(CV1-C1)-(V1-A0)",
+    "probability_interaction": "For CE/Brier, gain is baseline minus candidate, and interaction is (C1-CV1 gain)-(A0-V1 gain).",
+    "repeated_occurrence_warning": "Repeated validation animals across folds, seeds, and repeats are descriptive occurrences, not independent observations."
+  },
+  "gate": {
+    "V1_minus_A0": {
+      "minimum_mean_macro_f1": 0.005,
+      "minimum_positive_base_seeds": 2,
+      "minimum_positive_seed_repeats": 6,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_delta": -0.03,
+      "cross_entropy_must_be_nonworse": true,
+      "brier_must_be_nonworse": true,
+      "minimum_per_base_seed_senior_recall_delta": -0.02
+    },
+    "CV1_minus_C1": {
+      "minimum_mean_macro_f1": 0.005,
+      "minimum_positive_base_seeds": 2,
+      "minimum_positive_seed_repeats": 6,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_delta": -0.03,
+      "cross_entropy_must_be_nonworse": true,
+      "brier_must_be_nonworse": true,
+      "minimum_per_base_seed_senior_recall_delta": -0.02
+    },
+    "interaction": {
+      "formula": "(CV1-C1)-(V1-A0)",
+      "minimum_mean_macro_f1": 0.000000000001,
+      "minimum_positive_base_seeds": 2,
+      "minimum_positive_seed_repeats": 5,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_delta": -0.03,
+      "cross_entropy_must_be_nonworse": true,
+      "brier_must_be_nonworse": true,
+      "minimum_per_base_seed_senior_recall_delta": -0.02,
+      "interpretable_only_if_both_simple_effect_gates_pass": true
+    },
+    "full_pass_action": "Retain the full ConvPass and permit a positive C1 interaction claim only if both simple-effect gates and the interaction gate pass.",
+    "partial_action": "Report each gate separately; a direct CV1 utility claim requires CV1-C1, and a synergy claim additionally requires V1-A0 plus interaction.",
+    "fail_action": "Report every result and stop this fixed formulation without changing topology, width, scale, seed, or thresholds."
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true,
+    "resume_requires_canonical_artifact_hashes": true
+  },
+  "execution": {
+    "current_allowed_stage": "CPU preflight only",
+    "current_gpu_allowed": false,
+    "cpu_preflight": "Read-only verification of literature topology, hashes, full cache reconstruction, roles, age features, exact factorial initial equality, local support, special-token independence, parameter/MAC counts, and gradient reachability.",
+    "formal_run": "GPU-only and blocked until cpu_preflight.json says GO_FOR_FORMAL_GPU_RUN and the research director explicitly authorizes execution.",
+    "no_go_rule": "Any inability to express the official full ConvPass topology exactly at cached block 12, or any failed preflight invariant, is NO-GO; no approximation is allowed."
+  },
+  "dependencies": {
+    "literature_report_path": "reports/52_IDEA-081_ConvPass_AST_literature_and_preflight_basis.md",
+    "literature_report_sha256": "61231fc3d3650ebbd6e85ae37d3118b288cf620d03535f827b344b3f39493c1c",
+    "plan_path": "plan/IDEA-081_AST_tail_ConvPass_C1_factorial.md",
+    "plan_sha256": "8b35246e1075164f2dba1318d11af5eff5a70fe0529b6c2216970b85275afca7",
+    "runner_path": "scripts/run_meowagenet_idea081_ast_tail_convpass_c1_factorial.py",
+    "runner_sha256": "def87e10852506c3ac26d1133a232594f92768d9d81912d47de1d47227f97903",
+    "tests_path": "tests/test_idea081_ast_tail_convpass_c1_factorial.py",
+    "tests_sha256": "15a5a0398adfb790075df3d22832fa5f71de71491fac8a04aab28e8b432ebed5",
+    "cache_extractor_path": "scripts/extract_ast_prelast_tokens_idea078.py",
+    "cache_extractor_sha256": "ad9b596cd39f7502c8d4cfe7a63192cb71dbde10e3151cd808186f710ad8b698",
+    "idea076_protocol_path": "configs/protocol/meowagenet_idea076_C1_final_seed_confirmation_v1.json",
+    "idea076_protocol_sha256": "3fede90e88d3fbecc8f87996b53337244502a24eaffd05e8f30902c554dc47f6",
+    "idea079_protocol_path": "configs/protocol/meowagenet_idea079_spatial_patch_adapter_v1.json",
+    "idea079_protocol_sha256": "690b38a7e258a44435398151ce1a114be7ca58a253e6428c85fd0e57c6f53421",
+    "idea080_protocol_path": "configs/protocol/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1.json"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea081_ast_tail_convpass_c1_factorial_v1",
+    "cpu_preflight": "runs/meowagenet_idea081_ast_tail_convpass_c1_factorial_v1/cpu_preflight.json",
+    "summary": "runs/meowagenet_idea081_ast_tail_convpass_c1_factorial_v1/initial_evaluation_summary.json"
+  }
+}

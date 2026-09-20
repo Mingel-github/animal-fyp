@@ -1,0 +1,253 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea079-spatial-patch-adapter-v1",
+  "date_completed": "2026-09-18",
+  "status": "complete_full_gate_failed",
+  "scope": "Internal MeowAgeNet train/validation representation-module screen; not external validation or confirmatory evidence.",
+  "outer_test_accessed": false,
+  "completion": {
+    "expected_fits": 108,
+    "completed_fits": 108,
+    "pipelines": [
+      "A0_cached_tail",
+      "C1_pointwise_patch",
+      "S1_spatial_patch"
+    ],
+    "base_seeds": [8058, 2495, 2473],
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "seed_repeat_estimates": 9,
+    "split_cell_estimates": 12
+  },
+  "environment": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "cuda_runtime": "12.1",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4060 Ti",
+    "git_revision": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "representation": {
+    "cache_owner": "IDEA-078",
+    "cache_mode": "read_only_single_shared_cache_no_duplicate_extraction",
+    "cache_shape": [843, 146, 768],
+    "cache_dtype": "float32",
+    "cache_mmap": true,
+    "placement": "After AST block 11 and before frozen block 12.",
+    "patch_grid": [12, 12],
+    "patch_tokens_adapted": 144,
+    "special_tokens_bypassed": 2,
+    "bottleneck_width": 9,
+    "candidate_mixer": "3x3 depthwise convolution with padding 1",
+    "control_mixer": "dense 1x1 pointwise convolution",
+    "adapter_parameters": 14691,
+    "trainable_parameters": {
+      "A0_cached_tail": 99075,
+      "C1_pointwise_patch": 113766,
+      "S1_spatial_patch": 113766
+    },
+    "cache_vs_locked_A0": {
+      "mean_absolute_difference": 0.0000004022432733563619,
+      "maximum_absolute_difference": 0.000008463859558105469
+    },
+    "runtime_A0_reconstruction": {
+      "mean_absolute_difference": 0.0000005419548756435688,
+      "maximum_absolute_difference": 0.000009894371032714844
+    },
+    "initial_max_logit_difference_from_A0": {
+      "C1_pointwise_patch": 0.0,
+      "S1_spatial_patch": 0.0
+    }
+  },
+  "seed_repeat_equal_weight_means": {
+    "macro_f1": {
+      "A0_cached_tail": 0.7457608753724674,
+      "C1_pointwise_patch": 0.7357792588294658,
+      "S1_spatial_patch": 0.7389802985150344
+    },
+    "balanced_accuracy": {
+      "A0_cached_tail": 0.7824074074074073,
+      "C1_pointwise_patch": 0.7675925925925926,
+      "S1_spatial_patch": 0.7712962962962963
+    },
+    "animal_cross_entropy": {
+      "A0_cached_tail": 0.6787087560308307,
+      "C1_pointwise_patch": 0.6820609626475496,
+      "S1_spatial_patch": 0.6911629789304193
+    },
+    "animal_brier": {
+      "A0_cached_tail": 0.40303532974813006,
+      "C1_pointwise_patch": 0.4033573892363171,
+      "S1_spatial_patch": 0.41155323677232913
+    }
+  },
+  "comparisons": {
+    "S1_minus_A0_macro_f1": {
+      "mean": -0.006780576857433002,
+      "sample_sd": 0.02602096198304595,
+      "median": -0.003969334521324419,
+      "positive": 3,
+      "tied": 1,
+      "negative": 5,
+      "worst": -0.06160241874527572,
+      "best": 0.025251676926868694
+    },
+    "C1_minus_A0_macro_f1": {
+      "mean": -0.009981616543001694,
+      "sample_sd": 0.02418185655880124,
+      "median": -0.00270845712022183,
+      "positive": 2,
+      "tied": 2,
+      "negative": 5,
+      "worst": -0.05381123749544814,
+      "best": 0.020218161260642797
+    },
+    "S1_minus_C1_macro_f1": {
+      "mean": 0.0032010396855686927,
+      "sample_sd": 0.028434852813783246,
+      "median": 0.0,
+      "positive": 4,
+      "tied": 1,
+      "negative": 4,
+      "worst": -0.04533241315850001,
+      "best": 0.05381123749544814
+    }
+  },
+  "split_stability": {
+    "S1_minus_A0_nonnegative_split_cells": 6,
+    "S1_minus_A0_positive_split_cells": 3,
+    "S1_minus_A0_tied_split_cells": 3,
+    "S1_minus_A0_negative_split_cells": 6,
+    "S1_minus_A0_worst_split_cell": -0.09707602339181294,
+    "S1_minus_A0_best_split_cell": 0.08839607436098658
+  },
+  "per_base_seed": {
+    "S1_minus_A0_macro_f1": {
+      "8058": 0.00806381277712979,
+      "2495": -0.016995749415212685,
+      "2473": -0.011409793934216114
+    },
+    "S1_minus_A0_senior_recall": {
+      "8058": 0.016666666666666607,
+      "2495": -0.01666666666666672,
+      "2473": 0.0
+    }
+  },
+  "gate": {
+    "candidate_conditions": {
+      "mean_macro_f1_gain": false,
+      "positive_base_seed_means": false,
+      "positive_seed_repeats": false,
+      "nonnegative_split_cells": false,
+      "worst_split_cell": false,
+      "cross_entropy_nonworse": false,
+      "brier_nonworse": false,
+      "per_base_seed_senior_recall": true
+    },
+    "mechanism_conditions": {
+      "mean_S1_minus_C1_macro_f1": true,
+      "positive_S1_minus_C1_seed_repeats": false
+    },
+    "candidate_gate_passed": false,
+    "spatial_mechanism_gate_passed": false,
+    "full_gate_passed": false
+  },
+  "decision": {
+    "retain_S1_as_candidate": false,
+    "retain_C1_as_candidate": false,
+    "reference_representation": "A0_cached_tail",
+    "action": "Stop the fixed block-11-to-12 width-9 3x3 depthwise spatial patch-token adapter without post-outcome kernel, width, layer, gate, or seed tuning.",
+    "interpretation": "S1 modestly exceeded the matched pointwise control on mean Macro-F1, but the effect was not stable and both adapter paths underperformed A0; probability quality also worsened for S1."
+  },
+  "resource_summary": {
+    "A0_cached_tail": {
+      "fits": 36,
+      "best_epoch_mean": 12.86111111111111,
+      "best_epoch_range": [1, 28],
+      "stopped_epoch_mean": 20.86111111111111,
+      "train_seconds_total": 396.64993179994053,
+      "train_seconds_mean": 11.018053661109459,
+      "peak_vram_bytes_max": 488482304
+    },
+    "C1_pointwise_patch": {
+      "fits": 36,
+      "best_epoch_mean": 12.13888888888889,
+      "best_epoch_range": [1, 30],
+      "stopped_epoch_mean": 20.13888888888889,
+      "train_seconds_total": 469.8881201999902,
+      "train_seconds_mean": 13.052447783333061,
+      "peak_vram_bytes_max": 795315200
+    },
+    "S1_spatial_patch": {
+      "fits": 36,
+      "best_epoch_mean": 10.972222222222221,
+      "best_epoch_range": [1, 26],
+      "stopped_epoch_mean": 18.97222222222222,
+      "train_seconds_total": 435.2778389000159,
+      "train_seconds_mean": 12.091051080555998,
+      "peak_vram_bytes_max": 795315200
+    }
+  },
+  "audit": {
+    "resume_integrity_check": "PASS",
+    "resume_retrained_fits": 0,
+    "independent_audit_status": "PASS",
+    "independent_recalculation_matches_locked_summary": true,
+    "fit_summaries_checked": 108,
+    "prediction_files_checked": 216,
+    "call_prediction_rows_checked": 12015,
+    "animal_prediction_rows_checked": 1836,
+    "maximum_call_to_animal_reaggregation_difference": 1.1102230246251565e-16,
+    "maximum_checkpoint_reload_probability_difference": 0.0
+  },
+  "artifacts": {
+    "plan": {
+      "path": "plan/IDEA-079_AST_spatial_patch_token_adapter.md",
+      "sha256": "1703c235fb581b502037073645c36878a798e19417047286024e949033a2ac2c"
+    },
+    "protocol": {
+      "path": "configs/protocol/meowagenet_idea079_spatial_patch_adapter_v1.json",
+      "sha256": "690b38a7e258a44435398151ce1a114be7ca58a253e6428c85fd0e57c6f53421"
+    },
+    "runner": {
+      "path": "scripts/run_meowagenet_idea079_spatial_patch_adapter.py",
+      "sha256": "0b3623c7a0ab7021e36659bdacfd5d8aed351a394dc6c8a6035e48242a7d1aa0"
+    },
+    "verifier": {
+      "path": "scripts/verify_idea079_spatial_patch_adapter_results.py",
+      "sha256": "3f5f61e4237db1aef2f497216e1adc96eb01d8d14d972bbbc9c2455a98cbdf88"
+    },
+    "tests": {
+      "path": "tests/test_idea079_spatial_patch_adapter.py",
+      "sha256": "78ce2bfea1ca06b4d13d1cccb44b510151b4169d8f96ae84e4a79ed955669534"
+    },
+    "structural_preflight": {
+      "path": "runs/meowagenet_idea079_spatial_patch_adapter_v1/structural_preflight.json",
+      "sha256": "b42817fe9521fe128b5b125623df2a9c1813c35854ddf6be4146eebc7646acb8"
+    },
+    "cache_preflight": {
+      "path": "runs/meowagenet_idea079_spatial_patch_adapter_v1/cache_preflight.json",
+      "sha256": "c6c00999a3fd18656288f162bb338f43bde358a3247db6104294fc12e6a87aa5"
+    },
+    "run_manifest": {
+      "path": "runs/meowagenet_idea079_spatial_patch_adapter_v1/run_manifest.json",
+      "sha256": "5c6724b77153ce1993c177134c7a2b105fa40666ac8e1d19fed172ddb718072d"
+    },
+    "summary": {
+      "path": "runs/meowagenet_idea079_spatial_patch_adapter_v1/initial_evaluation_summary.json",
+      "sha256": "f1453f7ff560fb1220bd4df56438fde1993f71bdbe33b6f3c7429637fd9efd10"
+    },
+    "run_summary": {
+      "path": "runs/meowagenet_idea079_spatial_patch_adapter_v1/run_summary.json",
+      "sha256": "75920c7ef855a50967d31447376a975e206a8d283b1fccacfe121c200cab9db5"
+    },
+    "independent_audit": {
+      "path": "runs/meowagenet_idea079_spatial_patch_adapter_v1/independent_audit.json",
+      "sha256": "e8adfdfda5f017269d67eb7fe82dfb5eaaf7eb68fe1eec29a73c2ecc3aaa576f"
+    },
+    "report": {
+      "path": "reports/49_IDEA-079_AST_spatial_patch_adapter_results.md",
+      "sha256": "693db13ff2bcbbd4dece10cf609f72d70b8c011ed19c6c6a70108d51329dccb2"
+    }
+  }
+}

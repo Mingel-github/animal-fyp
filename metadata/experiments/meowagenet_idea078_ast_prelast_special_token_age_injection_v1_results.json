@@ -1,0 +1,342 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea078-ast-prelast-special-token-age-injection-v1",
+  "date_completed": "2026-09-18",
+  "status": "complete_gate_failed",
+  "scope": "Internal MeowAgeNet train/validation frozen-AST representation-module screen; not external validation or confirmatory evidence.",
+  "outer_test_accessed": false,
+  "completion": {
+    "expected_fits": 108,
+    "completed_fits": 108,
+    "pipelines": [
+      "A0_token_reconstruction",
+      "P1_postpool_age_injection",
+      "T1_prelast_special_token_injection"
+    ],
+    "base_seeds": [9763, 3230, 9726],
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "seed_repeat_estimates": 9,
+    "split_cell_estimates": 12
+  },
+  "environment": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "cuda_runtime": "12.1",
+    "training_device": "cuda",
+    "independent_verifier_device": "cpu_only",
+    "gpu": "NVIDIA GeForce RTX 4060 Ti",
+    "git_revision": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "model": {
+    "age_formula": "u=GELU(W1*a+b1); d=W2*u+b2; W2 and b2 initialized to zero",
+    "age_features": 20,
+    "age_bottleneck": 10,
+    "age_output": 768,
+    "age_branch_parameters": 8658,
+    "special_token_indices": [0, 1],
+    "patch_tokens_modified": false,
+    "frozen_tail_parameters": 7089408,
+    "trainable_parameters": {
+      "A0_token_reconstruction": 99075,
+      "P1_postpool_age_injection": 107733,
+      "T1_prelast_special_token_injection": 107733
+    },
+    "P1_role": "Equal-capacity direct post-pool age-injection control separating added branch capacity from pre-last-block token interaction.",
+    "initialization_fairness": "All pipelines share identical initial head tensors; P1 and T1 share identical initial age-branch tensors; the zero output projection makes all initial logits and loss exactly equal."
+  },
+  "cache": {
+    "owner": "IDEA-078",
+    "read_only_consumers": ["IDEA-078", "IDEA-079"],
+    "shape": [843, 146, 768],
+    "dtype": "float32",
+    "storage": "npy_memory_mappable",
+    "file_bytes": 378095744,
+    "raw_float_payload_bytes": 378095616,
+    "contains_labels": false,
+    "contains_roles": false,
+    "contains_cat_ids": false,
+    "index_allow_pickle": false,
+    "gpu_full_reconstruction": {
+      "mean_absolute_error": 0.0000004022432733563619,
+      "maximum_absolute_error": 0.000008463859558105469
+    },
+    "independent_cpu_reconstruction": {
+      "mean_absolute_error": 0.000000541924578101316,
+      "maximum_absolute_error": 0.000009894371032714844
+    },
+    "locked_tolerance": {
+      "mean_absolute_maximum": 0.000002,
+      "absolute_maximum": 0.00002
+    },
+    "recovery_note": "After complete extraction and reconstruction verification, an open Windows memory map prevented atomic rename. The process exited, exact temporary token/index/source mapping artifacts were independently verified, then renamed without recomputation or overwrite."
+  },
+  "seed_repeat_equal_weight_means": {
+    "macro_f1": {
+      "A0_token_reconstruction": 0.7408654327723742,
+      "P1_postpool_age_injection": 0.7311103440486568,
+      "T1_prelast_special_token_injection": 0.7207566825862992
+    },
+    "balanced_accuracy": {
+      "A0_token_reconstruction": 0.7712962962962963,
+      "P1_postpool_age_injection": 0.7731481481481481,
+      "T1_prelast_special_token_injection": 0.762962962962963
+    },
+    "animal_cross_entropy": {
+      "A0_token_reconstruction": 0.6669665826656932,
+      "P1_postpool_age_injection": 0.7203433656055392,
+      "T1_prelast_special_token_injection": 0.7187376994550319
+    },
+    "animal_brier": {
+      "A0_token_reconstruction": 0.40299241385251666,
+      "P1_postpool_age_injection": 0.4208184279536072,
+      "T1_prelast_special_token_injection": 0.42299995960165804
+    }
+  },
+  "comparisons": {
+    "T1_minus_A0_macro_f1": {
+      "mean": -0.020108750186075077,
+      "sample_sd": 0.058492965477370505,
+      "median": 0.001701318712835742,
+      "positive": 5,
+      "tied": 0,
+      "negative": 4,
+      "worst": -0.15893217893217892,
+      "best": 0.03671736418672267
+    },
+    "P1_minus_A0_macro_f1": {
+      "mean": -0.00975508872371749,
+      "sample_sd": 0.04024220580111439,
+      "median": -0.010294411151204219,
+      "positive": 3,
+      "tied": 0,
+      "negative": 6,
+      "worst": -0.09451475176965374,
+      "best": 0.04050206817857649
+    },
+    "T1_minus_P1_macro_f1": {
+      "mean": -0.010353661462357586,
+      "sample_sd": 0.03921502729684861,
+      "median": -0.0037847039918538217,
+      "positive": 3,
+      "tied": 0,
+      "negative": 6,
+      "worst": -0.0709838026270061,
+      "best": 0.055084934558618626
+    }
+  },
+  "per_base_seed": {
+    "T1_minus_A0_macro_f1": {
+      "9763": -0.04894050116473233,
+      "3230": -0.013846894995563205,
+      "9726": 0.002461145602070299
+    },
+    "P1_minus_A0_macro_f1": {
+      "9763": -0.02251911631450761,
+      "3230": 0.015791294096619574,
+      "9726": -0.02253744395326444
+    },
+    "T1_minus_P1_macro_f1": {
+      "9763": -0.026421384850224716,
+      "3230": -0.02963818909218278,
+      "9726": 0.024998589555334738
+    },
+    "T1_minus_A0_senior_recall": {
+      "9763": 0.08333333333333326,
+      "3230": 0.0,
+      "9726": -0.01666666666666672
+    }
+  },
+  "split_stability": {
+    "T1_minus_A0_nonnegative_split_cells": 6,
+    "T1_minus_A0_positive_split_cells": 6,
+    "T1_minus_A0_tied_split_cells": 0,
+    "T1_minus_A0_negative_split_cells": 6,
+    "T1_minus_A0_worst_split_cell": -0.14643535476868816,
+    "T1_minus_A0_best_split_cell": 0.10585259444908572,
+    "T1_minus_P1_nonnegative_split_cells": 7,
+    "T1_minus_P1_positive_split_cells": 6,
+    "T1_minus_P1_tied_split_cells": 1,
+    "T1_minus_P1_negative_split_cells": 5,
+    "T1_minus_P1_worst_split_cell": -0.10395668238805504,
+    "T1_minus_P1_best_split_cell": 0.0545986177565125
+  },
+  "pooled_validation_descriptive": {
+    "warning": "The same 111 animals recur across seeds and repeats; pooled occurrences are descriptive and not independent samples.",
+    "occurrences": 612,
+    "A0_token_reconstruction": {
+      "macro_f1": 0.742389096122356,
+      "balanced_accuracy": 0.7712962962962963,
+      "cross_entropy": 0.6669665826656932,
+      "brier": 0.4029924138525166,
+      "senior_recall": 0.6611111111111111
+    },
+    "P1_postpool_age_injection": {
+      "macro_f1": 0.7309968029308586,
+      "balanced_accuracy": 0.7731481481481483,
+      "cross_entropy": 0.7203433656055392,
+      "brier": 0.42081842795360724,
+      "senior_recall": 0.7111111111111111
+    },
+    "T1_prelast_special_token_injection": {
+      "macro_f1": 0.7191794622241678,
+      "balanced_accuracy": 0.762962962962963,
+      "cross_entropy": 0.7187376994550317,
+      "brier": 0.42299995960165804,
+      "senior_recall": 0.6833333333333333
+    }
+  },
+  "gate": {
+    "main": {
+      "contrast": "T1_minus_A0",
+      "conditions": {
+        "mean_macro_f1_gain": false,
+        "positive_base_seed_means": false,
+        "positive_seed_repeats": false,
+        "nonnegative_split_cells": false,
+        "worst_split_cell": false,
+        "cross_entropy_nonworse": false,
+        "brier_nonworse": false,
+        "per_base_seed_senior_recall": true
+      },
+      "passed": false
+    },
+    "mechanism": {
+      "contrast": "T1_minus_P1",
+      "conditions": {
+        "mean_macro_f1_strictly_positive": false,
+        "positive_base_seed_means": false,
+        "positive_seed_repeats": false,
+        "nonnegative_split_cells": false,
+        "worst_split_cell": false,
+        "cross_entropy_nonworse": true,
+        "brier_nonworse": false
+      },
+      "raw_passed": false,
+      "interpretable": false,
+      "passed": false
+    },
+    "overall_passed": false
+  },
+  "interpretation": {
+    "evidence": "Both age-injection pipelines underperformed A0, and T1 additionally underperformed its equal-capacity P1 control. Routing the residual through a frozen final transformer block perturbs special-token attention/FFN trajectories without allowing the pretrained tail to adapt; the fixed nonlinear tail can also rotate or attenuate the age direction, whereas P1 preserves the locked pooled representation and adds a direct path.",
+    "boundary": "This is an evidence-based interpretation of the locked controls, not standalone causal proof. Seed 9726 favored T1 slightly and T1 cross-entropy was slightly better than P1, so the result indicates instability and no robust gain rather than categorical impossibility of all internal conditioning."
+  },
+  "implementation_corrections_before_results": [
+    {
+      "issue": "Initialization/gradient audit probe tensors remained on CPU while the frozen tail was on CUDA.",
+      "correction": "Move the probes and corresponding audit models to the tail device.",
+      "completed_fits_before_correction": 0,
+      "scientific_contract_changed": false
+    },
+    {
+      "issue": "Call-prediction output used label while the frozen aggregator requires true_label.",
+      "correction": "Rename the single output key to true_label.",
+      "completed_fits_before_correction": 0,
+      "scientific_contract_changed": false
+    }
+  ],
+  "decision": {
+    "retain_T1_as_candidate": false,
+    "mechanism_claim_supported": false,
+    "reference_representation": "A0_token_reconstruction / frozen AST final representation",
+    "idea076_status_changed": false,
+    "shared_cache_valid_for_idea079": true,
+    "post_outcome_tuning_authorized": false,
+    "action": "Stop the preregistered pre-last special-token age-injection formulation without post-outcome width, layer, token-scope, seed, formula, or gate tuning."
+  },
+  "audit": {
+    "resume_completed": true,
+    "resume_summary_semantically_stable": true,
+    "resume_summary_byte_stable": true,
+    "resume_run_summary_semantically_stable": true,
+    "resume_run_summary_byte_stable": true,
+    "independent_audit_status": "PASS",
+    "independent_verifier_cpu_only": true,
+    "independent_recalculation_matches_locked_summary": true,
+    "fit_summaries_checked": 108,
+    "prediction_files_checked": 216,
+    "call_prediction_rows_checked": 12015,
+    "validation_cells_checked": 36,
+    "paired_epoch_batch_audits_checked": 546,
+    "initialization_audits_checked": 108,
+    "checkpoint_reload_audits_checked": 108,
+    "maximum_checkpoint_reload_probability_difference": 0.0,
+    "artifact_inventory_entries": 327,
+    "artifact_inventory_sha256": "e8230f25febcc6b5ec06948661d332e7feffe726e6acc38ac03f857e47d275d8"
+  },
+  "artifacts": {
+    "plan": {
+      "path": "plan/IDEA-078_AST_prelast_special_token_age_injection.md",
+      "sha256": "e53e2a77d66ffcdbf90a4bd4322bc7e35954f5d14e8b2213326844c7c265998b"
+    },
+    "protocol": {
+      "path": "configs/protocol/meowagenet_idea078_ast_prelast_special_token_age_injection_v1.json",
+      "sha256": "54080718a798655e3ebd3bd7a9bd0c346a554154f1ec8001ed15dbfe6122e7f8"
+    },
+    "cache_schema": {
+      "path": "metadata/experiments/ast_prelast_token_cache_idea078_v1_schema.json",
+      "sha256": "5183b9d5e7e689a0337e0e6b0cfb2d5cf6dc7c6402af39ccafdbc11964dc0f3b"
+    },
+    "cache_extractor": {
+      "path": "scripts/extract_ast_prelast_tokens_idea078.py",
+      "sha256": "ad9b596cd39f7502c8d4cfe7a63192cb71dbde10e3151cd808186f710ad8b698"
+    },
+    "runner": {
+      "path": "scripts/run_meowagenet_idea078_ast_prelast_special_token_age_injection.py",
+      "sha256": "36e75b63e37a485dec05b1b2def993f137aa3dafb4857c222a0f41c80a85f399"
+    },
+    "tests": {
+      "path": "tests/test_idea078_ast_prelast_special_token_age_injection.py",
+      "sha256": "e77575fcb425d519627ef5432f19790b608bfe0fad247a797932188d52dd11cd"
+    },
+    "cache_verifier": {
+      "path": "scripts/verify_idea078_ast_prelast_token_cache.py",
+      "sha256": "f8e757fa938b0602fdc45586e212376d4a2c54c8093445db2e095b15f705e0a7"
+    },
+    "result_verifier": {
+      "path": "scripts/verify_idea078_ast_prelast_special_token_results.py",
+      "sha256": "359fb776bf3cbf47b6f10981e1421e5cc5bd5a4fb933b0f15a69f4e767517360"
+    },
+    "cache_manifest": {
+      "path": "runs/ast_prelast_tokens_idea078_v1/cache_manifest.json",
+      "sha256": "af14eb7b8a2f9c362f37484d06af4381fe89f1a497a89c62f1142ab49baf8e94"
+    },
+    "cache_token": {
+      "path": "runs/ast_prelast_tokens_idea078_v1/prelast_tokens.float32.npy",
+      "sha256": "9fb7b32973560d31ad1906c07349e745054683d5a6a3486e3e33182fc6947ca9"
+    },
+    "cache_index": {
+      "path": "runs/ast_prelast_tokens_idea078_v1/prelast_token_index.npz",
+      "sha256": "aa46820aa15a0812ef4437c80c29f28fd515f0228a9d0fd10bac266b734b9bb2"
+    },
+    "run_manifest": {
+      "path": "runs/meowagenet_idea078_ast_prelast_special_token_age_injection_v1/run_manifest.json",
+      "sha256": "b6dd5095beb142f537d69a5e4475058f1224214e94c49f3752e38a384fe7c3c5"
+    },
+    "summary": {
+      "path": "runs/meowagenet_idea078_ast_prelast_special_token_age_injection_v1/initial_evaluation_summary.json",
+      "sha256": "bcbe31dc438fcb6e8b88dc6067fd4cf03bfc19dfb52479cd876108be29cdd9c0"
+    },
+    "run_summary": {
+      "path": "runs/meowagenet_idea078_ast_prelast_special_token_age_injection_v1/run_summary.json",
+      "sha256": "da9b38c86016a81172aeb81f24354d06888dbc7873945f3886ad053ac7a1a007"
+    },
+    "independent_audit": {
+      "path": "runs/meowagenet_idea078_ast_prelast_special_token_age_injection_v1/independent_audit.json",
+      "sha256": "cdecafc4225415a23b2815ce7713602e7d409c6d63731e66a2f63cf0f93b7b27"
+    },
+    "preflight_report": {
+      "path": "reports/49_IDEA-078_AST_prelast_token_injection_preflight.md",
+      "sha256": "48f9669772c9802d2111b7b382529f28e4c5ba09dc9e95b0b631224584606f5d"
+    },
+    "preflight_metadata": {
+      "path": "metadata/experiments/meowagenet_idea078_ast_prelast_token_injection_preflight.json",
+      "sha256": "bc70c64b72216c6fb6f7df8e913d02dcd9d9e7a6ab39643df308a1686449132d"
+    },
+    "report": {
+      "path": "reports/50_IDEA-078_AST_prelast_special_token_age_injection_results.md",
+      "sha256": "953ef3f338af16ba12348fa276032bfd11b3eefe87c57aac580b2efd9317f00f"
+    }
+  }
+}

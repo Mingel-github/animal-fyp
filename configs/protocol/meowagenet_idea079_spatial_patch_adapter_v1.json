@@ -1,0 +1,270 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea079-spatial-patch-adapter-v1",
+  "date": "2026-09-18",
+  "status": "locked_before_initial_evaluation",
+  "objective": "Test whether a zero-initialized spatial patch-token adapter inside AST, immediately between encoder blocks 11 and 12, improves MeowAgeNet age classification over the exact cached-tail A0 path and over a parameter-, initialization-, and compute-matched pointwise patch control.",
+  "relationship": {
+    "idea065_review": "IDEA-065 wrapped selected encoder block outputs with all-token x + up(GELU(down(x))) bottleneck adapters. Its one-based placements included (10,12) and (11,12), so a plain final-block-output token MLP before final LayerNorm would repeat an already executed module family.",
+    "idea065_result": "Nine deterministic seed-repeat adapter-minus-head Macro-F1 deltas had mean -0.00573963 (5 positive, 4 negative; range -0.0822974 to +0.0320305).",
+    "nonduplication": {
+      "placement": "Fixed once between block 11 and block 12; no probe and no split-specific layer choice.",
+      "token_scope": "Only 144 patch tokens are adapted; CLS and distillation tokens bypass the injection point exactly.",
+      "mechanism": "S1 uses a 3x3 depthwise convolution on the true 12x12 frequency-time patch grid; C1 is an exactly matched dense 1x1 pointwise control.",
+      "budget": "One width-9 adapter with 14,691 parameters instead of two width-32 adapters with 99,904 parameters.",
+      "compute": "A shared label-free block-11 token cache is consumed read-only; only the adapter, frozen block 12, final LayerNorm, pooling, and head execute online."
+    },
+    "idea077_frozen": true,
+    "idea078_shared_cache_only": true,
+    "scope": "Internal new-seed representation-module screen on the same 792 calls, 111 cats, and formal-v2 nested roles; not external or confirmatory evidence.",
+    "post_outcome_layer_selection": false,
+    "post_outcome_kernel_selection": false,
+    "post_outcome_width_selection": false,
+    "post_outcome_seed_selection": false,
+    "outer_test_accessed": false
+  },
+  "literature_review": {
+    "validated_local_pdfs": [
+      {
+        "path": "C:/Users/zhu/Desktop/essay_article/Audio/02_Core_Audio_Models/2021_Gong_AST_Audio_Spectrogram_Transformer.pdf",
+        "sha256": "c237e981755e9ba5047e7290ffcb7d38d8292e166730ae3cd180b7833f184303",
+        "use": "AST 12-layer, 768-dimensional encoder, patch-token geometry, and special-token representation."
+      },
+      {
+        "path": "C:/Users/zhu/Desktop/essay_article/Audio/03_Training_And_Adaptation/Parameter_Efficient_Tuning/2024_Cappellazzo_PETL_AST.pdf",
+        "sha256": "9ff59f6b4569b2202a320048a561884032fa86f4175458032b8935ec1d0b108d",
+        "use": "Pre-LN AST adapter placements, limitations of simple linear bottlenecks, and local convolutional adapter motivation."
+      },
+      {
+        "path": "C:/Users/zhu/Desktop/essay_article/Audio/03_Training_And_Adaptation/Parameter_Efficient_Tuning/2024_Cappellazzo_Soft_Mixture_of_Adapters_AST.pdf",
+        "sha256": "345f0542e26f61da92dbb70a70632d8e6c9310a48834f70354a54366b4b9ba3b",
+        "use": "Distinguishes standard adapters, convolutional Convpass-style modules, and parallel adapter families inside AST."
+      }
+    ],
+    "selection_limit": "The PDFs motivate a fixed local spatial module but are not used to tune layer, width, kernel, seeds, or gates on MeowAgeNet outcomes."
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "segments": 843,
+    "multi_segment_calls": 42,
+    "segment_count_range": [1, 6],
+    "independence_unit": "cat_id",
+    "locked_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "ast_embedding_audit_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_embedding_audit.json",
+    "ast_embedding_audit_sha256": "47d1e632f1ec091e14a40d169f54d2b90b19b27e896247923c08b944f662e41d",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "audio_manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "audio_manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "audio_checksums_path": "metadata/datasets/meowagenet/checksums.sha256",
+    "audio_checksums_sha256": "7c1b51ce1a18b1253d3099e9ce3ea034385cd1851ed121a1a5b82a50a20e6a12",
+    "audio_source_commit": "3d02295bef1500d2b2500a124596f77010181391",
+    "audio_source_tree_git_sha1": "6a10ede379615a52441b0b80e9f4783f7b182ebf",
+    "segment_seconds": 1.28,
+    "segment_hop_seconds": 0.64,
+    "max_length_frames": 128,
+    "num_mel_bins": 128,
+    "frequency_stride": 10,
+    "time_stride": 10
+  },
+  "shared_cache": {
+    "owner": "IDEA-078",
+    "reuse_mode": "read_only_single_shared_cache_no_duplicate_extraction",
+    "root": "runs/ast_prelast_tokens_idea078_v1",
+    "cache_manifest_path": "runs/ast_prelast_tokens_idea078_v1/cache_manifest.json",
+    "cache_manifest_sha256": "af14eb7b8a2f9c362f37484d06af4381fe89f1a497a89c62f1142ab49baf8e94",
+    "resolved": {
+      "artifact": "idea078-label-free-ast-prelast-token-cache-v1",
+      "owner_protocol_id": "meowagenet-idea078-ast-prelast-special-token-age-injection-v1",
+      "owner_protocol_path": "configs/protocol/meowagenet_idea078_ast_prelast_special_token_age_injection_v1.json",
+      "owner_protocol_sha256": "d2d2397ab9fed1a1b6302bc248ff2a43f56f511c592d9b28097d79b63a364e13",
+      "cache_schema_path": "metadata/experiments/ast_prelast_token_cache_idea078_v1_schema.json",
+      "cache_schema_sha256": "5183b9d5e7e689a0337e0e6b0cfb2d5cf6dc7c6402af39ccafdbc11964dc0f3b",
+      "tokens_path": "runs/ast_prelast_tokens_idea078_v1/prelast_tokens.float32.npy",
+      "tokens_sha256": "9fb7b32973560d31ad1906c07349e745054683d5a6a3486e3e33182fc6947ca9",
+      "tokens_format": "npy_float32_mmap",
+      "index_path": "runs/ast_prelast_tokens_idea078_v1/prelast_token_index.npz",
+      "index_sha256": "aa46820aa15a0812ef4437c80c29f28fd515f0228a9d0fd10bac266b734b9bb2",
+      "index_keys": {
+        "segment_call_indices": "segment_call_indices",
+        "segment_counts": "segment_counts",
+        "call_ids": "call_ids",
+        "source_paths": "source_paths",
+        "prelast_block_output_one_based": "prelast_block_output_one_based",
+        "last_block_input_one_based": "last_block_input_one_based",
+        "special_token_indices": "special_token_indices",
+        "patch_token_start": "patch_token_start"
+      },
+      "extractor_path": "scripts/extract_ast_prelast_tokens_idea078.py",
+      "extractor_sha256": "ad9b596cd39f7502c8d4cfe7a63192cb71dbde10e3151cd808186f710ad8b698",
+      "read_only_verifier_path": "scripts/verify_idea078_ast_prelast_token_cache.py",
+      "read_only_verifier_sha256": "f8e757fa938b0602fdc45586e212376d4a2c54c8093445db2e095b15f705e0a7",
+      "reconstruction_vs_locked_A0": {
+        "mean_absolute_difference": 0.0000004022432733563619,
+        "maximum_absolute_difference": 0.000008463859558105469
+      }
+    },
+    "pending_amendment_rule": "After IDEA-078 publishes its final schema, amend only cache_manifest_sha256 and resolved paths, hashes, index-key mapping, extractor dependency, and manifest-reported A0 reconstruction values. No method, seed, gate, training, or tolerance field may change in that amendment.",
+    "required_tensor_shape": [843, 146, 768],
+    "required_tensor_dtype": "float32",
+    "required_token_storage": "mmap-compatible .npy",
+    "raw_token_bytes": 378095616,
+    "raw_token_mib": 360.58,
+    "label_free_requirement": "The cache index must not store label or cat fields; cat IDs and labels are loaded only from the locked fbank/roles after cache extraction.",
+    "required_index_invariants": [
+      "segment_call_indices equals the locked fbank array elementwise",
+      "segment_counts equals the locked fbank array elementwise and sums to 843",
+      "call_ids equals the locked fbank array elementwise",
+      "source_paths equals the locked fbank array elementwise",
+      "every one of 792 calls has between one and six segments",
+      "exactly 42 calls have more than one segment"
+    ],
+    "reconstruction_path": "block-11 cache -> frozen block 12 -> final LayerNorm -> mean(CLS,distillation) -> segment-to-call mean",
+    "reconstruction_batch_size": 32,
+    "reconstruction_tolerance": {
+      "mean_absolute_maximum": 0.000002,
+      "absolute_maximum": 0.00002,
+      "maximum_initial_logit_difference": 0.0005
+    }
+  },
+  "adapter": {
+    "placement_after_block_one_based": 11,
+    "placement_before_block_one_based": 12,
+    "patch_grid": [12, 12],
+    "patch_flatten_order": "frequency-major then time-minor, matching HF Conv2d flatten(2).transpose(1,2)",
+    "patch_tokens": 144,
+    "special_tokens_bypassed": 2,
+    "hidden_size": 768,
+    "bottleneck_width": 9,
+    "normalization": "LayerNorm(768, elementwise_affine=false) on patch tokens only",
+    "down": "Linear(768,9,bias=true)",
+    "activation_before_mixer": "GELU",
+    "pointwise_control_mixer": "Conv2d(9,9,kernel=1,bias=true)",
+    "spatial_candidate_mixer": "Conv2d(9,9,kernel=3,padding=1,groups=9,bias=true)",
+    "activation_after_mixer": "GELU",
+    "up": "Linear(9,768,bias=true)",
+    "up_initialization": "weight=0 and bias=0",
+    "parameters": 14691,
+    "mixer_parameters_each": 90,
+    "mac_per_segment_each": 2002320,
+    "initialization_fairness": "C1 and S1 are constructed under the same seed. Their down, flattened mixer, mixer bias, and zero up tensors are elementwise equal at initialization; only mixer shape/connectivity differs.",
+    "required_initial_effect": "C1 and S1 must be exactly equal to A0 in all 146 injected tokens, segment pooler outputs, call embeddings, logits, and cross-entropy before optimization.",
+    "gradient_schedule": "At zero up, up receives gradient while down and mixer gradients are exactly zero; after a fixed nonzero-up probe, down and mixer gradients must be nonzero."
+  },
+  "model": {
+    "pipelines": [
+      "A0_cached_tail",
+      "C1_pointwise_patch",
+      "S1_spatial_patch"
+    ],
+    "pipeline_definitions": {
+      "A0_cached_tail": "Shared block-11 tokens pass directly through frozen block 12, final LayerNorm, special-token mean, segment-to-call mean, and the common head.",
+      "C1_pointwise_patch": "Patch-only width-9 adapter with a dense 9x9 1x1 pointwise mixer; matched mechanism control.",
+      "S1_spatial_patch": "Patch-only width-9 adapter with a 3x3 depthwise mixer on the fixed 12x12 patch grid; primary candidate."
+    },
+    "trainable_parameters": {
+      "A0_cached_tail": 99075,
+      "C1_pointwise_patch": 113766,
+      "S1_spatial_patch": 113766
+    },
+    "base_seeds": [8058, 2495, 2473],
+    "seed_derivation_text": "IDEA-079-AST-spatial-patch-token-adapter-v1",
+    "seed_derivation_encoding": "UTF-8",
+    "seed_derivation_sha256": "3e1e871aca8596afd5c699a972cdc8e6ab121d2957e3407969181bd4efd40a66",
+    "seed_derivation_rule": "Read successive non-overlapping digest uint32 values in big-endian order, reduce modulo 10000, and skip any base/full-seed collision with IDEA-065 through IDEA-078. The first three values 8058, 2495, and 2473 were eligible.",
+    "excluded_meow_base_seeds_IDEA065_through_IDEA078": [
+      17, 151, 307, 509, 2326, 3550, 4426, 4412, 5703, 3120,
+      6530, 3562, 3846, 4025, 5118, 9821, 6346, 7243, 9617, 8807,
+      268, 6915, 5994, 9330, 4322, 6917, 1398, 5934, 9763, 3230, 9726
+    ],
+    "excluded_dog_base_seeds_IDEA075": [8075, 4270, 1872],
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 36,
+    "primary_A0_S1_fits": 72,
+    "total_fits": 108
+  },
+  "fixed_training": {
+    "head": "training-role locked A0 embedding standardization, then 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "head_learning_rate": 0.006,
+    "adapter_learning_rate": 0.001,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "Globally class-balanced call cross-entropy; each complete-cat batch is divided by its call-weight sum.",
+    "checkpoint_selection": "Minimum unweighted inner-validation animal cross-entropy with a 1e-6 improvement threshold.",
+    "post_build_seed_offset": 1000000,
+    "paired_initialization": "The common head is built first under the same full seed for all pipelines; C1/S1 adapters receive matched random draws; training RNG is reset after construction."
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true
+  },
+  "aggregation": {
+    "primary_metric_unit": "Nine base-seed-by-repeat estimates per pipeline; each pools the four validation-fold animal records and is then equally weighted.",
+    "split_cell_unit": "Twelve repeat-by-fold cells; each averages the three base-seed paired deltas.",
+    "descriptive_only": "The 36 fold comparisons and repeated validation animal occurrences are descriptive and are not independent samples.",
+    "pointwise_role": "C1 is the preregistered mechanism control. It cannot be dropped, replaced, or used to change the A0-versus-S1 candidate gate."
+  },
+  "gate": {
+    "all_candidate_conditions_required": true,
+    "minimum_mean_seed_repeat_S1_minus_A0": 0.005,
+    "minimum_positive_base_seeds": 2,
+    "minimum_positive_seed_repeats": 6,
+    "minimum_nonnegative_split_cells": 8,
+    "minimum_worst_split_cell_delta": -0.03,
+    "mean_cross_entropy_nonworse": true,
+    "mean_brier_nonworse": true,
+    "minimum_per_base_seed_senior_recall_delta": -0.02,
+    "all_spatial_mechanism_conditions_required": true,
+    "minimum_mean_seed_repeat_S1_minus_C1": 0.002,
+    "minimum_positive_S1_minus_C1_seed_repeats": 5,
+    "full_pass_action": "Retain S1 for later independent confirmation and permit only the bounded claim that local 2D adjacency outperformed the exactly matched pointwise control in this screen.",
+    "candidate_only_action": "If S1 beats A0 but not C1, report only a possible generic internal patch-adapter capacity effect, make no spatial claim, and stop this fixed formulation.",
+    "fail_action": "Report every result and stop IDEA-079 without selecting another kernel, width, layer, seed, or post-outcome variant."
+  },
+  "execution": {
+    "current_allowed_stage": "CPU structural-preflight only",
+    "current_gpu_allowed": false,
+    "structural_preflight": "Does not read the unresolved shared cache; validates source provenance, real frozen block-12 CPU forward, geometry, parameter counts, exact initial equality, matched control initialization, and gradient reachability.",
+    "cache_preflight": "Hard-blocked until IDEA-078 manifest/hash resolution; then validates mmap tensor/index/source/role/reconstruction invariants read-only.",
+    "formal_run": "Hard-blocked until cache preflight passes and GPU permission is given; the runner rejects CPU formal execution."
+  },
+  "dependencies": {
+    "idea_path": "plan/IDEA-079_AST_spatial_patch_token_adapter.md",
+    "idea_sha256": "1703c235fb581b502037073645c36878a798e19417047286024e949033a2ac2c",
+    "runner_path": "scripts/run_meowagenet_idea079_spatial_patch_adapter.py",
+    "runner_sha256": "0b3623c7a0ab7021e36659bdacfd5d8aed351a394dc6c8a6035e48242a7d1aa0",
+    "idea065_base_runner_path": "scripts/run_idea019_peft_placement.py",
+    "idea065_base_runner_sha256": "24ae56543a10108e9bd0728cf4e7e532fcd87073c996b1dc34881f9cab141402",
+    "idea065_replication_runner_path": "scripts/run_meowagenet_idea065_adapter_seed_replication.py",
+    "idea065_replication_runner_sha256": "8bee8ed9bc08a33f1ada242de74d8c7dc882c495afe415113bf855fe65a4aa92",
+    "idea065_report_path": "reports/35_AST_adapter_deterministic_replication_results.md",
+    "idea065_report_sha256": "00a518abd4d0b76e4a93567e9ec885b0610fe4efdd0982cd619f575a08e64f20"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea079_spatial_patch_adapter_v1",
+    "structural_preflight": "structural_preflight.json",
+    "cache_preflight": "cache_preflight.json",
+    "summary": "initial_evaluation_summary.json",
+    "result_report": "reports/49_IDEA-079_AST_spatial_patch_adapter_results.md",
+    "result_metadata": "metadata/experiments/meowagenet_idea079_spatial_patch_adapter_v1_results.json"
+  }
+}

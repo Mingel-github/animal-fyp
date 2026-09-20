@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea070-bounded-age-modulation-v1",
+  "date": "2026-09-17",
+  "status": "locked_before_initial_evaluation",
+  "objective": "Test whether parameter-matched bounded age-conditioned channel modulation stabilizes the positive but split-sensitive additive age residual.",
+  "relationship": {
+    "known_results": "IDEA-068 and IDEA-069 A1 results are known; A1 has positive average gains but failed split-stability and pooled-cross-entropy gates.",
+    "scope": "Exploratory inner-only method-module evaluation, not independent-dataset confirmation.",
+    "post_outcome_feature_tuning": false,
+    "post_outcome_seed_selection": false
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "independence_unit": "cat_id",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "feature_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/extraction_summary.json",
+    "feature_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda",
+    "feature_extraction_audit": {
+      "status": "complete",
+      "label_information_used": false,
+      "calls": 792,
+      "features": 20,
+      "source_hashes_verified": 792,
+      "protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+      "runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+      "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba"
+    }
+  },
+  "model": {
+    "pipelines": [
+      "A0_ast_only",
+      "A1_age_residual",
+      "B1_bounded_age_modulation"
+    ],
+    "pipeline_definitions": {
+      "A0_ast_only": "Matched frozen-AST 768->128->3 control.",
+      "A1_age_residual": "Locked IDEA-068 additive 20->32->128 age residual.",
+      "B1_bounded_age_modulation": "Parameter-matched 20->32->128 branch produces 0.25*tanh scale and multiplies AST hidden channels by 1+scale."
+    },
+    "modulation_cap": 0.25,
+    "modulation_range": [
+      0.75,
+      1.25
+    ],
+    "base_seeds": [
+      2326,
+      3550,
+      4426
+    ],
+    "seed_derivation_text": "IDEA-070-bounded-age-conditioned-film-v1",
+    "seed_derivation_sha256": "13179406c930b92e12db568abb716a965b9e8c15f16e1d233a6fc8eb9e555236",
+    "seed_derivation_rule": "First three big-endian uint32 values of the digest modulo 10000.",
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 36,
+    "total_fits": 108,
+    "initialization_fairness": "A1 residual output and B1 modulation output are zero-initialized; all three pre-optimization logits must match exactly."
+  },
+  "fixed_training": {
+    "ast_head": "training-role standardized 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "age_hidden_units": 32,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "globally class-balanced call cross-entropy",
+    "checkpoint_selection": "minimum unweighted inner-validation animal cross-entropy",
+    "post_build_seed_offset": 1000000
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true
+  },
+  "gate": {
+    "all_conditions_required": true,
+    "minimum_mean_seed_repeat_B1_minus_A0": 0.005,
+    "minimum_each_base_seed_mean_B1_minus_A0": 0.0,
+    "minimum_positive_seed_repeats": 6,
+    "minimum_nonnegative_split_cells": 8,
+    "minimum_worst_split_cell_delta": -0.03,
+    "pooled_cross_entropy_and_brier_nonworse_than_A0": true,
+    "minimum_per_base_seed_senior_recall_delta": -0.02,
+    "minimum_mean_seed_repeat_B1_minus_A1": -0.005,
+    "pooled_cross_entropy_nonworse_than_A1": true,
+    "pass_action": "Freeze B1 as the stabilized age-conditioning candidate before any age-conditioned AST-depth experiment.",
+    "fail_action": "Record all positive and negative results without changing cap, features, width, seeds, or thresholds on this outcome."
+  },
+  "dependencies": {
+    "idea_path": "plan/IDEA-070_bounded_age_conditioned_AST_modulation.md",
+    "idea_sha256": "ee8deda08376f8e4f1560a903cc7526722d23254537412f30e5f22db9dc1c0c9",
+    "idea068_protocol_path": "configs/protocol/meowagenet_idea068_age_sensitive_ast_v1.json",
+    "idea068_protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+    "idea068_runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "idea068_runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "runner_path": "scripts/run_meowagenet_idea070_bounded_age_modulation.py",
+    "runner_sha256": "85c33cf9927e923a8f1cef7014c235170c5399ecc8e941b2cdfa50815a1080d6",
+    "git_head": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea070_bounded_age_modulation_v1",
+    "summary": "initial_evaluation_summary.json"
+  }
+}

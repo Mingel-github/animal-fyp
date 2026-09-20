@@ -1,0 +1,204 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea087-nested-hpo-v1",
+  "date": "2026-09-19",
+  "status": "complete_independently_audited",
+  "decision": "KEEP_ORIGINAL_A0_FOR_CLASSIFICATION_RETAIN_SELECTED_C1_FOR_PROBABILITY_QUALITY",
+  "decision_reason": "A0 original had the highest accuracy, Macro-F1, and balanced accuracy among the six evaluated pipeline-policy combinations. C1 selected was the best tuned policy, had the lowest cross-entropy and Brier score, and was the only pipeline whose selected policy improved accuracy, Macro-F1, cross-entropy, and Brier relative to its own original policy.",
+  "interpretation": "Use A0 original as the current classification reference. Retain C1 selected as a probability-quality and adult-recall candidate, with the explicit tradeoff of lower balanced accuracy and lower kitten and senior recall. Prefer U1 original over U1 selected in this IDEA-087 outer evaluation. Preserve prior U1 structural evidence; this experiment only evaluates the locked local HPO procedure.",
+  "exploratory_not_independent_confirmation": true,
+  "no_global_gate": true,
+  "scope": {
+    "cats": 111,
+    "calls": 792,
+    "outer_folds": 4,
+    "inner_folds_per_outer_fold": 3,
+    "search_base_seeds": 2,
+    "refit_base_seeds": 3,
+    "complete_oof_cats_per_refit_seed": 111,
+    "repeated_outer_animal_occurrences_per_pipeline_policy": 333,
+    "unique_outer_cats": 111,
+    "claim_boundary": "Internal nested optimization on the historically studied 111 cats; not independent-animal or external-cohort confirmation.",
+    "comparability_note": "The complete outer OOF metrics in IDEA-087 use a different evaluation role from historical inner-validation means. Interpret same-run paired differences rather than directly comparing absolute scores across those roles."
+  },
+  "models": {
+    "A0_ast_only": {
+      "trainable_parameters": 99075,
+      "description": "Frozen AST features with the shared classifier head."
+    },
+    "U1_wide_unbounded_additive": {
+      "trainable_parameters": 108143,
+      "acoustic_width": 60,
+      "residual_cap": null,
+      "description": "20-to-60-to-128 unbounded additive acoustic branch."
+    },
+    "C1_bounded_wide_additive": {
+      "trainable_parameters": 108143,
+      "acoustic_width": 60,
+      "residual_cap": 0.25,
+      "description": "20-to-60-to-128 bounded additive acoustic branch."
+    }
+  },
+  "search_space": {
+    "search_type": "locked_local_grid",
+    "global_optimum_claimed": false,
+    "learning_rates": [0.006, 0.003],
+    "dropouts": [0.44571035356880917, 0.25],
+    "adamax_weight_decays": [0.0, 0.001],
+    "config_order": "learning_rate_then_dropout_then_weight_decay",
+    "configs": {
+      "q00": {"learning_rate": 0.006, "dropout": 0.44571035356880917, "weight_decay": 0.0, "original": true},
+      "q01": {"learning_rate": 0.006, "dropout": 0.44571035356880917, "weight_decay": 0.001},
+      "q02": {"learning_rate": 0.006, "dropout": 0.25, "weight_decay": 0.0},
+      "q03": {"learning_rate": 0.006, "dropout": 0.25, "weight_decay": 0.001},
+      "q04": {"learning_rate": 0.003, "dropout": 0.44571035356880917, "weight_decay": 0.0},
+      "q05": {"learning_rate": 0.003, "dropout": 0.44571035356880917, "weight_decay": 0.001},
+      "q06": {"learning_rate": 0.003, "dropout": 0.25, "weight_decay": 0.0},
+      "q07": {"learning_rate": 0.003, "dropout": 0.25, "weight_decay": 0.001}
+    },
+    "selection_rule": {
+      "unit": "pipeline_by_outer_fold",
+      "seed_oof_rule": "Concatenate the three inner validation folds into one complete outer-dev cat-level OOF set for each search seed.",
+      "aggregation": "Equal mean over two search-seed OOF metric bundles.",
+      "macro_f1_candidate_tolerance": 0.002,
+      "candidate_pool_numeric_epsilon": 1e-12,
+      "ranking": ["mean_brier_ascending", "macro_f1_sample_sd_ascending", "mean_plain_accuracy_descending", "config_id_ascending"],
+      "refit_epoch_rule": "Median of six 1-based inner best epochs, half-up rounded and clipped to 1..50."
+    }
+  },
+  "selection_locks": [
+    {"pipeline": "A0_ast_only", "outer_fold": 0, "selected_config_id": "q01", "selected_refit_epoch": 9, "original_config_id": "q00", "original_refit_epoch": 11, "candidate_pool": ["q01"]},
+    {"pipeline": "A0_ast_only", "outer_fold": 1, "selected_config_id": "q00", "selected_refit_epoch": 3, "original_config_id": "q00", "original_refit_epoch": 3, "candidate_pool": ["q00"]},
+    {"pipeline": "A0_ast_only", "outer_fold": 2, "selected_config_id": "q05", "selected_refit_epoch": 9, "original_config_id": "q00", "original_refit_epoch": 7, "candidate_pool": ["q05"]},
+    {"pipeline": "A0_ast_only", "outer_fold": 3, "selected_config_id": "q01", "selected_refit_epoch": 15, "original_config_id": "q00", "original_refit_epoch": 15, "candidate_pool": ["q01"]},
+    {"pipeline": "U1_wide_unbounded_additive", "outer_fold": 0, "selected_config_id": "q00", "selected_refit_epoch": 9, "original_config_id": "q00", "original_refit_epoch": 9, "candidate_pool": ["q00", "q05"]},
+    {"pipeline": "U1_wide_unbounded_additive", "outer_fold": 1, "selected_config_id": "q00", "selected_refit_epoch": 3, "original_config_id": "q00", "original_refit_epoch": 3, "candidate_pool": ["q00", "q07"]},
+    {"pipeline": "U1_wide_unbounded_additive", "outer_fold": 2, "selected_config_id": "q00", "selected_refit_epoch": 7, "original_config_id": "q00", "original_refit_epoch": 7, "candidate_pool": ["q00"]},
+    {"pipeline": "U1_wide_unbounded_additive", "outer_fold": 3, "selected_config_id": "q02", "selected_refit_epoch": 10, "original_config_id": "q00", "original_refit_epoch": 12, "candidate_pool": ["q02"]},
+    {"pipeline": "C1_bounded_wide_additive", "outer_fold": 0, "selected_config_id": "q01", "selected_refit_epoch": 9, "original_config_id": "q00", "original_refit_epoch": 9, "candidate_pool": ["q01"]},
+    {"pipeline": "C1_bounded_wide_additive", "outer_fold": 1, "selected_config_id": "q03", "selected_refit_epoch": 6, "original_config_id": "q00", "original_refit_epoch": 3, "candidate_pool": ["q03", "q00"]},
+    {"pipeline": "C1_bounded_wide_additive", "outer_fold": 2, "selected_config_id": "q00", "selected_refit_epoch": 7, "original_config_id": "q00", "original_refit_epoch": 7, "candidate_pool": ["q00", "q05"]},
+    {"pipeline": "C1_bounded_wide_additive", "outer_fold": 3, "selected_config_id": "q00", "selected_refit_epoch": 14, "original_config_id": "q00", "original_refit_epoch": 14, "candidate_pool": ["q00"]}
+  ],
+  "execution": {
+    "inner_fits_expected": 576,
+    "inner_fits_completed": 576,
+    "inner_prediction_files_independently_verified": 1152,
+    "selection_locks_expected": 12,
+    "selection_locks_completed": 12,
+    "outer_logical_records": 72,
+    "outer_physical_fits": 54,
+    "outer_alias_records": 18,
+    "outer_unique_prediction_files": 108,
+    "outer_call_to_cat_reconstructions": 72,
+    "maximum_call_to_cat_probability_difference": 2.220446049250313e-16,
+    "maximum_saved_metric_difference": 5.995204332975845e-15,
+    "outer_test_accessed_for_final_scoring_only": true,
+    "outer_selection_locked_before_access": true,
+    "tests_passed": 18,
+    "resume_integrity_check_passed": true,
+    "resume_new_physical_fits": 0,
+    "resume_new_aliases": 0,
+    "outer_core_files_in_snapshot": 180,
+    "outer_core_snapshot_sha256_before_and_after_resume": "9176b7868ad6d1ff49e9fc710f0f5cb99cab6c3b495a6cf588e65b5cd385fa2a",
+    "protected_historical_files": 2030,
+    "protected_historical_snapshot_sha256": "2df36fb271262695b16457777b69cb73570ecc9a645f2bd88fb6a93cbb1382e4"
+  },
+  "pipeline_policy_seed_oof_means": {
+    "A0_ast_only_original": {
+      "plain_accuracy": 0.7627627627627628,
+      "macro_f1": 0.77216258971387,
+      "balanced_accuracy": 0.7966898587391946,
+      "class_recall": {"kitten": 0.8666666666666667, "adult": 0.7096774193548386, "senior": 0.8137254901960785},
+      "cross_entropy": 0.6953615524311888,
+      "brier": 0.391903220336127
+    },
+    "A0_ast_only_selected": {
+      "plain_accuracy": 0.7477477477477477,
+      "macro_f1": 0.7585277201957451,
+      "balanced_accuracy": 0.7889170004919531,
+      "class_recall": {"kitten": 0.888888888888889, "adult": 0.6935483870967741, "senior": 0.784313725490196},
+      "cross_entropy": 0.6940262627987939,
+      "brier": 0.3879449875699063
+    },
+    "U1_wide_unbounded_additive_original": {
+      "plain_accuracy": 0.7507507507507508,
+      "macro_f1": 0.757811987414808,
+      "balanced_accuracy": 0.7794785297631597,
+      "class_recall": {"kitten": 0.8444444444444444, "adult": 0.7096774193548386, "senior": 0.784313725490196},
+      "cross_entropy": 0.7110288948007458,
+      "brier": 0.4004566634234558
+    },
+    "U1_wide_unbounded_additive_selected": {
+      "plain_accuracy": 0.7447447447447448,
+      "macro_f1": 0.750693306210536,
+      "balanced_accuracy": 0.7744184412116102,
+      "class_recall": {"kitten": 0.8444444444444444, "adult": 0.7043010752688174, "senior": 0.7745098039215685},
+      "cross_entropy": 0.7018570827777587,
+      "brier": 0.3923855694538414
+    },
+    "C1_bounded_wide_additive_original": {
+      "plain_accuracy": 0.7537537537537538,
+      "macro_f1": 0.760230108415743,
+      "balanced_accuracy": 0.7827465036193689,
+      "class_recall": {"kitten": 0.8444444444444444, "adult": 0.7096774193548386, "senior": 0.7941176470588235},
+      "cross_entropy": 0.7051733230881899,
+      "brier": 0.3935591860160548
+    },
+    "C1_bounded_wide_additive_selected": {
+      "plain_accuracy": 0.7597597597597597,
+      "macro_f1": 0.7649041714376544,
+      "balanced_accuracy": 0.7748120036545085,
+      "class_recall": {"kitten": 0.8222222222222223, "adult": 0.7473118279569894, "senior": 0.7549019607843137},
+      "cross_entropy": 0.6754272962491935,
+      "brier": 0.3822252182957331
+    }
+  },
+  "pipeline_policy_seed_oof_sample_sd": {
+    "A0_ast_only_original": {"plain_accuracy": 0.02080541510593244, "macro_f1": 0.021455329693955916, "balanced_accuracy": 0.011355878565882542, "cross_entropy": 0.032697671980467316, "brier": 0.016064145713522177},
+    "A0_ast_only_selected": {"plain_accuracy": 0.02383559739697828, "macro_f1": 0.0215269107842486, "balanced_accuracy": 0.006678088667208722, "cross_entropy": 0.02111347673510451, "brier": 0.007284567926866596},
+    "U1_wide_unbounded_additive_original": {"plain_accuracy": 0.005201353776483127, "macro_f1": 0.01267753178878871, "balanced_accuracy": 0.011136712783557363, "cross_entropy": 0.03226281128111531, "brier": 0.01643913084390637},
+    "U1_wide_unbounded_additive_selected": {"plain_accuracy": 0.013761488573440991, "macro_f1": 0.017210275044064454, "balanced_accuracy": 0.013697111753751838, "cross_entropy": 0.024354849050443654, "brier": 0.015160559511314994},
+    "C1_bounded_wide_additive_original": {"plain_accuracy": 0.013761488573440941, "macro_f1": 0.0035450393356450754, "balanced_accuracy": 0.01492869552491602, "cross_entropy": 0.04448511165313332, "brier": 0.018235576756070442},
+    "C1_bounded_wide_additive_selected": {"plain_accuracy": 0.010402707552966189, "macro_f1": 0.0009256512692437465, "balanced_accuracy": 0.008630430968910906, "cross_entropy": 0.04168925892198572, "brier": 0.011677742315123824}
+  },
+  "comparisons": {
+    "A0_selected_minus_original": {"plain_accuracy_delta": -0.01501501501501501, "macro_f1_delta": -0.01363486951812487, "balanced_accuracy_delta": -0.007772858247241536, "cross_entropy_gain": 0.0013352896323948575, "brier_gain": 0.003958232766220686, "macro_f1_positive_tied_negative": [0, 0, 3]},
+    "U1_selected_minus_original": {"plain_accuracy_delta": -0.006006006006006019, "macro_f1_delta": -0.007118681204272097, "balanced_accuracy_delta": -0.005060088551549602, "cross_entropy_gain": 0.009171812022987114, "brier_gain": 0.008071093969614473, "macro_f1_positive_tied_negative": [0, 1, 2]},
+    "C1_selected_minus_original": {"plain_accuracy_delta": 0.006006006006005982, "macro_f1_delta": 0.004674063021911423, "balanced_accuracy_delta": -0.007934499964860472, "cross_entropy_gain": 0.02974602683899663, "brier_gain": 0.011333967720321747, "macro_f1_positive_tied_negative": [3, 0, 0]},
+    "C1_selected_minus_A0_selected": {"plain_accuracy_delta": 0.012012012012012, "macro_f1_delta": 0.006376451241909331, "balanced_accuracy_delta": -0.01410499683744463, "cross_entropy_gain": 0.018598966549600398, "brier_gain": 0.005719769274173263},
+    "C1_selected_minus_U1_selected": {"plain_accuracy_delta": 0.015015015015014973, "macro_f1_delta": 0.014210865227118378, "balanced_accuracy_delta": 0.00039356244289830605, "cross_entropy_gain": 0.02642978652856524, "brier_gain": 0.010160351158108297},
+    "C1_selected_minus_A0_original": {"plain_accuracy_delta": -0.0030030030030030463, "macro_f1_delta": -0.007258418276215582, "balanced_accuracy_delta": -0.0218778550846861, "cross_entropy_gain": 0.019934256181995266, "brier_gain": 0.009678002040393927}
+  },
+  "artifacts": {
+    "plan_path": "plan/IDEA-087_nested_hpo.md",
+    "plan_sha256": "5770ade41409f28340513d0f6a282a8561cb89adf44222b453a5b64cc1f3faf0",
+    "protocol_path": "configs/protocol/meowagenet_idea087_nested_hpo_v1.json",
+    "protocol_sha256": "ff74e49579afa5a6cad6d4e1ad14894817286924a84af78787dc00191ace2786",
+    "runner_path": "scripts/run_meowagenet_idea087_nested_hpo.py",
+    "runner_sha256": "6152100d5a2e53420aa4877674a63d4163b8cc7a26d157d227491b35e1d57fe7",
+    "tests_path": "tests/test_idea087_nested_hpo.py",
+    "tests_sha256": "8ae5687f96abdb0fc1d587d2ab7b8e26cec582118dae34db94cba8b8da089ee1",
+    "independent_verifier_path": "scripts/verify_idea087_nested_hpo_results.py",
+    "independent_verifier_sha256": "811d62a1ef63c11c141576706d08800c75188b0e50dfb1dd63373c83efae6eeb",
+    "independent_verifier_tests_path": "tests/test_verify_idea087_nested_hpo_results.py",
+    "independent_verifier_tests_sha256": "fa6676dd28e2985d0c23b317a135aa468a3d6e328d3cca64a07d0a974cb7592f",
+    "selection_lock_path": "runs/meowagenet_idea087_nested_hpo_v1/selection/selection_lock.json",
+    "selection_lock_sha256": "04a7bbff803414962d88f0985890fdc4d5bd1797963d42c1c96664a90a274166",
+    "independent_selection_audit_path": "runs/meowagenet_idea087_nested_hpo_v1/selection/independent_selection_audit.json",
+    "independent_selection_audit_sha256": "67b79cf77c37e34a3f90a4e197f87247bbbc365fad238448332e50dbc4959b0f",
+    "outer_authorization_record_path": "runs/meowagenet_idea087_nested_hpo_v1/outer_authorization_record.json",
+    "outer_authorization_record_sha256": "96750c6b4c0827d130dfb1567a5d48fa8102b7506c79dd1b92add2d72522995c",
+    "final_stage_manifest_path": "runs/meowagenet_idea087_nested_hpo_v1/final_stage_manifest.json",
+    "final_stage_manifest_sha256": "d02b857f39673c4e21939c085573dce5fbd849c0dcda1a94ea891b6bed73434e",
+    "summary_path": "runs/meowagenet_idea087_nested_hpo_v1/initial_evaluation_summary.json",
+    "summary_sha256": "8ce1e95bc36c4c38812c40c8ae088688d8f705a96797984e7b69b850c39bf4ae",
+    "independent_results_audit_path": "runs/meowagenet_idea087_nested_hpo_v1/independent_results_audit.json",
+    "independent_results_audit_sha256": "434f52e194fce757a7727b49c3c64e66e71f813ba324eea46c99fb0e8cd1dc20",
+    "independent_results_audit_report_path": "reports/77_IDEA-087_independent_results_audit.md",
+    "independent_results_audit_report_sha256": "d17cce52fb042b24815301d3ea651128b28ace464b8bf11c7c8da2b40234aa6e",
+    "final_report_path": "reports/78_IDEA-087_nested_tuning_results.md",
+    "final_report_sha256": "7e3eff220f552112738ba522c248d1bd246a0492c2fa5402d865558e94025299"
+  },
+  "recommended_next_step": "Keep A0 original as the classification reference, retain C1 selected as the probability-quality and adult-recall research candidate, prefer original over selected for U1 in this evaluation, and stop the current eight-configuration search without result-driven additions."
+}

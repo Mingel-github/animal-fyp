@@ -1,0 +1,228 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea088-original-style-clean-v1",
+  "date": "2026-09-20",
+  "status": "locked_before_cpu_preflight",
+  "claim_boundary": {
+    "scope": "Clean-111 projection of recovered original categorical-notebook post-swap groups plus the original final training recipe.",
+    "not_exact_upstream_reproduction": true,
+    "not_independent_data": true,
+    "not_complete_oof": true,
+    "no_hpo": true,
+    "no_result_driven_extension": true,
+    "old_results_unchanged": true
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "vggish_source_rows": 937,
+    "vggish_rows": 936,
+    "vggish_features": 129,
+    "vggish_feature_definition": "128 embedding columns plus mean_freq; exclude gender, target, cat_id, and derived age_group",
+    "excluded_aliases": [
+      "049A"
+    ],
+    "label_order": {
+      "kitten": 0,
+      "adult": 1,
+      "senior": 2
+    },
+    "target_age_intervals_years": {
+      "kitten": "[0,0.5)",
+      "adult": "[0.5,10)",
+      "senior": "[10,20)"
+    },
+    "expected_cat_class_counts": {
+      "kitten": 15,
+      "adult": 62,
+      "senior": 34
+    },
+    "expected_call_class_counts": {
+      "kitten": 134,
+      "adult": 405,
+      "senior": 253
+    },
+    "dataset_manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "cat_manifest_path": "metadata/datasets/meowagenet/cat_id_manifest.csv",
+    "vggish_csv_path": "data/meowagenet/official-3d02295bef15/embeddings/vggish_looped_embeddings.csv",
+    "frozen_ast_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "acoustic_feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz"
+  },
+  "splits": {
+    "source": "Recovered original categorical-notebook post-swap cat roles, then project by removing alias 049A.",
+    "regeneration_forbidden": true,
+    "roles_path": "runs/meowagenet_idea088_original_style_clean_v1/roles/original_clean_roles.json",
+    "roles_sha256": "a0ce4989985989ebdd982bbf565e33c080b4e314e232eb875f30fbdb4eac34b8",
+    "seeds": [
+      7270,
+      860,
+      5390,
+      5191,
+      5734
+    ],
+    "folds_per_seed": 4,
+    "forced_training_cat_ids": [
+      "000A",
+      "046A"
+    ],
+    "model_seed_rule": "split_seed + fold",
+    "test_access": "Only once after the training-loss checkpoint is restored, persisted, and reloaded."
+  },
+  "models": {
+    "pipelines": [
+      "vggish_mlp",
+      "A0_ast_only",
+      "C1_bounded_wide_additive"
+    ],
+    "vggish_mlp": {
+      "framework": "TensorFlow/Keras",
+      "architecture": "129 -> Dense(128) -> ReLU -> BatchNorm -> Dropout -> Dense(3)",
+      "implementation": "Reuse run_meowagenet_formal_v2_1.build_vggish_model with features=129.",
+      "input_unit": "clean VGGish embedding row",
+      "tensorflow_to_pytorch_initialization_match_claimed": false
+    },
+    "A0_ast_only": {
+      "framework": "PyTorch FP32",
+      "architecture": "frozen 768-dimensional AST call embedding -> train-only standardization -> 128 head -> 3",
+      "trainable_parameters": 99075,
+      "input_unit": "call"
+    },
+    "C1_bounded_wide_additive": {
+      "framework": "PyTorch FP32",
+      "architecture": "A0 plus train-only standardized 20 -> 60 -> 128 bounded additive acoustic residual",
+      "cap": 0.25,
+      "trainable_parameters": 108143,
+      "input_unit": "call"
+    }
+  },
+  "training": {
+    "optimizer": "Adamax",
+    "learning_rate": 0.003109800273709165,
+    "epsilon": 1e-7,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "weight_decay": 0.0,
+    "dropout": 0.44571035356880917,
+    "batch_size": 128,
+    "batch_unit": "VGGish rows or AST calls, never cats",
+    "maximum_epochs": 1500,
+    "early_stopping_monitor": "training_loss",
+    "early_stopping_mode": "min",
+    "early_stopping_min_delta": 0.001,
+    "early_stopping_patience": 30,
+    "restore_best_weights": true,
+    "loss": "training-unit class-weighted sparse categorical cross-entropy",
+    "class_weight_formula": "N_training_units / (3 * N_training_units_in_class), computed from current train role only",
+    "batch_loss_denominator": "number of units in the current batch, not sum of weights",
+    "epoch_loss_aggregation": "sum of weighted per-unit CE over the epoch divided by the number of training units",
+    "independent_validation": false,
+    "gradient_clip": null,
+    "automatic_mixed_precision": false,
+    "post_build_seed_offset": 1000000,
+    "all_preprocessing_training_only": true,
+    "drop_last": false,
+    "one_call_tail_batch_policy": "fail preflight and require an explicit amendment before training"
+  },
+  "reporting": {
+    "public_primary_unit": "cat",
+    "cat_aggregation": "arithmetic mean of prediction-unit probabilities within cat_id",
+    "metrics": [
+      "accuracy",
+      "macro_f1",
+      "balanced_accuracy",
+      "kitten_recall",
+      "adult_recall",
+      "senior_recall",
+      "cross_entropy",
+      "brier"
+    ],
+    "macro_f1_definition": "sklearn f1_score(labels=[0,1,2], average='macro', zero_division=0)",
+    "native_unit_metrics_separate": true,
+    "native_units": {
+      "vggish_mlp": "VGGish row",
+      "A0_ast_only": "AST call",
+      "C1_bounded_wide_additive": "AST call"
+    },
+    "fold_aggregation": "Equal mean over four folds within split seed.",
+    "uncertainty_unit": "Five split-seed four-fold means; sample SD with ddof=1.",
+    "paired_primary_contrast": "C1 minus A0 within seed and fold, followed by four-fold mean per seed.",
+    "claims_complete_oof": false,
+    "historical_vggish_macro_f1_context_only": 0.700136
+  },
+  "budget": {
+    "pipelines": 3,
+    "split_seeds": 5,
+    "folds_per_seed": 4,
+    "fits": 60
+  },
+  "stages": {
+    "order": [
+      "cpu_preflight",
+      "one_A0_technical_fit",
+      "remaining_59_fits",
+      "aggregate"
+    ],
+    "training_requires_director_authorization": true,
+    "fit_requires_exact_preflight_sha256": true,
+    "first_fit": {
+      "pipeline": "A0_ast_only",
+      "split_seed": 7270,
+      "fold": 0,
+      "maximum_new_fits": 1
+    },
+    "score_based_stopping_or_expansion_forbidden": true
+  },
+  "preflight": {
+    "plan_path": "plan/IDEA-088_original_style_clean_protocol.md",
+    "tests_path": "tests/test_idea088_original_style_clean.py",
+    "required_ast_tail_batch_audit": true,
+    "one_call_tail_batch_allowed": false,
+    "required_role_manifest_independent_freeze": true
+  },
+  "dependencies": [
+    {
+      "path": "metadata/datasets/meowagenet/data_manifest.csv",
+      "sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f"
+    },
+    {
+      "path": "metadata/datasets/meowagenet/cat_id_manifest.csv",
+      "sha256": "5ae4c48c2266c4452b69a161c9e56bc506b35bff5fe3eaa53a3f69a91f641f5e"
+    },
+    {
+      "path": "data/meowagenet/official-3d02295bef15/embeddings/vggish_looped_embeddings.csv",
+      "sha256": "0c4856c12bb3b829a9731b426619d5f82d3510307374e756555fc8eb0349e641"
+    },
+    {
+      "path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+      "sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399"
+    },
+    {
+      "path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+      "sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba"
+    },
+    {
+      "path": "scripts/run_meowagenet_formal_v2_1.py",
+      "sha256": "ed3fc855539d37963aa51d17e54f5ce59acba1d023567289b89d5d1f313e6b25"
+    },
+    {
+      "path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+      "sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745"
+    },
+    {
+      "path": "scripts/run_meowagenet_idea071_bounded_dual_path_fusion.py",
+      "sha256": "f232dc6971bf550052c9a846460e164d29c12dd2b0acfffd234ffbff772a0fcc"
+    },
+    {
+      "path": "scripts/run_meowagenet_idea088_original_style_clean.py",
+      "sha256": "f1cd6c9993b505e3e3f5f6d19488ef1b755c55eec8c63ffb68b4918e8d0db5cc"
+    },
+    {
+      "path": "tests/test_idea088_original_style_clean.py",
+      "sha256": "7cebb432801827280783d65e1dab57d3efe95dc42fc67e6a4e212af10610bf20"
+    },
+    {
+      "path": "plan/IDEA-088_original_style_clean_protocol.md",
+      "sha256": "a03f2f0ee3449c0d013e006d5fbb99b58567dc53826991cfd8c5e8d791de58b3"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "idea067-external-ast-representation-v1",
+  "date": "2026-09-17",
+  "status": "locked_before_embedding_and_evaluation",
+  "pre_evaluation_amendment": {
+    "date": "2026-09-17",
+    "reason": "The first CatMeows extraction-only audit exposed an erroneous 10.24-second segment declaration while the locked extractor truncates to 128 frames. No CatMeows model evaluation had been run.",
+    "action": "Discard the invalid extraction and use the locked MeowAgeNet 1.28-second window with 0.64-second hop for both external datasets.",
+    "serialization_fix": "Before any evaluation score was produced, rewrite identifier and path arrays as NumPy Unicode rather than pickle-dependent object arrays."
+  },
+  "objective": "Evaluate frozen standard-AST embeddings on unseen-animal CatMeows context and canine developmental-stage tasks.",
+  "representation": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "geometry": "standard 10x10 AST stride",
+    "segment_seconds": 1.28,
+    "segment_hop_seconds": 0.64,
+    "segment_to_recording_pooling": "arithmetic mean of pooler_output"
+  },
+  "datasets": {
+    "catmeows": {
+      "source": "https://zenodo.org/records/4008297",
+      "archive_path": "data/external/catmeows_v1_0_2/dataset.zip",
+      "archive_sha256": "214000280e6ef33b10e39ef063ccc1f2f83d789ab57f2a5d111da63b06f659ae",
+      "audio_root": "data/external/catmeows_v1_0_2/audio",
+      "expected_recordings": 440,
+      "expected_animals": 21,
+      "label": "context",
+      "classes": ["brushing", "food_waiting", "isolation"],
+      "group": "cat_id"
+    },
+    "canine": {
+      "source": "https://huggingface.co/datasets/ArlingtonCL2/Canine-Age-Transition-Vocalization-Dataset",
+      "metadata_path": "data/external/canine_age_transition/barkunit_metadata.tsv",
+      "metadata_sha256": "5ca7ff2e0f88a7b4de5c6c6703526a5cdea46b4bdac115520517bfd85a98e4bb",
+      "shard_root": "data/external/canine_age_transition/shards",
+      "sample_audio_root": "data/external/canine_age_transition/sample_audio",
+      "sampling_rule": "sort barkunit_audio within dog_id x age_group and select up to 10 evenly spaced rows including endpoints",
+      "cap_per_dog_age_group": 10,
+      "expected_sample_recordings": 2290,
+      "expected_animals": 125,
+      "label": "age_group",
+      "classes": ["puppy", "juvenile", "adolescent", "adult", "senior"],
+      "group": "dog_id",
+      "claim_boundary": "resource-limited exploratory subset, not the full 79,142-unit benchmark"
+    }
+  },
+  "evaluation": {
+    "splitter": "StratifiedGroupKFold",
+    "folds": 5,
+    "repeat_seeds": [17, 43, 101],
+    "classifier": "StandardScaler plus balanced multinomial LogisticRegression",
+    "C": 1.0,
+    "solver": "lbfgs",
+    "maximum_iterations": 2000,
+    "primary_metric": "call-level macro F1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "plain_accuracy",
+      "mean_per_animal_call_accuracy",
+      "per_class_recall"
+    ],
+    "baseline": "train-fold class-prior dummy probabilities",
+    "reporting": "all three complete grouped OOF repeats"
+  },
+  "dependencies": {
+    "idea_path": "plan/IDEA-067_external_ast_representation_benchmarks.md",
+    "idea_sha256": "a2a345b8e30cb781c92f4d1249981c10ab4ea50786cf9f5120f73c1c8bedb99e",
+    "locked_ast_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_ast_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "extraction_helper_path": "scripts/extract_ast_embeddings.py",
+    "extraction_helper_sha256": "a042fea422e308c49741966e09516e9ad78eb84ede7b592449b25fd621bde8a5",
+    "runner_path": "scripts/run_idea067_external_ast_representation.py",
+    "runner_sha256": "66d06045d4a4b6a5de178078a6bbcdfb64da68a49f65fcc06df146095d5c2444"
+  },
+  "outputs": {
+    "run_root": "runs/idea067_external_ast_representation_v1"
+  }
+}

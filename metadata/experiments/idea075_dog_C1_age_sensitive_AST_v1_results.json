@@ -1,0 +1,407 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "idea075-dog-C1-age-sensitive-AST-v1",
+  "status": "complete_tier1_failed_tier2_uninterpretable_failed_tier3_passed",
+  "date": "2026-09-18",
+  "report_path": "reports/45_IDEA-075_dog_C1_age_sensitive_AST_benchmark_results.md",
+  "analysis_unit": "9 equal-weight base_seed x split_repeat pooled outer-test OOF units",
+  "claim_boundary": "Exploratory cross-species result on the locked 2,290-bark-unit subset; not an independent confirmation and not a full 79,142-unit canine benchmark.",
+  "data": {
+    "bark_units": 2290,
+    "dogs": 125,
+    "classes": [
+      "puppy",
+      "juvenile",
+      "adolescent",
+      "adult",
+      "senior"
+    ],
+    "ast_embedding_shape": [
+      2290,
+      768
+    ],
+    "age_feature_shape": [
+      2290,
+      20
+    ],
+    "fully_finite_age_feature_records": 1734,
+    "records_with_age_feature_nan": 556,
+    "source_audio_hashes_verified": 2290,
+    "unique_source_audio_hashes": 2290,
+    "canonical_audio_content_sha256": "b994fb09213b845763cdf7a38d4a1b67caab0fd543b62e44a474e0c20db533a1"
+  },
+  "design": {
+    "pipelines": [
+      "A0_ast_only",
+      "U1_unbounded_age_residual",
+      "C1_bounded_age_residual"
+    ],
+    "base_seeds": [
+      8075,
+      4270,
+      1872
+    ],
+    "split_seeds": [
+      17,
+      43,
+      101
+    ],
+    "split_repeats": 3,
+    "outer_folds": 5,
+    "fits": 135,
+    "fits_per_pipeline": 45,
+    "parameters": {
+      "A0_ast_only": 99333,
+      "U1_unbounded_age_residual": 108401,
+      "C1_bounded_age_residual": 108401
+    }
+  },
+  "seed_repeat_equal_weight_mean_metrics": {
+    "A0_ast_only": {
+      "macro_f1": 0.22771230282741511,
+      "balanced_accuracy": 0.24129750772999342,
+      "cross_entropy": 1.7032307784318155,
+      "multiclass_brier": 0.8420579905759036,
+      "mean_per_dog_bark_unit_accuracy": 0.23455262812495364,
+      "dog_age_group_macro_f1": 0.2533738222056738,
+      "dog_age_group_balanced_accuracy": 0.27039318693451486,
+      "recall": {
+        "puppy": 0.32302405498281783,
+        "juvenile": 0.19594594594594594,
+        "adolescent": 0.2099111734455353,
+        "adult": 0.2362869198312236,
+        "senior": 0.24131944444444445
+      }
+    },
+    "U1_unbounded_age_residual": {
+      "macro_f1": 0.22889161382013828,
+      "balanced_accuracy": 0.24313382350030613,
+      "cross_entropy": 1.7086441275878286,
+      "multiclass_brier": 0.8435382022293708,
+      "mean_per_dog_bark_unit_accuracy": 0.2421598312703921,
+      "dog_age_group_macro_f1": 0.25327547859729627,
+      "dog_age_group_balanced_accuracy": 0.27391554107340016,
+      "recall": {
+        "puppy": 0.33018327605956466,
+        "juvenile": 0.1936936936936937,
+        "adolescent": 0.21583294374318218,
+        "adult": 0.22885272252360858,
+        "senior": 0.2471064814814815
+      }
+    },
+    "C1_bounded_age_residual": {
+      "macro_f1": 0.22793566325493567,
+      "balanced_accuracy": 0.24326304577469524,
+      "cross_entropy": 1.7057770173823636,
+      "multiclass_brier": 0.8430250063870414,
+      "mean_per_dog_bark_unit_accuracy": 0.23659383563243358,
+      "dog_age_group_macro_f1": 0.2506442057939245,
+      "dog_age_group_balanced_accuracy": 0.27142165297314347,
+      "recall": {
+        "puppy": 0.32760595647193586,
+        "juvenile": 0.1941941941941942,
+        "adolescent": 0.20492441951067478,
+        "adult": 0.2320675105485232,
+        "senior": 0.25752314814814814
+      }
+    }
+  },
+  "comparisons": {
+    "C1_minus_A0": {
+      "mean_macro_f1_delta": 0.00022336042752051552,
+      "mean_balanced_accuracy_delta": 0.001965538044701799,
+      "mean_cross_entropy_delta_candidate_minus_reference": 0.002546238950548174,
+      "mean_multiclass_brier_delta_candidate_minus_reference": 0.0009670158111377712,
+      "base_seed_macro_f1_deltas": {
+        "8075": -0.0010831760450276857,
+        "4270": -0.0000703205456664598,
+        "1872": 0.0018235778732556922
+      },
+      "seed_repeat_macro_f1_positive_tie_negative": [
+        4,
+        0,
+        5
+      ],
+      "split_cell_macro_f1_positive_tie_negative": [
+        7,
+        0,
+        8
+      ],
+      "worst_split_cell_macro_f1_delta": -0.016222119927555095,
+      "senior_recall_delta_by_base_seed": {
+        "8075": 0.005208333333333333,
+        "4270": 0.012152777777777771,
+        "1872": 0.031249999999999983
+      },
+      "per_dog_cross_entropy_improved_tied_worsened": [
+        56,
+        0,
+        69
+      ],
+      "per_dog_accuracy_improved_tied_worsened": [
+        52,
+        23,
+        50
+      ]
+    },
+    "U1_minus_A0": {
+      "mean_macro_f1_delta": 0.001179310992723155,
+      "mean_balanced_accuracy_delta": 0.0018363157703126982,
+      "mean_cross_entropy_delta_candidate_minus_reference": 0.005413349156013103,
+      "mean_multiclass_brier_delta_candidate_minus_reference": 0.0014802116534671844,
+      "base_seed_macro_f1_deltas": {
+        "8075": -0.0002296666433557563,
+        "4270": -0.0005802821447507637,
+        "1872": 0.004347881766275985
+      },
+      "seed_repeat_macro_f1_positive_tie_negative": [
+        6,
+        0,
+        3
+      ],
+      "split_cell_macro_f1_positive_tie_negative": [
+        8,
+        0,
+        7
+      ],
+      "worst_split_cell_macro_f1_delta": -0.010227344434969135,
+      "per_dog_cross_entropy_improved_tied_worsened": [
+        58,
+        0,
+        67
+      ],
+      "per_dog_accuracy_improved_tied_worsened": [
+        60,
+        14,
+        51
+      ]
+    },
+    "C1_minus_U1": {
+      "mean_macro_f1_delta": -0.0009559505652026395,
+      "mean_balanced_accuracy_delta": 0.00012922227438910076,
+      "mean_cross_entropy_delta_candidate_minus_reference": -0.002867110205464929,
+      "mean_multiclass_brier_delta_candidate_minus_reference": -0.0005131958423294133,
+      "base_seed_macro_f1_deltas": {
+        "8075": -0.0008535094016719295,
+        "4270": 0.0005099615990843039,
+        "1872": -0.002524303893020293
+      },
+      "seed_repeat_macro_f1_positive_tie_negative": [
+        5,
+        0,
+        4
+      ],
+      "split_cell_macro_f1_positive_tie_negative": [
+        6,
+        0,
+        9
+      ],
+      "worst_split_cell_macro_f1_delta": -0.02290218086342279,
+      "per_dog_cross_entropy_improved_tied_worsened": [
+        64,
+        0,
+        61
+      ],
+      "per_dog_accuracy_improved_tied_worsened": [
+        53,
+        13,
+        59
+      ]
+    }
+  },
+  "seed_repeat_macro_f1": [
+    {
+      "base_seed": 8075,
+      "repeat": 0,
+      "A0": 0.2148865823750883,
+      "U1": 0.2190817702063763,
+      "C1": 0.2158870132072956,
+      "C1_minus_A0": 0.0010004308322072997,
+      "U1_minus_A0": 0.0041951878312880275,
+      "C1_minus_U1": -0.003194756999080728,
+      "C1_minus_dummy": 0.12091531823560067
+    },
+    {
+      "base_seed": 8075,
+      "repeat": 1,
+      "A0": 0.2412162971114548,
+      "U1": 0.2341892422259187,
+      "C1": 0.2386069297070182,
+      "C1_minus_A0": -0.0026093674044365966,
+      "U1_minus_A0": -0.007027054885536038,
+      "C1_minus_U1": 0.0044176874810994415,
+      "C1_minus_dummy": 0.14363523473532325
+    },
+    {
+      "base_seed": 8075,
+      "repeat": 2,
+      "A0": 0.2293801760181983,
+      "U1": 0.2315230431423789,
+      "C1": 0.2277395844553444,
+      "C1_minus_A0": -0.0016405915628537604,
+      "U1_minus_A0": 0.0021428671241807418,
+      "C1_minus_U1": -0.003783458687034502,
+      "C1_minus_dummy": 0.1327678894836495
+    },
+    {
+      "base_seed": 4270,
+      "repeat": 0,
+      "A0": 0.2292515023406832,
+      "U1": 0.222692062382662,
+      "C1": 0.2264937246218529,
+      "C1_minus_A0": -0.002757777718830262,
+      "U1_minus_A0": -0.006559439958021163,
+      "C1_minus_U1": 0.0038016622391909005,
+      "C1_minus_dummy": 0.13152202965015797
+    },
+    {
+      "base_seed": 4270,
+      "repeat": 1,
+      "A0": 0.2318304053028517,
+      "U1": 0.2370911197524855,
+      "C1": 0.2392570740163012,
+      "C1_minus_A0": 0.007426668713449575,
+      "U1_minus_A0": 0.005260714449633802,
+      "C1_minus_U1": 0.0021659542638157725,
+      "C1_minus_dummy": 0.1442853790446063
+    },
+    {
+      "base_seed": 4270,
+      "repeat": 2,
+      "A0": 0.2312125287100129,
+      "U1": 0.230770407784148,
+      "C1": 0.2263326760783943,
+      "C1_minus_A0": -0.004879852631618692,
+      "U1_minus_A0": -0.00044212092586493057,
+      "C1_minus_U1": -0.004437731705753761,
+      "C1_minus_dummy": 0.13136098110669933
+    },
+    {
+      "base_seed": 1872,
+      "repeat": 0,
+      "A0": 0.222950241123642,
+      "U1": 0.2261350188910789,
+      "C1": 0.2294024271736092,
+      "C1_minus_A0": 0.00645218604996714,
+      "U1_minus_A0": 0.0031847777674368916,
+      "C1_minus_U1": 0.0032674082825302486,
+      "C1_minus_dummy": 0.13443073220191423
+    },
+    {
+      "base_seed": 1872,
+      "repeat": 1,
+      "A0": 0.215942169010766,
+      "U1": 0.2252996807377133,
+      "C1": 0.2144536174352819,
+      "C1_minus_A0": -0.0014885515754840262,
+      "U1_minus_A0": 0.009357511726947376,
+      "C1_minus_U1": -0.010846063302431402,
+      "C1_minus_dummy": 0.11948192246358699
+    },
+    {
+      "base_seed": 1872,
+      "repeat": 2,
+      "A0": 0.2327408234540387,
+      "U1": 0.2332421792584825,
+      "C1": 0.2332479225993227,
+      "C1_minus_A0": 0.0005070991452839624,
+      "U1_minus_A0": 0.0005013558044436872,
+      "C1_minus_U1": 0.000005743340840275168,
+      "C1_minus_dummy": 0.1382762276276278
+    }
+  ],
+  "dummy_floor": {
+    "mean_dummy_macro_f1": 0.094971694971695,
+    "mean_C1_minus_dummy_macro_f1": 0.132963968283241,
+    "minimum_C1_minus_dummy_macro_f1": 0.11948192246358699,
+    "maximum_C1_minus_dummy_macro_f1": 0.1442853790446063,
+    "positive_seed_repeats": 9
+  },
+  "gate_tiers": {
+    "tier1_C1_package_vs_A0": {
+      "passed": false,
+      "passed_checks": [
+        "worst_split_cell_at_least_minus_0_03",
+        "mean_balanced_accuracy_delta_nonnegative",
+        "each_base_seed_senior_recall_delta_at_least_minus_0_02"
+      ],
+      "failed_checks": [
+        "mean_macro_f1_gain_at_least_0_005",
+        "all_base_seed_means_strictly_positive",
+        "at_least_6_of_9_seed_repeats_positive",
+        "at_least_10_of_15_split_cells_nonnegative",
+        "mean_CE_not_worse",
+        "mean_Brier_not_worse"
+      ]
+    },
+    "tier2_C1_bound_vs_U1": {
+      "interpretable": false,
+      "passed": false,
+      "passed_checks": [
+        "at_least_5_of_9_seed_repeats_strictly_positive",
+        "mean_CE_not_worse_than_U1",
+        "mean_Brier_not_worse_than_U1"
+      ],
+      "failed_checks": [
+        "mean_C1_minus_U1_macro_f1_strictly_positive",
+        "at_least_2_of_3_base_seed_means_strictly_positive"
+      ]
+    },
+    "tier3_external_task_floor": {
+      "passed": true,
+      "C1_above_outer_train_prior_dummy_seed_repeats": 9,
+      "required": 9
+    },
+    "overall_upgrade": false
+  },
+  "positive_but_below_gate": [
+    "C1_minus_A0 mean Macro-F1 delta was +0.0002234 and balanced-accuracy delta was +0.0019655, but the F1 effect missed the +0.005 threshold and stability checks.",
+    "C1 senior recall exceeded A0 by +0.0162037 on average; all three base-seed deltas were positive and passed the -0.02 safety floor.",
+    "U1_minus_A0 mean Macro-F1 delta was +0.0011793 with 6/9 positive seed-repeat units, but CE and Brier worsened.",
+    "C1_minus_U1 had 5/9 positive seed-repeat Macro-F1 effects and better mean CE/Brier, but its mean Macro-F1 was -0.0009560 and only 1/3 base-seed means was positive.",
+    "C1 exceeded the outer-train prior dummy in all 9/9 primary units."
+  ],
+  "mechanism_audit": {
+    "C1_fits": 45,
+    "relative_perturbation_fit_mean_average": 0.030878914147615434,
+    "relative_perturbation_fit_mean_min": 0.017519338056445122,
+    "relative_perturbation_fit_mean_max": 0.04471312090754509,
+    "relative_perturbation_maximum_single_bark_unit": 0.17315338551998138,
+    "outer_test_bark_unit_occurrences": 20610,
+    "maximum_dimension_budget_violations": 0
+  },
+  "audit": {
+    "independent_verifier_status": "passed",
+    "independent_verifier_read_only": true,
+    "fit_summaries_verified": 135,
+    "six_artifacts_per_fit_hashes_verified": 810,
+    "outer_test_access_count_sum": 135,
+    "outer_test_prediction_rows": 61830,
+    "validation_prediction_rows": 60678,
+    "temporary_files": 0,
+    "unique_full_training_seeds": 45,
+    "paired_cells": 45,
+    "paired_common_epochs_verified": 507,
+    "maximum_initial_logit_difference": 0.0,
+    "maximum_checkpoint_reload_probability_difference": 0.0,
+    "stored_aggregate_tables_independently_recomputed": 5,
+    "evaluation_linked_hashes_verified": 8,
+    "resume_raw_byte_guard_passed": false,
+    "resume_json_semantics_and_artifacts_passed": true,
+    "resume_diagnosis": "The locked evaluation summary contains 232 CRLF line endings. CRLF-to-LF normalization makes it byte-identical to the runner's canonical LF serialization; the runner compared raw CRLF bytes to LF bytes.",
+    "plan_sha256": "899480721ea759aafbb24389be5603c70d31651e41c823c33858fdce7063fbf2",
+    "protocol_sha256": "51959fec7c7ac6c978e81629c0e4a99fb8df147f9f9ffa3843562fa88bec97dd",
+    "runner_sha256": "14838aa061534fc706d8f215e6d07a111172a7818bfa71e610728857d076c1fd",
+    "independent_verifier_sha256": "68f099e3c35ad0963d293db9b80a1ff9c0853a30ca4b1f9573ae172982f3b011",
+    "run_manifest_sha256": "64515bdd87b4bc60c4ea4662a07e75c723ec5bcf3c9986198809d1754cb765e0",
+    "evaluation_summary_sha256": "38651780226bd20561e04674201626e30ea4fc2c46183a738cc365fba8376125",
+    "fit_index_sha256": "c187d22032873d5dfe8a0ba7239a0337042c2bd940ca559882689812fbdea560",
+    "pairing_audit_sha256": "41910ae889615d3440cd411c39b77ac0e288f33459d594202ea77c6531943c01",
+    "fold_metrics_sha256": "ffabf5eecaa3934ca6ef13b78ea3633957c97945d0e281340b0c625e9dd5fc83",
+    "seed_repeat_metrics_sha256": "5151c4b1a8c33f702f28d70d4bf061be30ad01fd3356fff273ce0c2d1297d7de",
+    "seed_repeat_deltas_sha256": "073ddc1480dbafecdfb9a29de9ff32aedf0c1fca412ee8ccfb05507f263edbce",
+    "split_cell_deltas_sha256": "936e49ee602a7c463aa7226dd238aa62ffd3e4184e19a106ee6ec40009b65d08",
+    "per_dog_pair_deltas_sha256": "c9b3feba8dabc544a2af61f38da301fd971878a48916cf68b40fd898a60d95b8"
+  },
+  "interpretation": "C1 was stably above the outer-train prior dummy but did not pass the paired C1-versus-A0 package gate. Because Tier 1 failed, the C1-versus-U1 bounded-mechanism tier is formally uninterpretable and failed. Positive Macro-F1, balanced-accuracy, senior-recall, probability-quality, and U1 signals are retained without post-hoc tuning or promotion to the full canine benchmark."
+}

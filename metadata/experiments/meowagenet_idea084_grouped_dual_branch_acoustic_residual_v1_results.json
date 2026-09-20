@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea084-grouped-dual-branch-acoustic-residual-v1",
+  "date": "2026-09-19",
+  "status": "complete_independently_audited",
+  "decision": "NO_GO_FOR_GROUPED_DUAL_BRANCH_ADVANTAGE",
+  "decision_reason": "P1 did not improve mean Macro-F1 over C1, A0, or the single fixed random-grouping control R1, and all three preregistered comparison gates failed.",
+  "interpretation": "The frozen 15/5 source-related versus spectral-energy grouping is not supported as superior on this dataset. P1 retained small balanced-accuracy, probability-quality, and senior-recall positives versus A0, while R1 had the highest descriptive Macro-F1 and balanced accuracy. CE and Brier do not isolate calibration. R1 is one preregistered random control and cannot establish a new mechanism claim.",
+  "execution": {
+    "completed_fits": 144,
+    "expected_fits": 144,
+    "pipelines": 4,
+    "base_seeds": [3583, 5080, 9355],
+    "repeats": 3,
+    "folds": 4,
+    "seed_repeat_estimates": 9,
+    "split_cell_estimates": 12,
+    "outer_test_accessed": false,
+    "resume_integrity_check_passed": true,
+    "independent_reconstruction_difference_count": 0,
+    "fit_summaries_checked": 144,
+    "prediction_files_checked": 288
+  },
+  "pipeline_seed_repeat_means": {
+    "A0_ast_only": {
+      "macro_f1": 0.7273521765290518,
+      "balanced_accuracy": 0.7611111111111111,
+      "cross_entropy": 0.6994834609372966,
+      "brier": 0.4207602853391871
+    },
+    "C1_bounded_wide_additive": {
+      "macro_f1": 0.729273195448187,
+      "balanced_accuracy": 0.762962962962963,
+      "cross_entropy": 0.697505580552813,
+      "brier": 0.4177052809880412
+    },
+    "P1_grouped_dual_branch": {
+      "macro_f1": 0.7266342766535082,
+      "balanced_accuracy": 0.7666666666666666,
+      "cross_entropy": 0.698192657112582,
+      "brier": 0.41844710698385285
+    },
+    "R1_hash_random_dual_branch": {
+      "macro_f1": 0.7332293376364519,
+      "balanced_accuracy": 0.7712962962962961,
+      "cross_entropy": 0.7019605678930754,
+      "brier": 0.4207211961680249
+    }
+  },
+  "preregistered_comparisons": {
+    "P1_minus_C1": {
+      "macro_f1_mean_delta": -0.0026389187946787265,
+      "macro_f1_sample_sd": 0.020079316467062326,
+      "macro_f1_positive_tied_negative": [4, 0, 5],
+      "positive_base_seed_means": 1,
+      "nonnegative_split_cells": 6,
+      "worst_split_cell": -0.036158815002984235,
+      "balanced_accuracy_mean_delta": 0.0037037037037036535,
+      "cross_entropy_gain": -0.0006870765597690731,
+      "brier_gain": -0.0007418259958116291,
+      "senior_recall_delta_by_base_seed": {
+        "3583": -0.01666666666666672,
+        "5080": -0.033333333333333326,
+        "9355": 0.06666666666666665
+      },
+      "corrected_errors": 14,
+      "introduced_errors": 15,
+      "net_corrections": -1,
+      "gate_passed": false
+    },
+    "P1_minus_A0": {
+      "macro_f1_mean_delta": -0.0007178998755435546,
+      "macro_f1_sample_sd": 0.012979104760954471,
+      "macro_f1_positive_tied_negative": [3, 3, 3],
+      "positive_base_seed_means": 2,
+      "nonnegative_split_cells": 8,
+      "worst_split_cell": -0.028042328042328018,
+      "balanced_accuracy_mean_delta": 0.005555555555555536,
+      "cross_entropy_gain": 0.0012908038247145814,
+      "brier_gain": 0.0023131783553342333,
+      "senior_recall_delta_by_base_seed": {
+        "3583": 0.033333333333333326,
+        "5080": 0.0,
+        "9355": 0.01666666666666672
+      },
+      "corrected_errors": 8,
+      "introduced_errors": 9,
+      "net_corrections": -1,
+      "gate_passed": false
+    },
+    "P1_minus_R1": {
+      "macro_f1_mean_delta": -0.0065950609829437245,
+      "macro_f1_sample_sd": 0.016448950131331474,
+      "macro_f1_positive_tied_negative": [1, 2, 6],
+      "positive_base_seed_means": 0,
+      "nonnegative_split_cells": 7,
+      "worst_split_cell": -0.06124992616220685,
+      "balanced_accuracy_mean_delta": -0.004629629629629539,
+      "cross_entropy_gain": 0.003767910780493322,
+      "brier_gain": 0.0022740891841720456,
+      "senior_recall_delta_by_base_seed": {
+        "3583": -0.01666666666666672,
+        "5080": -0.01666666666666672,
+        "9355": 0.01666666666666672
+      },
+      "corrected_errors": 6,
+      "introduced_errors": 10,
+      "net_corrections": -4,
+      "gate_passed": false,
+      "interpretation_boundary": "One fixed random grouping controls capacity but cannot prove complete causality or establish R1 as a new mechanism."
+    }
+  },
+  "descriptive_context": {
+    "C1_minus_A0": {
+      "macro_f1_mean_delta": 0.001921018919135208,
+      "balanced_accuracy_mean_delta": 0.0018518518518518823,
+      "cross_entropy_gain": 0.001977880384483567,
+      "brier_gain": 0.003055004351145881
+    },
+    "R1_minus_A0": {
+      "macro_f1_mean_delta": 0.005877161107400088,
+      "balanced_accuracy_mean_delta": 0.010185185185185008,
+      "cross_entropy_gain": -0.002477106955778788,
+      "brier_gain": 0.00003908917116217836,
+      "not_a_preregistered_primary_comparison": true
+    }
+  },
+  "artifacts": {
+    "protocol_path": "configs/protocol/meowagenet_idea084_grouped_dual_branch_acoustic_residual_v1.json",
+    "protocol_sha256": "0c4b50f2a6903bb5e55157591e5a93400c56602161fa2b1f8c8fd0d112bb7eef",
+    "runner_path": "scripts/run_meowagenet_idea084_grouped_dual_branch_acoustic_residual.py",
+    "runner_sha256": "fa3913fd7b2a7a66f3a4e61deb150ef7358cc32ee5b65eafdfe9d2c7e2abe12f",
+    "summary_path": "runs/meowagenet_idea084_grouped_dual_branch_acoustic_residual_v1/initial_evaluation_summary.json",
+    "summary_sha256": "fb4dea0b4b452561a800b6cb4c9f3a7c29ac0f1f79a74bd67c1b3c674092cd46",
+    "run_summary_path": "runs/meowagenet_idea084_grouped_dual_branch_acoustic_residual_v1/run_summary.json",
+    "run_summary_sha256": "6bc04fe30d4facbfec09868c22da96ad6660b1fb35f3c2a6307d60cf7a684429",
+    "run_manifest_path": "runs/meowagenet_idea084_grouped_dual_branch_acoustic_residual_v1/run_manifest.json",
+    "run_manifest_sha256": "f773401e39778a1207020201acba4a1bea5c8228ed951c2b9deab551a9478c37",
+    "first_cell_audit_path": "runs/meowagenet_idea084_grouped_dual_branch_acoustic_residual_v1/first_complete_cell_audit.json",
+    "first_cell_audit_sha256": "88611fc002048de1b09b54143e01077ca789f37015014335fd3edbd484f9f4d6",
+    "independent_results_audit_path": "runs/meowagenet_idea084_grouped_dual_branch_acoustic_residual_v1/independent_results_audit.json",
+    "independent_results_audit_sha256": "8ebe20a875a6f3b766141551d6914820e5994a101703d2edf2ce696324c82b6a",
+    "independent_verifier_path": "scripts/verify_idea084_grouped_dual_branch_results.py",
+    "independent_verifier_sha256": "649ca0dcdbdc20a2e9265de8b8edc810fb87f5857f434e8013422f4060cd603a",
+    "report_path": "reports/64_IDEA-084_grouped_dual_branch_residual_results.md",
+    "report_sha256": "fec37e18c6e41ee4bbf737ac30a0b3c61698ae53caf974f461f9aa4f610a0f99",
+    "independent_report_path": "reports/65_IDEA-084_independent_results_audit.md",
+    "independent_report_sha256": "84d73c311c6bf2fde65b0fe00fcb29d993bee54de450f1ef6c8de208c96b7f2c"
+  },
+  "recommended_next_step": "Freeze this 144-fit experiment without post-result grouping, width, weight, seed, or threshold searches. Preserve the negative primary result and descriptive positives. New acoustically motivated hypotheses may be explored in separately prespecified experiments with MeowAgeNet as the primary task; reusing these validation data is not independent confirmation. External cat or dog benchmarks remain optional extensions, not mandatory success conditions."
+}

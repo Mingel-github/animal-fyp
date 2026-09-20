@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea071-bounded-dual-path-fusion-v1",
+  "status": "complete_gate_failed_A1_replacement_only",
+  "date": "2026-09-17",
+  "outer_test_accessed": false,
+  "base_seeds": [
+    4412,
+    5703,
+    3120
+  ],
+  "fits": 144,
+  "model": {
+    "A0_parameters": 99075,
+    "A1_parameters": 103971,
+    "C1_parameters": 108143,
+    "D1_parameters": 108195,
+    "D1_minus_C1_parameters": 52,
+    "cap": 0.25,
+    "C1": "0.25*stopgrad(RMS(h))*tanh(shift) bounded additive control",
+    "D1": "h*(1+0.25*tanh(scale)) + 0.25*stopgrad(RMS(h))*tanh(shift)"
+  },
+  "seed_repeat_level": {
+    "A0_mean_macro_f1": 0.7311780610117448,
+    "A1_mean_macro_f1": 0.7130553686790063,
+    "C1_mean_macro_f1": 0.7299643800623286,
+    "D1_mean_macro_f1": 0.7187435924410774,
+    "D1_minus_A0": {
+      "mean": -0.012434468570667274,
+      "sample_sd": 0.03386744603413215,
+      "positive": 3,
+      "tied": 0,
+      "negative": 6
+    },
+    "D1_minus_A1": {
+      "mean": 0.005688223762071194,
+      "sample_sd": 0.019212382574329678,
+      "positive": 6,
+      "tied": 1,
+      "negative": 2
+    },
+    "D1_minus_C1": {
+      "mean": -0.011220787621251041,
+      "sample_sd": 0.018865746536834083,
+      "positive": 2,
+      "tied": 2,
+      "negative": 5
+    },
+    "A1_minus_A0_mean": -0.018122692332738468,
+    "C1_minus_A1_mean": 0.016909011383322237,
+    "C1_minus_A1_positive_tied_negative": [
+      8,
+      0,
+      1
+    ]
+  },
+  "per_base_seed_mean_deltas": {
+    "4412": {
+      "A1_minus_A0": -0.029072241825864913,
+      "C1_minus_A0": -0.027967923856318706,
+      "D1_minus_A0": -0.02830233188754176,
+      "D1_minus_A1": 0.0007699099383231545,
+      "D1_minus_C1": -0.0003344080312230509
+    },
+    "5703": {
+      "A1_minus_A0": -0.021693475410186736,
+      "C1_minus_A0": 0.00756697622048604,
+      "D1_minus_A0": -0.00016529749004712269,
+      "D1_minus_A1": 0.021528177920139613,
+      "D1_minus_C1": -0.007732273710533162
+    },
+    "3120": {
+      "A1_minus_A0": -0.0036023597621637573,
+      "C1_minus_A0": 0.016759904787583973,
+      "D1_minus_A0": -0.00883577633441294,
+      "D1_minus_A1": -0.005233416572249183,
+      "D1_minus_C1": -0.02559568112199691
+    }
+  },
+  "split_stability": {
+    "D1_minus_A0_nonnegative_split_cells": 5,
+    "D1_minus_A0_positive_split_cells": 3,
+    "D1_minus_A0_tied_split_cells": 2,
+    "D1_minus_A0_negative_split_cells": 7,
+    "D1_minus_A0_worst": -0.1007957421000899,
+    "D1_minus_A0_best": 0.05957992624659292
+  },
+  "pooled_validation": {
+    "animal_occurrences_per_pipeline": 612,
+    "occurrences_are_independent": false,
+    "A0": {
+      "macro_f1": 0.7304428598460166,
+      "cross_entropy": 0.6918161256019983,
+      "brier": 0.4114483282643267,
+      "senior_recall": 0.6611111111111111
+    },
+    "A1": {
+      "macro_f1": 0.7129496114716014,
+      "cross_entropy": 0.7176412306963978,
+      "brier": 0.4249622665232177,
+      "senior_recall": 0.6666666666666666
+    },
+    "C1": {
+      "macro_f1": 0.7298708380018134,
+      "cross_entropy": 0.7119084940449038,
+      "brier": 0.4229517779106115,
+      "senior_recall": 0.6666666666666666
+    },
+    "D1": {
+      "macro_f1": 0.7182453235186445,
+      "cross_entropy": 0.6984165130496233,
+      "brier": 0.4161628380713786,
+      "senior_recall": 0.6444444444444445
+    }
+  },
+  "relative_perturbation": {
+    "definition": "validation-call ||delta_h||_2 / ||h||_2 at the selected checkpoint",
+    "C1": {
+      "mean_of_fit_means": 0.05107769924261248,
+      "minimum_fit_mean": 0.015135807355689089,
+      "maximum_fit_mean": 0.07929568531934494,
+      "maximum_call": 0.2035466730594635
+    },
+    "D1": {
+      "mean_of_fit_means": 0.05043301240812424,
+      "minimum_fit_mean": 0.020417230564351307,
+      "maximum_fit_mean": 0.07642179256991337,
+      "maximum_call": 0.25819867849349976
+    },
+    "interpretation": "D1 and C1 both use roughly five-percent mean relative perturbations, so D1 failure is not explained by routinely saturating its theoretical bound."
+  },
+  "gate_tiers": {
+    "basic_effectiveness_vs_A0": false,
+    "replacement_vs_A1": true,
+    "mechanism_vs_C1": false,
+    "overall": false
+  },
+  "interpretation": "The bounded capacity-matched additive control recovers most of A0 performance and strongly beats the original unbounded A1 on these seeds, while adding the scale path reduces Macro-F1 relative to C1. D1 improves Macro-F1 and calibration relative to A1 but is not effective versus A0 and provides no evidence that scale-plus-shift is better than bounded shift alone.",
+  "cross_experiment_caution": "A1 is negative on all three newly locked IDEA-071 base seeds. The earlier 7/7 positive-base-seed statement therefore becomes 7/10 across all tested base seeds on the same dataset and role system; these are not independent datasets.",
+  "audit": {
+    "preoptimization_max_logit_difference": 0.0,
+    "paired_common_epochs": 626,
+    "paired_batch_hash_mismatches": 0,
+    "resume_validation_passed": true,
+    "plan_sha256": "c7a5745bd3e6fd28c646b441f64b2f4c41ff10654739be18e0c3d8e966aefaee",
+    "protocol_sha256": "3050b16a0c3c63f8ea9b672f5bf0c5ad3771e9696bdf7a3c4773351490fcf79a",
+    "runner_sha256": "f232dc6971bf550052c9a846460e164d29c12dd2b0acfffd234ffbff772a0fcc",
+    "run_manifest_sha256": "223eed73c7d69d54556cc6e31d04abba7fb76fddcba3d2621728f6bbff9b6659",
+    "initial_evaluation_summary_sha256": "b29e1a97c49d0a117867ba93c84499a4963884d762040591f62b65ccc1f0bd54"
+  }
+}

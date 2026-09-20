@@ -1,0 +1,233 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea074-C1-hybrid-factorial-v1",
+  "status": "complete_all_gates_failed_positive_interaction_and_brier_signal_retained",
+  "date": "2026-09-17",
+  "outer_test_accessed": false,
+  "base_seeds": [
+    6346,
+    7243,
+    9617
+  ],
+  "fits": 144,
+  "factorial_design": {
+    "representation_axis": [
+      "A0_ast_only",
+      "C1_bounded_wide_additive"
+    ],
+    "supervision_axis": [
+      "call_only",
+      "fixed_0.5_call_plus_0.5_cat"
+    ],
+    "pipelines": [
+      "A0_C_call_only",
+      "A0_H_hybrid",
+      "C1_C_call_only",
+      "C1_H_hybrid"
+    ],
+    "parameters": {
+      "A0_C_call_only": 99075,
+      "A0_H_hybrid": 99075,
+      "C1_C_call_only": 108143,
+      "C1_H_hybrid": 108143
+    }
+  },
+  "seed_repeat_level": {
+    "mean_macro_f1": {
+      "A0_C_call_only": 0.7373451964691723,
+      "A0_H_hybrid": 0.7300571322817545,
+      "C1_C_call_only": 0.7248396748778243,
+      "C1_H_hybrid": 0.7237337163668601
+    },
+    "mean_cross_entropy": {
+      "A0_C_call_only": 0.6852638939123702,
+      "A0_H_hybrid": 0.6944996460093693,
+      "C1_C_call_only": 0.6989775530460612,
+      "C1_H_hybrid": 0.7054978766563607
+    },
+    "mean_brier": {
+      "A0_C_call_only": 0.40775113422878007,
+      "A0_H_hybrid": 0.41084750707812934,
+      "C1_C_call_only": 0.4137043802050819,
+      "C1_H_hybrid": 0.41147449080655607
+    },
+    "macro_f1_effects": {
+      "C1C_minus_A0C": {
+        "mean": -0.012505521591348026,
+        "sample_sd": 0.024264281820841994,
+        "positive": 2,
+        "tied": 1,
+        "negative": 6
+      },
+      "A0H_minus_A0C": {
+        "mean": -0.007288064187417688,
+        "sample_sd": 0.031523973154676053,
+        "positive": 2,
+        "tied": 0,
+        "negative": 7
+      },
+      "C1H_minus_C1C": {
+        "mean": -0.0011059585109640052,
+        "sample_sd": 0.04195350312015257,
+        "positive": 5,
+        "tied": 0,
+        "negative": 4
+      },
+      "C1H_minus_A0H": {
+        "mean": -0.006323415914894344,
+        "sample_sd": 0.02648299186672319,
+        "positive": 4,
+        "tied": 0,
+        "negative": 5
+      },
+      "C1H_minus_A0C_descriptive": {
+        "mean": -0.013611480102312033,
+        "sample_sd": 0.03512350612838526,
+        "positive": 4,
+        "tied": 0,
+        "negative": 5
+      },
+      "interaction": {
+        "mean": 0.006182105676453682,
+        "sample_sd": 0.03852550965042358,
+        "positive": 5,
+        "tied": 0,
+        "negative": 4
+      }
+    },
+    "C1H_minus_C1C_probability_quality_improvement": {
+      "cross_entropy": -0.006520323610299367,
+      "brier": 0.002229889398525827
+    }
+  },
+  "per_base_seed_mean_macro_f1_effects": {
+    "6346": {
+      "C1C_minus_A0C": -0.010868357607052181,
+      "C1H_minus_C1C": 0.013789938510986569,
+      "C1H_minus_A0H": -0.020218798022927587,
+      "interaction": -0.009350440415875405
+    },
+    "7243": {
+      "C1C_minus_A0C": -0.021971942198373173,
+      "C1H_minus_C1C": -0.014933922142106723,
+      "C1H_minus_A0H": 0.0001966100936886909,
+      "interaction": 0.022168552292061865
+    },
+    "9617": {
+      "C1C_minus_A0C": -0.004676264968618726,
+      "C1H_minus_C1C": -0.0021738919017718628,
+      "C1H_minus_A0H": 0.0010519401845558625,
+      "interaction": 0.005728205153174589
+    }
+  },
+  "split_stability": {
+    "C1C_minus_A0C_nonnegative_split_cells": 6,
+    "C1C_minus_A0C_worst": -0.1423120089786757,
+    "C1H_minus_C1C_nonnegative_split_cells": 6,
+    "C1H_minus_C1C_worst": -0.06901778323346952,
+    "interaction_nonnegative_split_cells": 7,
+    "interaction_worst": -0.06815190981857655
+  },
+  "senior_recall_safety": {
+    "C1C_minus_A0C": {
+      "6346": 0.0,
+      "7243": 0.016666666666666607,
+      "9617": 0.033333333333333326
+    },
+    "C1H_minus_C1C": {
+      "6346": 0.08333333333333337,
+      "7243": -0.016666666666666607,
+      "9617": 0.0
+    },
+    "C1H_minus_A0H": {
+      "6346": 0.01666666666666672,
+      "7243": 0.033333333333333326,
+      "9617": 0.016666666666666607
+    }
+  },
+  "gate_tiers": {
+    "C1_replication": false,
+    "hybrid_adoption": false,
+    "super_additive_synergy": false,
+    "overall": false,
+    "synergy_partial_signal": "Mean interaction, base-seed direction, and seed-repeat direction passed, but only 7/12 split cells were nonnegative and the worst split was -0.068152."
+  },
+  "cross_round_C1_descriptive_synthesis": {
+    "warning": "The same animals and role system recur across rounds; this is descriptive, not an independent meta-analysis.",
+    "rounds": {
+      "IDEA-071": {
+        "mean_C1_minus_A0": -0.0012136809494162318,
+        "positive_tied_negative_seed_repeats": [
+          5,
+          0,
+          4
+        ]
+      },
+      "IDEA-072": {
+        "mean_C1_minus_A0": 0.009112383476532537,
+        "positive_tied_negative_seed_repeats": [
+          7,
+          0,
+          2
+        ]
+      },
+      "IDEA-073": {
+        "mean_C1_minus_A0": 0.02483885775058254,
+        "positive_tied_negative_seed_repeats": [
+          7,
+          2,
+          0
+        ]
+      },
+      "IDEA-074": {
+        "mean_C1_minus_A0": -0.012505521591348026,
+        "positive_tied_negative_seed_repeats": [
+          2,
+          1,
+          6
+        ]
+      }
+    },
+    "combined_seed_repeat_occurrences": 36,
+    "combined_mean_C1_minus_A0": 0.005058009671587704,
+    "combined_positive_tied_negative": [
+      21,
+      3,
+      12
+    ],
+    "positive_base_seed_means": 7,
+    "total_base_seed_means": 12
+  },
+  "mechanism_audit": {
+    "C1_C_validation_calls": 4005,
+    "C1_C_relative_perturbation_mean": 0.05190700484886207,
+    "C1_C_relative_perturbation_max": 0.20628581941127777,
+    "C1_H_validation_calls": 4005,
+    "C1_H_relative_perturbation_mean": 0.04794231790865536,
+    "C1_H_relative_perturbation_max": 0.20025427639484406,
+    "cap": 0.25,
+    "cap_violations": 0
+  },
+  "interpretation": "C1 did not replicate on the IDEA-074 seed bank and the fixed Hybrid objective did not improve either representation on average. Hybrid within C1 retained a positive Brier signal, five positive seed-repeat Macro-F1 effects, safe senior recall, and a positive mean interaction, but its F1 and CE means were negative and its split stability failed. C1-H is therefore not adopted. Historical positive C1 results remain reported, but after this failed new-seed replication C1 is an exploratory candidate rather than a confirmed main model.",
+  "audit": {
+    "fits_complete": 144,
+    "fits_per_pipeline": 36,
+    "prediction_csv_hashes_verified": 288,
+    "training_epochs_audited": 2840,
+    "preoptimization_max_logit_difference": 0.0,
+    "loss_paired_initial_state_dict_exactly_equal": true,
+    "shared_AST_initial_state_exactly_equal": true,
+    "paired_batch_hash_mismatches": 0,
+    "checkpoint_reload_max_probability_difference": 0.0,
+    "independent_summary_recalculation_max_difference": 0.0,
+    "resume_validation_passed": true,
+    "resume_summary_hash_unchanged": true,
+    "related_tests_passed": 20,
+    "plan_sha256": "2f532d378f24d6115410d31eeec82d92d770c30e338f10b155d09fad724db818",
+    "protocol_sha256": "ccdc6e2402b08aae0075ea1d1af64f27757a24c407f74921d7977d0d5f025c48",
+    "runner_sha256": "b85f1834dae5a0bc4fcb2059f06ffd6108e995b6b1453bce1bc51213b6b39739",
+    "run_manifest_sha256": "ea3c51911f7ea05d1ecf8436fb73d5f36f7d36bf7299714f1ce673fb90d36bb7",
+    "initial_evaluation_summary_sha256": "5d1fa19dbefd2d0e2ee3078cb83abe1ffe2d98a90b3ef9614d952673d55a8be2",
+    "run_summary_sha256": "1c78454affa5a98578b9a0c9ec7e16705e9dbda83282a11f47c479e4b8801b5d"
+  }
+}

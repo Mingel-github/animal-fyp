@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea077-ast-last4-layer-mix-v1",
+  "date": "2026-09-18",
+  "status": "locked_before_initial_evaluation",
+  "objective": "Test whether a zero-impact, globally learned mixture of the last four frozen AST block representations improves MeowAgeNet age classification over the exact locked final representation.",
+  "relationship": {
+    "known_result": "IDEA-065 found that the two-layer probe-guided bottleneck adapter was not stable across deterministic new seeds (mean adapter-minus-head Macro-F1 -0.0057).",
+    "scope": "Internal new-seed representation-module screen on the same 792 calls, 111 cats, and formal-v2 nested roles; not external or confirmatory evidence.",
+    "post_outcome_layer_selection": false,
+    "post_outcome_formula_tuning": false,
+    "post_outcome_seed_selection": false,
+    "outer_test_accessed": false
+  },
+  "literature_review": {
+    "validated_local_pdfs": [
+      {
+        "path": "C:/Users/zhu/Desktop/essay_article/Audio/02_Core_Audio_Models/2021_Gong_AST_Audio_Spectrogram_Transformer.pdf",
+        "sha256": "c237e981755e9ba5047e7290ffcb7d38d8292e166730ae3cd180b7833f184303",
+        "use": "AST 12-layer, 768-dimensional encoder and special-token representation geometry."
+      },
+      {
+        "path": "C:/Users/zhu/Desktop/essay_article/Audio/03_Training_And_Adaptation/Parameter_Efficient_Tuning/2024_Cappellazzo_PETL_AST.pdf",
+        "sha256": "9ff59f6b4569b2202a320048a561884032fa86f4175458032b8935ec1d0b108d",
+        "use": "Task dependence and limitations of simple bottleneck adapters; added convolutional structure introduces new choices."
+      },
+      {
+        "path": "C:/Users/zhu/Desktop/essay_article/Audio/03_Training_And_Adaptation/Parameter_Efficient_Tuning/2024_Cappellazzo_Soft_Mixture_of_Adapters_AST.pdf",
+        "sha256": "345f0542e26f61da92dbb70a70632d8e6c9310a48834f70354a54366b4b9ba3b",
+        "use": "Mixtures can add complementary capacity but expert, slot, and placement choices create a larger tuning surface."
+      }
+    ],
+    "excluded_corrupt_source": "C:/Users/zhu/Desktop/essay_article/Audio/04_Surveys_And_Foundations/Bioacoustic_Pretraining_And_Benchmarks/2026_Miron_Multi_Layer_Attentive_Probing_Improves_Transfer_Audio_Representations_Bioacoustics.pdf",
+    "exclusion_reason": "The local file has no valid PDF header or EOF and was not used to select layers, formulas, seeds, or gates."
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "independence_unit": "cat_id",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "layer_embedding_path": "runs/ast_layer_embeddings_v2_float32/ast_standard_layer_call_embeddings.npz",
+    "layer_embedding_sha256": "2d3aa7929d26e53f3ad1bf8fb67734e97693c38377f585d1679e53b95ea4c884"
+  },
+  "representation": {
+    "layers_one_based": [9, 10, 11, 12],
+    "intermediate_layers": "Existing float32 cache: common frozen AST final LayerNorm, mean of CLS and distillation tokens, then arithmetic mean across call segments.",
+    "final_layer": "Exact locked AST pooler_output call embedding replaces cached block-12 values in every last-four tensor.",
+    "cached_last_layer_audit_only": true,
+    "cached_last_layer_audit_tolerance": {
+      "mean_absolute_maximum": 0.000002,
+      "absolute_maximum": 0.00002
+    },
+    "new_hidden_state_cache_required": false,
+    "M0_formula": "mean(z9,z10,z11,z12)",
+    "L1_formula": "z12 + tanh(gamma) * (sum_l softmax(alpha)_l * z_l - z12)",
+    "L1_initialization": {
+      "alpha": [0.0, 0.0, 0.0, 0.0],
+      "gamma": 0.0,
+      "initial_layer_weights": [0.25, 0.25, 0.25, 0.25],
+      "initial_signed_gate": 0.0,
+      "required_effect": "Exact equality of A0 and L1 representations, logits, and cross-entropy before optimization."
+    },
+    "scaling": "All pipelines use the training-role mean and standard deviation of exact z12; M0 has no pipeline-specific scaler."
+  },
+  "model": {
+    "pipelines": [
+      "A0_final",
+      "M0_uniform_last4",
+      "L1_global_layermix"
+    ],
+    "pipeline_definitions": {
+      "A0_final": "Exact locked final AST pooler_output representation.",
+      "M0_uniform_last4": "Parameter-free uniform average of fixed layers 9-12; secondary mechanism control.",
+      "L1_global_layermix": "Five-parameter global LayerMix with zero-impact signed residual gate; primary candidate."
+    },
+    "trainable_parameters": {
+      "A0_final": 99075,
+      "M0_uniform_last4": 99075,
+      "L1_global_layermix": 99080
+    },
+    "additional_L1_parameters": 5,
+    "base_seeds": [6917, 1398, 5934],
+    "seed_derivation_text": "IDEA-077-AST-last4-global-layer-mix-v1",
+    "seed_derivation_encoding": "UTF-8",
+    "seed_derivation_sha256": "4e9a5415dc3a59069bb8709e66dff01400056fef20b773d1e9cee8c7eb816a98",
+    "seed_derivation_rule": "Read successive non-overlapping digest uint32 values in big-endian order, reduce modulo 10000, and skip any base/full-seed collision with IDEA-068 through IDEA-076. The first three values were eligible.",
+    "excluded_meow_base_seeds_IDEA068_through_IDEA076": [
+      17, 151, 307, 509, 2326, 3550, 4426, 4412, 5703, 3120, 6530, 3562,
+      3846, 4025, 5118, 9821, 6346, 7243, 9617, 8807, 268, 6915, 5994,
+      9330, 4322
+    ],
+    "excluded_dog_base_seeds_IDEA075": [8075, 4270, 1872],
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 36,
+    "primary_A0_L1_fits": 72,
+    "total_fits": 108,
+    "initialization_fairness": "All pipelines have identical initial shared head tensors; A0 and L1 additionally have exact initial logits and loss. Training RNG is reset after construction."
+  },
+  "fixed_training": {
+    "ast_head": "training-role z12 standardized 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "Globally class-balanced call cross-entropy; each complete-cat batch is divided by its call-weight sum.",
+    "checkpoint_selection": "Minimum unweighted inner-validation animal cross-entropy with a 1e-6 improvement threshold.",
+    "post_build_seed_offset": 1000000
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true
+  },
+  "aggregation": {
+    "primary_metric_unit": "Nine base-seed-by-repeat estimates per pipeline; each pools the four validation-fold animal records and is then equally weighted.",
+    "split_cell_unit": "Twelve repeat-by-fold cells; each averages the three base-seed paired deltas.",
+    "descriptive_only": "The 36 fold comparisons and repeated validation animal occurrences are descriptive and are not independent samples.",
+    "M0_role": "Secondary mechanism control only; it cannot replace or change the A0-versus-L1 primary gate."
+  },
+  "gate": {
+    "all_conditions_required": true,
+    "minimum_mean_seed_repeat_L1_minus_A0": 0.005,
+    "minimum_positive_base_seeds": 3,
+    "minimum_positive_seed_repeats": 6,
+    "minimum_nonnegative_split_cells": 8,
+    "minimum_worst_split_cell_delta": -0.03,
+    "mean_cross_entropy_nonworse": true,
+    "mean_brier_nonworse": true,
+    "minimum_per_base_seed_senior_recall_delta": -0.02,
+    "pass_action": "Retain L1 as the AST representation-module candidate for a later confirmation or integration study.",
+    "fail_action": "Report every result and stop this fixed LayerMix formulation without selecting another layer count, gate, seed, or post-outcome variant."
+  },
+  "dependencies": {
+    "idea_path": "plan/IDEA-077_AST_last4_global_layer_mix.md",
+    "idea_sha256": "2c2f231a6ab23b320969252f80c51b9d0bb2a465b28de035108599a7dbd877a8",
+    "layer_extractor_path": "scripts/extract_ast_layer_embeddings.py",
+    "layer_extractor_sha256": "03982cd9f2a87fc6f84f4eeb3725fa07f3a239b475d1979d84cf7645077a5e84",
+    "runner_path": "scripts/run_meowagenet_idea077_ast_last4_layer_mix.py",
+    "runner_sha256": "71b2f79cbdb997c07dcf6283c02ad1c4cf56387b02b78edcc72bd35f108f2757"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea077_ast_last4_layer_mix_v1",
+    "summary": "initial_evaluation_summary.json",
+    "result_report": "reports/48_IDEA-077_AST_last4_global_layer_mix_results.md",
+    "result_metadata": "metadata/experiments/meowagenet_idea077_ast_last4_layer_mix_v1_results.json"
+  }
+}

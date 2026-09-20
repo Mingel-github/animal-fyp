@@ -1,0 +1,205 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea080-ast-last-block-lora-c1-factorial-v1",
+  "date_completed": "2026-09-18",
+  "status": "complete_factorial_gate_failed",
+  "scope": "Internal MeowAgeNet train/validation module screen; not external validation or confirmatory evidence.",
+  "outer_test_accessed": false,
+  "completion": {
+    "expected_fits": 144,
+    "completed_fits": 144,
+    "pipelines": [
+      "A0_frozen_tail",
+      "C1_bounded_age",
+      "L1_lastblock_qv_lora",
+      "CL1_C1_plus_lastblock_qv_lora"
+    ],
+    "base_seeds": [59, 7031, 1855],
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "seed_repeat_estimates": 9,
+    "split_cell_estimates": 12
+  },
+  "environment": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "cuda_runtime": "12.1",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4060 Ti",
+    "git_revision": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "module": {
+    "cache_owner": "IDEA-078",
+    "cache_mode": "read_only",
+    "target_block_one_based": 12,
+    "target_projections": ["query", "value"],
+    "rank": 6,
+    "alpha": 6,
+    "scaling": 1.0,
+    "dropout": 0.0,
+    "LoRA_parameters": 18432,
+    "C1_width": 60,
+    "C1_cap": 0.25,
+    "C1_parameters": 9068,
+    "trainable_parameters": {
+      "A0_frozen_tail": 99075,
+      "C1_bounded_age": 108143,
+      "L1_lastblock_qv_lora": 117507,
+      "CL1_C1_plus_lastblock_qv_lora": 126575
+    },
+    "initial_max_logit_difference_from_A0": 0.0,
+    "full_cache_A0_reconstruction": {
+      "mean_absolute_difference": 5.41924578101316e-07,
+      "maximum_absolute_difference": 9.894371032714844e-06
+    }
+  },
+  "seed_repeat_equal_weight_means": {
+    "macro_f1": {
+      "A0_frozen_tail": 0.7357012358216577,
+      "C1_bounded_age": 0.7465949067845782,
+      "L1_lastblock_qv_lora": 0.7382679076998269,
+      "CL1_C1_plus_lastblock_qv_lora": 0.7350318272659
+    },
+    "balanced_accuracy": {
+      "A0_frozen_tail": 0.7685185185185185,
+      "C1_bounded_age": 0.7759259259259259,
+      "L1_lastblock_qv_lora": 0.7638888888888888,
+      "CL1_C1_plus_lastblock_qv_lora": 0.7601851851851853
+    },
+    "animal_cross_entropy": {
+      "A0_frozen_tail": 0.6767482941173458,
+      "C1_bounded_age": 0.6834848591103853,
+      "L1_lastblock_qv_lora": 0.6847140015261501,
+      "CL1_C1_plus_lastblock_qv_lora": 0.6971108886473721
+    },
+    "animal_brier": {
+      "A0_frozen_tail": 0.40381282773746613,
+      "C1_bounded_age": 0.40433369742144615,
+      "L1_lastblock_qv_lora": 0.4074854671318212,
+      "CL1_C1_plus_lastblock_qv_lora": 0.41410535850325153
+    }
+  },
+  "comparisons": {
+    "L1_minus_A0_macro_f1": {
+      "mean": 0.002566671878169132,
+      "sample_sd": 0.04221153483362452,
+      "median": 0.0029249846052015194,
+      "positive": 5,
+      "tied": 0,
+      "negative": 4,
+      "worst": -0.057970728961440954,
+      "best": 0.0768205403471105
+    },
+    "CL1_minus_C1_macro_f1": {
+      "mean": -0.011563079518678286,
+      "sample_sd": 0.04272669324304975,
+      "median": -0.016728958462704613,
+      "positive": 2,
+      "tied": 0,
+      "negative": 7,
+      "worst": -0.07004194023777865,
+      "best": 0.08198883242361499
+    },
+    "interaction_macro_f1": {
+      "formula": "(CL1-C1)-(L1-A0)",
+      "mean": -0.014129751396847419,
+      "sample_sd": 0.03722953970625009,
+      "median": -0.007394132546372334,
+      "positive": 4,
+      "tied": 0,
+      "negative": 5,
+      "worst": -0.08639355357432832,
+      "best": 0.02765763168460289
+    },
+    "C1_minus_A0_macro_f1_descriptive": {
+      "mean": 0.010893670962920463,
+      "positive": 5,
+      "negative": 4
+    },
+    "CL1_minus_L1_macro_f1_descriptive": {
+      "mean": -0.0032360804339269553,
+      "positive": 5,
+      "negative": 4
+    }
+  },
+  "stability": {
+    "main": {
+      "positive_base_seeds": 2,
+      "positive_seed_repeats": 5,
+      "nonnegative_split_cells": 5,
+      "worst_split_cell": -0.057804046658535814,
+      "animal_cross_entropy_delta": 0.00796570740880431,
+      "animal_brier_delta": 0.00367263939435508,
+      "per_base_seed_senior_recall_delta": {
+        "59": -0.050000000000000044,
+        "7031": -0.06666666666666665,
+        "1855": 0.033333333333333326
+      }
+    },
+    "combination": {
+      "positive_base_seeds": 0,
+      "positive_seed_repeats": 2,
+      "nonnegative_split_cells": 7,
+      "worst_split_cell": -0.0850394908365923,
+      "animal_cross_entropy_delta": 0.0136260295369869,
+      "animal_brier_delta": 0.00977166108180538,
+      "per_base_seed_senior_recall_delta": {
+        "59": -0.08333333333333337,
+        "7031": 0.0,
+        "1855": -0.06666666666666665
+      }
+    },
+    "interaction": {
+      "positive_base_seeds": 0,
+      "positive_seed_repeats": 4,
+      "nonnegative_split_cells": 6,
+      "worst_split_cell": -0.09990844113651143
+    }
+  },
+  "gate": {
+    "main_gate_passed": false,
+    "combination_gate_passed": false,
+    "interaction_gate_raw_passed": false,
+    "interaction_gate_interpretable": false,
+    "interaction_gate_passed": false,
+    "factorial_gate_passed": false
+  },
+  "decision": {
+    "retain_L1_as_candidate": false,
+    "retain_CL1_as_candidate": false,
+    "reference_age_candidate_unchanged": "C1_bounded_age",
+    "action": "Stop the fixed final-block rank-6 Q/V LoRA path and its C1 combination without post-outcome rank, target, layer, gate, or seed tuning.",
+    "interpretation": "L1 produced only a small unstable mean Macro-F1 increase on A0 while worsening probability quality and senior recall in two seeds. Adding the same LoRA path to C1 reduced mean Macro-F1 and yielded a negative interaction."
+  },
+  "resource_summary": {
+    "A0_frozen_tail": {"fits": 36, "best_epoch_mean": 12.333333333333334, "stopped_epoch_mean": 20.333333333333332, "train_seconds_total": 228.64109619992087, "peak_vram_bytes_max": 517159936},
+    "C1_bounded_age": {"fits": 36, "best_epoch_mean": 12.694444444444445, "stopped_epoch_mean": 20.694444444444443, "train_seconds_total": 255.387639799912, "peak_vram_bytes_max": 517272064},
+    "L1_lastblock_qv_lora": {"fits": 36, "best_epoch_mean": 8.583333333333334, "stopped_epoch_mean": 16.583333333333332, "train_seconds_total": 229.12198759999592, "peak_vram_bytes_max": 765109760},
+    "CL1_C1_plus_lastblock_qv_lora": {"fits": 36, "best_epoch_mean": 7.916666666666667, "stopped_epoch_mean": 15.916666666666666, "train_seconds_total": 232.63029790009023, "peak_vram_bytes_max": 765258752}
+  },
+  "audit": {
+    "status": "PASS",
+    "resume_integrity_check": "PASS",
+    "resume_retrained_fits": 0,
+    "fit_summaries_checked": 144,
+    "prediction_files_checked": 288,
+    "call_prediction_rows_checked": 16020,
+    "animal_prediction_rows_checked": 2448,
+    "maximum_call_to_animal_reaggregation_difference": 0.0,
+    "maximum_checkpoint_reload_probability_difference": 0.0,
+    "audit_errors": 0
+  },
+  "artifacts": {
+    "literature_report": {"path": "reports/51_IDEA-080_LoRA_AST_literature_basis.md", "sha256": "62d6cc6413c922bedeb786865c503b7682e6bd1058df1572bdf52abd77781f22"},
+    "plan": {"path": "plan/IDEA-080_AST_last_block_LoRA_C1_factorial.md", "sha256": "5b37d19932bad33648ce365381c86e56b6ad8d13b02f59bf00cbd3a807403bf7"},
+    "protocol": {"path": "configs/protocol/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1.json", "sha256": "c2aa57e9dbab8dc955ec1e96ce453566807464f6f0e4380d57987e4a40feb925"},
+    "runner": {"path": "scripts/run_meowagenet_idea080_ast_last_block_lora_c1_factorial.py", "sha256": "2bb7359a6c88544d262d5836b66f099fd62acfc028c4789c9a439978fca140da"},
+    "tests": {"path": "tests/test_idea080_ast_last_block_lora_c1_factorial.py", "sha256": "52e614e8d52f6d9c8087516b37468bc9967157537dfd06734057341ea8d6c18a"},
+    "cpu_preflight": {"path": "runs/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1/cpu_preflight.json", "sha256": "d3b71a557dd5c8e48ee27407db6d51313b600d119c333f6962b884d81c83e641"},
+    "gpu_launch_audit": {"path": "reports/52_IDEA-080_GPU_launch_audit.md", "sha256": "3c052f72eed43e12c1668d36bc471331a5f579d659cdcecfbd30b7365d8fba06"},
+    "formal_summary": {"path": "runs/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1/initial_evaluation_summary.json", "sha256": "94b1e66f4743089d3f0e15a2f51c872d2e56e598a7d6a2b2c561c92223372204"},
+    "run_summary": {"path": "runs/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1/run_summary.json", "sha256": "a794d7a558e32ade530531d4ca8d4eba1545f5a219bb8e9ba40e2ea4cd54e911"},
+    "run_manifest": {"path": "runs/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1/run_manifest.json", "sha256": "8b6894d30063154acf8b3e34569c1bd0e80d5fbc137097d5a17f1bdd960390f2"},
+    "independent_audit": {"path": "runs/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1/independent_audit.json", "sha256": "08b05e6dc665eb69c16db89e18e332cd91ff3f1c8a0476423dd8dd9230779e7d"}
+  }
+}

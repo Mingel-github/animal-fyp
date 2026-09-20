@@ -1,0 +1,388 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea076-C1-final-seed-confirmation-v1",
+  "status": "complete_main_gate_failed_mechanism_uninterpretable_failed",
+  "date": "2026-09-18",
+  "report_path": "reports/46_IDEA-076_C1_Meow_final_seed_confirmation_results.md",
+  "report_sha256": "2f7159ddbb88e5f8ccf2fb9d8818aacc4ba95a8d5ea6cf291cd25913f4aace69",
+  "priority_and_claim_boundary": {
+    "dataset_priority": "MeowAgeNet primary; other cat datasets secondary; dog datasets lowest priority.",
+    "dog_non_override": "IDEA-075 dog results were excluded from every IDEA-076 gate and cannot disqualify C1 on MeowAgeNet.",
+    "scope": "Final preregistered new-initialization-seed confirmation on the same 792 calls, 111 cats, and nested role system.",
+    "not_independent_dataset_confirmation": true,
+    "outer_test_accessed": false,
+    "finality": "Stop the MeowAgeNet seed-expansion line after this result; no result-driven repair or seed addition is authorized."
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "classes": [
+      "kitten",
+      "adult",
+      "senior"
+    ],
+    "independence_unit": "cat_id",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "feature_shape": [
+      792,
+      20
+    ],
+    "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "feature_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda"
+  },
+  "design": {
+    "pipelines": [
+      "A0_ast_only",
+      "U1_wide_unbounded_additive",
+      "C1_bounded_wide_additive"
+    ],
+    "base_seeds": [
+      8807,
+      268,
+      6915,
+      5994,
+      9330,
+      4322
+    ],
+    "seed_derivation_text": "IDEA-076-C1-Meow-final-seed-confirmation-v1",
+    "seed_derivation_sha256": "6fe04567db046cacdb62d343fb3b6dfa4b7158222675f3c27accc0f2f8bd6bbd",
+    "base_seed_collisions_with_IDEA068_through_IDEA075": 0,
+    "full_seed_collisions_with_IDEA068_through_IDEA075": 0,
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "unique_full_seeds": 72,
+    "fits_per_pipeline": 72,
+    "total_fits": 216,
+    "parameters": {
+      "A0_ast_only": 99075,
+      "U1_wide_unbounded_additive": 108143,
+      "C1_bounded_wide_additive": 108143
+    },
+    "C1_cap": 0.25,
+    "wide_hidden_units": 60,
+    "loss": "globally class-balanced call cross-entropy",
+    "checkpoint_selection": "minimum unweighted inner-validation animal cross-entropy",
+    "primary_analysis_unit": "18 equal-weight base_seed x repeat estimates, each pooling four inner-validation folds",
+    "split_cell_unit": "12 repeat x fold cells, each averaged across six base seeds",
+    "descriptive_nonindependent_units": "72 fold comparisons and repeated pooled animal occurrences"
+  },
+  "seed_repeat_level": {
+    "pipeline_mean_macro_f1": {
+      "A0_ast_only": 0.7389433750407552,
+      "U1_wide_unbounded_additive": 0.7534340651106509,
+      "C1_bounded_wide_additive": 0.7479319003674575
+    },
+    "pipeline_mean_balanced_accuracy": {
+      "A0_ast_only": 0.7694444444444444,
+      "U1_wide_unbounded_additive": 0.786574074074074,
+      "C1_bounded_wide_additive": 0.7782407407407408
+    },
+    "pipeline_mean_cross_entropy": {
+      "A0_ast_only": 0.6902236141685363,
+      "U1_wide_unbounded_additive": 0.7144728399191292,
+      "C1_bounded_wide_additive": 0.6930102140765206
+    },
+    "pipeline_mean_brier": {
+      "A0_ast_only": 0.41357771213257455,
+      "U1_wide_unbounded_additive": 0.41417127737384135,
+      "C1_bounded_wide_additive": 0.4107650379328988
+    },
+    "C1_minus_A0_macro_f1": {
+      "mean": 0.008988525326702239,
+      "sample_sd": 0.03019177572868121,
+      "median": 0.000790777849601354,
+      "positive": 9,
+      "tied": 3,
+      "negative": 6,
+      "worst": -0.06730914588057457,
+      "best": 0.0506493506493505
+    },
+    "C1_minus_U1_macro_f1": {
+      "mean": -0.005502164743193452,
+      "sample_sd": 0.027896848578778905,
+      "median": -0.0004734372381430818,
+      "positive": 6,
+      "tied": 3,
+      "negative": 9,
+      "worst": -0.05505759883130501,
+      "best": 0.06041093409514453
+    },
+    "U1_minus_A0_macro_f1": {
+      "mean": 0.014490690069895692,
+      "sample_sd": 0.029700507575396076,
+      "median": 0.010252987916630762,
+      "positive": 13,
+      "tied": 1,
+      "negative": 4,
+      "worst": -0.040055913740124294,
+      "best": 0.06519950769906069
+    },
+    "C1_minus_A0_balanced_accuracy": 0.008796296296296413,
+    "C1_minus_A0_cross_entropy": 0.002786599907984355,
+    "C1_minus_A0_brier": -0.0028126741996757354,
+    "C1_minus_U1_balanced_accuracy": -0.008333333333333193,
+    "C1_minus_U1_cross_entropy": -0.021462625842608607,
+    "C1_minus_U1_brier": -0.003406239440942538
+  },
+  "per_base_seed": {
+    "8807": {
+      "C1_minus_A0_macro_f1": 0.007526891153642394,
+      "C1_minus_U1_macro_f1": -0.006235223544566182,
+      "C1_minus_A0_senior_recall": -0.033333333333333326
+    },
+    "268": {
+      "C1_minus_A0_macro_f1": 0.023486894668952263,
+      "C1_minus_U1_macro_f1": -0.010553596526381251,
+      "C1_minus_A0_senior_recall": -0.01666666666666672
+    },
+    "6915": {
+      "C1_minus_A0_macro_f1": 0.011640590723228946,
+      "C1_minus_U1_macro_f1": -0.007296792329072137,
+      "C1_minus_A0_senior_recall": 0.033333333333333326
+    },
+    "5994": {
+      "C1_minus_A0_macro_f1": -0.0020988853882254466,
+      "C1_minus_U1_macro_f1": 0.01083359053169656,
+      "C1_minus_A0_senior_recall": 0.016666666666666607
+    },
+    "9330": {
+      "C1_minus_A0_macro_f1": 0.01482768219991711,
+      "C1_minus_U1_macro_f1": -0.018797865116428114,
+      "C1_minus_A0_senior_recall": 0.0
+    },
+    "4322": {
+      "C1_minus_A0_macro_f1": -0.0014520213973018281,
+      "C1_minus_U1_macro_f1": -0.0009631014744095889,
+      "C1_minus_A0_senior_recall": 0.03333333333333344
+    }
+  },
+  "split_cell_level": {
+    "C1_minus_A0_nonnegative": 9,
+    "C1_minus_A0_positive": 8,
+    "C1_minus_A0_tied": 1,
+    "C1_minus_A0_negative": 3,
+    "C1_minus_A0_worst": -0.04913103943031705,
+    "C1_minus_A0_best": 0.0811324325256214
+  },
+  "pooled_validation": {
+    "A0_ast_only": {
+      "animal_occurrences": 1224,
+      "macro_f1": 0.738937842145364,
+      "balanced_accuracy": 0.7694444444444445,
+      "senior_recall": 0.6777777777777778,
+      "cross_entropy": 0.6902236141685362,
+      "brier": 0.4135777121325746
+    },
+    "U1_wide_unbounded_additive": {
+      "animal_occurrences": 1224,
+      "macro_f1": 0.7521721308493016,
+      "balanced_accuracy": 0.7865740740740742,
+      "senior_recall": 0.6888888888888889,
+      "cross_entropy": 0.7144728399191292,
+      "brier": 0.4141712773738414
+    },
+    "C1_bounded_wide_additive": {
+      "animal_occurrences": 1224,
+      "macro_f1": 0.7476022266878114,
+      "balanced_accuracy": 0.7782407407407407,
+      "senior_recall": 0.6833333333333333,
+      "cross_entropy": 0.6930102140765209,
+      "brier": 0.4107650379328988
+    }
+  },
+  "gate": {
+    "all_main_conditions_required": true,
+    "main_C1_vs_A0": {
+      "conditions": {
+        "mean_macro_f1_at_least_0_005": {
+          "observed": 0.008988525326702239,
+          "passed": true
+        },
+        "positive_base_seed_means_at_least_4_of_6": {
+          "observed": 4,
+          "passed": true
+        },
+        "positive_seed_repeats_at_least_12_of_18": {
+          "observed": 9,
+          "passed": false
+        },
+        "nonnegative_split_cells_at_least_8_of_12": {
+          "observed": 9,
+          "passed": true
+        },
+        "worst_split_cell_at_least_minus_0_03": {
+          "observed": -0.04913103943031705,
+          "passed": false
+        },
+        "mean_cross_entropy_nonworse_than_A0": {
+          "A0": 0.6902236141685363,
+          "C1": 0.6930102140765206,
+          "passed": false
+        },
+        "mean_brier_nonworse_than_A0": {
+          "A0": 0.41357771213257455,
+          "C1": 0.4107650379328988,
+          "passed": true
+        },
+        "mean_balanced_accuracy_nonworse_than_A0": {
+          "A0": 0.7694444444444444,
+          "C1": 0.7782407407407408,
+          "passed": true
+        },
+        "each_base_seed_senior_recall_delta_at_least_minus_0_02": {
+          "worst_observed": -0.033333333333333326,
+          "failed_base_seed": 8807,
+          "passed": false
+        }
+      },
+      "passed_conditions": 5,
+      "total_conditions": 9,
+      "passed": false
+    },
+    "mechanism_C1_vs_U1": {
+      "interpretable_only_when_main_passes": true,
+      "conditions": {
+        "mean_macro_f1_strictly_positive": {
+          "observed": -0.005502164743193452,
+          "passed": false
+        },
+        "positive_base_seed_means_at_least_4_of_6": {
+          "observed": 1,
+          "passed": false
+        },
+        "positive_seed_repeats_at_least_10_of_18": {
+          "observed": 6,
+          "passed": false
+        },
+        "mean_cross_entropy_nonworse_than_U1": {
+          "U1": 0.7144728399191292,
+          "C1": 0.6930102140765206,
+          "passed": true
+        },
+        "mean_brier_nonworse_than_U1": {
+          "U1": 0.41417127737384135,
+          "C1": 0.4107650379328988,
+          "passed": true
+        }
+      },
+      "passed_conditions": 2,
+      "total_conditions": 5,
+      "raw_conditions_passed": false,
+      "interpretable": false,
+      "passed": false
+    },
+    "overall_passed": false
+  },
+  "cross_round_descriptive_update": {
+    "same_MeowAgeNet_data_warning": "IDEA-071 through IDEA-076 reuse the same 111 cats and are not independent-dataset replications.",
+    "pre_IDEA076_seed_repeat_units": 36,
+    "pre_IDEA076_C1_minus_A0_mean_macro_f1": 0.005058009671587706,
+    "pre_IDEA076_direction_positive_tied_negative": [
+      21,
+      3,
+      12
+    ],
+    "post_IDEA076_seed_repeat_units": 54,
+    "post_IDEA076_C1_minus_A0_mean_macro_f1": 0.006368181556625884,
+    "post_IDEA076_direction_positive_tied_negative": [
+      30,
+      6,
+      18
+    ],
+    "post_IDEA076_base_seed_positive_negative": [
+      11,
+      7
+    ],
+    "confirmatory_decision_source": "IDEA-076 preregistered gate, which failed"
+  },
+  "artifact_audit": {
+    "fit_summaries": 216,
+    "unique_fit_identities": 216,
+    "pipeline_fit_counts": {
+      "A0_ast_only": 72,
+      "U1_wide_unbounded_additive": 72,
+      "C1_bounded_wide_additive": 72
+    },
+    "paired_triplets": 72,
+    "unique_full_seeds": 72,
+    "animal_prediction_csvs": 216,
+    "call_prediction_csvs": 216,
+    "prediction_hashes_checked": 432,
+    "prediction_hash_mismatches": 0,
+    "bad_status": 0,
+    "outer_test_violations": 0,
+    "initial_logit_mismatches": 0,
+    "parameter_count_mismatches": 0,
+    "checkpoint_reload_mismatches": 0,
+    "paired_common_epochs": 1307,
+    "paired_batch_hash_mismatches": 0,
+    "C1_max_observed_relative_perturbation": 0.21396449208259583,
+    "C1_saturation_probe_relative_perturbation": 0.2500000298023224,
+    "C1_fit_mean_perturbation_average": 0.05766950119185326,
+    "C1_fit_mean_perturbation_min": 0.014784502282150482,
+    "C1_fit_mean_perturbation_max": 0.1094108475027261,
+    "C1_validation_call_occurrences": 8010,
+    "temporary_files": 0,
+    "run_directory_files": 651,
+    "tests": {
+      "command": "D:\\animalFYP\\animal-fyp\\environment\\.conda\\meowagenet-repro\\python.exe -m pytest -q tests\\test_idea076_C1_final_seed_confirmation.py",
+      "result": "7 passed"
+    }
+  },
+  "resume_audit": {
+    "command": "D:\\animalFYP\\animal-fyp\\environment\\.conda\\meowagenet-repro\\python.exe scripts\\run_meowagenet_idea076_C1_final_seed_confirmation.py --stage run --device cuda --resume",
+    "note": "No fit was retrained and no GPU tensor work was performed; the locked manifest requires the original cuda device label, while completed-fit validation and initialization reconstruction run on CPU.",
+    "exit_code": 0,
+    "semantic_summary_match": true,
+    "canonical_summary_byte_match": true,
+    "semantic_compact_summary_match": true,
+    "canonical_compact_summary_byte_match": true,
+    "initial_summary_bytes": 108285,
+    "initial_summary_crlf_pairs": 0,
+    "initial_summary_lone_lf": 2421,
+    "initial_summary_trailing_lf": true,
+    "core_hashes_unchanged": true
+  },
+  "hashes": {
+    "plan": "bc61029d55fc3aa557ea88db82234350133e13e180ab6998ec0a9ef938585c30",
+    "pre_result_evidence_ledger": "7d2958638485ad494109f5164d39f0a43b67ef1dd5421da9f0fe01d2ef59023c",
+    "protocol": "3fede90e88d3fbecc8f87996b53337244502a24eaffd05e8f30902c554dc47f6",
+    "runner": "55bf29ab02fa46651609c8f981dd91fa8cd9069236b146114974e9a94178e717",
+    "run_manifest": "354385b8f3937516c826c0aaaac13d661352ec52bf12ed1535550b7ee8afe299",
+    "run_summary": "5d427851bd7ab192f704ab80167922fa90302701968454d3fed7ca0ca392e009",
+    "initial_evaluation_summary": "a311d7e086c89732ca9c2ce88fbd61fcf1286e5ab4f663e245ef22bcf93fbb76",
+    "report": "2f7159ddbb88e5f8ccf2fb9d8818aacc4ba95a8d5ea6cf291cd25913f4aace69"
+  },
+  "environment": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "cuda": "12.1",
+    "formal_run_device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4060 Ti",
+    "locked_git_head": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "decision": {
+    "retain_positive_evidence": true,
+    "confirm_C1_on_MeowAgeNet": false,
+    "interpret_bounded_mechanism": false,
+    "upgrade_C1": false,
+    "continue_MeowAgeNet_seed_expansion": false,
+    "post_result_tuning_authorized": false,
+    "summary": "C1 retains a positive historical mean signal on MeowAgeNet, including +0.0089885 in the final new-seed round, but the preregistered final gate failed on seed-repeat stability, worst split-cell, cross-entropy, and one base-seed senior-recall floor."
+  }
+}

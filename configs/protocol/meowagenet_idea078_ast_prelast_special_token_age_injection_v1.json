@@ -1,0 +1,253 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea078-ast-prelast-special-token-age-injection-v1",
+  "date": "2026-09-18",
+  "status": "locked_for_formal_evaluation",
+  "objective": "Test whether a zero-impact 20-to-10-to-768 age bottleneck injected only into the CLS and distillation tokens immediately before the final frozen AST encoder block improves MeowAgeNet animal-level age classification.",
+  "priority_and_claim_boundary": {
+    "dataset_priority": "MeowAgeNet is the primary and only dataset evaluated in IDEA-078.",
+    "scope": "Internal new-seed frozen-AST representation-module screen; not external or confirmatory evidence.",
+    "idea076_frozen": true,
+    "idea077_frozen": true,
+    "outer_test_accessed": false,
+    "post_outcome_layer_selection": false,
+    "post_outcome_token_scope_selection": false,
+    "post_outcome_capacity_selection": false,
+    "post_outcome_seed_selection": false
+  },
+  "relationship_to_prior_work": {
+    "not_duplicate_of_A1_C1": true,
+    "A1_C1_boundary": "IDEA-068 A1/C1 injected age information into the trainable 128-dimensional classifier hidden layer; IDEA-078 T1 injects a 768-dimensional residual into only the two special tokens before frozen AST block 12.",
+    "P1_role": "P1 is the parameter-matched direct post-pool age-injection control needed to separate branch capacity from pre-last-block token interaction.",
+    "old_layer_cache_insufficient": true
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "segments": 843,
+    "independence_unit": "cat_id",
+    "locked_ast_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_ast_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "ast_embedding_audit_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_embedding_audit.json",
+    "ast_embedding_audit_sha256": "47d1e632f1ec091e14a40d169f54d2b90b19b27e896247923c08b944f662e41d",
+    "age_feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "age_feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "data_manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "data_manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "audio_checksums_path": "metadata/datasets/meowagenet/checksums.sha256",
+    "audio_checksums_sha256": "7c1b51ce1a18b1253d3099e9ce3ea034385cd1851ed121a1a5b82a50a20e6a12"
+  },
+  "ast": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "model_safetensors_sha256": "ae0c1e2ad4e1381d851fa9bf298ba13ebc9c5a914cdee2dbe427a6583869924d",
+    "encoder_blocks": 12,
+    "hidden_size": 768,
+    "segment_seconds": 1.28,
+    "segment_hop_seconds": 0.64,
+    "max_length_frames": 128,
+    "num_mel_bins": 128,
+    "frequency_stride": 10,
+    "time_stride": 10,
+    "patch_grid": [12, 12],
+    "patch_tokens": 144,
+    "special_tokens": 2
+  },
+  "cache": {
+    "owner": "IDEA-078",
+    "read_only_consumers": ["IDEA-078", "IDEA-079"],
+    "duplicate_extraction_allowed": false,
+    "output_root": "runs/ast_prelast_tokens_idea078_v1",
+    "token_filename": "prelast_tokens.float32.npy",
+    "index_filename": "prelast_token_index.npz",
+    "summary_filename": "cache_manifest.json",
+    "manifest_path": "runs/ast_prelast_tokens_idea078_v1/cache_manifest.json",
+    "producer_protocol_sha256": "d2d2397ab9fed1a1b6302bc248ff2a43f56f511c592d9b28097d79b63a364e13",
+    "manifest_sha256": "af14eb7b8a2f9c362f37484d06af4381fe89f1a497a89c62f1142ab49baf8e94",
+    "token_sha256": "9fb7b32973560d31ad1906c07349e745054683d5a6a3486e3e33182fc6947ca9",
+    "index_sha256": "aa46820aa15a0812ef4437c80c29f28fd515f0228a9d0fd10bac266b734b9bb2",
+    "a0_reconstruction_gpu_mean_absolute_error": 0.0000004022432733563619,
+    "a0_reconstruction_gpu_maximum_absolute_error": 0.000008463859558105469,
+    "cache_ready_for_formal_evaluation": true,
+    "shape": [843, 146, 768],
+    "dtype": "float32",
+    "storage": "npy_memory_mappable",
+    "index_allow_pickle": false,
+    "contains_labels": false,
+    "contains_roles": false,
+    "contains_cat_ids": false,
+    "prelast_block_output_one_based": 11,
+    "last_block_input_one_based": 12,
+    "special_token_indices": [0, 1],
+    "patch_token_indices": [2, 145],
+    "raw_token_bytes": 378095616,
+    "mapping": "843 ordered segments to 792 ordered calls; exact segment_call_indices, segment_counts, call_ids, and source_paths from the locked fbank"
+  },
+  "model": {
+    "pipelines": [
+      "A0_token_reconstruction",
+      "P1_postpool_age_injection",
+      "T1_prelast_special_token_injection"
+    ],
+    "pipeline_definitions": {
+      "A0_token_reconstruction": "Unmodified cached block-11 tokens through frozen block 12, final LayerNorm, special-token mean, segment-to-call mean, and the common classifier head.",
+      "P1_postpool_age_injection": "Add the zero-initialized 20-to-10-to-768 age residual after the frozen final AST pooler and before the common classifier head; necessary equal-capacity control.",
+      "T1_prelast_special_token_injection": "Add the same age residual only to token indices 0 and 1 before frozen block 12; all 144 patch tokens remain directly unchanged."
+    },
+    "age_formula": "u=GELU(W1*a+b1); d=W2*u+b2; W2 and b2 are initialized to zero",
+    "age_features": 20,
+    "age_bottleneck": 10,
+    "age_output": 768,
+    "special_token_indices": [0, 1],
+    "patch_tokens_modified": false,
+    "age_branch_parameters": 8658,
+    "trainable_parameters": {
+      "A0_token_reconstruction": 99075,
+      "P1_postpool_age_injection": 107733,
+      "T1_prelast_special_token_injection": 107733
+    },
+    "historical_parameter_comparison": {
+      "IDEA068_A1_total": 103971,
+      "IDEA068_C1_total": 108143,
+      "T1_minus_C1": -410
+    },
+    "base_seeds": [9763, 3230, 9726],
+    "seed_derivation_text": "IDEA-078-Meow-AST-prelast-special-token-age-injection-v1",
+    "seed_derivation_encoding": "UTF-8",
+    "seed_derivation_sha256": "3a68ffd3fb356fbe000c0cde18fa1439d108b439b0927a1048e519c96052e67b",
+    "seed_derivation_rule": "Read successive non-overlapping digest uint32 values in big-endian order, reduce modulo 10000, and skip base/full-seed collisions with IDEA-068 through IDEA-077; the first three values were eligible.",
+    "excluded_base_seeds_IDEA068_through_IDEA077": [
+      17, 151, 307, 509, 2326, 3550, 4426, 4412, 5703, 3120,
+      6530, 3562, 3846, 4025, 5118, 9821, 6346, 7243, 9617, 8075,
+      4270, 1872, 8807, 268, 6915, 5994, 9330, 4322, 6917, 1398, 5934
+    ],
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 36,
+    "primary_A0_T1_fits": 72,
+    "total_fits": 108,
+    "initialization_fairness": "All pipelines share identical initial head tensors; P1 and T1 share identical initial age-branch tensors; zero output projection makes all three logits and loss exactly equal before optimization."
+  },
+  "fixed_training": {
+    "head": "Training-role A0 final representation standardization, then 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout.",
+    "age_standardization": "Training-role mean and standard deviation only; missing values imputed with the training-role mean after sanitizing non-finite values.",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "Globally class-balanced call cross-entropy; each complete-cat batch is divided by its call-weight sum.",
+    "checkpoint_selection": "Minimum unweighted inner-validation animal cross-entropy with a 1e-6 improvement threshold.",
+    "post_build_seed_offset": 1000000
+  },
+  "preflight": {
+    "pre_cache_stage": "Three fixed complete calls covering 1, 2, and 5 segments reconstruct the canonical CPU AST pooler and compare it to locked GPU final embeddings.",
+    "cpu_probe_call_indices": [0, 24, 114],
+    "cpu_probe_vs_locked_final_tolerance": {
+      "mean_absolute_maximum": 0.000003,
+      "absolute_maximum": 0.00002
+    },
+    "full_cache_cpu_tail_batch_size": 16,
+    "full_cache_vs_locked_final_tolerance": {
+      "mean_absolute_maximum": 0.000002,
+      "absolute_maximum": 0.00002
+    },
+    "formal_run_requires": "Complete cache manifest and full 843-segment to 792-call A0 reconstruction within both locked tolerances."
+  },
+  "aggregation": {
+    "primary_metric": "animal-level Macro-F1",
+    "secondary_metrics": ["animal-level balanced accuracy", "animal-level cross-entropy", "animal-level Brier score", "senior recall", "split stability"],
+    "primary_units": "Nine equally weighted base_seed by repeat validation estimates, each pooling four folds.",
+    "split_units": "Twelve repeat by fold cells, each averaged equally over the three base seeds.",
+    "fold_count": 36,
+    "repeated_occurrence_warning": "Repeated animal occurrences across seeds and repeats are descriptive, not independent samples."
+  },
+  "gate": {
+    "main": {
+      "contrast": "T1 minus A0",
+      "minimum_mean_T1_minus_A0": 0.005,
+      "minimum_positive_base_seeds": 3,
+      "minimum_positive_seed_repeats": 6,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_delta": -0.03,
+      "cross_entropy_must_be_nonworse": true,
+      "brier_must_be_nonworse": true,
+      "minimum_per_base_seed_senior_recall_delta": -0.02
+    },
+    "mechanism": {
+      "contrast": "T1 minus P1",
+      "interpretable_only_if_main_gate_passes": true,
+      "interpretable_only_when_main_passes": true,
+      "minimum_mean_T1_minus_P1": 0.0,
+      "mean_must_be_strictly_positive": true,
+      "minimum_positive_base_seeds": 2,
+      "minimum_positive_seed_repeats": 5,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_delta": -0.03,
+      "cross_entropy_must_be_nonworse": true,
+      "brier_must_be_nonworse": true
+    }
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "paired_initialization": true,
+    "resume_requires_canonical_artifact_hashes": true
+  },
+  "resource_budget": {
+    "raw_cache_mib": 360.580078125,
+    "token_batch_32_mib": 13.6875,
+    "token_batch_64_mib": 27.375,
+    "largest_observed_four_cat_batch_segments": 157,
+    "largest_observed_four_cat_raw_token_mib": 67.1484375,
+    "target_gpu_memory_gib": 8
+  },
+  "dependencies": {
+    "plan_path": "plan/IDEA-078_AST_prelast_special_token_age_injection.md",
+    "plan_sha256": "e53e2a77d66ffcdbf90a4bd4322bc7e35954f5d14e8b2213326844c7c265998b",
+    "cache_schema_path": "metadata/experiments/ast_prelast_token_cache_idea078_v1_schema.json",
+    "cache_schema_sha256": "5183b9d5e7e689a0337e0e6b0cfb2d5cf6dc7c6402af39ccafdbc11964dc0f3b",
+    "cache_extractor_path": "scripts/extract_ast_prelast_tokens_idea078.py",
+    "cache_extractor_sha256": "ad9b596cd39f7502c8d4cfe7a63192cb71dbde10e3151cd808186f710ad8b698",
+    "runner_path": "scripts/run_meowagenet_idea078_ast_prelast_special_token_age_injection.py",
+    "runner_sha256": "36e75b63e37a485dec05b1b2def993f137aa3dafb4857c222a0f41c80a85f399",
+    "tests_path": "tests/test_idea078_ast_prelast_special_token_age_injection.py",
+    "tests_sha256": "e77575fcb425d519627ef5432f19790b608bfe0fad247a797932188d52dd11cd",
+    "geometry_runner_path": "scripts/extract_ast_layer_embeddings.py",
+    "geometry_runner_sha256": "03982cd9f2a87fc6f84f4eeb3725fa07f3a239b475d1979d84cf7645077a5e84",
+    "idea077_runner_path": "scripts/run_meowagenet_idea077_ast_last4_layer_mix.py",
+    "idea077_runner_sha256": "71b2f79cbdb997c07dcf6283c02ad1c4cf56387b02b78edcc72bd35f108f2757",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "locked_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "age_feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "data_manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "audio_checksums_sha256": "7c1b51ce1a18b1253d3099e9ce3ea034385cd1851ed121a1a5b82a50a20e6a12",
+    "idea076_report_path": "reports/46_IDEA-076_C1_Meow_final_seed_confirmation_results.md",
+    "idea076_report_sha256": "2f7159ddbb88e5f8ccf2fb9d8818aacc4ba95a8d5ea6cf291cd25913f4aace69",
+    "idea076_results_path": "metadata/experiments/meowagenet_idea076_C1_final_seed_confirmation_v1_results.json",
+    "idea076_results_sha256": "67f3d0d52cd5d55d2f11e8700e251a571cdc430620b3546b9bec6aed912f59fd",
+    "idea077_report_path": "reports/48_IDEA-077_AST_last4_global_layer_mix_results.md",
+    "idea077_report_sha256": "d835bd43102c53696aaf29e51c0370cac486e771450af06994b2b1b1aaefe6a1",
+    "idea077_results_path": "metadata/experiments/meowagenet_idea077_ast_last4_layer_mix_v1_results.json",
+    "idea077_results_sha256": "97cc10628e445f44fa44c421b3f50977e1007e4224108a1e65beae43d7223694"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea078_ast_prelast_special_token_age_injection_v1",
+    "summary": "runs/meowagenet_idea078_ast_prelast_special_token_age_injection_v1/initial_evaluation_summary.json",
+    "preflight_report": "reports/49_IDEA-078_AST_prelast_token_injection_preflight.md",
+    "preflight_metadata": "metadata/experiments/meowagenet_idea078_ast_prelast_token_injection_preflight.json"
+  }
+}

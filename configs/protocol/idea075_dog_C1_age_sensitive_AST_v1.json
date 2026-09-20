@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "idea075-dog-C1-age-sensitive-AST-v1",
+  "date": "2026-09-18",
+  "status": "locked_before_initial_evaluation",
+  "objective": "Exploratorily test whether the frozen C1 age-sensitive bounded residual transfers to a five-class canine developmental-stage task under strict dog-level separation.",
+  "claim_boundary": "Resource-limited 2,290-bark-unit subset; IDEA-067 outer folds and AST-only outcomes were previously observed, so this is exploratory cross-species evidence rather than independent confirmation or a full 79,142-unit benchmark claim.",
+  "pipelines": [
+    "A0_ast_only",
+    "U1_unbounded_age_residual",
+    "C1_bounded_age_residual"
+  ],
+  "classes": [
+    "puppy",
+    "juvenile",
+    "adolescent",
+    "adult",
+    "senior"
+  ],
+  "base_seeds": [
+    8075,
+    4270,
+    1872
+  ],
+  "seed_derivation": {
+    "text": "IDEA-075-dog-C1-age-sensitive-AST-benchmark-v1",
+    "sha256": "3b3e238bb521156e998999e095d0a0ffb8118182d3181fccd56cc72c9dfe75ff",
+    "rule": "Read successive non-overlapping digest uint32 values in big-endian order, reduce modulo 10000, and skip collisions with previously registered base seeds.",
+    "full_seed_rule": "base_seed + 10000 * repeat_index + 100 * outer_fold"
+  },
+  "data": {
+    "observations": 2290,
+    "animals": 125,
+    "independence_unit": "dog_id",
+    "prediction_unit": "bark_unit",
+    "manifest_path": "runs/idea067_external_ast_representation_v1/canine/manifest.csv",
+    "manifest_sha256": "591b4f5c7b2d69ac76f297b3121dd185f962cc24ba8ccb99cb159d01f5098ad4",
+    "frozen_embedding_path": "runs/idea067_external_ast_representation_v1/canine/ast_standard_recording_embeddings.npz",
+    "frozen_embedding_sha256": "129ab12adc68f4d77323867851dc093c896dc0a561cc1706d1fea5163ac45344",
+    "idea067_oof_path": "runs/idea067_external_ast_representation_v1/canine/grouped_oof_predictions.csv",
+    "idea067_oof_sha256": "b78c2ac5e1eb4d7b1383c9bbcea27316a64a24d60bed6a33876fbed9bea66591",
+    "canonical_audio_content_sha256": "b994fb09213b845763cdf7a38d4a1b67caab0fd543b62e44a474e0c20db533a1",
+    "canonical_audio_content_definition": "In manifest order, hash the concatenation of recording_id UTF-8 bytes, one NUL byte, and the 32 raw bytes represented by each source-audio SHA-256.",
+    "roles_path": "runs/idea075_dog_C1_age_sensitive_AST_v1/preflight/roles.csv",
+    "roles_sha256": "c269b009fdae3747fbeec31f3d252fad2c8e86656e2447cfe98a6f77ab7e7da5",
+    "source_audio_inventory_path": "runs/idea075_dog_C1_age_sensitive_AST_v1/preflight/source_audio_inventory.csv",
+    "source_audio_inventory_sha256": "a5fe1207b50457cba35e019c8c981206de08f4b1569eefabc5b693bf1e3c963d",
+    "age_feature_path": "runs/idea075_dog_C1_age_sensitive_AST_v1/features/dog_age_sensitive_acoustic_features.npz",
+    "age_feature_sha256": "a7bf78e060deca7b55fb10de222b532f3446db7ac8be3b1fabca082402911646",
+    "feature_summary_path": "runs/idea075_dog_C1_age_sensitive_AST_v1/features/extraction_summary.json",
+    "feature_summary_sha256": "66d126c792f8f0adac7dc015b71ff17304d3bd5daa00a89e473d886258166fb1"
+  },
+  "outer_splits": {
+    "splitter": "Reconstructed IDEA-067 StratifiedGroupKFold by dog_id",
+    "folds": 5,
+    "split_seeds": [
+      17,
+      43,
+      101
+    ],
+    "inner_splitter": "StratifiedGroupKFold(n_splits=4, shuffle=true, random_state=outer_split_seed+1000+outer_fold), fold 0 as validation",
+    "outer_test_policy": "Predict exactly once only after the checkpoint and validation artifacts are durable; fail closed after an incomplete started access transaction."
+  },
+  "acoustic_features": {
+    "feature_names": [
+      "log_f0_q10",
+      "log_f0_median",
+      "log_f0_q90",
+      "log_f0_iqr",
+      "log_f0_std",
+      "log_f0_mad",
+      "log_f0_slope",
+      "log_f0_abs_delta_median",
+      "period_variation_proxy",
+      "voiced_fraction",
+      "voiced_probability_mean",
+      "voiced_probability_std",
+      "periodicity_median",
+      "hnr_db_median",
+      "amplitude_variation_proxy",
+      "log_rms_median",
+      "log_rms_iqr",
+      "spectral_tilt_median",
+      "spectral_tilt_iqr",
+      "spectral_flatness_median"
+    ],
+    "extractor": "IDEA-068 label-free 20-dimensional age-sensitive acoustic extractor applied anew to canine audio",
+    "sample_rate_hz": 16000,
+    "fmin_hz": 60.0,
+    "fmax_hz": 2000.0,
+    "frame_length": 1024,
+    "hop_length": 160,
+    "spectral_tilt_band_hz": [
+      200.0,
+      4000.0
+    ],
+    "missing_value_policy": "Fit-role median only; an all-missing fit column uses median 0 and scale 1.",
+    "standardization": "Fit-role mean and standard deviation only."
+  },
+  "model": {
+    "ast_width": 128,
+    "age_input_features": 20,
+    "age_hidden_units": 60,
+    "relative_cap": 0.25,
+    "rms_epsilon": 1e-8,
+    "C1_formula": "h + 0.25 * stopgrad(sqrt(mean(h^2)+1e-8)) * tanh(W_r GELU(W_age a))",
+    "trainable_parameters": {
+      "A0_ast_only": 99333,
+      "U1_unbounded_age_residual": 108401,
+      "C1_bounded_age_residual": 108401
+    },
+    "initialization_fairness": "U1 and C1 have identical full initial states; residual output weights and biases are zero; all three pipelines have identical pre-optimization logits under each full seed."
+  },
+  "fixed_training": {
+    "age_hidden_units": 60,
+    "dog_batch_size": 4,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "gradient_clip": 1.0,
+    "post_build_seed_offset": 1000000,
+    "loss": "Fit-role bark-unit class-balanced cross-entropy accumulated as weighted loss sum divided by weight sum for each dog batch.",
+    "checkpoint_selection": "Minimum validation CE computed per bark, averaged within dog, then equally across validation dogs.",
+    "dummy": "Complete outer-train class-prior probabilities."
+  },
+  "evaluation": {
+    "primary": "Five-fold pooled bark-unit OOF macro F1 for each of nine base_seed by split_repeat units.",
+    "secondary": [
+      "balanced accuracy",
+      "multiclass cross-entropy",
+      "multiclass Brier score",
+      "per-class recall",
+      "equal-dog mean bark-unit accuracy",
+      "dog_id by age_group probability-pooled metrics",
+      "paired per-dog CE and accuracy directions",
+      "C1 residual-budget mechanism audit"
+    ],
+    "neural_fits": 135,
+    "outer_test_predictions_per_fit": 1
+  },
+  "gate": {
+    "tier1_C1_package_vs_A0": {
+      "minimum_mean_macro_f1_gain": 0.005,
+      "required_positive_base_seeds": 3,
+      "minimum_positive_seed_repeats": 6,
+      "minimum_nonnegative_split_cells": 10,
+      "minimum_worst_split_cell_delta": -0.03,
+      "require_mean_CE_nonworse": true,
+      "require_mean_Brier_nonworse": true,
+      "minimum_mean_balanced_accuracy_delta": 0.0,
+      "minimum_each_base_seed_senior_recall_delta": -0.02
+    },
+    "tier2_C1_bound_vs_U1": {
+      "require_mean_macro_f1_strictly_positive": true,
+      "minimum_strictly_positive_base_seeds": 2,
+      "minimum_strictly_positive_seed_repeats": 5,
+      "require_mean_CE_nonworse": true,
+      "require_mean_Brier_nonworse": true
+    },
+    "tier3_external_task_floor": {
+      "required_C1_seed_repeats_strictly_above_outer_train_prior_dummy": 9
+    }
+  },
+  "dependencies": {
+    "plan_path": "plan/IDEA-075_dog_C1_age_sensitive_AST_benchmark.md",
+    "plan_sha256": "899480721ea759aafbb24389be5603c70d31651e41c823c33858fdce7063fbf2",
+    "idea067_protocol_path": "configs/protocol/idea067_external_ast_representation_v1.json",
+    "idea067_protocol_sha256": "2bdb82e8cbe5b451f0a28a6d30b6b71341124b1fe563f56d3be6cd5d1a591da5",
+    "idea067_runner_path": "scripts/run_idea067_external_ast_representation.py",
+    "idea067_runner_sha256": "66d06045d4a4b6a5de178078a6bbcdfb64da68a49f65fcc06df146095d5c2444",
+    "idea068_protocol_path": "configs/protocol/meowagenet_idea068_age_sensitive_ast_v1.json",
+    "idea068_protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+    "idea068_runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "idea068_runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "runner_path": "scripts/run_idea075_dog_C1_age_sensitive_AST.py",
+    "runner_sha256": "14838aa061534fc706d8f215e6d07a111172a7818bfa71e610728857d076c1fd",
+    "git_head": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "outputs": {
+    "run_root": "runs/idea075_dog_C1_age_sensitive_AST_v1",
+    "summary": "evaluation_summary.json"
+  }
+}

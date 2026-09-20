@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea071-bounded-dual-path-fusion-v1",
+  "date": "2026-09-17",
+  "status": "locked_before_initial_evaluation",
+  "objective": "Test whether a bounded scale-plus-shift age conditioning module improves frozen-AST age classification beyond AST-only, the original additive residual, and a capacity-and-constraint-matched bounded additive control.",
+  "relationship": {
+    "known_results": "IDEA-068/069 show positive average A1 gains with split and calibration failures; IDEA-070 shows bounded pure scaling improves calibration but underperforms A1.",
+    "scope": "Exploratory inner-only method-module evaluation, not independent-dataset confirmation.",
+    "post_outcome_feature_tuning": false,
+    "post_outcome_seed_selection": false
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "independence_unit": "cat_id",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "feature_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/extraction_summary.json",
+    "feature_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda",
+    "feature_extraction_audit": {
+      "status": "complete",
+      "label_information_used": false,
+      "calls": 792,
+      "features": 20,
+      "source_hashes_verified": 792,
+      "protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+      "runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+      "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba"
+    }
+  },
+  "model": {
+    "pipelines": [
+      "A0_ast_only",
+      "A1_age_residual",
+      "C1_bounded_wide_additive",
+      "D1_bounded_dual_path"
+    ],
+    "pipeline_definitions": {
+      "A0_ast_only": "Matched frozen-AST 768->128->3 control.",
+      "A1_age_residual": "Locked IDEA-068 unbounded additive 20->32->128 age residual.",
+      "C1_bounded_wide_additive": "Capacity-matched 20->60->128 branch adds 0.25*stopgrad(RMS(h))*tanh(raw_shift).",
+      "D1_bounded_dual_path": "Shared 20->32 age encoder with separate 32->128 zero-initialized heads: h*(1+0.25*tanh(raw_scale)) + 0.25*stopgrad(RMS(h))*tanh(raw_shift)."
+    },
+    "cap": 0.25,
+    "rms_epsilon": 1e-08,
+    "capacity_control_hidden_units": 60,
+    "trainable_parameters": {
+      "A0_ast_only": 99075,
+      "A1_age_residual": 103971,
+      "C1_bounded_wide_additive": 108143,
+      "D1_bounded_dual_path": 108195
+    },
+    "base_seeds": [
+      4412,
+      5703,
+      3120
+    ],
+    "seed_derivation_text": "IDEA-071-bounded-dual-path-affine-v1",
+    "seed_derivation_sha256": "c6787a5c673b16c7bb778880d35306ccab80426918c1a83426b49118e9b117ad",
+    "seed_derivation_rule": "Read successive non-overlapping digest uint32 values in big-endian order, reduce modulo 10000, skip a value only if it collides with an already selected base seed, and stop after three unique values. No collision occurred in the first three values.",
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 36,
+    "total_fits": 144,
+    "initialization_fairness": "A1, C1, D1 residual/modulation outputs are zero-initialized; all four pre-optimization logits must match exactly. Model construction starts from the same full seed and training RNG is reset after construction.",
+    "mechanism_attribution": "C1 matches D1 in total branch capacity within 52 parameters, tanh bounding, cap, and RMS-relative shift scaling. D1 minus C1 primarily tests the additional channel-scale path."
+  },
+  "fixed_training": {
+    "ast_head": "training-role standardized 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "age_hidden_units": 32,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "globally class-balanced call cross-entropy",
+    "checkpoint_selection": "minimum unweighted inner-validation animal cross-entropy",
+    "post_build_seed_offset": 1000000
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true
+  },
+  "gate": {
+    "all_conditions_required": true,
+    "minimum_mean_seed_repeat_D1_minus_A0": 0.005,
+    "minimum_each_base_seed_mean_D1_minus_A0": 0.0,
+    "minimum_positive_seed_repeats": 6,
+    "minimum_nonnegative_split_cells": 8,
+    "minimum_worst_split_cell_delta": -0.03,
+    "pooled_cross_entropy_and_brier_nonworse_than_A0": true,
+    "minimum_per_base_seed_senior_recall_delta": -0.02,
+    "minimum_mean_seed_repeat_D1_minus_A1": -0.005,
+    "pooled_cross_entropy_nonworse_than_A1": true,
+    "minimum_mean_seed_repeat_D1_minus_C1": 0.0,
+    "minimum_nonnegative_base_seeds_D1_minus_C1": 2,
+    "pooled_cross_entropy_nonworse_than_C1": true,
+    "pass_action": "Freeze D1 as the dual-path age-conditioning candidate before any AST-depth or external-benchmark experiment.",
+    "partial_pass_action": "If only the A0 basic-effectiveness tier passes, retain D1 as useful but do not attribute the gain to dual-path fusion or replace A1.",
+    "fail_action": "Record all positive and negative results without changing cap, RMS rule, features, width, seeds, or thresholds on this outcome."
+  },
+  "dependencies": {
+    "idea_path": "plan/IDEA-071_bounded_dual_path_age_AST_fusion.md",
+    "idea_sha256": "c7a5745bd3e6fd28c646b441f64b2f4c41ff10654739be18e0c3d8e966aefaee",
+    "idea068_protocol_path": "configs/protocol/meowagenet_idea068_age_sensitive_ast_v1.json",
+    "idea068_protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+    "idea068_runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "idea068_runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "runner_path": "scripts/run_meowagenet_idea071_bounded_dual_path_fusion.py",
+    "runner_sha256": "f232dc6971bf550052c9a846460e164d29c12dd2b0acfffd234ffbff772a0fcc",
+    "git_head": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea071_bounded_dual_path_fusion_v1",
+    "summary": "initial_evaluation_summary.json"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea068-age-sensitive-ast-v1",
+  "status": "complete_for_locked_inner_screen",
+  "date": "2026-09-17",
+  "scope": {
+    "exploratory": true,
+    "outer_test_accessed": false,
+    "calls": 792,
+    "cats": 111,
+    "repeats": 3,
+    "folds_per_repeat": 4,
+    "pipelines": 3,
+    "completed_fits": 36
+  },
+  "feature_extraction": {
+    "label_information_used": false,
+    "feature_count": 20,
+    "fully_finite_calls": 772,
+    "calls_requiring_training_role_imputation": 20,
+    "verified_audio_hashes": 792
+  },
+  "mean_fold_macro_f1": {
+    "A0_ast_only": 0.7298650201707476,
+    "A1_age_residual": 0.771631988582453,
+    "A2_confidence_gated_age_residual": 0.7206787834819309
+  },
+  "candidate_contrasts": {
+    "A1_age_residual_minus_A0": {
+      "mean_fold_macro_f1_delta": 0.04176696841170527,
+      "positive_folds": 6,
+      "tied_folds": 4,
+      "negative_folds": 2,
+      "repeat_mean_deltas": [
+        0.04014392040707829,
+        0.08032407407407409,
+        0.004832910753963443
+      ],
+      "worst_fold_delta": -0.04105915870621757,
+      "gate_passed": false
+    },
+    "A2_confidence_gated_minus_A0": {
+      "mean_fold_macro_f1_delta": -0.009186236688816666,
+      "positive_folds": 4,
+      "tied_folds": 4,
+      "negative_folds": 4,
+      "repeat_mean_deltas": [
+        0.029763803448013992,
+        -0.027289365834257534,
+        -0.030033147680206457
+      ],
+      "worst_fold_delta": -0.11709401709401712,
+      "gate_passed": false
+    }
+  },
+  "pooled_validation": {
+    "A0_ast_only": {
+      "macro_f1": 0.7270169394200403,
+      "balanced_accuracy": 0.7611111111111111,
+      "quadratic_weighted_kappa": 0.5804657629475147,
+      "plain_accuracy": 0.7107843137254902,
+      "cross_entropy": 0.7015997934770523,
+      "brier": 0.4224103357607511
+    },
+    "A1_age_residual": {
+      "macro_f1": 0.7667966139648383,
+      "balanced_accuracy": 0.7944444444444444,
+      "quadratic_weighted_kappa": 0.6341463414634146,
+      "plain_accuracy": 0.75,
+      "cross_entropy": 0.7019288222090923,
+      "brier": 0.41162593452744234
+    },
+    "A2_confidence_gated_age_residual": {
+      "macro_f1": 0.7190831837132482,
+      "balanced_accuracy": 0.7527777777777778,
+      "quadratic_weighted_kappa": 0.5608429639700884,
+      "plain_accuracy": 0.7009803921568627,
+      "cross_entropy": 0.726609713865336,
+      "brier": 0.43651143557467587
+    }
+  },
+  "post_outcome_mechanism_diagnostic": {
+    "used_for_model_or_feature_selection": false,
+    "cat_level_median_f0_spearman_rho_with_ordinal_age": -0.6931856590920109,
+    "median_cat_level_f0_hz": {
+      "kitten": 1046.887301,
+      "adult": 600.411035,
+      "senior": 455.684164
+    }
+  },
+  "decision": {
+    "A1_age_residual": "retain_as_positive_exploratory_module_but_do_not_auto_promote",
+    "A2_confidence_gated_age_residual": "close_current_parameterization",
+    "next_if_continued": "pre-register an independent-seed robustness replication of A1 before combining it with Hybrid Call+Cat or accessing outer test"
+  },
+  "artifacts": {
+    "plan_path": "plan/IDEA-068_age_sensitive_acoustic_AST.md",
+    "plan_sha256": "1e792a8c62ba52cde7d5f3e73f9ae929cb2f7d6369e1a9d7aba1cf856879e8db",
+    "protocol_path": "configs/protocol/meowagenet_idea068_age_sensitive_ast_v1.json",
+    "protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+    "runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "extraction_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/extraction_summary.json",
+    "extraction_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda",
+    "inner_screen_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/inner_screen_summary.json",
+    "inner_screen_summary_sha256": "459b603bab9849c5e565c1f456dc908739d3ff5d3474b8ff04c938a8588ef727",
+    "report_path": "reports/38_IDEA-068_age_sensitive_acoustic_AST_results.md",
+    "report_sha256": "323678109e785f80b87d159eac9edaade27300c424704488cb254c2a72844915"
+  }
+}

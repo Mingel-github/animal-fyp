@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea066-hybrid-call-cat-ast-v1",
+  "date": "2026-09-17",
+  "status": "locked_before_inner_screen",
+  "objective": "Test whether adding a matched cat-level loss to call-level supervision improves frozen-AST animal-level age prediction.",
+  "relationship": {
+    "idea051": "The pure cat-set replacement was negative; IDEA-066 preserves a direct loss for every call.",
+    "result_awareness": "Historical MeowAgeNet outcomes are known; this is exploratory internal screening.",
+    "outer_test_access": false
+  },
+  "data": {
+    "representation": "locked 768-dimensional final AST call embeddings",
+    "calls": 792,
+    "cats": 111,
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "independence_unit": "cat_id"
+  },
+  "pipelines": {
+    "H0_matched_call_only": {
+      "call_loss_weight": 1.0,
+      "cat_loss_weight": 0.0,
+      "role": "matched batching and optimization control"
+    },
+    "H1_hybrid_call_cat": {
+      "call_loss_weight": 0.5,
+      "cat_loss_weight": 0.5,
+      "cat_probability": "arithmetic mean of call softmax probabilities",
+      "role": "hybrid objective candidate"
+    }
+  },
+  "fixed_training": {
+    "head": "standardized 768 -> 128 -> 3 with ReLU, BatchNorm, dropout",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-7,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "checkpoint_selection": "minimum unweighted inner-validation animal cross-entropy",
+    "call_weighting": "global inverse call-class frequency",
+    "cat_weighting": "global inverse cat-class frequency"
+  },
+  "screen": {
+    "base_seed": 17,
+    "repeats": [0, 1, 2],
+    "outer_folds_used_as_inner_role_definitions": [0, 1, 2, 3],
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 12,
+    "total_fits": 24
+  },
+  "gate": {
+    "all_conditions_required": true,
+    "minimum_mean_fold_macro_f1_gain": 0.005,
+    "minimum_positive_folds": 8,
+    "pooled_validation_cross_entropy_nonworse": true,
+    "pooled_validation_brier_nonworse": true,
+    "minimum_worst_fold_macro_f1_delta": -0.02,
+    "minimum_per_repeat_senior_recall_delta": -0.02,
+    "pass_action": "Freeze the hybrid objective before an outer or external benchmark.",
+    "fail_action": "Close the fixed 0.5/0.5 implementation without coefficient tuning."
+  },
+  "dependencies": {
+    "idea_path": "plan/IDEA-066_hybrid_call_cat_ast.md",
+    "idea_sha256": "e654a96c96dd76f69dd3fa966979bcfb0f73d8703163c6484473a53a1e22fba4",
+    "idea051_runner_path": "scripts/run_meowagenet_idea051_cat_set.py",
+    "idea051_runner_sha256": "4e8acdefca96215ae3cec94d9158ac081da82eabce08b73c0fe612334ce5d3d5",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "runner_path": "scripts/run_meowagenet_idea066_hybrid_call_cat_ast.py",
+    "runner_sha256": "ffa3b344e1dfa0bc7f6bcb9e5657371220ca5218e8ba812526dfb99e0dad5126"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea066_hybrid_call_cat_ast_v1",
+    "summary": "inner_screen_summary.json"
+  }
+}

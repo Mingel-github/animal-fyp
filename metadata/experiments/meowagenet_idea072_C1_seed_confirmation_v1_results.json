@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea072-C1-seed-confirmation-v1",
+  "status": "complete_gate_failed_positive_C1_signal",
+  "date": "2026-09-17",
+  "outer_test_accessed": false,
+  "base_seeds": [
+    6530,
+    3562,
+    3846
+  ],
+  "fits": 144,
+  "model": {
+    "A0_parameters": 99075,
+    "A1_parameters": 103971,
+    "U1_parameters": 108143,
+    "C1_parameters": 108143,
+    "U1_C1_initial_state_dict_identical": true,
+    "C1_cap": 0.25,
+    "C1": "0.25*stopgrad(RMS(h))*tanh(raw_shift) bounded additive residual",
+    "U1": "Exactly capacity-matched unbounded additive residual"
+  },
+  "seed_repeat_level": {
+    "A0_mean_macro_f1": 0.7175967612291836,
+    "A1_mean_macro_f1": 0.7244610895927919,
+    "U1_mean_macro_f1": 0.728289131805544,
+    "C1_mean_macro_f1": 0.7267091447057161,
+    "C1_minus_A0": {
+      "mean": 0.009112383476532537,
+      "sample_sd": 0.027987355537071178,
+      "positive": 7,
+      "tied": 0,
+      "negative": 2
+    },
+    "C1_minus_A1": {
+      "mean": 0.002248055112924363,
+      "sample_sd": 0.021797323477223515,
+      "positive": 4,
+      "tied": 0,
+      "negative": 5
+    },
+    "C1_minus_U1": {
+      "mean": -0.001579987099827725,
+      "sample_sd": 0.017120661554857412,
+      "positive": 7,
+      "tied": 0,
+      "negative": 2
+    },
+    "A1_minus_A0_mean": 0.006864328363608174,
+    "U1_minus_A1_mean": 0.0038280422127520883,
+    "U1_minus_A0": {
+      "mean": 0.010692370576360263,
+      "positive": 6,
+      "tied": 1,
+      "negative": 2
+    },
+    "mean_cross_entropy": {
+      "A0": 0.7098549151013049,
+      "A1": 0.7266897582847124,
+      "U1": 0.7290004787105301,
+      "C1": 0.7142120634945854
+    },
+    "mean_brier": {
+      "A0": 0.4203438798473573,
+      "A1": 0.42679395090482913,
+      "U1": 0.42196256160036466,
+      "C1": 0.4173951097963664
+    }
+  },
+  "per_base_seed_mean_deltas": {
+    "6530": {
+      "A1_minus_A0": 0.01801376208573868,
+      "U1_minus_A0": 0.01700427577620552,
+      "C1_minus_A0": 0.021141485428492885,
+      "C1_minus_A1": 0.0031277233427542037,
+      "C1_minus_U1": 0.004137209652287366
+    },
+    "3562": {
+      "A1_minus_A0": 0.004384304472858759,
+      "U1_minus_A0": 0.013956184942028623,
+      "C1_minus_A0": 0.0229206329052295,
+      "C1_minus_A1": 0.01853632843237074,
+      "C1_minus_U1": 0.008964447963200875
+    },
+    "3846": {
+      "A1_minus_A0": -0.001805081467772916,
+      "U1_minus_A0": 0.0011166510108466439,
+      "C1_minus_A0": -0.016724967904124772,
+      "C1_minus_A1": -0.014919886436351856,
+      "C1_minus_U1": -0.017841618914971418
+    }
+  },
+  "split_stability": {
+    "C1_minus_A0_nonnegative_split_cells": 7,
+    "C1_minus_A0_positive_split_cells": 6,
+    "C1_minus_A0_tied_split_cells": 1,
+    "C1_minus_A0_negative_split_cells": 5,
+    "C1_minus_A0_worst": -0.04164113988675392,
+    "C1_minus_A0_best": 0.061828020238752966
+  },
+  "senior_recall_deltas": {
+    "6530": {
+      "C1_minus_A0": 0.033333333333333326,
+      "C1_minus_A1": 0.0
+    },
+    "3562": {
+      "C1_minus_A0": 0.016666666666666607,
+      "C1_minus_A1": -0.033333333333333326
+    },
+    "3846": {
+      "C1_minus_A0": 0.016666666666666607,
+      "C1_minus_A1": -0.01666666666666672
+    }
+  },
+  "pooled_validation": {
+    "animal_occurrences_per_pipeline": 612,
+    "occurrences_are_independent": false,
+    "A0_macro_f1": 0.7157502674853058,
+    "A1_macro_f1": 0.7225282465882329,
+    "U1_macro_f1": 0.7258152086223637,
+    "C1_macro_f1": 0.7251566099866856,
+    "A0_cross_entropy": 0.7098549151013049,
+    "A1_cross_entropy": 0.7266897582847125,
+    "U1_cross_entropy": 0.7290004787105301,
+    "C1_cross_entropy": 0.7142120634945852,
+    "A0_brier": 0.4203438798473574,
+    "A1_brier": 0.42679395090482913,
+    "U1_brier": 0.4219625616003647,
+    "C1_brier": 0.4173951097963664
+  },
+  "relative_perturbation": {
+    "definition": "validation-call ||r||_2 / ||h||_2 at the selected C1 checkpoint",
+    "mean_of_fit_means": 0.05587522073829189,
+    "minimum_fit_mean": 0.028025673932315393,
+    "maximum_fit_mean": 0.09317505849456345,
+    "maximum_call": 0.19995923340320587
+  },
+  "gate_tiers": {
+    "basic_effectiveness_vs_A0": false,
+    "replacement_vs_A1": false,
+    "constraint_mechanism_vs_U1": false,
+    "overall": false
+  },
+  "interpretation": "C1 has a positive mean Macro-F1 signal over A0 and the best Brier score, but fails base-seed, split-cell, worst-split, and mean-CE requirements. Exactly matched U1 has slightly higher mean Macro-F1 and is positive versus A0 on all three base seeds, so the classification improvement cannot be attributed to the bounded residual mechanism; wider residual capacity is a plausible contributor. C1 remains a useful calibration-oriented positive result but does not advance.",
+  "cross_experiment_A1_update": "A1 is positive on two of the three IDEA-072 base seeds and negative on one. Across IDEA-068 through IDEA-072, the descriptive base-seed direction count becomes 9 positive out of 13 tested seeds on the same dataset and role system.",
+  "audit": {
+    "preoptimization_max_logit_difference": 0.0,
+    "U1_C1_initial_state_dict_exactly_equal": true,
+    "checkpoint_reload_max_probability_difference": 0.0,
+    "paired_common_epochs": 649,
+    "paired_batch_hash_mismatches": 0,
+    "resume_validation_passed": true,
+    "tests_passed": 10,
+    "plan_sha256": "7ca21c69d94d55d82e851c8a35113df7dea27e78c3f796d9129b139cd9e82f7c",
+    "protocol_sha256": "ad767bb24721ac18887b85ed0671ab14e510097c34aa8f18253f47a623970d93",
+    "runner_sha256": "914add17497df7bceef7ee9b80077cb42d99a193fa223f78b00d53f1d67c8696",
+    "run_manifest_sha256": "ff8af0c44ea349b3333936a03817320c8c853b1811f769b68d3874e7827f4d1f",
+    "initial_evaluation_summary_sha256": "c39dc7ef0488ba7bd4f1edf0dbdfebeb85e30cfadcfe6de68e79b97cf5bf0b8c"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "schema_id": "ast-prelast-token-cache-idea078-v1",
+  "date": "2026-09-18",
+  "status": "locked_before_cache_extraction",
+  "ownership": {
+    "owner": "IDEA-078",
+    "read_only_consumers": ["IDEA-078", "IDEA-079"],
+    "duplicate_extraction_allowed": false,
+    "single_manifest_path": "runs/ast_prelast_tokens_idea078_v1/cache_manifest.json"
+  },
+  "tensor": {
+    "path": "runs/ast_prelast_tokens_idea078_v1/prelast_tokens.float32.npy",
+    "format": "NumPy .npy",
+    "memory_mappable": true,
+    "dtype": "float32",
+    "shape": [843, 146, 768],
+    "raw_payload_bytes": 378095616,
+    "axis_order": ["segment", "token", "hidden"],
+    "token_layout": {
+      "special_token_indices": [0, 1],
+      "patch_token_indices_inclusive": [2, 145],
+      "patch_grid": [12, 12],
+      "patch_flatten_order": "frequency-major then time-minor"
+    },
+    "boundary": {
+      "value": "output of one-based AST encoder block 11 and input to one-based block 12",
+      "final_layernorm_applied": false,
+      "segment_pooling_applied": false
+    }
+  },
+  "index": {
+    "path": "runs/ast_prelast_tokens_idea078_v1/prelast_token_index.npz",
+    "format": "compressed NumPy NPZ",
+    "allow_pickle": false,
+    "keys": [
+      "segment_call_indices",
+      "segment_counts",
+      "call_ids",
+      "source_paths",
+      "prelast_block_output_one_based",
+      "last_block_input_one_based",
+      "special_token_indices",
+      "patch_token_start"
+    ],
+    "forbidden_keys": ["cat_ids", "labels", "roles"],
+    "segment_call_indices": {"dtype": "int32", "shape": [843]},
+    "segment_counts": {"dtype": "int16", "shape": [792], "sum": 843, "range": [1, 6]},
+    "call_ids": {"dtype": "unicode", "shape": [792]},
+    "source_paths": {"dtype": "unicode", "shape": [792]}
+  },
+  "label_free": {
+    "labels_stored": false,
+    "cat_ids_stored": false,
+    "roles_stored": false,
+    "labels_used_during_extraction": false,
+    "roles_used_during_extraction": false
+  },
+  "source_lock": {
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "data_manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "data_manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "audio_checksums_path": "metadata/datasets/meowagenet/checksums.sha256",
+    "audio_checksums_sha256": "7c1b51ce1a18b1253d3099e9ce3ea034385cd1851ed121a1a5b82a50a20e6a12",
+    "roles_path_for_downstream_audit_only": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433"
+  },
+  "ast_lock": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "model_safetensors_sha256": "ae0c1e2ad4e1381d851fa9bf298ba13ebc9c5a914cdee2dbe427a6583869924d",
+    "segment_seconds": 1.28,
+    "segment_hop_seconds": 0.64,
+    "max_length_frames": 128,
+    "num_mel_bins": 128,
+    "frequency_stride": 10,
+    "time_stride": 10
+  },
+  "required_manifest": {
+    "path": "runs/ast_prelast_tokens_idea078_v1/cache_manifest.json",
+    "must_hash": [
+      "protocol",
+      "cache_schema",
+      "extractor",
+      "token_file",
+      "index_file",
+      "source_fbank",
+      "data_manifest",
+      "audio_checksums",
+      "downstream_roles",
+      "locked_final_embedding",
+      "model_safetensors"
+    ],
+    "must_report": [
+      "843-to-792 mapping audit",
+      "geometry and block boundary",
+      "window and hop",
+      "A0 reconstruction mean absolute error",
+      "A0 reconstruction maximum absolute error"
+    ]
+  },
+  "a0_reconstruction": {
+    "path": "cached block-11 tokens -> frozen block 12 -> final LayerNorm -> mean CLS/distillation -> mean segments per call",
+    "reference": "locked ast_standard_call_embeddings.npz",
+    "mean_absolute_maximum": 0.000002,
+    "absolute_maximum": 0.00002
+  }
+}

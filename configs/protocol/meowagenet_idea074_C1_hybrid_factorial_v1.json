@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea074-C1-hybrid-factorial-v1",
+  "date": "2026-09-17",
+  "status": "locked_before_initial_evaluation",
+  "objective": "Use a preregistered 2x2 inner-only factorial to test the frozen C1 bounded age residual, the fixed Hybrid Call+Cat objective, their compatibility, and any super-additive interaction.",
+  "relationship": {
+    "known_results": "IDEA-071 through IDEA-073 provide positive internal evidence for C1, while IDEA-066 found a positive average Hybrid Call+Cat effect that did not pass its split-stability gate.",
+    "scope": "New-seed internal module screening on the same 111 cats and role system; not an independent-dataset confirmation.",
+    "post_outcome_formula_tuning": false,
+    "post_outcome_loss_weight_tuning": false,
+    "post_outcome_seed_selection": false,
+    "positive_subthreshold_retention": "All positive effects are retained and reported even when a preregistered gate fails."
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "independence_unit": "cat_id",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "feature_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/extraction_summary.json",
+    "feature_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda",
+    "feature_extraction_audit": {
+      "status": "complete",
+      "label_information_used": false,
+      "calls": 792,
+      "features": 20,
+      "source_hashes_verified": 792,
+      "protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+      "runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+      "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba"
+    }
+  },
+  "model": {
+    "pipelines": [
+      "A0_C_call_only",
+      "A0_H_hybrid",
+      "C1_C_call_only",
+      "C1_H_hybrid"
+    ],
+    "pipeline_definitions": {
+      "A0_C_call_only": "Matched frozen-AST 768->128->3 control trained with call-level loss.",
+      "A0_H_hybrid": "The same A0 model and initialization trained with the fixed 0.5 call plus 0.5 cat objective.",
+      "C1_C_call_only": "Frozen IDEA-071 C1 20->60->128 bounded age residual trained with call-level loss.",
+      "C1_H_hybrid": "The same C1 model and initialization trained with the fixed 0.5 call plus 0.5 cat objective."
+    },
+    "age_residual_hidden": 60,
+    "relative_cap": 0.25,
+    "rms_epsilon": 1e-08,
+    "hybrid_call_weight": 0.5,
+    "hybrid_cat_weight": 0.5,
+    "cat_probability": "arithmetic mean of all call softmax probabilities belonging to the cat",
+    "cat_probability_clamp_minimum": 1e-07,
+    "call_weighting": "inverse class frequency computed from training-role calls only; each batch loss is weighted sum divided by weight sum",
+    "cat_weighting": "inverse class frequency computed from training-role cats only; each batch loss is weighted sum divided by weight sum",
+    "complete_cat_batching": true,
+    "trainable_parameters": {
+      "A0_C_call_only": 99075,
+      "A0_H_hybrid": 99075,
+      "C1_C_call_only": 108143,
+      "C1_H_hybrid": 108143
+    },
+    "base_seeds": [
+      6346,
+      7243,
+      9617
+    ],
+    "seed_derivation_text": "IDEA-074-C1-hybrid-factorial-v1",
+    "seed_derivation_encoding": "UTF-8",
+    "seed_derivation_sha256": "91d52a6aa12c7c8b7e37da71d0ece239c97564e6f3ae912ce92d60a9a07ab94a",
+    "seed_derivation_rule": "Read successive non-overlapping digest uint32 values in big-endian order, reduce modulo 10000, and skip values colliding with IDEA-065 through IDEA-073 base seeds. The first three eligible unique values are used.",
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 36,
+    "total_fits": 144,
+    "initialization_fairness": "Each call-only/hybrid pair has an identical initial state_dict; all four models share identical AST-trunk tensors and zero initial output perturbation, C1 call/hybrid age branches are identical, all initial logits match, and training RNG is reset after model construction.",
+    "loss_path_fairness": "All pipelines compute and audit both call and cat losses from identical complete-cat batches; only the fixed total-loss coefficients differ."
+  },
+  "fixed_training": {
+    "ast_head": "training-role standardized 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "age_hidden_units": 32,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "globally class-balanced call cross-entropy",
+    "checkpoint_selection": "minimum unweighted inner-validation animal cross-entropy",
+    "post_build_seed_offset": 1000000
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true
+  },
+  "aggregation": {
+    "primary_metric_unit": "Nine seed-by-repeat estimates per pipeline, each pooling four validation folds and then weighted equally.",
+    "split_cell_unit": "Twelve repeat-by-fold cells, each first averaged across the three base seeds.",
+    "simple_effects": [
+      "C1_C_call_only minus A0_C_call_only",
+      "A0_H_hybrid minus A0_C_call_only",
+      "C1_H_hybrid minus C1_C_call_only",
+      "C1_H_hybrid minus A0_H_hybrid"
+    ],
+    "interaction": "(C1_H_hybrid - C1_C_call_only) - (A0_H_hybrid - A0_C_call_only)",
+    "probability_quality_interaction_sign": "CE and Brier use improvement differences, so positive means Hybrid improves probability quality more under C1 than under A0.",
+    "descriptive_only": "Thirty-six fold comparisons and 612 repeated animal occurrences per pipeline are descriptive and are not treated as independent observations."
+  },
+  "gate": {
+    "all_conditions_required_within_each_tier": true,
+    "C1_replication": {
+      "minimum_mean_macro_f1_gain": 0.005,
+      "minimum_positive_base_seeds": 3,
+      "minimum_positive_seed_repeats": 6,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_delta": -0.03,
+      "mean_cross_entropy_nonworse": true,
+      "mean_brier_nonworse": true,
+      "minimum_per_base_seed_senior_recall_delta": -0.02
+    },
+    "hybrid_adoption": {
+      "minimum_mean_macro_f1_gain": 0.005,
+      "minimum_positive_base_seeds": 3,
+      "minimum_positive_seed_repeats": 6,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_delta": -0.03,
+      "mean_cross_entropy_nonworse": true,
+      "mean_brier_nonworse": true,
+      "minimum_per_base_seed_senior_recall_delta": -0.02,
+      "minimum_representation_under_hybrid_mean_macro_f1_gain": 0.005,
+      "minimum_representation_under_hybrid_positive_base_seeds": 3,
+      "representation_under_hybrid_mean_cross_entropy_nonworse": true,
+      "representation_under_hybrid_mean_brier_nonworse": true,
+      "minimum_representation_under_hybrid_per_base_seed_senior_recall_delta": -0.02
+    },
+    "synergy": {
+      "minimum_mean_interaction_macro_f1": 0.0,
+      "minimum_nonnegative_base_seeds": 2,
+      "minimum_nonnegative_seed_repeats": 5,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_interaction": -0.03
+    },
+    "interpretation": "C1 replication, Hybrid adoption, and super-additive synergy are separate tiers. Synergy does not independently authorize adoption, and adoption does not require synergy.",
+    "pass_action": "If the Hybrid adoption tier passes, freeze C1-H as the internal main candidate before external benchmarks; otherwise retain C1-C. Claim super-additive synergy only if its separate tier passes.",
+    "fail_action": "Report and retain all positive simple effects even when a tier fails, without changing the C1 formula, Hybrid coefficients, seeds, aggregation, or gates on this result."
+  },
+  "dependencies": {
+    "idea_path": "plan/IDEA-074_C1_hybrid_call_cat_factorial.md",
+    "idea_sha256": "2f532d378f24d6115410d31eeec82d92d770c30e338f10b155d09fad724db818",
+    "idea066_protocol_path": "configs/protocol/meowagenet_idea066_hybrid_call_cat_ast_v1.json",
+    "idea066_protocol_sha256": "d329e4e912ee6c4c65d0bb4c14ba009e84d300a2f2659846c154a4f2f7b70d7f",
+    "idea066_runner_path": "scripts/run_meowagenet_idea066_hybrid_call_cat_ast.py",
+    "idea066_runner_sha256": "ffa3b344e1dfa0bc7f6bcb9e5657371220ca5218e8ba812526dfb99e0dad5126",
+    "idea068_protocol_path": "configs/protocol/meowagenet_idea068_age_sensitive_ast_v1.json",
+    "idea068_protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+    "idea068_runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "idea068_runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "idea071_protocol_path": "configs/protocol/meowagenet_idea071_bounded_dual_path_fusion_v1.json",
+    "idea071_protocol_sha256": "3050b16a0c3c63f8ea9b672f5bf0c5ad3771e9696bdf7a3c4773351490fcf79a",
+    "idea071_runner_path": "scripts/run_meowagenet_idea071_bounded_dual_path_fusion.py",
+    "idea071_runner_sha256": "f232dc6971bf550052c9a846460e164d29c12dd2b0acfffd234ffbff772a0fcc",
+    "runner_path": "scripts/run_meowagenet_idea074_C1_hybrid_factorial.py",
+    "runner_sha256": "b85f1834dae5a0bc4fcb2059f06ffd6108e995b6b1453bce1bc51213b6b39739",
+    "git_head": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea074_C1_hybrid_factorial_v1",
+    "summary": "initial_evaluation_summary.json"
+  }
+}

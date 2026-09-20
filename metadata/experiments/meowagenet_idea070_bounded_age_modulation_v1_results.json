@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea070-bounded-age-modulation-v1",
+  "status": "complete_gate_failed_partial_mechanism_success",
+  "date": "2026-09-17",
+  "outer_test_accessed": false,
+  "base_seeds": [
+    2326,
+    3550,
+    4426
+  ],
+  "fits": 108,
+  "model": {
+    "control_parameters": 99075,
+    "A1_parameters": 103971,
+    "B1_parameters": 103971,
+    "age_branch_parameters": 4896,
+    "B1_modulation_multiplier_range": [
+      0.75,
+      1.25
+    ]
+  },
+  "seed_repeat_level": {
+    "A0_mean_macro_f1": 0.736164174113253,
+    "A1_mean_macro_f1": 0.7537363972139598,
+    "B1_mean_macro_f1": 0.7412537997678259,
+    "mean_B1_minus_A0": 0.0050896256545728885,
+    "mean_B1_minus_A1": -0.012482597446133966,
+    "B1_minus_A0_sample_sd": 0.01555642385409166,
+    "B1_minus_A0_median": 0.010450577427321583,
+    "B1_minus_A0_positive": 6,
+    "B1_minus_A0_tied": 1,
+    "B1_minus_A0_negative": 2
+  },
+  "per_base_seed_mean_B1_minus_A0": {
+    "2326": 0.013581249544494578,
+    "3550": -0.0029038207442719788,
+    "4426": 0.004591448163496066
+  },
+  "split_stability": {
+    "nonnegative_split_cells": 9,
+    "positive_split_cells": 6,
+    "tied_split_cells": 3,
+    "negative_split_cells": 3,
+    "worst_B1_minus_A0": -0.03759820426487089,
+    "best_B1_minus_A0": 0.03638726445743986
+  },
+  "pooled_validation": {
+    "animal_occurrences_per_pipeline": 612,
+    "occurrences_are_independent": false,
+    "A0_macro_f1": 0.7375695927603871,
+    "A1_macro_f1": 0.7543567160205984,
+    "B1_macro_f1": 0.7416075512027537,
+    "B1_minus_A0_macro_f1": 0.004037958442366652,
+    "B1_minus_A1_macro_f1": -0.012749164817844704,
+    "A0_cross_entropy": 0.6988512244931261,
+    "A1_cross_entropy": 0.7071161826116935,
+    "B1_cross_entropy": 0.6964220113734079,
+    "B1_minus_A0_cross_entropy": -0.002429213119718221,
+    "B1_minus_A1_cross_entropy": -0.010694171238285591,
+    "A0_brier": 0.4179511948195845,
+    "A1_brier": 0.41457115664478345,
+    "B1_brier": 0.4118598517126486,
+    "A0_senior_recall": 0.6611111111111111,
+    "A1_senior_recall": 0.6666666666666666,
+    "B1_senior_recall": 0.6666666666666666
+  },
+  "gate_conditions": {
+    "mean_B1_minus_A0_macro_f1": true,
+    "every_base_seed_mean_positive": false,
+    "positive_seed_repeats": true,
+    "nonnegative_split_cells": true,
+    "worst_split_cell": false,
+    "pooled_cross_entropy_vs_A0": true,
+    "pooled_brier_vs_A0": true,
+    "per_base_seed_senior_recall": true,
+    "mean_B1_minus_A1_noninferior": false,
+    "pooled_cross_entropy_vs_A1": true
+  },
+  "gate_passed": false,
+  "interpretation": "Bounded channel modulation clearly improves pooled calibration and reduces the seed-repeat gain dispersion, but matched A1 has the same positive/tied/negative counts and a less-negative worst split. B1 is too conservative to replace the stronger additive A1 residual on Macro-F1 and does not establish a comprehensive stability improvement.",
+  "audit": {
+    "preoptimization_max_logit_difference": 0.0,
+    "paired_common_epochs": 604,
+    "paired_batch_hash_mismatches": 0,
+    "resume_validation_passed": true,
+    "protocol_sha256": "6924a0d6e37545a46626ee0974febefd1e2553d01602319dd79bac9e1896987c",
+    "runner_sha256": "85c33cf9927e923a8f1cef7014c235170c5399ecc8e941b2cdfa50815a1080d6",
+    "run_manifest_sha256": "531e5e1cc37bfb6c91da612dc75f7a8c5e62b7ce8cf134058a308fe946c02d2f",
+    "initial_evaluation_summary_sha256": "48b9402b73a26763bdd6d6ecad1026388dfb63d35751c030eb522193fa5f3b64"
+  }
+}

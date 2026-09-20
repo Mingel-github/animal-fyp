@@ -1,0 +1,272 @@
+{
+  "schema_version": "1.0",
+  "review_id": "idea082-independent-feature-grouping-review-v1",
+  "date": "2026-09-18",
+  "status": "locked_before_idea082_candidate_protocol_inspection",
+  "scope": "Independent, outcome-blind grouping of the locked IDEA-068 20-dimensional acoustic feature cache for IDEA-082 protocol review.",
+  "outcome_blindness": {
+    "labels_inspected_for_grouping": false,
+    "feature_label_associations_inspected": false,
+    "feature_outcome_associations_inspected": false,
+    "empirical_feature_correlations_inspected": false,
+    "basis": [
+      "IDEA-068 extractor definitions",
+      "signal-processing meaning",
+      "source-filter and voice-quality literature"
+    ]
+  },
+  "locked_provenance": {
+    "idea068_runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "idea068_runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "feature_cache_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "feature_cache_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "extraction_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/extraction_summary.json",
+    "extraction_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda",
+    "calls": 792,
+    "features": 20,
+    "source_hashes_verified": 792,
+    "fully_finite_calls": 772,
+    "label_information_used": false
+  },
+  "primary_groups": {
+    "f0_level_and_contour": [
+      "log_f0_q10",
+      "log_f0_median",
+      "log_f0_q90",
+      "log_f0_iqr",
+      "log_f0_slope"
+    ],
+    "source_stability_and_periodicity": [
+      "log_f0_std",
+      "log_f0_mad",
+      "log_f0_abs_delta_median",
+      "period_variation_proxy",
+      "voiced_fraction",
+      "voiced_probability_mean",
+      "voiced_probability_std",
+      "periodicity_median",
+      "hnr_db_median",
+      "amplitude_variation_proxy"
+    ],
+    "spectral_energy": [
+      "log_rms_median",
+      "log_rms_iqr",
+      "spectral_tilt_median",
+      "spectral_tilt_iqr",
+      "spectral_flatness_median"
+    ]
+  },
+  "features": [
+    {
+      "index": 0,
+      "name": "log_f0_q10",
+      "primary_group": "f0_level_and_contour",
+      "physical_meaning": "Lower-tail voiced fundamental-frequency level on the natural-log scale.",
+      "extractor_definition": "10th percentile of log(F0) over pYIN-voiced frames.",
+      "overlap": []
+    },
+    {
+      "index": 1,
+      "name": "log_f0_median",
+      "primary_group": "f0_level_and_contour",
+      "physical_meaning": "Typical voiced fundamental-frequency level on the natural-log scale.",
+      "extractor_definition": "Median of log(F0) over pYIN-voiced frames.",
+      "overlap": []
+    },
+    {
+      "index": 2,
+      "name": "log_f0_q90",
+      "primary_group": "f0_level_and_contour",
+      "physical_meaning": "Upper-tail voiced fundamental-frequency level on the natural-log scale.",
+      "extractor_definition": "90th percentile of log(F0) over pYIN-voiced frames.",
+      "overlap": []
+    },
+    {
+      "index": 3,
+      "name": "log_f0_iqr",
+      "primary_group": "f0_level_and_contour",
+      "physical_meaning": "Robust within-call F0 span or intonational dispersion.",
+      "extractor_definition": "75th minus 25th percentile of voiced log(F0).",
+      "overlap": [
+        "source_stability_and_periodicity: mixes intended contour movement with irregular or unstable F0 estimates"
+      ]
+    },
+    {
+      "index": 4,
+      "name": "log_f0_std",
+      "primary_group": "source_stability_and_periodicity",
+      "physical_meaning": "Global within-call variation of voiced log(F0).",
+      "extractor_definition": "Population standard deviation of voiced log(F0).",
+      "overlap": [
+        "f0_level_and_contour: also responds to deliberate intonation and range, not only instability"
+      ]
+    },
+    {
+      "index": 5,
+      "name": "log_f0_mad",
+      "primary_group": "source_stability_and_periodicity",
+      "physical_meaning": "Robust global within-call deviation of voiced log(F0) around its median.",
+      "extractor_definition": "Median absolute deviation of voiced log(F0).",
+      "overlap": [
+        "f0_level_and_contour: also measures intonational dispersion"
+      ]
+    },
+    {
+      "index": 6,
+      "name": "log_f0_slope",
+      "primary_group": "f0_level_and_contour",
+      "physical_meaning": "Overall rising or falling F0 trajectory across the call.",
+      "extractor_definition": "Least-squares slope of voiced log(F0) against call-normalized frame time.",
+      "overlap": [
+        "source_stability_and_periodicity: unreliable voicing tracks can perturb the fitted slope"
+      ]
+    },
+    {
+      "index": 7,
+      "name": "log_f0_abs_delta_median",
+      "primary_group": "source_stability_and_periodicity",
+      "physical_meaning": "Typical frame-to-frame change in voiced log(F0).",
+      "extractor_definition": "Median absolute difference between consecutive voiced-frame log(F0) values.",
+      "overlap": [
+        "f0_level_and_contour: fast intentional modulation and tracking instability are not separable"
+      ]
+    },
+    {
+      "index": 8,
+      "name": "period_variation_proxy",
+      "primary_group": "source_stability_and_periodicity",
+      "physical_meaning": "Frame-scale relative variation of the estimated glottal period.",
+      "extractor_definition": "Median absolute difference of consecutive 1/F0 estimates divided by median 1/F0.",
+      "overlap": [
+        "f0_level_and_contour: framewise contour motion contributes",
+        "not true cycle-synchronous jitter"
+      ]
+    },
+    {
+      "index": 9,
+      "name": "voiced_fraction",
+      "primary_group": "source_stability_and_periodicity",
+      "physical_meaning": "Fraction of analysis frames accepted as voiced by pYIN.",
+      "extractor_definition": "Mean of the finite-positive F0 mask over all frames.",
+      "overlap": [
+        "call structure and silence occupancy",
+        "pitch-tracker reliability rather than a pure physiological source measure"
+      ]
+    },
+    {
+      "index": 10,
+      "name": "voiced_probability_mean",
+      "primary_group": "source_stability_and_periodicity",
+      "physical_meaning": "Average pYIN posterior support for voicing.",
+      "extractor_definition": "Mean finite voiced-probability output from pYIN.",
+      "overlap": [
+        "algorithm confidence and signal-to-noise conditions"
+      ]
+    },
+    {
+      "index": 11,
+      "name": "voiced_probability_std",
+      "primary_group": "source_stability_and_periodicity",
+      "physical_meaning": "Variation in pYIN posterior support for voicing across the call.",
+      "extractor_definition": "Population standard deviation of finite pYIN voiced probabilities.",
+      "overlap": [
+        "algorithm confidence, call segmentation, and signal-to-noise conditions"
+      ]
+    },
+    {
+      "index": 12,
+      "name": "periodicity_median",
+      "primary_group": "source_stability_and_periodicity",
+      "physical_meaning": "Typical normalized autocorrelation strength at the pYIN-estimated F0 lag.",
+      "extractor_definition": "Median of framewise normalized autocorrelation, clipped to [0, 0.999].",
+      "overlap": [
+        "near-redundant with hnr_db_median because HNR is a monotonic transform of the same framewise periodicity"
+      ]
+    },
+    {
+      "index": 13,
+      "name": "hnr_db_median",
+      "primary_group": "source_stability_and_periodicity",
+      "physical_meaning": "Typical periodic-to-aperiodic energy ratio expressed in decibels.",
+      "extractor_definition": "Median of 10*log10(r/(1-r)), where r is the same clipped framewise autocorrelation used by periodicity_median.",
+      "overlap": [
+        "near-redundant with periodicity_median",
+        "spectral/noise quality"
+      ]
+    },
+    {
+      "index": 14,
+      "name": "amplitude_variation_proxy",
+      "primary_group": "source_stability_and_periodicity",
+      "physical_meaning": "Frame-scale relative amplitude modulation on voiced frames.",
+      "extractor_definition": "Median absolute consecutive-frame RMS difference divided by median voiced-frame RMS.",
+      "overlap": [
+        "spectral_energy: intentional amplitude envelope and recording level dynamics contribute",
+        "not true cycle-synchronous shimmer"
+      ]
+    },
+    {
+      "index": 15,
+      "name": "log_rms_median",
+      "primary_group": "spectral_energy",
+      "physical_meaning": "Typical voiced-frame broadband energy on the natural-log scale.",
+      "extractor_definition": "Median log(RMS + 1e-10) over voiced frames.",
+      "overlap": [
+        "recording gain and source amplitude"
+      ]
+    },
+    {
+      "index": 16,
+      "name": "log_rms_iqr",
+      "primary_group": "spectral_energy",
+      "physical_meaning": "Robust within-call spread of voiced-frame broadband energy.",
+      "extractor_definition": "75th minus 25th percentile of voiced log(RMS + 1e-10).",
+      "overlap": [
+        "source_stability_and_periodicity: amplitude instability",
+        "call envelope and recording dynamics"
+      ]
+    },
+    {
+      "index": 17,
+      "name": "spectral_tilt_median",
+      "primary_group": "spectral_energy",
+      "physical_meaning": "Typical rate at which spectral magnitude decreases or increases with frequency between 200 and 4000 Hz.",
+      "extractor_definition": "Median voiced-frame OLS slope of log magnitude against log frequency from 200 to 4000 Hz.",
+      "overlap": [
+        "source-filter ambiguity: glottal-source slope and vocal-tract or recording coloration are not separated"
+      ]
+    },
+    {
+      "index": 18,
+      "name": "spectral_tilt_iqr",
+      "primary_group": "spectral_energy",
+      "physical_meaning": "Robust within-call variation of spectral tilt.",
+      "extractor_definition": "75th minus 25th percentile of voiced-frame log-log spectral slopes from 200 to 4000 Hz.",
+      "overlap": [
+        "source-filter ambiguity",
+        "source stability and time-varying articulation"
+      ]
+    },
+    {
+      "index": 19,
+      "name": "spectral_flatness_median",
+      "primary_group": "spectral_energy",
+      "physical_meaning": "Typical noise-like versus tonal spectral distribution on voiced frames.",
+      "extractor_definition": "Median librosa spectral flatness over voiced frames.",
+      "overlap": [
+        "source_stability_and_periodicity: aperiodicity/noise",
+        "broadband spectral shape"
+      ]
+    }
+  ],
+  "hard_audit_requirements": [
+    "The three primary groups must be disjoint and exhaust the exact ordered IDEA-068 20-feature schema.",
+    "The locked IDEA-068 cache must be reused byte-for-byte and its SHA-256 verified before any fit.",
+    "Missing-value medians and standardization statistics must be fit on the current training cats only and then applied unchanged to validation cats.",
+    "Cat IDs, not calls, are the split and aggregation unit; no cat may cross train and validation within a fit.",
+    "Acoustic extraction and grouping may not read age labels or outcome metrics.",
+    "Paired variants must share common initialization, cat batch order, checkpoint rule, seed, repeat, and fold.",
+    "Outer-test access and predictions must remain false.",
+    "Paired reporting must retain seed/repeat/fold cells and animal-level validation metrics; calls are not independent replicates."
+  ]
+}

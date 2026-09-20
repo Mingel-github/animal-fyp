@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea085-trajectory-extraction-v1",
+  "date": "2026-09-19",
+  "status": "locked_before_trajectory_extraction",
+  "objective": "Create a label-blind, call-aligned frame-level acoustic trajectory cache for a preregistered temporal residual experiment without altering IDEA-068 extraction settings or historical outputs.",
+  "claim_boundary": {
+    "exploratory_internal_mechanism_test": true,
+    "not_external_confirmation": true,
+    "does_not_repeat_IDEA052_AST_token_pooling": true,
+    "emotion_or_context_evidence_is_not_cat_age_evidence": true,
+    "literature_motivates_sequence_preservation_only": true,
+    "no_labels_or_results_used_for_extraction": true,
+    "outer_test_predictions": false
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "alignment_key": "call_id",
+    "manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "source_audio_hash_required": true,
+    "labels_array_accessed": false
+  },
+  "trajectory_extraction": {
+    "label_information_used": false,
+    "sample_rate_hz": 16000,
+    "extractor": "librosa.pyin plus IDEA-068 normalized-autocorrelation periodicity and STFT formulas",
+    "librosa_version": "0.10.2.post1",
+    "fmin_hz": 60.0,
+    "fmax_hz": 2000.0,
+    "frame_length": 1024,
+    "hop_length": 160,
+    "hop_seconds": 0.01,
+    "center": true,
+    "spectral_tilt_band_hz": [200.0, 4000.0],
+    "feature_names": [
+      "log_f0",
+      "voiced_probability",
+      "periodicity",
+      "log_rms",
+      "spectral_tilt",
+      "spectral_flatness"
+    ],
+    "preserve_original_frame_grid": true,
+    "concatenate_only_valid_f0_frames": false,
+    "per_call_f0_normalization": false,
+    "nan_policy": "Preserve NaN values in the cache; the model must construct separate finite indicators.",
+    "all_frame_channels": ["log_rms", "spectral_tilt", "spectral_flatness"],
+    "voiced_or_missing_channels": ["log_f0", "periodicity"],
+    "difference_from_IDEA068_summaries": "IDEA-068 computed RMS, tilt, and flatness summaries on finite-F0 voiced frames. IDEA-085 retains these three channels on every computable frame; the old voiced-only summaries remain reconstructable using finite log_f0 as the mask.",
+    "time_seconds_stored_for_audit_only": true,
+    "time_seconds_model_input": false
+  },
+  "cache_schema": {
+    "call_ids": {"shape": "[N]", "dtype": "Unicode"},
+    "offsets": {"shape": "[N+1]", "dtype": "int64"},
+    "values": {"shape": "[total_frames,6]", "dtype": "float32"},
+    "feature_names": {"shape": "[6]", "dtype": "Unicode"},
+    "time_seconds": {"shape": "[total_frames]", "dtype": "float64", "model_input": false}
+  },
+  "validation": {
+    "required_calls": 792,
+    "required_cats": 111,
+    "verify_all_source_sha256": true,
+    "verify_call_id_identity_and_order": true,
+    "verify_offsets_and_nonempty_sequences": true,
+    "verify_channel_order_and_dtype": true,
+    "report_length_min_median_max": true,
+    "report_channel_finite_rates": true,
+    "report_fully_unvoiced_or_no_valid_f0_calls": true,
+    "report_longest_sequence": true,
+    "sampled_IDEA068_summary_reconstruction": true,
+    "reconstruction_atol": 0.0002,
+    "reconstruction_rtol": 0.0002
+  },
+  "dependencies": {
+    "idea068_protocol_path": "configs/protocol/meowagenet_idea068_age_sensitive_ast_v1.json",
+    "idea068_protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+    "idea068_runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "idea068_runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "idea068_feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "idea068_feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "idea068_feature_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/extraction_summary.json",
+    "idea068_feature_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda",
+    "extractor_path": "scripts/extract_idea085_acoustic_trajectories.py",
+    "extractor_sha256": "c2ae23b65afe6c4086fcd62271d67312573437e6d8b8ebbcd3c1ee048177df97",
+    "tests_path": "tests/test_idea085_acoustic_trajectories.py",
+    "tests_sha256": "2172a6ce5a887ed359244e5f79284388f1e3e73ce4e0dd70aa4481f2d944401c"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea085_acoustic_temporal_residual_v1",
+    "feature_file": "features/acoustic_trajectories.npz",
+    "schema": "features/trajectory_schema.json",
+    "extraction_summary": "features/extraction_summary.json"
+  }
+}

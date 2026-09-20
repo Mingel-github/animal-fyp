@@ -1,0 +1,363 @@
+{
+  "schema_version": "1.0",
+  "summary_id": "meowagenet-formal-research-summary-v3",
+  "date": "2026-09-18",
+  "language": "zh-CN",
+  "status": "complete_independently_audited",
+  "report": {
+    "path": "reports/58_Formal_Research_Summary_v3.md",
+    "sha256": "ea1dbf9ed2f4605c53d7b7017a7f22fcf0aafece78b88ea278a47c145da58f65"
+  },
+  "history_policy": {
+    "preserves_v2_and_v2_1": true,
+    "overwritten_historical_files": [],
+    "interpretation": "v3 is a new synthesis and does not alter any v2 or v2.1 protocol, result, or report."
+  },
+  "evidence_boundary": {
+    "meowagenet_calls": 792,
+    "meowagenet_cats": 111,
+    "independence_statement": "Later rounds use new initialization seeds but repeatedly reuse the same 792 calls, 111 cats, and role system. Seeds, repeats, folds, fits, and repeated animal occurrences are not independent animal samples.",
+    "evidence_classes": [
+      "historical_outer_test_complete_oof",
+      "later_inner_validation_main_task",
+      "mechanism_ablation",
+      "external_benchmark"
+    ]
+  },
+  "terminology_policy": {
+    "A0": "frozen AST primary and current main model",
+    "C1": "exploratory-positive primary research candidate, never primary or confirmed",
+    "probe_guided_adapter_unique_increment": "negative result and historical mixed evidence",
+    "CatMeows_and_dog": "external boundary evidence"
+  },
+  "current_model_hierarchy": [
+    {
+      "tier": 1,
+      "code": "A0",
+      "name": "tuned_frozen_ast",
+      "status": "current_primary_model_and_reference",
+      "claim_limit": "Not independently confirmed on a genuinely new cat-age dataset."
+    },
+    {
+      "tier": 2,
+      "code": "C1",
+      "name": "bounded_rms_relative_age_acoustic_additive_residual",
+      "status": "exploratory_positive_primary_research_candidate_never_primary_or_confirmed",
+      "claim_limit": "Positive descriptive direction recurs, but the final preregistered IDEA-076 gate failed; C1 is neither primary nor confirmed."
+    },
+    {
+      "tier": 3,
+      "code": "G3",
+      "name": "spectral_energy_voice_quality_feature_group",
+      "status": "exploratory_mechanism_lead",
+      "claim_limit": "Utility gate passed but information gate failed; source_supported is false."
+    },
+    {
+      "tier": 4,
+      "code": "historical_exploratory",
+      "name": "A1_B1_U1_S1_hybrid_probe_adapter",
+      "status": "retained_as_exploratory_or_ablation_evidence"
+    }
+  ],
+  "A0_definition": {
+    "backbone": "frozen AudioSet AST final representation",
+    "head": "768_to_128_to_3",
+    "trainable_parameters": 99075,
+    "training_loss": "globally class-balanced call-level cross entropy",
+    "checkpoint_selection": "minimum unweighted inner-validation animal-level cross entropy",
+    "animal_aggregation": "arithmetic mean of call softmax probabilities"
+  },
+  "C1_definition": {
+    "age_feature_count": 20,
+    "age_branch": "20_to_60_to_128",
+    "formula": "h_C1 = h + 0.25 * stopgrad(RMS(h)) * tanh(W2 * GELU(W1 * a))",
+    "cap": 0.25,
+    "trainable_parameters": 108143,
+    "status": "exploratory_positive_primary_research_candidate_never_primary_or_confirmed"
+  },
+  "C1_round_evidence": [
+    {
+      "idea": "IDEA-071",
+      "mean_macro_f1_delta_vs_A0": -0.0012136809494162318,
+      "seed_repeat_positive_tied_negative": [5, 0, 4],
+      "decision": "not_promoted",
+      "source": "metadata/experiments/meowagenet_C1_evidence_ledger_pre_IDEA076.json"
+    },
+    {
+      "idea": "IDEA-072",
+      "mean_macro_f1_delta_vs_A0": 0.009112383476532537,
+      "seed_repeat_positive_tied_negative": [7, 0, 2],
+      "decision": "gate_failed",
+      "source": "metadata/experiments/meowagenet_C1_evidence_ledger_pre_IDEA076.json"
+    },
+    {
+      "idea": "IDEA-073",
+      "mean_macro_f1_delta_vs_A0": 0.02483885775058254,
+      "seed_repeat_positive_tied_negative": [7, 2, 0],
+      "decision": "descriptive_support_not_standalone_confirmation",
+      "source": "metadata/experiments/meowagenet_C1_evidence_ledger_pre_IDEA076.json"
+    },
+    {
+      "idea": "IDEA-074",
+      "mean_macro_f1_delta_vs_A0": -0.012505521591348026,
+      "seed_repeat_positive_tied_negative": [2, 1, 6],
+      "decision": "new_seed_replication_failed",
+      "source": "metadata/experiments/meowagenet_C1_evidence_ledger_pre_IDEA076.json"
+    },
+    {
+      "idea": "IDEA-076",
+      "mean_macro_f1_delta_vs_A0": 0.0089885,
+      "seed_repeat_positive_tied_negative": [9, 3, 6],
+      "decision": "final_preregistered_gate_failed",
+      "source": "reports/46_IDEA-076_C1_Meow_final_seed_confirmation_results.md"
+    },
+    {
+      "idea": "IDEA-080",
+      "mean_macro_f1_delta_vs_A0": 0.010893670962920463,
+      "seed_repeat_positive_tied_negative": [5, 0, 4],
+      "decision": "descriptive_new_seed_support_not_confirmation",
+      "source": "metadata/experiments/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1_results.json"
+    },
+    {
+      "idea": "IDEA-081",
+      "mean_macro_f1_delta_vs_A0": 0.00855349397713497,
+      "seed_repeat_positive_tied_negative": [6, 0, 3],
+      "decision": "descriptive_new_seed_support_not_confirmation",
+      "source": "runs/meowagenet_idea081_ast_tail_convpass_c1_factorial_v1/initial_evaluation_summary.json",
+      "derivation": "paired C1_bounded_age_macro_f1 minus A0_frozen_tail_macro_f1 across nine seed-repeat rows"
+    }
+  ],
+  "C1_descriptive_ledger": {
+    "pre_IDEA076": {
+      "seed_repeat_cells": 36,
+      "mean_macro_f1_delta_vs_A0": 0.005058009671587706,
+      "positive_tied_negative": [21, 3, 12],
+      "source": "metadata/experiments/meowagenet_C1_evidence_ledger_pre_IDEA076.json"
+    },
+    "through_IDEA076": {
+      "seed_repeat_cells": 54,
+      "mean_macro_f1_delta_vs_A0": 0.0063682,
+      "positive_tied_negative": [30, 6, 18],
+      "source": "reports/46_IDEA-076_C1_Meow_final_seed_confirmation_results.md"
+    },
+    "through_IDEA081_purely_descriptive": {
+      "seed_repeat_cells": 72,
+      "mean_macro_f1_delta_vs_A0": 0.007207031785,
+      "positive_tied_negative": [41, 6, 25],
+      "component_rounds": [
+        "IDEA-071",
+        "IDEA-072",
+        "IDEA-073",
+        "IDEA-074",
+        "IDEA-076",
+        "IDEA-080",
+        "IDEA-081"
+      ],
+      "source_components": [
+        "metadata/experiments/meowagenet_C1_evidence_ledger_pre_IDEA076.json",
+        "reports/46_IDEA-076_C1_Meow_final_seed_confirmation_results.md",
+        "metadata/experiments/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1_results.json",
+        "runs/meowagenet_idea081_ast_tail_convpass_c1_factorial_v1/initial_evaluation_summary.json"
+      ],
+      "decision_effect": "none; this post-hoc descriptive aggregate does not reopen or replace the failed IDEA-076 preregistered gate"
+    },
+    "independence_warning": "These cells repeatedly evaluate the same animals and are not independent samples."
+  },
+  "mechanism_attribution_IDEA082": {
+    "decision": "NO_GO_FOR_SOURCE_ATTRIBUTION",
+    "groups": {
+      "G1_f0": {
+        "real_minus_A0_macro_f1": 0.007925295182810266,
+        "real_minus_shuffled_macro_f1": 0.007798820066612909,
+        "source_supported": false
+      },
+      "G2_stability": {
+        "real_minus_A0_macro_f1": 0.006044056263116142,
+        "real_minus_shuffled_macro_f1": 0.00017943473878268001,
+        "source_supported": false
+      },
+      "G3_spectral_energy": {
+        "real_minus_A0_macro_f1": 0.016105605961508847,
+        "real_minus_shuffled_macro_f1": 0.019658296665231407,
+        "utility_gate_passed": true,
+        "information_positive_seed_repeats": 5,
+        "information_worst_split_cell": -0.05106378542911042,
+        "information_gate_passed": false,
+        "source_supported": false
+      },
+      "G12_f0_stability": {
+        "real_minus_A0_macro_f1": 0.0019469984969918573,
+        "real_minus_shuffled_macro_f1": -0.007927108777236902,
+        "source_supported": false
+      }
+    },
+    "source": "metadata/experiments/meowagenet_idea082_age_acoustic_group_ablation_v1_results.json"
+  },
+  "formal_v2_1_primary_contrasts": {
+    "H048_adapter_minus_VGGish": {
+      "mean_macro_f1_delta": 0.0764758152,
+      "positive_pairs": 9,
+      "total_pairs": 9,
+      "hierarchical_paired_bootstrap_95pct_CI": [-0.006354, 0.168513],
+      "CI_crosses_zero": true,
+      "interpretation": "Supports the AST route versus the older VGGish baseline in repeated internal validation; it does not isolate adapter-specific benefit."
+    },
+    "H019_adapter_minus_AST_head": {
+      "mean_macro_f1_delta": 0.0051945823,
+      "positive_pairs": 5,
+      "total_pairs": 9,
+      "hierarchical_paired_bootstrap_95pct_CI": [-0.04581, 0.058502],
+      "CI_crosses_zero": true,
+      "interpretation": "Small split-dependent adapter-specific increment; subsequent deterministic new-seed replication makes the unique increment a negative result and historical mixed evidence."
+    },
+    "source": "metadata/experiments/meowagenet_formal_v2_1_core_results.json"
+  },
+  "probe_guided_adapter_history": [
+    {
+      "stage": "IDEA-019_pilot",
+      "macro_f1_delta_vs_head": 0.0315,
+      "status": "exploratory_positive",
+      "source": "reports/08_IDEA-048_stage_checkpoint.md"
+    },
+    {
+      "stage": "formal_v2_1",
+      "macro_f1_delta_vs_head": 0.0051945823,
+      "positive_pairs": 5,
+      "total_pairs": 9,
+      "status": "small_split_dependent_increment",
+      "source": "metadata/experiments/meowagenet_formal_v2_1_core_results.json"
+    },
+    {
+      "stage": "same_seed_rerun_without_forced_determinism_computational_diagnostic",
+      "macro_f1_delta_vs_head_approx": -0.0091,
+      "computational_diagnostic_only": true,
+      "is_new_effect_estimate": false,
+      "status": "exposed_CUDA_and_attention_nondeterminism_not_an_effect_estimate",
+      "source": "reports/35_AST_adapter_deterministic_replication_results.md"
+    },
+    {
+      "stage": "new_seed_deterministic_replication",
+      "macro_f1_delta_vs_head": -0.0057,
+      "positive_pairs": 5,
+      "total_pairs": 9,
+      "status": "negative_result_and_historical_mixed_evidence_for_adapter_unique_increment",
+      "source": "reports/35_AST_adapter_deterministic_replication_results.md"
+    }
+  ],
+  "probe_guided_adapter_overall_interpretation": "The AST route remains valuable, but the probe-guided adapter's unique increment is a negative result and historical mixed evidence. The approximately -0.0091 same-seed rerun is a nondeterminism diagnostic, not a new effect estimate; the genuinely deterministic new-seed estimate is -0.0057 with 5 of 9 positive.",
+  "closed_or_not_promoted_methods": [
+    {
+      "method": "IDEA-050 selected LoRA",
+      "primary_delta": -0.0313,
+      "status": "not_promoted",
+      "source": "reports/20_IDEA-050_AST_LoRA_initial_results.md"
+    },
+    {
+      "method": "IDEA-080 fixed last-block QV rank-6 LoRA",
+      "primary_delta": 0.00257,
+      "combination_delta": -0.01156,
+      "interaction_delta": -0.01413,
+      "status": "all_gates_failed",
+      "source": "reports/53_IDEA-080_AST_last_block_LoRA_C1_factorial_results.md"
+    },
+    {
+      "method": "IDEA-077 last-four LayerMix",
+      "primary_delta": -0.01022,
+      "status": "gate_failed",
+      "source": "reports/48_IDEA-077_AST_last4_global_layer_mix_results.md"
+    },
+    {
+      "method": "IDEA-078 pre-last special-token injection",
+      "primary_delta": -0.0201088,
+      "status": "gate_failed",
+      "source": "reports/50_IDEA-078_AST_prelast_special_token_age_injection_results.md"
+    },
+    {
+      "method": "IDEA-079 spatial patch adapter",
+      "primary_delta": -0.00678,
+      "mechanism_delta_vs_pointwise": 0.0032,
+      "status": "candidate_and_mechanism_gates_failed",
+      "source": "reports/49_IDEA-079_AST_spatial_patch_adapter_results.md"
+    },
+    {
+      "method": "IDEA-081 tail ConvPass",
+      "primary_delta": 0.00634769168914589,
+      "combination_delta": 0.0008296835666766386,
+      "interaction_delta": -0.005518008122469251,
+      "status": "all_gates_failed",
+      "source": "metadata/experiments/meowagenet_idea081_ast_tail_convpass_c1_factorial_v1_results.json"
+    },
+    {
+      "method": "IDEA-073 soft radial residual",
+      "primary_delta": 0.0056443,
+      "delta_vs_U1": -0.0040983,
+      "status": "U1_preservation_passed_but_overall_gate_failed",
+      "source": "reports/43_IDEA-073_soft_radial_budget_residual_results.md"
+    },
+    {
+      "method": "IDEA-074 Hybrid Call+Cat on C1",
+      "combination_delta": -0.001106,
+      "interaction_delta": 0.0061821,
+      "status": "all_three_preregistered_tiers_failed",
+      "source": "reports/44_IDEA-074_C1_hybrid_call_cat_factorial_results.md"
+    }
+  ],
+  "external_benchmarks": {
+    "priority": [
+      "MeowAgeNet_main_task",
+      "other_cat_data",
+      "dog_data"
+    ],
+    "CatMeows": {
+      "task": "three-class context classification on unseen cats, not age classification",
+      "recordings": 440,
+      "cats": 21,
+      "AST_macro_f1_mean": 0.5214,
+      "dummy_macro_f1_mean": 0.2229,
+      "mean_delta": 0.2985,
+      "status": "positive_cross_cat_context_representation_evidence",
+      "source": "reports/37_IDEA-067_external_AST_representation_results.md"
+    },
+    "dog_age": {
+      "bark_units": 2290,
+      "dogs": 125,
+      "age_classes": 5,
+      "IDEA067_AST_minus_dummy_macro_f1": 0.1177,
+      "IDEA075_C1_minus_A0_macro_f1": 0.0002234,
+      "IDEA075_C1_minus_dummy_macro_f1": 0.132964,
+      "status": "exploratory_lower_bound_passed_but_C1_vs_A0_failed",
+      "source_IDEA067": "reports/37_IDEA-067_external_AST_representation_results.md",
+      "source_IDEA075": "reports/45_IDEA-075_dog_C1_age_sensitive_AST_benchmark_results.md"
+    }
+  },
+  "recommended_next_step": "Do not add MeowAgeNet seeds or regroup/tune features. Freeze A0/C1 and, if pursued, freeze G3 real-versus-shuffled for genuinely external or prospectively collected cat-age data.",
+  "source_artifacts_sha256": {
+    "reports/08_IDEA-048_stage_checkpoint.md": "e7a8cd5f5f0a49bfb2c487b9692960e5277ccd837354d780aff8ea4d6a816120",
+    "reports/09_formal_protocol_v2_freeze.md": "120075b5615d43334127d14a12e3b7edba69d9a4ac886627d5e7e17d1b89b4c0",
+    "reports/12_formal_v2_1_core_results.md": "0a7286b2c816258710dc3888774c9e4318e0c94c4de96ab7b41efa94c3306e0f",
+    "reports/20_IDEA-050_AST_LoRA_initial_results.md": "736dd36ea15495f030ff761b79e179c9ad36bad2ea5c6769205573082699706d",
+    "reports/29_IDEA-056_checkpoint_selection_confirmation_results.md": "df560a98f1c34bc630d517951d4f3e06a845b62c3bba514d3d44a016d003c598",
+    "reports/35_AST_adapter_deterministic_replication_results.md": "00a518abd4d0b76e4a93567e9ec885b0610fe4efdd0982cd619f575a08e64f20",
+    "reports/37_IDEA-067_external_AST_representation_results.md": "5a4a0f1794e299d64670a2d4f110a7f09f352a74cea990bd969373a69752e313",
+    "reports/38_IDEA-068_age_sensitive_acoustic_AST_results.md": "323678109e785f80b87d159eac9edaade27300c424704488cb254c2a72844915",
+    "reports/39_IDEA-069_A1_independent_seed_replication_results.md": "0edcc8352ddb4904c21bbfb1818836584e6678599ba786ed244ae06f62fbbf7c",
+    "reports/40_IDEA-070_bounded_age_conditioned_AST_modulation_results.md": "3a3bba9c80c6a55697ba1491d0d33ea305001810762b42180999fa3f84ffa487",
+    "reports/41_IDEA-071_bounded_dual_path_age_AST_fusion_results.md": "09050484927435e4ab066ccf2fa318dabc80e5413649ee747c4e516d6a320dbf",
+    "reports/42_IDEA-072_C1_independent_seed_confirmation_results.md": "2fa8476393ca467fe264a94661051d57ed826744ac39ec5e0a029d9b977690b6",
+    "reports/43_IDEA-073_soft_radial_budget_residual_results.md": "433e17722aab7e7c94e0f61a0d846b6cc16c9535a9f1f7961bfdefa9ec5efc1b",
+    "reports/44_IDEA-074_C1_hybrid_call_cat_factorial_results.md": "3e482cc4a197bd2fadf2c92569c270989c170a1570d2bc02eb8240ee0af81c26",
+    "reports/45_IDEA-075_dog_C1_age_sensitive_AST_benchmark_results.md": "cf09702032d6a6940d5c70033ced17d971bdc2768bd33a792f7b763bce4bafc2",
+    "reports/46_IDEA-076_C1_Meow_final_seed_confirmation_results.md": "2f7159ddbb88e5f8ccf2fb9d8818aacc4ba95a8d5ea6cf291cd25913f4aace69",
+    "reports/48_IDEA-077_AST_last4_global_layer_mix_results.md": "d835bd43102c53696aaf29e51c0370cac486e771450af06994b2b1b1aaefe6a1",
+    "reports/49_IDEA-079_AST_spatial_patch_adapter_results.md": "693db13ff2bcbbd4dece10cf609f72d70b8c011ed19c6c6a70108d51329dccb2",
+    "reports/50_IDEA-078_AST_prelast_special_token_age_injection_results.md": "953ef3f338af16ba12348fa276032bfd11b3eefe87c57aac580b2efd9317f00f",
+    "reports/53_IDEA-080_AST_last_block_LoRA_C1_factorial_results.md": "92508f5ad3814179763c919edb5f1dfb7e1867847f177f6c9a94919017e40060",
+    "reports/53_IDEA-081_AST_tail_ConvPass_C1_factorial_results.md": "0da8add04c095bf61a6714127d101c106ba900ab01d98aac24a62cf0ec9a9167",
+    "reports/57_IDEA-082_age_acoustic_mechanism_group_ablation_results.md": "b02b2a02913ea7b4f3a451efb3e5e830d25dba8958e029669c5f8e49c431a92b",
+    "metadata/experiments/meowagenet_C1_evidence_ledger_pre_IDEA076.json": "7d2958638485ad494109f5164d39f0a43b67ef1dd5421da9f0fe01d2ef59023c",
+    "metadata/experiments/meowagenet_formal_v2_1_core_results.json": "20f9ed949381bc67f208640064ae75a0a91322dd02ab965b3af607763480ff1e",
+    "metadata/experiments/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1_results.json": "24d53f7042fa1c9a508bbdbeb802543a2e71a25b263bb68f42053bf4bc9aaee9",
+    "metadata/experiments/meowagenet_idea081_ast_tail_convpass_c1_factorial_v1_results.json": "c0c559c3f9cf39eca830cddc78b47c4df4294d280a8e097de44e3e5066ec2c86",
+    "metadata/experiments/meowagenet_idea082_age_acoustic_group_ablation_v1_results.json": "ae62913f685dbdcaef179b45601143721a7935927bdbddc6ffa3f75ec2fcb387"
+  }
+}

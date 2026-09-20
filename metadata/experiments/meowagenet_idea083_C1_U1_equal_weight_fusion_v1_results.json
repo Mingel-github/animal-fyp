@@ -1,0 +1,235 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea083-C1-U1-equal-weight-fusion-v1",
+  "date": "2026-09-19",
+  "status": "complete_independently_verified",
+  "analysis_type": "posthoc_exploratory_read_only_probability_fusion",
+  "fusion": {
+    "formula": "pE = 0.5*pC1 + 0.5*pU1",
+    "C1_weight": 0.5,
+    "U1_weight": 0.5,
+    "weight_selected_from_results": false,
+    "oracle_routing_used": false
+  },
+  "scope": {
+    "primary_source": "IDEA-076",
+    "primary_seed_repeat_units": 18,
+    "primary_paired_fold_cells": 72,
+    "primary_animal_occurrences": 1224,
+    "primary_unique_cats": 97,
+    "historical_sensitivity_sources": [
+      "IDEA-072",
+      "IDEA-073"
+    ],
+    "training_performed": false,
+    "gpu_used": false,
+    "outer_test_accessed": false,
+    "independence_warning": "The 1,224 rows are prediction occurrences from 97 distinct cats. Cats recur across seeds, repeats, and sometimes folds; occurrence counts are not independent cats."
+  },
+  "primary_IDEA076": {
+    "pipeline_seed_repeat_equal_weight_means": {
+      "A0": {
+        "macro_f1": 0.7389433750407552,
+        "balanced_accuracy": 0.7694444444444444,
+        "cross_entropy": 0.6902236141685363,
+        "brier": 0.41357771213257455,
+        "senior_recall": 0.6777777777777777
+      },
+      "C1": {
+        "macro_f1": 0.7479319003674575,
+        "balanced_accuracy": 0.7782407407407407,
+        "cross_entropy": 0.6930102140765209,
+        "brier": 0.4107650379328988,
+        "senior_recall": 0.6833333333333335
+      },
+      "U1": {
+        "macro_f1": 0.753434065110651,
+        "balanced_accuracy": 0.786574074074074,
+        "cross_entropy": 0.7144728399191292,
+        "brier": 0.41417127737384135,
+        "senior_recall": 0.6888888888888889
+      },
+      "E": {
+        "macro_f1": 0.7528459864999756,
+        "balanced_accuracy": 0.786111111111111,
+        "cross_entropy": 0.6941258629103119,
+        "brier": 0.4085842740910543,
+        "senior_recall": 0.6916666666666668
+      }
+    },
+    "comparisons": {
+      "E_minus_A0": {
+        "mean_macro_f1": 0.013902611459220301,
+        "seed_repeat_positive_tied_negative": [13, 0, 5],
+        "worst_seed_repeat": -0.040055913740124294,
+        "nonnegative_split_cells": 9,
+        "split_cells": 12,
+        "worst_split_cell": -0.0472261179175524,
+        "mean_balanced_accuracy_delta": 0.016666666666666687,
+        "mean_cross_entropy_delta": 0.0039022487417755517,
+        "mean_brier_delta": -0.004993438041520298,
+        "mean_senior_recall_delta": 0.013888888888888895
+      },
+      "E_minus_C1": {
+        "mean_macro_f1": 0.0049140861325180606,
+        "seed_repeat_positive_tied_negative": [8, 2, 8],
+        "worst_seed_repeat": -0.0341182938490161,
+        "nonnegative_split_cells": 10,
+        "split_cells": 12,
+        "worst_split_cell": -0.008706952566601719,
+        "mean_balanced_accuracy_delta": 0.007870370370370361,
+        "mean_cross_entropy_delta": 0.0011156488337909622,
+        "mean_brier_delta": -0.002180763841844519,
+        "mean_senior_recall_delta": 0.008333333333333328
+      },
+      "E_minus_U1": {
+        "mean_macro_f1": -0.000588078610675391,
+        "seed_repeat_positive_tied_negative": [6, 7, 5],
+        "worst_seed_repeat": -0.051056338028169,
+        "nonnegative_split_cells": 6,
+        "split_cells": 12,
+        "worst_split_cell": -0.017843641089255107,
+        "mean_balanced_accuracy_delta": -0.00046296296296297984,
+        "mean_cross_entropy_delta": -0.020346977008817504,
+        "mean_brier_delta": -0.005587003282787079,
+        "mean_senior_recall_delta": 0.00277777777777778
+      }
+    },
+    "absolute_split_tail_analysis": {
+      "definition": "For each repeat-by-fold cell, average fold Macro-F1 equally across the six IDEA-076 base seeds.",
+      "worst_absolute_macro_f1": {
+        "A0": {
+          "repeat": 2,
+          "fold": 0,
+          "macro_f1": 0.6210599418545755
+        },
+        "C1": {
+          "repeat": 2,
+          "fold": 3,
+          "macro_f1": 0.6405828414600344
+        },
+        "U1": {
+          "repeat": 1,
+          "fold": 1,
+          "macro_f1": 0.6617748073888424
+        },
+        "E": {
+          "repeat": 2,
+          "fold": 3,
+          "macro_f1": 0.6743577047498617
+        }
+      },
+      "U1_worst_split": {
+        "repeat": 1,
+        "fold": 1,
+        "A0_macro_f1": 0.6735217673814166,
+        "C1_macro_f1": 0.6771563241635481,
+        "U1_macro_f1": 0.6617748073888424,
+        "E_macro_f1": 0.6776942355889725,
+        "E_minus_U1_macro_f1": 0.015919428200130037,
+        "E_minus_C1_macro_f1": 0.0005379114254243644
+      }
+    },
+    "complementarity_animal_occurrences": {
+      "both_correct": 869,
+      "C1_wrong_U1_correct": 34,
+      "U1_wrong_C1_correct": 26,
+      "both_wrong": 295,
+      "different_predictions": 65,
+      "same_predictions": 1159,
+      "error_intersection": 295,
+      "error_union": 355,
+      "error_overlap_jaccard": 0.8309859154929577,
+      "E_vs_C1_corrected": 21,
+      "E_vs_C1_damaged": 11,
+      "E_vs_C1_net_correct": 10,
+      "E_vs_U1_corrected": 15,
+      "E_vs_U1_damaged": 13,
+      "E_vs_U1_net_correct": 2,
+      "oracle_upper_bound_correct_occurrences": 929,
+      "oracle_upper_bound_fraction": 0.7589869281045751,
+      "oracle_is_model_score": false
+    },
+    "convexity_sanity": {
+      "CE_all_18_seed_repeats_pass": true,
+      "Brier_all_18_seed_repeats_pass": true
+    }
+  },
+  "historical_sensitivity": {
+    "IDEA072": {
+      "E_macro_f1": 0.731901224434512,
+      "E_cross_entropy": 0.7151553731315494,
+      "E_brier": 0.41659708267720447,
+      "E_minus_A0_macro_f1": 0.014304463205328398,
+      "E_minus_C1_macro_f1": 0.005192079728795861,
+      "E_minus_U1_macro_f1": 0.0036120926289681357,
+      "status": "separate_historical_sensitivity_only"
+    },
+    "IDEA073": {
+      "E_macro_f1": 0.7659831013131925,
+      "E_cross_entropy": 0.6977481308402874,
+      "E_brier": 0.41253288999698384,
+      "E_minus_A0_macro_f1": 0.020234472653132645,
+      "E_minus_C1_macro_f1": -0.004604385097449894,
+      "E_minus_U1_macro_f1": 0.010491893460412398,
+      "status": "separate_historical_sensitivity_only"
+    },
+    "selection_prohibited": true
+  },
+  "decision": {
+    "status": "retain_as_exploratory_classification_probability_quality_tradeoff_candidate",
+    "interpretation": "Fixed equal-weight fusion nearly preserves U1 mean Macro-F1 while numerically improving U1 CE and Brier and approaching C1 CE. It does not stably dominate U1 or fully match C1 CE, and no independent-animal significance test was performed.",
+    "changes_IDEA076_gate": false,
+    "changes_v3_model_hierarchy": false,
+    "authorizes_weight_search_or_routing": false,
+    "authorizes_more_training": false
+  },
+  "audit": {
+    "status": "PASS",
+    "input_files_hashed": 1299,
+    "input_hash_failures": 0,
+    "output_files_hash_checked": 8,
+    "output_hash_failures": 0,
+    "maximum_saved_animal_reaggregation_difference": 2.220446049250313e-16,
+    "maximum_call_first_vs_animal_first_difference_all_rounds": 3.3306690738754696e-16,
+    "numeric_tests_passed": 6,
+    "numeric_tests_failed": 0,
+    "outer_test_accessed": false,
+    "training_performed": false,
+    "gpu_used": false
+  },
+  "artifacts": {
+    "plan": {
+      "path": "plan/IDEA-083_C1_U1_equal_weight_probability_fusion.md",
+      "sha256": "7889efc7df0565286ebbc9ab82c9a5ee2325c05129fa522cee4d7bc94e0e83a5"
+    },
+    "analysis_script": {
+      "path": "scripts/analyze_idea083_C1_U1_equal_weight_fusion.py",
+      "sha256": "c962e07cca66305ade95e1722d26463cf3e973b72283abe97ee24bb68b57f236"
+    },
+    "verification_script": {
+      "path": "scripts/verify_idea083_C1_U1_equal_weight_fusion.py",
+      "sha256": "afd176ad695b949676fe8a7f1dc0e0d74efdfe372adea9635e3fced87f3aef1d"
+    },
+    "tests": {
+      "path": "tests/test_idea083_C1_U1_equal_weight_fusion.py",
+      "sha256": "391d477d54be7270795d173b8ff36412d8cc96244a7377eb0a5632293d7c7cdb"
+    },
+    "analysis_summary": {
+      "path": "runs/meowagenet_idea083_C1_U1_equal_weight_fusion_v1/analysis_summary.json",
+      "sha256": "a8d940ea3060eb20e5cd7409b3429d549fbca3c4f72b9cb273a5a14effc4c0f0"
+    },
+    "independent_verification": {
+      "path": "runs/meowagenet_idea083_C1_U1_equal_weight_fusion_v1/independent_verification.json",
+      "sha256": "74d701a6621cfea2cf18b954aa28eaf41979126e19e24a41dab875a407f35b1b"
+    },
+    "run_manifest": {
+      "path": "runs/meowagenet_idea083_C1_U1_equal_weight_fusion_v1/run_manifest.json",
+      "sha256": "397fc5dd2fd6cb11a241eb08fa7a458a7a57f1a0cd8ed966a1afad9fcb22e481"
+    },
+    "report": {
+      "path": "reports/61_IDEA-083_C1_U1_equal_weight_fusion_results.md",
+      "sha256": "f40f420726df145e3377421ec69ce38fde50a576d2f20b32b1c70e73dcb1aff9"
+    }
+  }
+}

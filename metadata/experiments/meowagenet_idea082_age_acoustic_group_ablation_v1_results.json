@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea082-age-acoustic-group-ablation-v1",
+  "date": "2026-09-18",
+  "status": "complete_independently_audited",
+  "decision": "NO_GO_SOURCE_ATTRIBUTION",
+  "decision_reason": "No preregistered group passed both the real-minus-shuffled information gate and the real-minus-A0 utility gate.",
+  "exploratory_lead": "G3_spectral_energy passed the utility gate but failed the information gate because only 5/9 seed-repeat estimates were positive and the worst split-cell real-minus-shuffled Macro-F1 delta was -0.05106378542911042, below the preregistered -0.03 bound.",
+  "execution": {
+    "completed_fits": 324,
+    "expected_fits": 324,
+    "pipelines": 9,
+    "base_seeds": [8694, 5378, 5945],
+    "repeats": 3,
+    "folds": 4,
+    "seed_repeat_estimates": 9,
+    "split_cell_estimates": 12,
+    "outer_test_accessed": false,
+    "checkpoint_reload_max_probability_difference": 0.0
+  },
+  "pipeline_seed_repeat_means": {
+    "A0_ast_only": {"macro_f1": 0.739914079134691, "balanced_accuracy": 0.7657407407407407, "cross_entropy": 0.6860221850092683, "brier": 0.4071485432778572},
+    "G1_f0_real": {"macro_f1": 0.7478393743175011, "balanced_accuracy": 0.7703703703703704, "cross_entropy": 0.6970824481290367, "brier": 0.40996033825109485},
+    "G1_f0_shuffled": {"macro_f1": 0.7400405542508883, "balanced_accuracy": 0.7638888888888888, "cross_entropy": 0.6817941352270174, "brier": 0.4046987966976143},
+    "G2_stability_real": {"macro_f1": 0.7459581353978071, "balanced_accuracy": 0.7703703703703704, "cross_entropy": 0.6859836086587302, "brier": 0.40531641426691345},
+    "G2_stability_shuffled": {"macro_f1": 0.7457787006590243, "balanced_accuracy": 0.7749999999999999, "cross_entropy": 0.6813336508067391, "brier": 0.40339626212794455},
+    "G3_spectral_energy_real": {"macro_f1": 0.7560196850962, "balanced_accuracy": 0.7824074074074074, "cross_entropy": 0.6795326669130026, "brier": 0.39803561545312294},
+    "G3_spectral_energy_shuffled": {"macro_f1": 0.7363613884309684, "balanced_accuracy": 0.7805555555555556, "cross_entropy": 0.6968735086339846, "brier": 0.4120961612134821},
+    "G12_f0_stability_real": {"macro_f1": 0.7418610776316827, "balanced_accuracy": 0.7768518518518518, "cross_entropy": 0.6960008940506084, "brier": 0.4112258018959568},
+    "G12_f0_stability_shuffled": {"macro_f1": 0.7497881864089198, "balanced_accuracy": 0.7805555555555556, "cross_entropy": 0.6830512399493149, "brier": 0.40490787890156904}
+  },
+  "group_decisions": {
+    "G1_f0": {
+      "real_minus_A0_macro_f1": 0.007925295182810266,
+      "real_minus_shuffled_macro_f1": 0.007798820066612909,
+      "utility_positive_seed_repeats": 5,
+      "information_positive_seed_repeats": 5,
+      "utility_positive_base_seeds": 2,
+      "information_positive_base_seeds": 1,
+      "utility_gate_passed": false,
+      "information_gate_passed": false,
+      "source_supported": false
+    },
+    "G2_stability": {
+      "real_minus_A0_macro_f1": 0.006044056263116142,
+      "real_minus_shuffled_macro_f1": 0.00017943473878268001,
+      "utility_positive_seed_repeats": 5,
+      "information_positive_seed_repeats": 4,
+      "utility_positive_base_seeds": 1,
+      "information_positive_base_seeds": 1,
+      "utility_gate_passed": false,
+      "information_gate_passed": false,
+      "source_supported": false
+    },
+    "G3_spectral_energy": {
+      "real_minus_A0_macro_f1": 0.016105605961508847,
+      "real_minus_shuffled_macro_f1": 0.019658296665231407,
+      "utility_positive_seed_repeats": 6,
+      "information_positive_seed_repeats": 5,
+      "utility_positive_base_seeds": 2,
+      "information_positive_base_seeds": 2,
+      "utility_gate_passed": true,
+      "information_gate_passed": false,
+      "source_supported": false
+    },
+    "G12_f0_stability": {
+      "real_minus_A0_macro_f1": 0.0019469984969918573,
+      "real_minus_shuffled_macro_f1": -0.007927108777236902,
+      "utility_positive_seed_repeats": 4,
+      "information_positive_seed_repeats": 5,
+      "information_tied_seed_repeats": 1,
+      "utility_positive_base_seeds": 2,
+      "information_positive_base_seeds": 1,
+      "utility_gate_passed": false,
+      "information_gate_passed": false,
+      "source_supported": false
+    }
+  },
+  "artifacts": {
+    "protocol_path": "configs/protocol/meowagenet_idea082_age_acoustic_group_ablation_v1.json",
+    "protocol_sha256": "0b5e4a4c0be591925811a42769555cab7e5ac9ba8cd2781ac91d1d341e782022",
+    "runner_path": "scripts/run_meowagenet_idea082_age_acoustic_group_ablation.py",
+    "runner_sha256": "2ce03190d3079cbfe34fbdd140288b2309dfa12ace54f8d21279e66fa7f2c415",
+    "summary_path": "runs/meowagenet_idea082_age_acoustic_group_ablation_v1/initial_evaluation_summary.json",
+    "summary_sha256": "2fb10f2969efc577a3004562eccd4c97d35db41568eff6caf2bd9cc768c1fe44",
+    "run_summary_path": "runs/meowagenet_idea082_age_acoustic_group_ablation_v1/run_summary.json",
+    "run_summary_sha256": "b450cdb623115c877a14c815b47228bf8faab6a79f4327d1b474cfd9e7abc51b",
+    "independent_audit_path": "runs/meowagenet_idea082_age_acoustic_group_ablation_v1/independent_results_audit.json",
+    "independent_audit_sha256": "beb59534d4c65f1fcf4209c16e90e96efc28bef40e27621b2f306a443d94506a",
+    "report_path": "reports/57_IDEA-082_age_acoustic_mechanism_group_ablation_results.md",
+    "report_sha256": "b02b2a02913ea7b4f3a451efb3e5e830d25dba8958e029669c5f8e49c431a92b"
+  },
+  "recommended_next_step": "Do not rerun or regroup on MeowAgeNet. If pursued, preregister an unchanged G3 real-versus-shuffled validation on genuinely external or prospectively collected data."
+}

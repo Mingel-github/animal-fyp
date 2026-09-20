@@ -1,0 +1,217 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea077-ast-last4-layer-mix-v1",
+  "date_completed": "2026-09-18",
+  "status": "complete_gate_failed",
+  "scope": "Internal MeowAgeNet train/validation representation-module screen; not external validation or confirmatory evidence.",
+  "outer_test_accessed": false,
+  "completion": {
+    "expected_fits": 108,
+    "completed_fits": 108,
+    "pipelines": [
+      "A0_final",
+      "M0_uniform_last4",
+      "L1_global_layermix"
+    ],
+    "base_seeds": [6917, 1398, 5934],
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "seed_repeat_estimates": 9,
+    "split_cell_estimates": 12
+  },
+  "environment": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "cuda_runtime": "12.1",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4060 Ti",
+    "git_revision": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "representation": {
+    "layers_one_based": [9, 10, 11, 12],
+    "final_anchor": "Exact locked AST pooler_output embedding.",
+    "intermediate_geometry": "Common frozen AST final LayerNorm, mean of CLS and distillation tokens, then arithmetic mean across call segments.",
+    "new_hidden_state_cache_created": false,
+    "cached_layer12_vs_locked_final": {
+      "mean_absolute_difference": 0.0000013647903642777237,
+      "maximum_absolute_difference": 0.00001811981201171875
+    },
+    "L1_formula": "z12 + tanh(gamma) * (sum_l softmax(alpha)_l * z_l - z12)",
+    "initial_A0_L1_max_logit_difference": 0.0,
+    "initial_A0_L1_loss_difference": 0.0,
+    "trainable_parameters": {
+      "A0_final": 99075,
+      "M0_uniform_last4": 99075,
+      "L1_global_layermix": 99080
+    }
+  },
+  "seed_repeat_equal_weight_means": {
+    "macro_f1": {
+      "A0_final": 0.7415732661888895,
+      "M0_uniform_last4": 0.7226074192152675,
+      "L1_global_layermix": 0.7313498604943452
+    },
+    "balanced_accuracy": {
+      "A0_final": 0.7703703703703704,
+      "M0_uniform_last4": 0.7648148148148148,
+      "L1_global_layermix": 0.7657407407407408
+    },
+    "animal_cross_entropy": {
+      "A0_final": 0.6853694046993095,
+      "M0_uniform_last4": 0.6745759129181753,
+      "L1_global_layermix": 0.68597758549758
+    },
+    "animal_brier": {
+      "A0_final": 0.406744326475227,
+      "M0_uniform_last4": 0.4118386382827967,
+      "L1_global_layermix": 0.41305994284308745
+    }
+  },
+  "comparisons": {
+    "L1_minus_A0_macro_f1": {
+      "mean": -0.010223405694544361,
+      "sample_sd": 0.02936755812350166,
+      "median": -0.011168385356668753,
+      "positive": 3,
+      "tied": 0,
+      "negative": 6,
+      "worst": -0.07042978435383496,
+      "best": 0.03538505663024283
+    },
+    "M0_minus_A0_macro_f1": {
+      "mean": -0.018965846973621914,
+      "sample_sd": 0.05513400303143692,
+      "median": -0.025386699070909624,
+      "positive": 3,
+      "tied": 1,
+      "negative": 5,
+      "worst": -0.0874366363496798,
+      "best": 0.0657571606532461
+    },
+    "L1_minus_M0_macro_f1": {
+      "mean": 0.008742441279077553,
+      "sample_sd": 0.05107715655776104,
+      "median": 0.02082010582010585,
+      "positive": 5,
+      "tied": 0,
+      "negative": 4,
+      "worst": -0.07042978435383496,
+      "best": 0.06649266803729026
+    }
+  },
+  "split_stability": {
+    "L1_minus_A0_nonnegative_split_cells": 5,
+    "L1_minus_A0_positive_split_cells": 4,
+    "L1_minus_A0_tied_split_cells": 1,
+    "L1_minus_A0_negative_split_cells": 7,
+    "L1_minus_A0_worst_split_cell": -0.08852518501641304,
+    "L1_minus_A0_best_split_cell": 0.05164510603107105
+  },
+  "per_base_seed": {
+    "L1_minus_A0_macro_f1": {
+      "6917": -0.015404371026753627,
+      "1398": -0.007367450474600116,
+      "5934": -0.007898395582279338
+    },
+    "L1_minus_A0_senior_recall": {
+      "6917": -0.033333333333333326,
+      "1398": -0.016666666666666607,
+      "5934": 0.033333333333333326
+    }
+  },
+  "learned_layer_mix": {
+    "best_checkpoint_signed_gate": {
+      "mean": 0.08257268764363188,
+      "sample_sd": 0.047240092286103326,
+      "minimum": 0.001214961288496852,
+      "maximum": 0.17838121950626373
+    },
+    "mean_weights_layers_9_to_12": [
+      0.25139960688021445,
+      0.2632427290081978,
+      0.2494604628947046,
+      0.23589720411433113
+    ],
+    "sd_weights_layers_9_to_12": [
+      0.010257834479439286,
+      0.014218332480503859,
+      0.013184870275114108,
+      0.013149036295557555
+    ]
+  },
+  "gate": {
+    "conditions": {
+      "mean_macro_f1_gain": false,
+      "positive_base_seed_means": false,
+      "positive_seed_repeats": false,
+      "nonnegative_split_cells": false,
+      "worst_split_cell": false,
+      "cross_entropy_nonworse": false,
+      "brier_nonworse": false,
+      "per_base_seed_senior_recall": false
+    },
+    "passed": false
+  },
+  "decision": {
+    "retain_L1_as_candidate": false,
+    "retain_M0_as_candidate": false,
+    "reference_representation": "A0_final",
+    "action": "Stop the fixed last-four global LayerMix formulation without post-outcome layer, gate, seed, or formula tuning.",
+    "interpretation": "The learned gate moved away from zero and L1 modestly exceeded M0 on average, but neither multilayer representation improved over the exact final AST embedding and L1 failed every preregistered gate condition."
+  },
+  "audit": {
+    "resume_rebuilds_completed": 2,
+    "resume_summary_byte_stable": true,
+    "resume_run_summary_byte_stable": true,
+    "independent_audit_status": "PASS",
+    "independent_recalculation_matches_locked_summary": true,
+    "fit_summaries_checked": 108,
+    "prediction_files_checked": 216,
+    "call_prediction_rows_checked": 12015,
+    "animal_prediction_rows_checked": 1836,
+    "maximum_call_to_animal_reaggregation_difference": 1.1102230246251565e-16,
+    "maximum_checkpoint_reload_probability_difference": 0.0
+  },
+  "artifacts": {
+    "plan": {
+      "path": "plan/IDEA-077_AST_last4_global_layer_mix.md",
+      "sha256": "2c2f231a6ab23b320969252f80c51b9d0bb2a465b28de035108599a7dbd877a8"
+    },
+    "protocol": {
+      "path": "configs/protocol/meowagenet_idea077_ast_last4_layer_mix_v1.json",
+      "sha256": "d23cc1e11cd108b786c10dc35c3e9f864d6d8efc6ed95eee34a0b38e6c77ed5d"
+    },
+    "runner": {
+      "path": "scripts/run_meowagenet_idea077_ast_last4_layer_mix.py",
+      "sha256": "71b2f79cbdb997c07dcf6283c02ad1c4cf56387b02b78edcc72bd35f108f2757"
+    },
+    "verifier": {
+      "path": "scripts/verify_idea077_ast_last4_layer_mix_results.py",
+      "sha256": "284c68168933f1f1b6fba674b7b3bcbcd237f7cdcd4428464c0197e3525e02fc"
+    },
+    "tests": {
+      "path": "tests/test_idea077_ast_last4_layer_mix.py",
+      "sha256": "af8035f5111f8d7da1e2e92650b2a92ccced87eb6886446d898e485f9a6b5a0a"
+    },
+    "run_manifest": {
+      "path": "runs/meowagenet_idea077_ast_last4_layer_mix_v1/run_manifest.json",
+      "sha256": "7404c4fd09907fa109e44be4665fa371fcc3315db5d1fcacc0d5fc53d1e74582"
+    },
+    "summary": {
+      "path": "runs/meowagenet_idea077_ast_last4_layer_mix_v1/initial_evaluation_summary.json",
+      "sha256": "7d0c974a3e8825426ee92e79b5492717352866bcc19ab2903ff833b7cdd9fa9b"
+    },
+    "run_summary": {
+      "path": "runs/meowagenet_idea077_ast_last4_layer_mix_v1/run_summary.json",
+      "sha256": "0afa907f12c7c52dc7aa4491f7968ef4233cbd2997be4344620add2891e33eca"
+    },
+    "independent_audit": {
+      "path": "runs/meowagenet_idea077_ast_last4_layer_mix_v1/independent_audit.json",
+      "sha256": "d774c88e58705b0d2d0a01a1baa067fca7029755ffb2426ddcfa3def97cfc55e"
+    },
+    "report": {
+      "path": "reports/48_IDEA-077_AST_last4_global_layer_mix_results.md",
+      "sha256": "d835bd43102c53696aaf29e51c0370cac486e771450af06994b2b1b1aaefe6a1"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea065-adapter-seed-replication-v1",
+  "date": "2026-09-17",
+  "status": "locked_before_idea065_execution",
+  "objective": "Re-evaluate the incremental contribution of the probe-guided AST adapter under deterministic CUDA execution and three model seeds not used in formal-v2.1.",
+  "interpretation": {
+    "result_awareness": "The formal-v2.1 and same-seed rerun outcomes were known before this protocol was written.",
+    "claim_boundary": "Post-outcome exploratory robustness replication on the same 111 cats; not confirmatory evidence and not external validation.",
+    "paired_contrast": "ast_probe_guided_adapter-minus-ast_head_only",
+    "reporting_rule": "Report every complete OOF result and the full paired distribution; no best-seed selection."
+  },
+  "data": {
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "cats": 111,
+    "calls": 792,
+    "independence_unit": "cat_id"
+  },
+  "model": {
+    "recipe_path": "configs/experiment/meowagenet_formal_v2_1_probe_guided_candidate_v1.json",
+    "recipe_sha256": "4b54d98734c80f5089482ed88cd6a137ec512ac5b3b502bbb8d0ccc5a06fba92",
+    "pipelines": [
+      "ast_head_only",
+      "ast_probe_guided_adapter"
+    ],
+    "base_seeds": [151, 307, 509],
+    "repeats": [0, 1, 2],
+    "outer_folds": [0, 1, 2, 3],
+    "seed_rule": "base_model_seed + 10000 * repeat_index + 100 * outer_fold",
+    "fold_level_fits": 72,
+    "complete_oof_pairs": 9
+  },
+  "determinism": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "torch_use_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true,
+    "same_process_repeat_diagnostic": "Two repeated repeat-0/fold-0/base-seed-17 adapter fits produced identical training trajectories and predictions after these settings were enabled."
+  },
+  "dependencies": {
+    "formal_runner_path": "scripts/run_meowagenet_formal_v2_1.py",
+    "formal_runner_sha256": "ed3fc855539d37963aa51d17e54f5ce59acba1d023567289b89d5d1f313e6b25",
+    "runner_path": "scripts/run_meowagenet_idea065_adapter_seed_replication.py",
+    "runner_sha256": "8bee8ed9bc08a33f1ada242de74d8c7dc882c495afe415113bf855fe65a4aa92"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea065_adapter_seed_replication_v1",
+    "summary": "formal_summary.json"
+  }
+}

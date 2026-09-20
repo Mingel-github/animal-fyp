@@ -1,0 +1,266 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea085-acoustic-temporal-residual-v1",
+  "date": "2026-09-19",
+  "status": "complete_independently_audited",
+  "decision": "KEEP_A0_C1_AS_PRIMARY_CANDIDATES",
+  "decision_reason": "T1 improved mean Macro-F1 over this run's contemporaneous C1, but the T1-C1 stability gate failed; T1 did not improve mean Macro-F1 over A0 or the fixed joint-frame shuffled J1 control, and all three preregistered comparison gates failed.",
+  "interpretation": "The locked short-range acoustic temporal residual is not supported as a main-model upgrade or as evidence for a real-order mechanism. T1 retained a small classification benefit over this run's C1 and positive balanced-accuracy, kitten-recall, and senior-recall profiles, but it did not beat A0 or J1 and had worse CE and Brier. This run neither negates historical C1 results nor shows that temporal or F0 directions are generally useless.",
+  "model_scope": {
+    "ast_backbone_frozen": true,
+    "C1_summary_dimensions": 20,
+    "raw_trajectory_channels": 6,
+    "finite_indicator_channels": 6,
+    "temporal_encoder": "Conv1d(12,32,k5)+GELU; Conv1d(32,32,k3)+GELU; masked mean; zero-initialized Linear(32,128)",
+    "residual_cap": "0.25 * stopgrad(RMS(h)) * tanh(residual)",
+    "T1_J1_only_difference": "Real joint-frame order versus fixed call-ID-hash joint-frame permutation",
+    "local_receptive_field_frames": 7,
+    "center_span_ms": 60,
+    "input_frame_ms": 64,
+    "long_range_contour_or_stage_model": false,
+    "joint_frame_shuffle_includes_missingness_and_voicing_organization": true
+  },
+  "execution": {
+    "completed_fits": 144,
+    "expected_fits": 144,
+    "pipelines": 4,
+    "base_seeds": [2713, 5395, 5226],
+    "repeats": 3,
+    "folds": 4,
+    "seed_repeat_estimates": 9,
+    "split_cell_estimates": 12,
+    "fit_summaries_checked": 144,
+    "prediction_files_checked": 288,
+    "call_to_animal_reconstructions_checked": 144,
+    "independent_reconstruction_difference_count": 0,
+    "independent_comparison_tolerance": 1e-12,
+    "outer_test_accessed": false,
+    "resume_integrity_check_passed": true,
+    "second_resume_retrained_fits": 0,
+    "combined_fit_and_prediction_snapshot_sha256": "01828a9856b94cfc7348a2081bfe22465ef653a861ba02bef9500ba0887856e8",
+    "tests_passed": 21
+  },
+  "gate_definition": {
+    "scope": "Each comparison is evaluated independently; no single global gate exists.",
+    "macro_f1_mean_delta_minimum": 0.005,
+    "positive_base_seed_means_minimum": "2/3",
+    "positive_seed_repeat_estimates_minimum": "6/9",
+    "nonnegative_split_cells_minimum": "8/12",
+    "worst_split_cell_minimum": -0.03,
+    "auxiliary_metrics_not_in_gate": [
+      "plain_accuracy",
+      "balanced_accuracy",
+      "cross_entropy",
+      "brier",
+      "kitten_recall",
+      "adult_recall",
+      "senior_recall"
+    ]
+  },
+  "pipeline_seed_repeat_means": {
+    "A0_ast_only": {
+      "plain_accuracy": 0.7222222222222223,
+      "macro_f1": 0.7362215260949371,
+      "balanced_accuracy": 0.7574074074074074,
+      "class_recall": {
+        "kitten": 0.8888888888888888,
+        "adult": 0.7166666666666667,
+        "senior": 0.6666666666666666
+      },
+      "cross_entropy": 0.6899243699568182,
+      "brier": 0.4124461476685755
+    },
+    "C1_bounded_wide_additive": {
+      "plain_accuracy": 0.7124183006535948,
+      "macro_f1": 0.7254732165912006,
+      "balanced_accuracy": 0.7509259259259259,
+      "class_recall": {
+        "kitten": 0.8888888888888888,
+        "adult": 0.7027777777777778,
+        "senior": 0.661111111111111
+      },
+      "cross_entropy": 0.7064927482057715,
+      "brier": 0.41816517267553155
+    },
+    "T1_acoustic_temporal_residual": {
+      "plain_accuracy": 0.7205882352941178,
+      "macro_f1": 0.7332833525849851,
+      "balanced_accuracy": 0.7703703703703703,
+      "class_recall": {
+        "kitten": 0.9305555555555556,
+        "adult": 0.6972222222222222,
+        "senior": 0.6833333333333333
+      },
+      "cross_entropy": 0.7165288661589487,
+      "brier": 0.42573435581251856
+    },
+    "J1_frame_shuffled_temporal_residual": {
+      "plain_accuracy": 0.7189542483660132,
+      "macro_f1": 0.7337108370048946,
+      "balanced_accuracy": 0.7685185185185186,
+      "class_recall": {
+        "kitten": 0.9305555555555556,
+        "adult": 0.6972222222222222,
+        "senior": 0.6777777777777778
+      },
+      "cross_entropy": 0.7123789914644041,
+      "brier": 0.42178657986781753
+    }
+  },
+  "preregistered_comparisons": {
+    "T1_minus_C1": {
+      "macro_f1_mean_delta": 0.007810135993784501,
+      "macro_f1_sample_sd": 0.028170181594615276,
+      "macro_f1_median_delta": 0.021836100197043185,
+      "macro_f1_positive_tied_negative": [5, 0, 4],
+      "base_seed_mean_deltas": {
+        "2713": 0.0064648181354580725,
+        "5395": 0.014424675927946495,
+        "5226": 0.0025409139179489357
+      },
+      "positive_base_seed_means": 3,
+      "nonnegative_split_cells": 8,
+      "worst_split_cell": -0.057772377070622626,
+      "plain_accuracy_mean_delta": 0.008169934640522958,
+      "balanced_accuracy_mean_delta": 0.019444444444444375,
+      "cross_entropy_gain": -0.01003611795317727,
+      "brier_gain": -0.007569183136987012,
+      "class_recall_mean_deltas": {
+        "kitten": 0.04166666666666674,
+        "adult": -0.005555555555555647,
+        "senior": 0.022222222222222365
+      },
+      "corrected_errors": 21,
+      "introduced_errors": 16,
+      "net_corrections": 5,
+      "gate_conditions": {
+        "mean_delta": true,
+        "base_seed_stability": true,
+        "seed_repeat_stability": false,
+        "split_nonnegative_count": true,
+        "worst_split_safety": false
+      },
+      "gate_passed": false
+    },
+    "T1_minus_A0": {
+      "macro_f1_mean_delta": -0.002938173509951958,
+      "macro_f1_sample_sd": 0.024460430909847702,
+      "macro_f1_median_delta": -0.001295536821852683,
+      "macro_f1_positive_tied_negative": [4, 0, 5],
+      "base_seed_mean_deltas": {
+        "2713": -0.018455940674677263,
+        "5395": -0.0010231010601396602,
+        "5226": 0.01066452120496105
+      },
+      "positive_base_seed_means": 1,
+      "nonnegative_split_cells": 8,
+      "worst_split_cell": -0.0633726324128802,
+      "plain_accuracy_mean_delta": -0.0016339869281045694,
+      "balanced_accuracy_mean_delta": 0.012962962962962843,
+      "cross_entropy_gain": -0.026604496202130568,
+      "brier_gain": -0.013288208143943048,
+      "class_recall_mean_deltas": {
+        "kitten": 0.04166666666666674,
+        "adult": -0.019444444444444486,
+        "senior": 0.01666666666666672
+      },
+      "corrected_errors": 12,
+      "introduced_errors": 13,
+      "net_corrections": -1,
+      "gate_conditions": {
+        "mean_delta": false,
+        "base_seed_stability": false,
+        "seed_repeat_stability": false,
+        "split_nonnegative_count": true,
+        "worst_split_safety": false
+      },
+      "gate_passed": false
+    },
+    "T1_minus_J1": {
+      "macro_f1_mean_delta": -0.0004274844199094617,
+      "macro_f1_sample_sd": 0.02347088666860071,
+      "macro_f1_median_delta": 0.0,
+      "macro_f1_positive_tied_negative": [2, 4, 3],
+      "base_seed_mean_deltas": {
+        "2713": 0.0027555783109569263,
+        "5395": -0.008084517142044648,
+        "5226": 0.004046485571359337
+      },
+      "positive_base_seed_means": 2,
+      "nonnegative_split_cells": 8,
+      "worst_split_cell": -0.031897926634768724,
+      "plain_accuracy_mean_delta": 0.0016339869281045694,
+      "balanced_accuracy_mean_delta": 0.0018518518518516602,
+      "cross_entropy_gain": -0.004149874694544642,
+      "brier_gain": -0.003947775944701026,
+      "class_recall_mean_deltas": {
+        "kitten": 0.0,
+        "adult": 0.0,
+        "senior": 0.005555555555555536
+      },
+      "corrected_errors": 7,
+      "introduced_errors": 6,
+      "net_corrections": 1,
+      "gate_conditions": {
+        "mean_delta": false,
+        "base_seed_stability": true,
+        "seed_repeat_stability": false,
+        "split_nonnegative_count": true,
+        "worst_split_safety": false
+      },
+      "gate_passed": false,
+      "interpretation_boundary": "One fixed joint-frame shuffle includes local missingness and voicing organization; it is not pure-F0 isolation or complete causal proof."
+    }
+  },
+  "descriptive_context": {
+    "C1_minus_A0": {
+      "macro_f1_mean_delta": -0.01074830950373646,
+      "plain_accuracy_mean_delta": -0.009803921568627527,
+      "balanced_accuracy_mean_delta": -0.0064814814814815325,
+      "cross_entropy_gain": -0.016568378248953297,
+      "brier_gain": -0.0057190250069560356,
+      "historical_C1_conclusion_changed": false
+    },
+    "repeated_validation_accounting_per_pipeline": {
+      "animal_occurrences": 612,
+      "unique_cats": 97,
+      "occurrences_per_cat_min": 3,
+      "occurrences_per_cat_median": 6,
+      "occurrences_per_cat_max": 15,
+      "note": "The 612 rows are repeated validation animal occurrences across seeds, repeats, and folds; they are not 612 independent cats."
+    }
+  },
+  "artifacts": {
+    "protocol_path": "configs/protocol/meowagenet_idea085_acoustic_temporal_residual_v1.json",
+    "protocol_sha256": "592b8fccf721aeeab8f2bf20839534b703c9e5caa582c93dc220854d77f66bca",
+    "runner_path": "scripts/run_meowagenet_idea085_acoustic_temporal_residual.py",
+    "runner_sha256": "471bb5bd0e007be696decd86dec9317b3ef8c3f732490718a4eed99f28e821b4",
+    "trajectory_extractor_path": "scripts/extract_idea085_acoustic_trajectories.py",
+    "trajectory_extractor_sha256": "c2ae23b65afe6c4086fcd62271d67312573437e6d8b8ebbcd3c1ee048177df97",
+    "trajectory_cache_path": "runs/meowagenet_idea085_acoustic_temporal_residual_v1/features/acoustic_trajectories.npz",
+    "trajectory_cache_sha256": "a69b246eba8d773f12a605f2caa9086e2ba0a2d87a3eeeb6ec57175c551a46a7",
+    "cpu_preflight_path": "runs/meowagenet_idea085_acoustic_temporal_residual_v1/cpu_preflight.json",
+    "cpu_preflight_sha256": "c76fcb1177ca4a14b432993efaf8b8ab2b4df99c148c3ca80405ad3456b67387",
+    "summary_path": "runs/meowagenet_idea085_acoustic_temporal_residual_v1/initial_evaluation_summary.json",
+    "summary_sha256": "4aa2ce4862c81fda49e35e4e77a2901fac01bcea9d52feeab4fb80fbc58c0f7a",
+    "run_summary_path": "runs/meowagenet_idea085_acoustic_temporal_residual_v1/run_summary.json",
+    "run_summary_sha256": "41d6e9df66e07bc30961e0cd308a674519e2eef8c72bd4df4e912dc63d048c48",
+    "run_manifest_path": "runs/meowagenet_idea085_acoustic_temporal_residual_v1/run_manifest.json",
+    "run_manifest_sha256": "ddfc3436ade7ac4d8733cf36a6e288510d3900de6fcdd77a23eb7e334ff4ef90",
+    "first_cell_audit_path": "runs/meowagenet_idea085_acoustic_temporal_residual_v1/first_complete_cell_audit.json",
+    "first_cell_audit_sha256": "ecbd0f339df888b815542b27bab7030c0c22199ebfa75e8738cc40561a06bf91",
+    "independent_first_cell_audit_path": "runs/meowagenet_idea085_acoustic_temporal_residual_v1/independent_first_cell_audit.json",
+    "independent_first_cell_audit_sha256": "e10001a9b2a37c2ab31eac69b0045f11717fac714c11421bd6b3a9b8030553db",
+    "independent_results_audit_path": "runs/meowagenet_idea085_acoustic_temporal_residual_v1/independent_results_audit.json",
+    "independent_results_audit_sha256": "c2d7d55ca0460acd6d564f3807b83d7de9226ed1a503247783083656824b7a51",
+    "independent_verifier_path": "scripts/verify_idea085_acoustic_temporal_results.py",
+    "independent_verifier_sha256": "3b1eb9ea3b5ea363cdae63fddb509ce06f2d5f0b359bc78921e019657277c773",
+    "independent_verifier_test_path": "tests/test_verify_idea085_acoustic_temporal_results.py",
+    "independent_verifier_test_sha256": "11e308e06df3521788786e7fd0169ae6a24bb65bb07a58d948e2bb924401a9d8",
+    "report_path": "reports/70_IDEA-085_acoustic_temporal_residual_results.md",
+    "report_sha256": "81398f787e3ba6283d966333179c8af13d0469b62a5a1639da55f27bc5237d25",
+    "independent_report_path": "reports/69_IDEA-085_independent_results_audit.md",
+    "independent_report_sha256": "aa659db0ac106f7f35856b77aeb8f21c6843c05ed5f4964484245e2c562ffb39"
+  },
+  "recommended_next_step": "Freeze IDEA-085 without post-result architecture, seed, shuffle, residual-cap, or threshold searches. Keep A0 and the existing C1 evidence unchanged, archive the limited T1-over-contemporaneous-C1 positive result, and do not claim a real-order mechanism. Any future long-range temporal hypothesis requires a separately prespecified exploration and cannot be described as independent confirmation on these validation data."
+}

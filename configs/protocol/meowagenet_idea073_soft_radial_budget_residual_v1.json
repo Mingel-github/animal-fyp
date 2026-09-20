@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea073-soft-radial-budget-v1",
+  "date": "2026-09-17",
+  "status": "locked_before_initial_evaluation",
+  "objective": "Test whether a direction-preserving soft radial budget can retain the classification benefit of the wide unbounded age residual while approaching the probability quality of the bounded coordinate-wise residual.",
+  "relationship": {
+    "known_results": "IDEA-072 found that U1 had the highest mean Macro-F1 and was positive against A0 on all three base seeds, while C1 had the best mean Brier and better CE than U1.",
+    "scope": "New-seed internal module screening on the same 111 cats and role system; not independent-dataset confirmation.",
+    "post_outcome_formula_tuning": false,
+    "post_outcome_seed_selection": false,
+    "positive_subthreshold_retention": "A0, U1, and C1 are all retained and rerun because the preceding experiment showed complementary classification and calibration advantages."
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "independence_unit": "cat_id",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "feature_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/extraction_summary.json",
+    "feature_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda",
+    "feature_extraction_audit": {
+      "status": "complete",
+      "label_information_used": false,
+      "calls": 792,
+      "features": 20,
+      "source_hashes_verified": 792,
+      "protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+      "runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+      "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba"
+    }
+  },
+  "model": {
+    "pipelines": [
+      "A0_ast_only",
+      "U1_wide_unbounded_additive",
+      "C1_bounded_wide_additive",
+      "S1_soft_radial_budget"
+    ],
+    "pipeline_definitions": {
+      "A0_ast_only": "Matched frozen-AST 768->128->3 control.",
+      "U1_wide_unbounded_additive": "IDEA-072 capacity-matched unbounded 20->60->128 additive age residual.",
+      "C1_bounded_wide_additive": "IDEA-071/072 coordinate-wise 0.25*stopgrad(RMS(h))*tanh(raw) age residual.",
+      "S1_soft_radial_budget": "New 20->60->128 residual r=u*B/(B+||u||), with B=0.25*stopgrad(sqrt(sum(h^2)+128*eps)); norms and scaling are computed in FP32 with autocast disabled, followed by a one-dtype-epsilon downward guard before casting to the hidden dtype."
+    },
+    "cap": 0.25,
+    "norm_epsilon": 1e-08,
+    "hidden_dimension": 128,
+    "wide_hidden_units": 60,
+    "trainable_parameters": {
+      "A0_ast_only": 99075,
+      "U1_wide_unbounded_additive": 108143,
+      "C1_bounded_wide_additive": 108143,
+      "S1_soft_radial_budget": 108143
+    },
+    "base_seeds": [
+      4025,
+      5118,
+      9821
+    ],
+    "seed_derivation_text": "IDEA-073-soft-radial-budget-wide-residual-v1",
+    "seed_derivation_encoding": "UTF-8",
+    "seed_derivation_sha256": "2652b329ce659a3e45984fdda294bb55bb78e682375e7c595831c0e1624199f5",
+    "seed_derivation_rule": "Read successive non-overlapping digest uint32 values in big-endian order, reduce modulo 10000, skip a value only if it collides with any already used IDEA-068 through IDEA-072 base seed, and stop after three unique values. No collision occurred in the first three values.",
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 36,
+    "total_fits": 144,
+    "initialization_fairness": "All three 20->60->128 age-output layers are zero-initialized. U1, C1, and S1 state_dict tensors must match exactly, and all four pre-optimization logits must match exactly. Training RNG is reset after model construction.",
+    "mechanism_attribution": "S1 differs from U1 only by a smooth global L2 budget, and from C1 only by the global direction-preserving radial transform versus coordinate-wise tanh."
+  },
+  "fixed_training": {
+    "ast_head": "training-role standardized 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "age_hidden_units": 32,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "globally class-balanced call cross-entropy",
+    "checkpoint_selection": "minimum unweighted inner-validation animal cross-entropy",
+    "post_build_seed_offset": 1000000
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true
+  },
+  "aggregation": {
+    "primary_metric_unit": "Nine seed-by-repeat estimates, each pooling four validation folds, weighted equally.",
+    "calibration_gate_unit": "Nine seed-by-repeat cross-entropy and Brier estimates, weighted equally.",
+    "split_cell_unit": "Twelve repeat-by-fold cells, each first averaged across three base seeds.",
+    "descriptive_only": "Thirty-six fold comparisons and 612 repeated animal occurrences per pipeline are descriptive and are not treated as independent observations."
+  },
+  "gate": {
+    "all_conditions_required": true,
+    "minimum_mean_seed_repeat_S1_minus_A0": 0.005,
+    "minimum_each_base_seed_mean_S1_minus_A0": 0.0,
+    "minimum_positive_seed_repeats_S1_minus_A0": 6,
+    "minimum_nonnegative_split_cells_S1_minus_A0": 8,
+    "minimum_worst_split_cell_delta_S1_minus_A0": -0.03,
+    "mean_cross_entropy_and_brier_nonworse_than_A0": true,
+    "minimum_per_base_seed_senior_recall_delta_vs_A0": -0.02,
+    "minimum_mean_seed_repeat_S1_minus_U1": -0.005,
+    "minimum_nonnegative_seed_repeats_S1_minus_U1": 5,
+    "mean_cross_entropy_and_brier_nonworse_than_U1": true,
+    "minimum_mean_seed_repeat_S1_minus_C1": 0.0,
+    "minimum_nonnegative_base_seeds_S1_minus_C1": 2,
+    "minimum_nonnegative_seed_repeats_S1_minus_C1": 5,
+    "maximum_mean_cross_entropy_increase_vs_C1": 0.005,
+    "maximum_mean_brier_increase_vs_C1": 0.002,
+    "pass_action": "Freeze S1 as the direction-preserving bounded age-residual candidate before external-dataset and AST-depth testing.",
+    "partial_pass_action": "Retain and report each successful tier separately; U1 and C1 remain valid complementary candidates when S1 does not combine both advantages.",
+    "fail_action": "Report all positive and negative outcomes without changing the formula, cap, width, seeds, aggregation, tolerances, or gates on this result."
+  },
+  "dependencies": {
+    "idea_path": "plan/IDEA-073_soft_radial_budget_wide_residual.md",
+    "idea_sha256": "e0bf6148b98e2201290a7d50a30729a9193acbb9a6db0d02d3e82cb91e8da0aa",
+    "idea068_protocol_path": "configs/protocol/meowagenet_idea068_age_sensitive_ast_v1.json",
+    "idea068_protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+    "idea068_runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "idea068_runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "idea071_protocol_path": "configs/protocol/meowagenet_idea071_bounded_dual_path_fusion_v1.json",
+    "idea071_protocol_sha256": "3050b16a0c3c63f8ea9b672f5bf0c5ad3771e9696bdf7a3c4773351490fcf79a",
+    "idea071_runner_path": "scripts/run_meowagenet_idea071_bounded_dual_path_fusion.py",
+    "idea071_runner_sha256": "f232dc6971bf550052c9a846460e164d29c12dd2b0acfffd234ffbff772a0fcc",
+    "idea072_protocol_path": "configs/protocol/meowagenet_idea072_C1_seed_confirmation_v1.json",
+    "idea072_protocol_sha256": "ad767bb24721ac18887b85ed0671ab14e510097c34aa8f18253f47a623970d93",
+    "idea072_runner_path": "scripts/run_meowagenet_idea072_C1_seed_confirmation.py",
+    "idea072_runner_sha256": "914add17497df7bceef7ee9b80077cb42d99a193fa223f78b00d53f1d67c8696",
+    "runner_path": "scripts/run_meowagenet_idea073_soft_radial_budget_residual.py",
+    "runner_sha256": "b482f8936e625ebf57181a299d726cc12a3c9bd7161b01bb59dfe3986d284e72",
+    "git_head": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea073_soft_radial_budget_residual_v1",
+    "summary": "initial_evaluation_summary.json"
+  }
+}

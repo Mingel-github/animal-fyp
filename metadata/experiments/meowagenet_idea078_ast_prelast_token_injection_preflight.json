@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea078-ast-prelast-special-token-age-injection-v1",
+  "date": "2026-09-18",
+  "status": "GO_FOR_FORMAL_GPU_RUN",
+  "read_only_preflight": true,
+  "device": "cpu",
+  "gpu_used": false,
+  "outer_test_accessed": false,
+  "technical_formal_gpu_run_ready": true,
+  "current_scope_authorizes_formal_fit_execution": false,
+  "formal_fits_started": false,
+  "protocol": {
+    "path": "configs/protocol/meowagenet_idea078_ast_prelast_special_token_age_injection_v1.json",
+    "sha256": "54080718a798655e3ebd3bd7a9bd0c346a554154f1ec8001ed15dbfe6122e7f8",
+    "status": "locked_for_formal_evaluation",
+    "cache_producer_protocol_sha256": "d2d2397ab9fed1a1b6302bc248ff2a43f56f511c592d9b28097d79b63a364e13"
+  },
+  "runner": {
+    "path": "scripts/run_meowagenet_idea078_ast_prelast_special_token_age_injection.py",
+    "sha256": "36e75b63e37a485dec05b1b2def993f137aa3dafb4857c222a0f41c80a85f399"
+  },
+  "cache_extractor": {
+    "path": "scripts/extract_ast_prelast_tokens_idea078.py",
+    "sha256": "ad9b596cd39f7502c8d4cfe7a63192cb71dbde10e3151cd808186f710ad8b698"
+  },
+  "shared_cache_contract": {
+    "schema_path": "metadata/experiments/ast_prelast_token_cache_idea078_v1_schema.json",
+    "schema_sha256": "5183b9d5e7e689a0337e0e6b0cfb2d5cf6dc7c6402af39ccafdbc11964dc0f3b",
+    "owner": "IDEA-078",
+    "read_only_consumers": ["IDEA-078", "IDEA-079"],
+    "duplicate_extraction_allowed": false,
+    "token_path": "runs/ast_prelast_tokens_idea078_v1/prelast_tokens.float32.npy",
+    "index_path": "runs/ast_prelast_tokens_idea078_v1/prelast_token_index.npz",
+    "manifest_path": "runs/ast_prelast_tokens_idea078_v1/cache_manifest.json",
+    "manifest_exists": true,
+    "manifest_sha256": "af14eb7b8a2f9c362f37484d06af4381fe89f1a497a89c62f1142ab49baf8e94",
+    "token_sha256": "9fb7b32973560d31ad1906c07349e745054683d5a6a3486e3e33182fc6947ca9",
+    "index_sha256": "aa46820aa15a0812ef4437c80c29f28fd515f0228a9d0fd10bac266b734b9bb2",
+    "shape": [843, 146, 768],
+    "dtype": "float32",
+    "storage": "npy_memory_mappable",
+    "raw_token_bytes": 378095616,
+    "raw_token_mib": 360.580078125,
+    "contains_labels": false,
+    "contains_cat_ids": false,
+    "contains_roles": false,
+    "segment_count_range": [1, 6],
+    "segment_call_mapping_closed": true,
+    "segment_call_indices_sha256": "a191970d575e9bacda3bc454bca1120bdd5a0054ca5068d59a28a41ee7e21c73",
+    "segment_counts_sha256": "62880eaf08cf1891103d646caa2eee731633ccd1f936ccba5e6ea17deb0f60a9",
+    "call_ids_sha256": "d48bf93391588611190f59d9b73bca7d943ed0a5866c1b90ea5028a2ab035f3f",
+    "source_paths_sha256": "62c52dc181a2f95af0ee03a9cb233bb520b10d934332c746e0755c8171a45cfe"
+  },
+  "live_cpu_a0_reconstruction": {
+    "probe_call_indices": [0, 24, 114],
+    "probe_calls": 3,
+    "probe_segments": 8,
+    "segment_counts": [1, 2, 5],
+    "prelast_shape": [8, 146, 768],
+    "canonical_vs_manual_tail_max_absolute_difference": 0.0,
+    "reconstructed_calls_vs_locked_gpu_final_mean_absolute_difference": 0.0000021557375475822482,
+    "reconstructed_calls_vs_locked_gpu_final_maximum_absolute_difference": 0.000013113021850585938,
+    "cpu_cross_device_tolerance": {
+      "mean_absolute_maximum": 0.000003,
+      "absolute_maximum": 0.00002
+    },
+    "passed": true,
+    "tolerance_note": "The CPU-to-locked-GPU mean tolerance was locked at 3e-6 before evaluation results because the observed 2.1557e-6 marginally exceeded 2e-6 while the canonical CPU forward and manual tail matched exactly. The final GPU-produced full-cache acceptance remains at 2e-6 mean and 2e-5 maximum."
+  },
+  "full_cache_a0_reconstruction": {
+    "available": true,
+    "required_before_formal_training": true,
+    "gpu_mean_absolute_error": 0.0000004022432733563619,
+    "gpu_maximum_absolute_error": 0.000008463859558105469,
+    "cpu_mean_absolute_error": 0.000000541924578101316,
+    "cpu_maximum_absolute_error": 0.000009894371032714844,
+    "mean_absolute_maximum": 0.000002,
+    "absolute_maximum": 0.00002,
+    "gpu_passed": true,
+    "cpu_passed": true
+  },
+  "model_audit": {
+    "pipelines": [
+      "A0_token_reconstruction",
+      "P1_postpool_age_injection",
+      "T1_prelast_special_token_injection"
+    ],
+    "trainable_parameters": {
+      "A0_token_reconstruction": 99075,
+      "P1_postpool_age_injection": 107733,
+      "T1_prelast_special_token_injection": 107733
+    },
+    "shared_head_state_equal": true,
+    "P1_T1_injection_state_equal": true,
+    "max_initial_logit_difference_vs_A0": {
+      "P1_postpool_age_injection": 0.0,
+      "T1_prelast_special_token_injection": 0.0
+    },
+    "initial_cross_entropy": 1.1518301963806152,
+    "age_output_max_gradient_at_zero": 0.02521931566298008,
+    "age_hidden_max_gradient_at_zero": 0.0,
+    "age_hidden_max_gradient_after_output_probe": 8.784841777631502e-12,
+    "frozen_tail_parameters_with_grad": 0
+  },
+  "seed_and_budget_audit": {
+    "base_seeds": [9763, 3230, 9726],
+    "unique_full_seeds": 36,
+    "collisions_with_IDEA068_through_IDEA077": 0,
+    "total_fits": 108,
+    "primary_A0_T1_fits": 72
+  },
+  "tests": {
+    "path": "tests/test_idea078_ast_prelast_special_token_age_injection.py",
+    "sha256": "e77575fcb425d519627ef5432f19790b608bfe0fad247a797932188d52dd11cd",
+    "passed": 9,
+    "failed": 0
+  },
+  "cache_finalization_note": "The initial extraction and strict reconstruction completed, but Windows retained the read-only mmap handle during the final rename. After process exit, an independent read-only verifier confirmed hashes, schema, elementwise source mapping, and full reconstruction on the exact temporary artifacts; those artifacts were renamed without recomputation or overwrite, and the recovery was recorded in the manifest.",
+  "next_step": "The cache dependency is closed and the implementation is technically ready for the 108 formal fits. This cache-only authorization did not start or authorize those fits."
+}

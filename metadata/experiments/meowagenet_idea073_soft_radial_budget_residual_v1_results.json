@@ -1,0 +1,199 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea073-soft-radial-budget-v1",
+  "status": "complete_gate_failed_U1_preserved_positive_A0_signal",
+  "date": "2026-09-17",
+  "outer_test_accessed": false,
+  "base_seeds": [
+    4025,
+    5118,
+    9821
+  ],
+  "fits": 144,
+  "model": {
+    "A0_parameters": 99075,
+    "U1_parameters": 108143,
+    "C1_parameters": 108143,
+    "S1_parameters": 108143,
+    "U1_C1_S1_initial_state_dict_identical": true,
+    "cap": 0.25,
+    "U1": "Unbounded 20->60->128 additive age residual.",
+    "C1": "Coordinate-wise 0.25*stopgrad(RMS(h))*tanh(raw) residual.",
+    "S1": "Direction-preserving r=u*B/(B+||u||), B=0.25*stopgrad(sqrt(sum(h^2)+128*eps)), computed in FP32 with a one-dtype-epsilon downward cast guard."
+  },
+  "seed_repeat_level": {
+    "mean_macro_f1": {
+      "A0": 0.7457486286600598,
+      "U1": 0.75549120785278,
+      "C1": 0.7705874864106423,
+      "S1": 0.7513928933154226
+    },
+    "mean_cross_entropy": {
+      "A0": 0.6900632622317358,
+      "U1": 0.7138313805931878,
+      "C1": 0.6941946280487993,
+      "S1": 0.6902222316834552
+    },
+    "mean_brier": {
+      "A0": 0.41361252033197526,
+      "U1": 0.42155500996129164,
+      "C1": 0.40985823462262005,
+      "S1": 0.409355843147359
+    },
+    "comparisons": {
+      "S1_minus_A0": {
+        "mean": 0.005644264655362854,
+        "sample_sd": 0.019273985144324872,
+        "positive": 6,
+        "tied": 0,
+        "negative": 3
+      },
+      "S1_minus_U1": {
+        "mean": -0.004098314537357391,
+        "sample_sd": 0.01771812024030686,
+        "positive": 4,
+        "tied": 1,
+        "negative": 4
+      },
+      "S1_minus_C1": {
+        "mean": -0.019194593095219686,
+        "sample_sd": 0.02880024206781078,
+        "positive": 3,
+        "tied": 0,
+        "negative": 6
+      },
+      "U1_minus_A0": {
+        "mean": 0.009742579192720245,
+        "sample_sd": 0.015051511836911514,
+        "positive": 8,
+        "tied": 0,
+        "negative": 1
+      },
+      "C1_minus_A0": {
+        "mean": 0.02483885775058254,
+        "sample_sd": 0.03207253422873467,
+        "positive": 7,
+        "tied": 2,
+        "negative": 0
+      },
+      "C1_minus_U1": {
+        "mean": 0.015096278557862294,
+        "sample_sd": 0.03672926260161725,
+        "positive": 5,
+        "tied": 0,
+        "negative": 4
+      }
+    }
+  },
+  "per_base_seed_mean_deltas": {
+    "4025": {
+      "S1_minus_A0": -0.00014727474089659687,
+      "S1_minus_U1": 0.0037989917747601742,
+      "S1_minus_C1": -0.02945121917351216,
+      "U1_minus_A0": -0.003946266515656771,
+      "C1_minus_A0": 0.029303944432615563,
+      "C1_minus_U1": 0.03325021094827233
+    },
+    "5118": {
+      "S1_minus_A0": 0.022489587551192902,
+      "S1_minus_U1": 0.0029484164326338083,
+      "S1_minus_C1": -0.012501387505297315,
+      "U1_minus_A0": 0.019541171118559093,
+      "C1_minus_A0": 0.034990975056490216,
+      "C1_minus_U1": 0.015449803937931125
+    },
+    "9821": {
+      "S1_minus_A0": -0.005409518844207743,
+      "S1_minus_U1": -0.019042351819466157,
+      "S1_minus_C1": -0.01563117260684958,
+      "U1_minus_A0": 0.013632832975258413,
+      "C1_minus_A0": 0.010221653762641836,
+      "C1_minus_U1": -0.0034111792126165774
+    }
+  },
+  "split_stability": {
+    "S1_minus_A0_nonnegative_split_cells": 8,
+    "S1_minus_A0_positive_split_cells": 7,
+    "S1_minus_A0_tied_split_cells": 1,
+    "S1_minus_A0_negative_split_cells": 4,
+    "S1_minus_A0_worst": -0.07128791687615217,
+    "S1_minus_A0_best": 0.038271604938271565
+  },
+  "senior_recall_S1_minus_A0": {
+    "4025": 0.033333333333333326,
+    "5118": -0.016666666666666607,
+    "9821": 0.0
+  },
+  "pooled_validation": {
+    "animal_occurrences_per_pipeline": 612,
+    "occurrences_are_independent": false,
+    "A0_macro_f1": 0.7466134916686182,
+    "U1_macro_f1": 0.7553123907868838,
+    "C1_macro_f1": 0.7702052004881886,
+    "S1_macro_f1": 0.7525775080045083,
+    "A0_cross_entropy": 0.6900632622317358,
+    "U1_cross_entropy": 0.7138313805931878,
+    "C1_cross_entropy": 0.6941946280487994,
+    "S1_cross_entropy": 0.6902222316834552,
+    "A0_brier": 0.4136125203319753,
+    "U1_brier": 0.42155500996129164,
+    "C1_brier": 0.40985823462262005,
+    "S1_brier": 0.409355843147359
+  },
+  "mechanism_audit": {
+    "validation_calls_across_36_fits": 4005,
+    "C1_relative_perturbation": {
+      "definition": "validation-call ||r||_2/||h||_2 at the selected checkpoint",
+      "call_weighted_mean": 0.05547290323709095,
+      "minimum_call": 0.007988636381924152,
+      "maximum_call": 0.21656771004199982,
+      "mean_of_fit_means": 0.05778600720184527
+    },
+    "S1_relative_perturbation": {
+      "call_weighted_mean": 0.06681394190451924,
+      "minimum_call": 0.015699215233325958,
+      "maximum_call": 0.19198094308376312,
+      "mean_of_fit_means": 0.06845662525908566
+    },
+    "S1_raw_to_budget": {
+      "call_weighted_mean": 0.39949680853462993,
+      "minimum_call": 0.06707655638456345,
+      "maximum_call": 3.32316255569458
+    },
+    "S1_residual_to_budget": {
+      "call_weighted_mean": 0.26725576761807696,
+      "minimum_call": 0.06279686093330383,
+      "maximum_call": 0.7679237723350525,
+      "near_saturation_fraction_at_0.9": 0.0
+    },
+    "S1_direction_cosine": {
+      "call_weighted_mean": 0.9999999972020791,
+      "minimum_call": 0.9999997615814209,
+      "maximum_call": 1.000000238418579
+    },
+    "S1_budget_violation_calls": 0,
+    "S1_max_budget_violation": 0.0
+  },
+  "gate_tiers": {
+    "basic_effectiveness_vs_A0": false,
+    "U1_classification_preservation": true,
+    "C1_calibration_and_F1_bridge": false,
+    "overall": false
+  },
+  "interpretation": "S1 has a positive mean Macro-F1 signal versus A0, passes six of eight basic checks, improves Brier, and remains within the locked -0.005 F1 noninferiority margin versus U1 while improving U1 calibration. It nevertheless fails full basic stability because two base seeds are negative, the worst split is -0.0713, and mean CE is 0.000159 worse than A0. It also trails C1 by 0.01919 Macro-F1 despite meeting the C1 CE/Brier tolerances, so it does not combine the best of U1 and C1. C1 is the strongest classifier in this new seed bank and is positive or tied versus A0 in all nine seed-repeat units; U1, C1, and S1 are retained as complementary positive results, but S1 does not advance under the preregistered overall gate.",
+  "audit": {
+    "preoptimization_max_logit_difference": 0.0,
+    "U1_C1_S1_initial_state_dict_exactly_equal": true,
+    "checkpoint_reload_max_probability_difference": 0.0,
+    "paired_common_epochs": 660,
+    "paired_batch_hash_mismatches": 0,
+    "resume_validation_passed": true,
+    "resume_summary_hash_unchanged": true,
+    "tests_passed": 24,
+    "plan_sha256": "e0bf6148b98e2201290a7d50a30729a9193acbb9a6db0d02d3e82cb91e8da0aa",
+    "protocol_sha256": "0fd66f557558ec56553cae93bb1ed28d440651cfc7173264834c97facd6be5c4",
+    "runner_sha256": "b482f8936e625ebf57181a299d726cc12a3c9bd7161b01bb59dfe3986d284e72",
+    "run_manifest_sha256": "60fdebdf7d16cc56bdeb677f5e7eea20b4410e949224f838d28e060bb20e5ee7",
+    "initial_evaluation_summary_sha256": "0420560c142b8ba1743367806063872112cbab40bdda74e419c27892a2eaecf7"
+  }
+}

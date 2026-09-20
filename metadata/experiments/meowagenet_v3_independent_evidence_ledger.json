@@ -1,0 +1,393 @@
+{
+  "schema_version": "1.0",
+  "ledger_id": "meowagenet-v3-independent-evidence-ledger",
+  "date": "2026-09-18",
+  "status": "locked_before_v3_main_draft_review",
+  "scope": "Independent evidence-status audit for the v3 manuscript; no v2/v2.1 overwrite and no new GPU execution.",
+  "audit_role": {
+    "independent_from_main_draft_author": true,
+    "main_draft_edited": false,
+    "gpu_used": false,
+    "outer_test_reaccessed": false
+  },
+  "core_boundary": {
+    "primary_dataset": "MeowAgeNet",
+    "analysis_cats": 111,
+    "meowagenet_repeated_rounds_are_independent_datasets": false,
+    "new_initialization_seeds_create_new_animals": false,
+    "catmeows_has_feline_age_labels": false,
+    "dog_benchmark_priority": "lowest; cross-species external boundary",
+    "formal_v2_1_design": "pilot-informed repeated internal cat-grouped validation, not independent external replication"
+  },
+  "terminology_policy": {
+    "primary_candidate": "A method family supported by the locked primary comparison and not contradicted by its method-specific confirmation. For v3 this label applies to the frozen AST representation/head route relative to VGGish, not to a uniquely established probe-guided Adapter effect.",
+    "exploratory_positive": "A positive mean, subgroup, utility gate, or cross-task signal that failed at least one preregistered stability, calibration, mechanism, or independence requirement. It must be reported with the failed gate and cannot be called confirmed.",
+    "negative_result": "A preregistered candidate or mechanism whose required gate failed. Local positive cells may be retained descriptively but do not reverse the decision.",
+    "external_boundary": "Evidence from another dataset or task that constrains transfer claims. Task mismatch, species mismatch, subset scope, and label definition must remain explicit; it cannot be pooled numerically with MeowAgeNet age classification."
+  },
+  "probe_guided_adapter_evidence": {
+    "pilot": {
+      "stage": "post-selection GPU pilot",
+      "cats": 111,
+      "macro_f1": {
+        "vggish_mlp": 0.6846,
+        "ast_head_only": 0.7260,
+        "ast_probe_guided_adapter": 0.7575,
+        "adapter_minus_vggish": 0.0729,
+        "adapter_minus_head_only": 0.0315
+      },
+      "status": "exploratory_positive",
+      "boundary": "The candidate and placement were selected after exploratory access to the same 111 cats; one pilot OOF is not external or confirmatory evidence.",
+      "source_path": "metadata/experiments/meowagenet_idea019_peft_placement_v1_results.json",
+      "source_sha256": "7ffc01a735cb2270fba8a1cef80435ca19ef9e856eefa836849290adb686a213"
+    },
+    "formal_v2_1": {
+      "design": "3 split repeats x 3 model seeds x complete four-fold OOF; every OOF contains the same 111 cats",
+      "complete_oof_estimates_per_pipeline": 9,
+      "macro_f1_mean": {
+        "vggish_mlp": 0.6524995850585984,
+        "ast_head_only": 0.7237808179940559,
+        "ast_probe_guided_adapter": 0.7289754002707316
+      },
+      "adapter_minus_vggish": {
+        "mean": 0.07647581521213324,
+        "positive": 9,
+        "total": 9,
+        "hierarchical_bootstrap_ci95": [-0.006353954244966051, 0.16851338100798968],
+        "status": "primary_candidate_support_for_AST_route"
+      },
+      "adapter_minus_head_only": {
+        "mean": 0.0051945822766756855,
+        "positive": 5,
+        "total": 9,
+        "hierarchical_bootstrap_ci95": [-0.04580968360548246, 0.058501560945030166],
+        "status": "exploratory_positive_not_adapter_confirmation"
+      },
+      "interpretation": "Formal-v2.1 supports the AST pipeline over VGGish. It does not establish a stable independent increment from the current Adapter over a matched AST head.",
+      "source_path": "metadata/experiments/meowagenet_formal_v2_1_core_results.json",
+      "source_sha256": "20f9ed949381bc67f208640064ae75a0a91322dd02ab965b3af607763480ff1e"
+    },
+    "post_formal_hpo": {
+      "scope": "exploratory hyperparameter selection and seed-17 evaluation",
+      "macro_f1_mean": {
+        "tuned_ast_head_only": 0.7488,
+        "probe_guided_adapter": 0.7367,
+        "adapter_minus_tuned_head": -0.0121
+      },
+      "status": "exploratory_positive_for_tuned_head_not_adapter",
+      "boundary": "Only base seed 17 was evaluated after HPO; it cannot replace formal-v2.1 or deterministic new-seed replication.",
+      "source_path": "runs/meowagenet_ast_hpo_v1/evaluation/summary.json",
+      "source_sha256": "752c210a0b7d00a8ae4aa97603a7eb1f5c8167a45e820af816c754b9caa0befc"
+    },
+    "determinism_diagnosis": {
+      "same_seed_head_prediction_files_exact": "12/12",
+      "same_seed_adapter_prediction_files_exact": "0/12",
+      "historical_adapter_macro_f1": 0.7348,
+      "diagnostic_rerun_adapter_macro_f1": 0.7246,
+      "diagnostic_adapter_minus_head": -0.0091,
+      "status": "diagnostic_not_effect_estimate",
+      "interpretation": "The same-seed rerun exposed non-deterministic CUDA attention/checkpoint trajectories. It must not be counted as an independent effect replication. Deterministic kernels subsequently reproduced identical histories and probabilities."
+    },
+    "deterministic_new_seed_replication": {
+      "base_seeds": [151, 307, 509],
+      "split_repeats": 3,
+      "complete_oof_estimates_per_pipeline": 9,
+      "same_cats_as_formal": true,
+      "macro_f1_mean": {
+        "ast_head_only": 0.7253,
+        "ast_probe_guided_adapter": 0.7195,
+        "adapter_minus_head": -0.0057
+      },
+      "adapter_minus_head_signs_positive_negative": [5, 4],
+      "status": "negative_result_for_stable_adapter_increment",
+      "interpretation": "The current two-layer bottleneck Adapter has split-dependent local positives but no stable independent gain over head-only.",
+      "source_path": "runs/meowagenet_idea065_adapter_seed_replication_v1/formal_summary.json",
+      "source_sha256": "da112bd8f79551e39516b4f9025cab9fb06a1be1e51acf63db5c6328321f67a0"
+    },
+    "v3_status": {
+      "frozen_AST_representation_and_head": "primary_candidate",
+      "probe_guided_adapter_as_unique_mechanism": "negative_result",
+      "probe_guided_adapter_pipeline_vs_vggish": "formal_positive_but_attributed_mainly_to_AST_route"
+    }
+  },
+  "a0_c1_meowagenet_evidence": {
+    "shared_boundary": "Every round below reuses the same 792 calls, 111 cats, and nested role system. The outcomes are new-seed/internal-role evidence, not independent animals or external replications.",
+    "rounds": [
+      {
+        "idea": "IDEA-071",
+        "base_seeds": [4412, 5703, 3120],
+        "seed_repeat_cells": 9,
+        "A0_macro_f1": 0.7311780610117449,
+        "C1_macro_f1": 0.7299643800623286,
+        "C1_minus_A0": -0.0012136809494162318,
+        "signs_positive_tied_negative": [5, 0, 4],
+        "positive_negative_base_seeds": [2, 1],
+        "status": "negative_result_no_preregistered_C1_primary_gate"
+      },
+      {
+        "idea": "IDEA-072",
+        "base_seeds": [6530, 3562, 3846],
+        "seed_repeat_cells": 9,
+        "A0_macro_f1": 0.7175967612291837,
+        "C1_macro_f1": 0.7267091447057161,
+        "C1_minus_A0": 0.009112383476532537,
+        "signs_positive_tied_negative": [7, 0, 2],
+        "positive_negative_base_seeds": [2, 1],
+        "status": "exploratory_positive_gate_failed"
+      },
+      {
+        "idea": "IDEA-073",
+        "base_seeds": [4025, 5118, 9821],
+        "seed_repeat_cells": 9,
+        "A0_macro_f1": 0.7457486286600598,
+        "C1_macro_f1": 0.7705874864106422,
+        "C1_minus_A0": 0.02483885775058254,
+        "signs_positive_tied_negative": [7, 2, 0],
+        "positive_negative_base_seeds": [3, 0],
+        "status": "exploratory_positive_not_final_confirmation"
+      },
+      {
+        "idea": "IDEA-074",
+        "base_seeds": [6346, 7243, 9617],
+        "seed_repeat_cells": 9,
+        "A0_macro_f1": 0.7373451964691724,
+        "C1_macro_f1": 0.7248396748778242,
+        "C1_minus_A0": -0.012505521591348026,
+        "signs_positive_tied_negative": [2, 1, 6],
+        "positive_negative_base_seeds": [0, 3],
+        "status": "negative_result_gate_failed"
+      },
+      {
+        "idea": "IDEA-076",
+        "base_seeds": [8807, 268, 6915, 5994, 9330, 4322],
+        "seed_repeat_cells": 18,
+        "A0_macro_f1": 0.7389433750407552,
+        "C1_macro_f1": 0.7479319003674575,
+        "C1_minus_A0": 0.008988525326702239,
+        "signs_positive_tied_negative": [9, 3, 6],
+        "positive_negative_base_seeds": [4, 2],
+        "status": "exploratory_positive_final_gate_failed",
+        "failed_main_conditions": [
+          "positive seed-repeat count",
+          "worst split-cell",
+          "mean cross-entropy",
+          "one base-seed senior-recall floor"
+        ]
+      },
+      {
+        "idea": "IDEA-080_C1_factorial_control",
+        "base_seeds": [59, 7031, 1855],
+        "seed_repeat_cells": 9,
+        "A0_macro_f1": 0.7357012358216577,
+        "C1_macro_f1": 0.7465949067845782,
+        "C1_minus_A0": 0.010893670962920463,
+        "signs_positive_tied_negative": [5, 0, 4],
+        "positive_negative_base_seeds": [2, 1],
+        "status": "exploratory_positive_descriptive_control_not_C1_confirmation"
+      },
+      {
+        "idea": "IDEA-081_C1_factorial_control",
+        "base_seeds": [9217, 7339, 4211],
+        "seed_repeat_cells": 9,
+        "A0_macro_f1": 0.7301752374506728,
+        "C1_macro_f1": 0.7387287314278077,
+        "C1_minus_A0": 0.00855349397713497,
+        "signs_positive_tied_negative": [6, 0, 3],
+        "positive_negative_base_seeds": [2, 1],
+        "status": "exploratory_positive_descriptive_control_not_C1_confirmation"
+      }
+    ],
+    "descriptive_combined": {
+      "idea071_through_idea076": {
+        "seed_repeat_cells": 54,
+        "C1_minus_A0_mean_macro_f1": 0.006368181556625884,
+        "signs_positive_tied_negative": [30, 6, 18],
+        "base_seed_directions_positive_negative": [11, 7]
+      },
+      "idea071_through_idea081_including_factorial_controls": {
+        "seed_repeat_cells": 72,
+        "C1_minus_A0_mean_macro_f1": 0.00720703178497635,
+        "signs_positive_tied_negative": [41, 6, 25],
+        "base_seed_directions_positive_negative": [15, 9]
+      },
+      "allowed_wording": "Across repeated new-initialization screens on the same 111 cats, C1 retained a small positive descriptive mean with substantial sign heterogeneity.",
+      "forbidden_wording": [
+        "72 independent samples",
+        "external replication",
+        "C1 confirmed",
+        "meta-analysis across independent studies",
+        "p-value treating seed-repeat cells or animal occurrences as independent animals"
+      ],
+      "formal_decision_source": "IDEA-076 preregistered final gate, which failed"
+    },
+    "status": "exploratory_positive_historical_signal_not_primary_candidate",
+    "source_paths": [
+      "metadata/experiments/meowagenet_C1_evidence_ledger_pre_IDEA076.json",
+      "metadata/experiments/meowagenet_idea076_C1_final_seed_confirmation_v1_results.json",
+      "metadata/experiments/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1_results.json",
+      "metadata/experiments/meowagenet_idea081_ast_tail_convpass_c1_factorial_v1_results.json"
+    ]
+  },
+  "idea077_to_idea082": [
+    {
+      "idea": "IDEA-077",
+      "candidate": "global last-four AST LayerMix",
+      "A0_macro_f1": 0.7415732661888895,
+      "candidate_macro_f1": 0.7313498604943452,
+      "candidate_minus_A0": -0.010223405694544361,
+      "positive_tied_negative": [3, 0, 6],
+      "gate_passed": false,
+      "status": "negative_result"
+    },
+    {
+      "idea": "IDEA-078",
+      "candidate": "pre-last special-token age injection",
+      "A0_macro_f1": 0.7408654327723742,
+      "candidate_macro_f1": 0.7207566825862992,
+      "candidate_minus_A0": -0.020108750186075077,
+      "positive_tied_negative": [5, 0, 4],
+      "equal_capacity_candidate_minus_control": -0.010353661462357586,
+      "gate_passed": false,
+      "status": "negative_result"
+    },
+    {
+      "idea": "IDEA-079",
+      "candidate": "width-9 3x3 spatial patch adapter",
+      "A0_macro_f1": 0.7457608753724674,
+      "candidate_macro_f1": 0.7389802985150344,
+      "candidate_minus_A0": -0.006780576857433002,
+      "candidate_minus_pointwise_control": 0.0032010396855686927,
+      "gate_passed": false,
+      "status": "negative_result"
+    },
+    {
+      "idea": "IDEA-080",
+      "candidate": "last-block rank-6 Q/V LoRA",
+      "A0_macro_f1": 0.7357012358216577,
+      "candidate_macro_f1": 0.7382679076998269,
+      "candidate_minus_A0": 0.002566671878169132,
+      "positive_tied_negative": [5, 0, 4],
+      "C1_plus_candidate_minus_C1": -0.011563079518678286,
+      "interaction": -0.014129751396847419,
+      "gate_passed": false,
+      "status": "negative_result_with_small_unstable_positive_mean"
+    },
+    {
+      "idea": "IDEA-081",
+      "candidate": "full tail ConvPass",
+      "A0_macro_f1": 0.7301752374506728,
+      "candidate_macro_f1": 0.7365229291398188,
+      "candidate_minus_A0": 0.00634769168914589,
+      "positive_tied_negative": [5, 0, 4],
+      "worst_split_cell": -0.03361061596355711,
+      "C1_plus_candidate_minus_C1": 0.0008296835666766386,
+      "interaction": -0.005518008122469251,
+      "gate_passed": false,
+      "status": "negative_result_with_unstable_positive_mean"
+    },
+    {
+      "idea": "IDEA-082",
+      "candidate": "preregistered acoustic source-family ablations with matched shuffled controls",
+      "A0_macro_f1": 0.739914079134691,
+      "best_exploratory_group": "G3_spectral_energy",
+      "G3_real_macro_f1": 0.7560196850962,
+      "G3_real_minus_A0": 0.016105605961508847,
+      "G3_real_minus_shuffled": 0.019658296665231407,
+      "G3_utility_gate_passed": true,
+      "G3_information_gate_passed": false,
+      "G3_information_positive_seed_repeats": 5,
+      "G3_information_worst_split_cell": -0.05106378542911042,
+      "any_source_supported": false,
+      "status": "exploratory_positive_G3_lead_no_source_attribution"
+    }
+  ],
+  "external_boundaries": {
+    "catmeows": {
+      "task": "three-way meow context classification: brushing, food waiting, isolation",
+      "animals": 21,
+      "recordings": 440,
+      "split_unit": "cat_id",
+      "macro_f1_mean": {
+        "frozen_AST": 0.5214,
+        "prior_dummy": 0.2229,
+        "difference": 0.2985
+      },
+      "repeat_direction": "3/3 AST above dummy",
+      "status": "external_boundary_positive_for_context_transfer",
+      "allowed_claim": "Frozen AST retains context/behavior information that transfers to unseen cats.",
+      "forbidden_claim": "External validation of feline age prediction"
+    },
+    "dog_subset_AST": {
+      "task": "five-class developmental stage classification: puppy, juvenile, adolescent, adult, senior",
+      "animals": 125,
+      "bark_units": 2290,
+      "full_available_units": 79142,
+      "split_unit": "dog_id",
+      "macro_f1_mean": {
+        "frozen_AST": 0.2127,
+        "prior_dummy": 0.0950,
+        "difference": 0.1177
+      },
+      "balanced_accuracy_approx": 0.214,
+      "status": "external_boundary_weak_positive_vs_dummy",
+      "boundary": "Direct age-stage labels but cross-species, resource-limited subset, low absolute performance and poor senior recall."
+    },
+    "dog_subset_C1": {
+      "pipelines": ["A0_ast_only", "U1_unbounded_age_residual", "C1_bounded_age_residual"],
+      "completed_fits": 135,
+      "C1_minus_A0_macro_f1": 0.0002234,
+      "C1_minus_A0_positive_seed_repeats": 4,
+      "C1_minus_A0_total_seed_repeats": 9,
+      "C1_minus_A0_gate_passed": false,
+      "C1_minus_dummy": 0.1329640,
+      "C1_above_dummy_seed_repeats": "9/9",
+      "status": "negative_result_for_C1_increment_external_boundary_above_dummy",
+      "decision": "Do not upgrade C1 and do not enter the full 79,142-unit dog benchmark."
+    },
+    "priority_order": [
+      "MeowAgeNet feline age evidence",
+      "CatMeows secondary context-preservation boundary",
+      "dog cross-species age boundary"
+    ],
+    "numeric_pooling_with_meowagenet_allowed": false,
+    "source_paths": [
+      "reports/37_IDEA-067_external_AST_representation_results.md",
+      "metadata/experiments/idea075_dog_C1_age_sensitive_AST_v1_results.json"
+    ]
+  },
+  "aggregation_rules": {
+    "legal": [
+      "Within formal-v2.1, report the nine paired complete-OOF estimates and hierarchical paired bootstrap while retaining the 111-cat internal-validation boundary.",
+      "Within each C1 round, use equal-weight base_seed-by-repeat estimates defined by that locked protocol and paired C1-minus-A0 differences.",
+      "Across C1 rounds, report only a clearly labelled descriptive weighted mean and sign inventory because the role bank, cats, calls and metric are shared.",
+      "Report CatMeows and dog results in separate task-specific tables with their own units, classes and baselines."
+    ],
+    "illegal": [
+      "Treat seed-repeat cells, folds or repeated animal occurrences as independent animals.",
+      "Combine pilot, formal and deterministic replication as independent studies without accounting for the same 111 cats.",
+      "Pool formal complete outer-test OOF results with later inner-validation screens as if they were the same evaluation level.",
+      "Pool CatMeows context Macro-F1, dog five-class age Macro-F1 and MeowAgeNet three-class age Macro-F1 into one effect estimate.",
+      "Use CatMeows or dog-above-dummy results to rescue a failed MeowAgeNet adapter/C1 mechanism gate.",
+      "Upgrade any IDEA077-082 module by selecting favorable seeds, splits, secondary metrics or post-outcome feature groups."
+    ]
+  },
+  "source_hashes": {
+    "pilot_report": "84ffc86a180fc949e0fa670d9e3cd23db55c3aa4e0ed3b9ce1d455b0b92d2ffa",
+    "formal_v2_1_report": "0a7286b2c816258710dc3888774c9e4318e0c94c4de96ab7b41efa94c3306e0f",
+    "formal_v2_1_results": "20f9ed949381bc67f208640064ae75a0a91322dd02ab965b3af607763480ff1e",
+    "formal_v2_1_summary": "d0eba94ef7ca1ae9089e80a96d0906836f33dc51306b7a5b357333983bbf30c1",
+    "hpo_report": "56115a058fcb36115b2193dc3854c0b6177ea991c196491c6a6952685bb59016",
+    "adapter_deterministic_report": "00a518abd4d0b76e4a93567e9ec885b0610fe4efdd0982cd619f575a08e64f20",
+    "adapter_new_seed_summary": "da112bd8f79551e39516b4f9025cab9fb06a1be1e51acf63db5c6328321f67a0",
+    "c1_pre_idea076_ledger": "7d2958638485ad494109f5164d39f0a43b67ef1dd5421da9f0fe01d2ef59023c",
+    "idea076_results": "67f3d0d52cd5d55d2f11e8700e251a571cdc430620b3546b9bec6aed912f59fd",
+    "idea077_results": "97cc10628e445f44fa44c421b3f50977e1007e4224108a1e65beae43d7223694",
+    "idea078_results": "c055f408b80635dc0b35c99491ec25086463ad9260cb1e4cd2e433895ec2587e",
+    "idea079_results": "8c0e73ad72071ff4db3708f81a3e85ebadb1eb2ea1d312b6ddd8b061b2d6e943",
+    "idea080_results": "24d53f7042fa1c9a508bbdbeb802543a2e71a25b263bb68f42053bf4bc9aaee9",
+    "idea081_results": "c0c559c3f9cf39eca830cddc78b47c4df4294d280a8e097de44e3e5066ec2c86",
+    "idea082_results": "ae62913f685dbdcaef179b45601143721a7935927bdbddc6ffa3f75ec2fcb387",
+    "catmeows_dog_AST_report": "5a4a0f1794e299d64670a2d4f110a7f09f352a74cea990bd969373a69752e313",
+    "dog_C1_results": "16dffb8cb4636e28884851a56119de5959958bc56c823e1183e5ec3fa7ab7893"
+  }
+}

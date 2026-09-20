@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea068-age-sensitive-ast-v1",
+  "date": "2026-09-17",
+  "status": "locked_before_feature_extraction_and_inner_screen",
+  "objective": "Test whether label-free F0, periodicity, and voice-quality features provide a stable age-sensitive residual to frozen AST call representations.",
+  "relationship": {
+    "known_results": "Prior AST, Adapter, Hybrid Call+Cat, CatMeows, and canine screening outcomes are known.",
+    "scope": "Exploratory internal mechanism screening, not independent confirmation.",
+    "outer_test_access": false,
+    "hybrid_loss_in_this_stage": false
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "labels": [
+      "kitten",
+      "adult",
+      "senior"
+    ],
+    "independence_unit": "cat_id",
+    "manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399"
+  },
+  "acoustic_features": {
+    "label_information_used": false,
+    "sample_rate_hz": 16000,
+    "extractor": "librosa.pyin plus normalized-autocorrelation and STFT voice-quality summaries",
+    "librosa_version": "0.10.2.post1",
+    "fmin_hz": 60.0,
+    "fmax_hz": 2000.0,
+    "frame_length": 1024,
+    "hop_length": 160,
+    "spectral_tilt_band_hz": [
+      200.0,
+      4000.0
+    ],
+    "missing_value_policy": "training-role median only",
+    "standardization": "training-role mean and standard deviation only",
+    "feature_names": [
+      "log_f0_q10",
+      "log_f0_median",
+      "log_f0_q90",
+      "log_f0_iqr",
+      "log_f0_std",
+      "log_f0_mad",
+      "log_f0_slope",
+      "log_f0_abs_delta_median",
+      "period_variation_proxy",
+      "voiced_fraction",
+      "voiced_probability_mean",
+      "voiced_probability_std",
+      "periodicity_median",
+      "hnr_db_median",
+      "amplitude_variation_proxy",
+      "log_rms_median",
+      "log_rms_iqr",
+      "spectral_tilt_median",
+      "spectral_tilt_iqr",
+      "spectral_flatness_median"
+    ]
+  },
+  "pipelines": [
+    "A0_ast_only",
+    "A1_age_residual",
+    "A2_confidence_gated_age_residual"
+  ],
+  "pipeline_definitions": {
+    "A0_ast_only": "Matched frozen-AST 768->128->3 control.",
+    "A1_age_residual": "A 20->32->128 age-acoustic residual is added to the AST hidden state; the final residual projection is zero-initialized.",
+    "A2_confidence_gated_age_residual": "The same residual is multiplied by sqrt(voiced_fraction * mean_voicing_probability) and a learned 128-dimensional sigmoid gate."
+  },
+  "fixed_training": {
+    "ast_head": "training-role standardized 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "age_hidden_units": 32,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "globally class-balanced call cross-entropy",
+    "checkpoint_selection": "minimum unweighted inner-validation animal cross-entropy",
+    "post_build_seed_offset": 1000000
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true
+  },
+  "screen": {
+    "base_seed": 17,
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "outer_folds_used_as_inner_role_definitions": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 12,
+    "total_fits": 36
+  },
+  "gate": {
+    "evaluated_separately_for_A1_and_A2": true,
+    "all_conditions_required": true,
+    "minimum_mean_fold_macro_f1_gain": 0.005,
+    "minimum_positive_folds": 8,
+    "pooled_validation_cross_entropy_nonworse": true,
+    "pooled_validation_brier_nonworse": true,
+    "minimum_worst_fold_macro_f1_delta": -0.03,
+    "minimum_per_repeat_senior_recall_delta": -0.02,
+    "pass_action": "Freeze the winning age-sensitive structure before testing Hybrid Call+Cat or an external benchmark.",
+    "fail_action": "Record all positive and negative results without post-outcome feature, range, width, or gate tuning."
+  },
+  "dependencies": {
+    "idea_path": "plan/IDEA-068_age_sensitive_acoustic_AST.md",
+    "idea_sha256": "1e792a8c62ba52cde7d5f3e73f9ae929cb2f7d6369e1a9d7aba1cf856879e8db",
+    "idea051_runner_path": "scripts/run_meowagenet_idea051_cat_set.py",
+    "idea051_runner_sha256": "4e8acdefca96215ae3cec94d9158ac081da82eabce08b73c0fe612334ce5d3d5",
+    "runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea068_age_sensitive_ast_v1",
+    "feature_file": "features/age_sensitive_acoustic_features.npz",
+    "summary": "inner_screen_summary.json"
+  }
+}

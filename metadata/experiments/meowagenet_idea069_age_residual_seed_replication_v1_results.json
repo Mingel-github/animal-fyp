@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "meowagenet-idea069-age-residual-seed-replication-v1",
+  "status": "complete_gate_failed",
+  "date": "2026-09-17",
+  "outer_test_accessed": false,
+  "base_seeds": [
+    151,
+    307,
+    509
+  ],
+  "fits": 72,
+  "paired_fold_comparisons": 36,
+  "seed_repeat_estimates": 9,
+  "split_cell_estimates": 12,
+  "primary": {
+    "control_mean_seed_repeat_macro_f1": 0.7477801289963524,
+    "candidate_mean_seed_repeat_macro_f1": 0.7584194520680105,
+    "mean_seed_repeat_delta_macro_f1": 0.010639323071658305,
+    "seed_repeat_delta_sample_sd": 0.02144153761255925,
+    "seed_repeat_delta_median": 0.009614818637748934,
+    "positive_seed_repeats": 6,
+    "negative_seed_repeats": 3
+  },
+  "per_base_seed_mean_delta_macro_f1": {
+    "151": 0.016326064112514027,
+    "307": 0.004205123133736333,
+    "509": 0.011386781968724558
+  },
+  "split_stability": {
+    "nonnegative_split_cells": 7,
+    "negative_split_cells": 5,
+    "worst_delta_macro_f1": -0.038621385112613184,
+    "best_delta_macro_f1": 0.08801211783667928
+  },
+  "descriptive_fold_level": {
+    "control_mean_macro_f1": 0.7475151419660365,
+    "candidate_mean_macro_f1": 0.7579615496239163,
+    "mean_delta_macro_f1": 0.01044640765787996,
+    "positive": 11,
+    "tied": 16,
+    "negative": 9
+  },
+  "pooled_validation": {
+    "animal_occurrences_per_pipeline": 612,
+    "occurrences_are_independent": false,
+    "control_macro_f1": 0.7477314496617327,
+    "candidate_macro_f1": 0.7575636380264014,
+    "delta_macro_f1": 0.009832188364668702,
+    "control_balanced_accuracy": 0.7777777777777777,
+    "candidate_balanced_accuracy": 0.7916666666666666,
+    "delta_balanced_accuracy": 0.01388888888888895,
+    "control_qwk": 0.6227516935295492,
+    "candidate_qwk": 0.6373803758791652,
+    "delta_qwk": 0.014628682349615997,
+    "control_accuracy": 0.7336601307189542,
+    "candidate_accuracy": 0.7418300653594772,
+    "delta_accuracy": 0.008169934640522958,
+    "control_senior_recall": 0.6611111111111111,
+    "candidate_senior_recall": 0.6944444444444444,
+    "delta_senior_recall": 0.033333333333333326,
+    "control_cross_entropy": 0.6788781226725146,
+    "candidate_cross_entropy": 0.6891036481223669,
+    "delta_cross_entropy": 0.010225525449852335,
+    "control_brier": 0.40481633605294076,
+    "candidate_brier": 0.40470874721670447,
+    "delta_brier": -0.00010758883623629423
+  },
+  "gate_conditions": {
+    "mean_seed_repeat_macro_f1_gain": true,
+    "positive_seed_repeats": true,
+    "every_base_seed_mean_positive": true,
+    "nonnegative_split_cells": false,
+    "worst_split_cell_macro_f1": false,
+    "pooled_cross_entropy_nonworse": false,
+    "pooled_brier_nonworse": true,
+    "per_base_seed_senior_recall": true
+  },
+  "gate_passed": false,
+  "interpretation": "A1 shows a small positive average signal across three independent initialization seeds, including positive mean gains for all three seeds, but it does not satisfy the preregistered split-stability and pooled cross-entropy conditions.",
+  "audit": {
+    "preoptimization_pair_max_logit_difference": 0.0,
+    "resume_validation_passed": true,
+    "paired_batch_order_checked": true,
+    "protocol_sha256": "1ac470b389ee7703e9d94db4a2401beb1a79ef349e0c082ba712919b2a5107ef",
+    "runner_sha256": "0677b40da0d5700eea17311f88113ec7e30b5692f6a378eeda465524e03642bd",
+    "run_manifest_sha256": "d7da2318af6cc3988a675dfa780a0f0a6dca582ab09bba6b26e13d26d4978ff8",
+    "seed_replication_summary_sha256": "23f241a7c29e1892a9e5239472fe4a4344625a814f1424124d4907d96b69f732"
+  }
+}

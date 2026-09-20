@@ -1,0 +1,184 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea084-grouped-dual-branch-acoustic-residual-v1",
+  "date": "2026-09-19",
+  "status": "locked_for_cpu_preflight_before_initial_evaluation",
+  "objective": "Test whether a fixed equal-weight source-related versus spectral-energy dual-branch bounded residual improves on contemporaneously rerun C1, A0, and a parameter-matched hash-random 15/5 grouping control.",
+  "claim_boundary": {
+    "exploratory_method_inspired_by_known_results": true,
+    "same_792_calls_111_cats_not_external_confirmation": true,
+    "does_not_reopen_IDEA076": true,
+    "does_not_change_v3_or_historical_protocols": true,
+    "one_random_partition_is_not_complete_causal_proof": true,
+    "not_a_replication_of_cited_papers": true,
+    "no_post_result_weight_width_group_seed_or_gate_tuning": true,
+    "outer_test_predictions": false
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "independence_unit": "cat_id",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "feature_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/extraction_summary.json",
+    "feature_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda",
+    "feature_cache_reused_byte_for_byte": true,
+    "feature_extraction_reads_labels": false
+  },
+  "literature": {
+    "taylor_reby_2010_doi": "https://doi.org/10.1111/j.1469-7998.2009.00661.x",
+    "gemaps_doi": "https://doi.org/10.1109/TAFFC.2015.2457417",
+    "interpretation": "The citations motivate structured acoustic families. The implemented 15/5 split and dual-branch residual are a new project-specific variant, not a paper recipe.",
+    "naming_boundary": "Use source-related and spectral-energy. Do not call the 15/5 split a pure physiological source-filter decomposition because no formants are present and spectral tilt mixes source, filtering, and recording effects."
+  },
+  "feature_groups": {
+    "P1_source_related": {
+      "indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+      "feature_names": ["log_f0_q10", "log_f0_median", "log_f0_q90", "log_f0_iqr", "log_f0_std", "log_f0_mad", "log_f0_slope", "log_f0_abs_delta_median", "period_variation_proxy", "voiced_fraction", "voiced_probability_mean", "voiced_probability_std", "periodicity_median", "hnr_db_median", "amplitude_variation_proxy"],
+      "input_dimensions": 15
+    },
+    "P1_spectral_energy": {
+      "indices": [15, 16, 17, 18, 19],
+      "feature_names": ["log_rms_median", "log_rms_iqr", "spectral_tilt_median", "spectral_tilt_iqr", "spectral_flatness_median"],
+      "input_dimensions": 5
+    },
+    "R1_hash_group_A": {
+      "indices": [0, 1, 2, 4, 5, 8, 9, 10, 11, 13, 14, 15, 17, 18, 19],
+      "input_dimensions": 15,
+      "source_related_count": 11,
+      "spectral_energy_count": 4
+    },
+    "R1_hash_group_B": {
+      "indices": [3, 6, 7, 12, 16],
+      "input_dimensions": 5,
+      "source_related_count": 4,
+      "spectral_energy_count": 1
+    },
+    "hash_derivation": {
+      "material": "IDEA-084-fixed-random-grouping-v1",
+      "material_sha256": "c9c596e6720061f1e46d123af47e3376c402979e41bd13498ab7e8c26b7c7ed0",
+      "rule": "Rank feature indices 0..19 by SHA256(material + '|feature_index=' + decimal_index), take the first 15 as A and remaining 5 as B, then sort indices within each group for execution.",
+      "ranked_indices": [10, 19, 15, 5, 13, 11, 17, 9, 4, 0, 2, 8, 18, 14, 1, 12, 3, 7, 16, 6],
+      "generated_once_not_selected_from_multiple_controls": true
+    }
+  },
+  "model": {
+    "pipelines": ["A0_ast_only", "C1_bounded_wide_additive", "P1_grouped_dual_branch", "R1_hash_random_dual_branch"],
+    "a0_trainable_parameters": 99075,
+    "c1_age_branch_parameters": 9068,
+    "c1_total_trainable_parameters": 108143,
+    "dual_branch_hidden_units_each": 32,
+    "dual_branch_age_parameters": 9152,
+    "dual_branch_total_trainable_parameters": 108227,
+    "dual_minus_c1_parameters": 84,
+    "fusion": "h_prime = h + 0.25 * stopgrad(RMS(h)) * (0.5 * tanh(u_group_A) + 0.5 * tanh(u_group_B))",
+    "branch_weights": [0.5, 0.5],
+    "cap": 0.25,
+    "rms_epsilon": 1e-08,
+    "both_branch_output_layers_zero_initialized": true,
+    "P1_R1_same_parameter_shapes_initialization_order_and_trainable_initial_state": true,
+    "base_seeds": [3583, 5080, 9355],
+    "seed_derivation_text": "IDEA-084-Meow-grouped-dual-branch-residual-v1",
+    "seed_derivation_sha256": "a95de75ff54477f8e0ce310bf0ae74c6b3557233c1bebf5f979f11cac42d8f9b",
+    "seed_derivation_rule": "Read successive non-overlapping SHA-256 uint32 values in big-endian order, reduce modulo 10000, and take the first three candidates without a base-seed or derived full-seed collision with known IDEA-068 through IDEA-082 seeds.",
+    "candidate_sequence": [3583, 5080, 9355, 4998, 1459, 3519, 4394, 219],
+    "known_prior_base_seeds": [17, 43, 59, 101, 151, 268, 307, 509, 1398, 1855, 1872, 2326, 2473, 2495, 3120, 3230, 3550, 3562, 3846, 4025, 4211, 4270, 4322, 4412, 4426, 5118, 5378, 5703, 5934, 5945, 5994, 6346, 6530, 6915, 6917, 7031, 7243, 7339, 8058, 8075, 8694, 8807, 9217, 9330, 9617, 9726, 9763, 9821],
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "fits_per_pipeline": 36,
+    "total_fits": 144,
+    "historical_C1_not_substituted": true,
+    "current_paired_C1_required": true
+  },
+  "fixed_training": {
+    "ast_head": "training-role standardized 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "age_hidden_units": 32,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "globally class-balanced call cross-entropy",
+    "checkpoint_selection": "minimum unweighted inner-validation animal cross-entropy",
+    "age_preprocessing": "Per-dimension finite median imputation followed by mean/std standardization, fit on current training calls only.",
+    "post_build_seed_offset": 1000000,
+    "paired_batch_order": "All four pipelines use the same full seed, cat order, call coverage, and epoch batch-order generator within a cell."
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true
+  },
+  "aggregation": {
+    "primary_metric_unit": "Nine equal-weight base_seed-by-repeat estimates, each pooling four validation folds.",
+    "split_cell_unit": "Twelve repeat-by-fold cells, each first averaged across three base seeds.",
+    "fold_and_repeated_animal_occurrences_are_descriptive_not_independent": true,
+    "error_transition_unit": "Within each paired seed-repeat pooled validation occurrence, count baseline-wrong-to-P1-correct, baseline-correct-to-P1-wrong, unchanged correct, and unchanged wrong using fold plus cat_id identity.",
+    "report_all_axes_no_single_gate_summary": true
+  },
+  "comparisons": {
+    "P1_minus_C1": {"candidate": "P1_grouped_dual_branch", "comparator": "C1_bounded_wide_additive", "question": "method_improvement"},
+    "P1_minus_A0": {"candidate": "P1_grouped_dual_branch", "comparator": "A0_ast_only", "question": "utility"},
+    "P1_minus_R1": {"candidate": "P1_grouped_dual_branch", "comparator": "R1_hash_random_dual_branch", "question": "specific_grouping_value_not_complete_causality"},
+    "C1_minus_A0_descriptive": {"candidate": "C1_bounded_wide_additive", "comparator": "A0_ast_only", "question": "contemporaneous_context_only_no_new_confirmation_gate"}
+  },
+  "gate": {
+    "gated_comparisons": ["P1_minus_C1", "P1_minus_A0", "P1_minus_R1"],
+    "each_comparison_reported_separately": true,
+    "all_conditions_required_within_each_comparison": true,
+    "minimum_mean_seed_repeat_macro_f1_delta": 0.005,
+    "minimum_positive_base_seed_means": 2,
+    "minimum_positive_seed_repeats": 6,
+    "minimum_nonnegative_split_cells": 8,
+    "minimum_worst_split_cell_delta": -0.03,
+    "mean_animal_cross_entropy_nonworse": true,
+    "mean_animal_brier_nonworse": true,
+    "mean_balanced_accuracy_nonworse": true,
+    "minimum_per_base_seed_senior_recall_delta": -0.02,
+    "report_error_corrections_separately_not_as_a_gate": true,
+    "no_single_global_pass_flag": true,
+    "failure_action": "Record the complete mean, correction, calibration, and stability profile; do not add weights, seeds, widths, groups, or threshold changes."
+  },
+  "execution_gate": {
+    "cpu_preflight_only_before_director_authorization": true,
+    "formal_run_requires_flag": "--director-authorized",
+    "gpu_authorized": false,
+    "outer_test_accessed": false
+  },
+  "dependencies": {
+    "idea068_protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+    "idea068_runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "idea071_protocol_sha256": "3050b16a0c3c63f8ea9b672f5bf0c5ad3771e9696bdf7a3c4773351490fcf79a",
+    "idea071_runner_sha256": "f232dc6971bf550052c9a846460e164d29c12dd2b0acfffd234ffbff772a0fcc",
+    "idea076_protocol_sha256": "3fede90e88d3fbecc8f87996b53337244502a24eaffd05e8f30902c554dc47f6",
+    "idea076_runner_sha256": "55bf29ab02fa46651609c8f981dd91fa8cd9069236b146114974e9a94178e717",
+    "idea076_results_sha256": "67f3d0d52cd5d55d2f11e8700e251a571cdc430620b3546b9bec6aed912f59fd",
+    "idea082_protocol_sha256": "0b5e4a4c0be591925811a42769555cab7e5ac9ba8cd2781ac91d1d341e782022",
+    "idea082_runner_sha256": "2ce03190d3079cbfe34fbdd140288b2309dfa12ace54f8d21279e66fa7f2c415",
+    "idea082_results_sha256": "ae62913f685dbdcaef179b45601143721a7935927bdbddc6ffa3f75ec2fcb387",
+    "plan_path": "plan/IDEA-084_grouped_dual_branch_acoustic_residual.md",
+    "literature_report_path": "reports/62_IDEA-084_grouped_dual_branch_residual_literature_and_preflight.md",
+    "runner_path": "scripts/run_meowagenet_idea084_grouped_dual_branch_acoustic_residual.py",
+    "runner_sha256": "fa3913fd7b2a7a66f3a4e61deb150ef7358cc32ee5b65eafdfe9d2c7e2abe12f",
+    "tests_path": "tests/test_idea084_grouped_dual_branch_acoustic_residual.py",
+    "tests_sha256": "d37865e4ded83079e8bd4daa2ce5789b8dd47657d40d3f2df5b20428b6a602a3"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea084_grouped_dual_branch_acoustic_residual_v1",
+    "cpu_preflight": "cpu_preflight.json",
+    "summary": "initial_evaluation_summary.json",
+    "run_summary": "run_summary.json"
+  }
+}

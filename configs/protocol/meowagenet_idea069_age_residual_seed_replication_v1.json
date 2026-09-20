@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea069-age-residual-seed-replication-v1",
+  "date": "2026-09-17",
+  "status": "locked_before_seed_replication",
+  "objective": "Replicate the IDEA-068 A1 age-acoustic residual against its matched A0 AST-only control across three outcome-independent base seeds.",
+  "relationship": {
+    "known_result": "IDEA-068 base seed 17 produced a positive A1 mean inner-validation result.",
+    "scope": "Independent-initialization robustness check on the same predefined inner splits; not an independent-dataset confirmation.",
+    "seed_provenance": "Base seeds 151, 307, and 509 were locked previously for IDEA-065 before the IDEA-068 A1 outcome and have not been used for A1.",
+    "post_outcome_tuning": false
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "independence_unit": "cat_id",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "feature_summary_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/extraction_summary.json",
+    "feature_summary_sha256": "022cc2d54fc2af25430e327ebb60d8daff733d627c76a522d3baf81f3b4b2cda",
+    "feature_extraction_audit": {
+      "status": "complete",
+      "label_information_used": false,
+      "calls": 792,
+      "features": 20,
+      "source_hashes_verified": 792,
+      "protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+      "runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+      "feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba"
+    }
+  },
+  "model": {
+    "pipelines": [
+      "A0_ast_only",
+      "A1_age_residual"
+    ],
+    "base_seeds": [
+      151,
+      307,
+      509
+    ],
+    "repeats": [
+      0,
+      1,
+      2
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 36,
+    "total_fits": 72,
+    "initialization_fairness": "A1 residual output is zero-initialized; paired A0/A1 pre-optimization logits must match exactly."
+  },
+  "fixed_training": {
+    "ast_head": "training-role standardized 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout",
+    "age_hidden_units": 32,
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "globally class-balanced call cross-entropy",
+    "checkpoint_selection": "minimum unweighted inner-validation animal cross-entropy",
+    "post_build_seed_offset": 1000000
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true
+  },
+  "gate": {
+    "all_conditions_required": true,
+    "minimum_mean_seed_repeat_macro_f1_gain": 0.005,
+    "minimum_each_base_seed_mean_delta": 0.0,
+    "minimum_positive_seed_repeats": 6,
+    "minimum_nonnegative_split_cells": 8,
+    "minimum_worst_split_cell_macro_f1_delta": -0.03,
+    "pooled_validation_cross_entropy_nonworse": true,
+    "pooled_validation_brier_nonworse": true,
+    "minimum_per_base_seed_senior_recall_delta": -0.02,
+    "pass_action": "Treat A1 as robust to initialization within the locked MeowAgeNet inner-screen protocol, then freeze it before hybrid/external work.",
+    "fail_action": "Record all positive and negative evidence without selecting favorable seeds or retuning the same result."
+  },
+  "dependencies": {
+    "idea_path": "plan/IDEA-069_A1_independent_seed_replication.md",
+    "idea_sha256": "9fc54b1697c90b2c7e705efbec718ca01161c34defa55d951ca2e2ef1b93d5f4",
+    "idea068_protocol_path": "configs/protocol/meowagenet_idea068_age_sensitive_ast_v1.json",
+    "idea068_protocol_sha256": "ee6f20d8476440ffaae578f46cb4068722271890762cd4a7dcb0acfb611a449c",
+    "idea068_runner_path": "scripts/run_meowagenet_idea068_age_sensitive_ast.py",
+    "idea068_runner_sha256": "3eab879d1a39bfdc4c3d56d3e105d628c0a38222e550760965f71706cccfe745",
+    "runner_path": "scripts/run_meowagenet_idea069_age_residual_seed_replication.py",
+    "runner_sha256": "0677b40da0d5700eea17311f88113ec7e30b5692f6a378eeda465524e03642bd",
+    "git_head": "0e9c31ee5150795d7bf4c35ce2794c05a2123036"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea069_age_residual_seed_replication_v1",
+    "summary": "seed_replication_summary.json"
+  }
+}

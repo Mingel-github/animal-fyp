@@ -1,0 +1,285 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "meowagenet-idea080-ast-last-block-lora-c1-factorial-v1",
+  "date": "2026-09-18",
+  "status": "locked_before_formal_evaluation",
+  "objective": "Test the simple effect of rank-6 Q/V LoRA in the final AST block on frozen-AST A0 and fixed C1 backgrounds, plus their preregistered factorial interaction, using only MeowAgeNet train/validation roles.",
+  "priority_and_claim_boundary": {
+    "dataset_priority": "MeowAgeNet is the primary and only dataset evaluated in IDEA-080.",
+    "scope": "Internal new-seed train/validation module screen; not external or confirmatory evidence.",
+    "idea076_frozen": true,
+    "idea078_frozen": true,
+    "idea079_frozen": true,
+    "dog_results_participate": false,
+    "outer_test_accessed": false,
+    "post_outcome_rank_selection": false,
+    "post_outcome_target_selection": false,
+    "post_outcome_layer_selection": false,
+    "post_outcome_seed_selection": false,
+    "post_outcome_gate_selection": false
+  },
+  "literature_lock": {
+    "lora_paper": {
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "authors": "Hu et al.",
+      "venue": "ICLR 2022",
+      "arxiv": "2106.09685",
+      "url": "https://arxiv.org/abs/2106.09685",
+      "official_code": "https://github.com/microsoft/LoRA"
+    },
+    "petl_ast_paper": {
+      "title": "Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers",
+      "authors": "Cappellazzo et al.",
+      "venue": "IEEE MLSP 2024",
+      "arxiv": "2312.03694",
+      "url": "https://arxiv.org/abs/2312.03694",
+      "official_code": "https://github.com/umbertocappellazzo/PETL_AST",
+      "local_pdf_path": "C:\\Users\\zhu\\Desktop\\essay_article\\Audio\\03_Training_And_Adaptation\\Parameter_Efficient_Tuning\\2024_Cappellazzo_PETL_AST.pdf",
+      "local_pdf_sha256": "9ff59f6b4569b2202a320048a561884032fa86f4175458032b8935ec1d0b108d"
+    },
+    "soft_mixture_ast_context": {
+      "local_pdf_path": "C:\\Users\\zhu\\Desktop\\essay_article\\Audio\\03_Training_And_Adaptation\\Parameter_Efficient_Tuning\\2024_Cappellazzo_Soft_Mixture_of_Adapters_AST.pdf",
+      "local_pdf_sha256": "345f0542e26f61da92dbb70a70632d8e6c9310a48834f70354a54366b4b9ba3b",
+      "used_to_select_lora_hyperparameters": false
+    },
+    "ast_paper": {
+      "title": "AST: Audio Spectrogram Transformer",
+      "authors": "Gong, Chung, and Glass",
+      "venue": "Interspeech 2021",
+      "arxiv": "2104.01778",
+      "url": "https://arxiv.org/abs/2104.01778",
+      "official_code": "https://github.com/YuanGongND/ast",
+      "local_pdf_path": "C:\\Users\\zhu\\Desktop\\essay_article\\Audio\\02_Core_Audio_Models\\2021_Gong_AST_Audio_Spectrogram_Transformer.pdf",
+      "local_pdf_sha256": "c237e981755e9ba5047e7290ffcb7d38d8292e166730ae3cd180b7833f184303"
+    },
+    "decision": "Final block only; query and value projections; rank 6; alpha 6; scaling 1.0; LoRA dropout 0; Kaiming-uniform A and zero B; all biases frozen."
+  },
+  "data": {
+    "calls": 792,
+    "cats": 111,
+    "segments": 843,
+    "independence_unit": "cat_id",
+    "locked_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_ast_protocol_path": "configs/protocol/meowagenet_locked_v1.json",
+    "locked_ast_protocol_sha256": "27773432e07a5c99175857779a6ef6aeddcbda5e4fc2b344508bba825e76bdef",
+    "fbank_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_fbank_128.npz",
+    "fbank_sha256": "007d07f7c236ba44ae76a1e867cee5cc49b774ddde2f54064c68190cd01d60c7",
+    "frozen_embedding_path": "runs/ast_locked_v1/gpu_rerun_2026-08-26/ast_standard_call_embeddings.npz",
+    "frozen_embedding_sha256": "1c763169e9a9306cc46898808c571b0de7e41db0272e963c30fb88d9b4142399",
+    "age_feature_path": "runs/meowagenet_idea068_age_sensitive_ast_v1/features/age_sensitive_acoustic_features.npz",
+    "age_feature_sha256": "ba951db756436ea00adb5c7241ea0264de9fa0f6674a84f274812434d93e26ba",
+    "roles_path": "splits/meowagenet_formal_v2_nested_roles.csv",
+    "roles_sha256": "87deda39808297e1af5b71283e1d7487a7b88d9288cb492c488e3e64fb91c433",
+    "data_manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "data_manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "audio_manifest_path": "metadata/datasets/meowagenet/data_manifest.csv",
+    "audio_manifest_sha256": "68e5131dc5d3cd611ecdda30e5176a6dcc90c0ea2500a6d8a4d9b066ce11a72f",
+    "audio_checksums_path": "metadata/datasets/meowagenet/checksums.sha256",
+    "audio_checksums_sha256": "7c1b51ce1a18b1253d3099e9ce3ea034385cd1851ed121a1a5b82a50a20e6a12"
+  },
+  "ast": {
+    "checkpoint": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "model_safetensors_sha256": "ae0c1e2ad4e1381d851fa9bf298ba13ebc9c5a914cdee2dbe427a6583869924d",
+    "encoder_blocks": 12,
+    "hidden_size": 768,
+    "attention_heads": 12,
+    "segment_seconds": 1.28,
+    "segment_hop_seconds": 0.64,
+    "patch_grid": [12, 12],
+    "patch_tokens": 144,
+    "special_tokens": 2
+  },
+  "cache": {
+    "owner": "IDEA-078",
+    "consumer": "IDEA-080",
+    "read_only": true,
+    "duplicate_extraction_allowed": false,
+    "output_root": "runs/ast_prelast_tokens_idea078_v1",
+    "token_filename": "prelast_tokens.float32.npy",
+    "index_filename": "prelast_token_index.npz",
+    "summary_filename": "cache_manifest.json",
+    "manifest_path": "runs/ast_prelast_tokens_idea078_v1/cache_manifest.json",
+    "producer_protocol_sha256": "d2d2397ab9fed1a1b6302bc248ff2a43f56f511c592d9b28097d79b63a364e13",
+    "manifest_sha256": "af14eb7b8a2f9c362f37484d06af4381fe89f1a497a89c62f1142ab49baf8e94",
+    "token_sha256": "9fb7b32973560d31ad1906c07349e745054683d5a6a3486e3e33182fc6947ca9",
+    "index_sha256": "aa46820aa15a0812ef4437c80c29f28fd515f0228a9d0fd10bac266b734b9bb2",
+    "shape": [843, 146, 768],
+    "dtype": "float32",
+    "storage": "npy_memory_mappable",
+    "index_allow_pickle": false,
+    "contains_labels": false,
+    "contains_roles": false,
+    "contains_cat_ids": false,
+    "prelast_block_output_one_based": 11,
+    "last_block_input_one_based": 12,
+    "raw_token_bytes": 378095616
+  },
+  "model": {
+    "pipelines": [
+      "A0_frozen_tail",
+      "C1_bounded_age",
+      "L1_lastblock_qv_lora",
+      "CL1_C1_plus_lastblock_qv_lora"
+    ],
+    "factor_age_present": {
+      "A0_frozen_tail": false,
+      "C1_bounded_age": true,
+      "L1_lastblock_qv_lora": false,
+      "CL1_C1_plus_lastblock_qv_lora": true
+    },
+    "factor_lora_present": {
+      "A0_frozen_tail": false,
+      "C1_bounded_age": false,
+      "L1_lastblock_qv_lora": true,
+      "CL1_C1_plus_lastblock_qv_lora": true
+    },
+    "C1": {
+      "age_features": 20,
+      "hidden_width": 60,
+      "output_width": 128,
+      "cap": 0.25,
+      "rms_epsilon": 1e-08,
+      "formula": "h=ReLU(W_ast z); residual=0.25*stopgrad(RMS(h))*tanh(W2 GELU(W1 a)); h'=h+residual",
+      "output_zero_initialized": true,
+      "parameters": 9068
+    },
+    "LoRA": {
+      "target_block_one_based": 12,
+      "target_projections": ["query", "value"],
+      "rank": 6,
+      "alpha": 6,
+      "scaling": 1.0,
+      "dropout": 0.0,
+      "A_initialization": "kaiming_uniform",
+      "B_initialization": "zeros",
+      "bias_trainable": false,
+      "parameters_per_projection": 9216,
+      "parameters": 18432
+    },
+    "trainable_parameters": {
+      "A0_frozen_tail": 99075,
+      "C1_bounded_age": 108143,
+      "L1_lastblock_qv_lora": 117507,
+      "CL1_C1_plus_lastblock_qv_lora": 126575
+    },
+    "base_seeds": [59, 7031, 1855],
+    "seed_derivation_text": "IDEA-080-Meow-last-block-LoRA-x-C1-v1",
+    "seed_derivation_encoding": "UTF-8",
+    "seed_derivation_sha256": "8753401b4be127f74a464f7f3277f1b729be3cef42dc7de997f80a8b4b16c393",
+    "seed_derivation_rule": "Read successive non-overlapping digest uint32 values in big-endian order, reduce modulo 10000, and skip base/full-seed collisions with IDEA-068 through IDEA-079; the first three values were eligible.",
+    "excluded_base_seeds_IDEA068_through_IDEA079": [
+      17, 151, 307, 509, 2326, 3550, 4426, 4412, 5703, 3120,
+      6530, 3562, 3846, 4025, 5118, 9821, 6346, 7243, 9617,
+      8075, 4270, 1872, 8807, 268, 6915, 5994, 9330, 4322,
+      6917, 1398, 5934, 9763, 3230, 9726, 8058, 2495, 2473
+    ],
+    "repeats": [0, 1, 2],
+    "folds": [0, 1, 2, 3],
+    "full_seed_rule": "base_seed + 10000 * repeat + 100 * fold",
+    "outer_test_predictions": false,
+    "fits_per_pipeline": 36,
+    "total_fits": 144,
+    "initialization_fairness": "All four pipelines share identical head tensors; L1 and CL1 share identical LoRA tensors; C1 and CL1 share identical age-branch tensors; zero B and zero age output make all initial logits and loss exactly equal."
+  },
+  "fixed_training": {
+    "head": "Training-role A0 final representation standardization, then 768 -> 128 -> 3 with ReLU, BatchNorm, and dropout.",
+    "age_standardization": "Training-role mean and standard deviation only; missing values imputed with training-role median before standardization.",
+    "dropout": 0.44571035356880917,
+    "optimizer": "Adamax",
+    "learning_rate": 0.006,
+    "optimizer_epsilon": 1e-07,
+    "gradient_clip": 1.0,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8,
+    "cat_batch_size": 4,
+    "loss": "Globally class-balanced call cross-entropy; each complete-cat batch is divided by its call-weight sum.",
+    "checkpoint_selection": "Minimum unweighted inner-validation animal cross-entropy with a 1e-6 improvement threshold.",
+    "post_build_seed_offset": 1000000,
+    "head_initialization_seed_offset": 0,
+    "age_initialization_seed_offset": 100003,
+    "lora_initialization_seed_offset": 200003
+  },
+  "aggregation": {
+    "primary_metric": "animal-level Macro-F1",
+    "secondary_metrics": ["animal-level balanced accuracy", "animal-level cross-entropy", "animal-level Brier score", "senior recall", "split stability"],
+    "primary_units": "Nine equally weighted base_seed by repeat validation estimates, each pooling four folds.",
+    "split_units": "Twelve repeat by fold cells, each averaged equally over three base seeds.",
+    "interaction": "(CL1-C1)-(L1-A0) on animal-level Macro-F1",
+    "repeated_occurrence_warning": "Repeated validation animals across seeds and repeats are descriptive, not independent samples."
+  },
+  "gate": {
+    "main_L1_minus_A0": {
+      "minimum_mean_macro_f1": 0.005,
+      "minimum_positive_base_seeds": 2,
+      "minimum_positive_seed_repeats": 6,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_delta": -0.03,
+      "cross_entropy_must_be_nonworse": true,
+      "brier_must_be_nonworse": true,
+      "minimum_per_base_seed_senior_recall_delta": -0.02
+    },
+    "combination_CL1_minus_C1": {
+      "minimum_mean_macro_f1": 0.005,
+      "minimum_positive_base_seeds": 2,
+      "minimum_positive_seed_repeats": 6,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_delta": -0.03,
+      "cross_entropy_must_be_nonworse": true,
+      "brier_must_be_nonworse": true,
+      "minimum_per_base_seed_senior_recall_delta": -0.02
+    },
+    "positive_interaction": {
+      "formula": "(CL1-C1)-(L1-A0)",
+      "mean_must_be_strictly_positive": true,
+      "minimum_positive_base_seeds": 2,
+      "minimum_positive_seed_repeats": 5,
+      "minimum_nonnegative_split_cells": 8,
+      "minimum_worst_split_cell_delta": -0.03,
+      "interpretable_only_if_main_and_combination_pass": true
+    }
+  },
+  "preflight": {
+    "device": "cpu_only",
+    "full_cache_cpu_tail_batch_size": 16,
+    "full_cache_vs_locked_final_tolerance": {
+      "mean_absolute_maximum": 0.000002,
+      "absolute_maximum": 0.00002
+    },
+    "requires_exact_initial_logits": true,
+    "requires_exact_initial_loss": true,
+    "requires_paired_component_states": true,
+    "requires_gradient_reachability": true,
+    "formal_gpu_run_requires": "cpu_preflight.json status GO_FOR_FORMAL_GPU_RUN plus explicit research-director authorization"
+  },
+  "determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "paired_initialization": true,
+    "resume_requires_canonical_artifact_hashes": true
+  },
+  "dependencies": {
+    "literature_report_path": "reports/51_IDEA-080_LoRA_AST_literature_basis.md",
+    "literature_report_sha256": "62d6cc6413c922bedeb786865c503b7682e6bd1058df1572bdf52abd77781f22",
+    "plan_path": "plan/IDEA-080_AST_last_block_LoRA_C1_factorial.md",
+    "plan_sha256": "5b37d19932bad33648ce365381c86e56b6ad8d13b02f59bf00cbd3a807403bf7",
+    "runner_path": "scripts/run_meowagenet_idea080_ast_last_block_lora_c1_factorial.py",
+    "runner_sha256": "2bb7359a6c88544d262d5836b66f099fd62acfc028c4789c9a439978fca140da",
+    "tests_path": "tests/test_idea080_ast_last_block_lora_c1_factorial.py",
+    "tests_sha256": "52e614e8d52f6d9c8087516b37468bc9967157537dfd06734057341ea8d6c18a",
+    "cache_extractor_path": "scripts/extract_ast_prelast_tokens_idea078.py",
+    "cache_extractor_sha256": "ad9b596cd39f7502c8d4cfe7a63192cb71dbde10e3151cd808186f710ad8b698",
+    "idea076_protocol_path": "configs/protocol/meowagenet_idea076_C1_final_seed_confirmation_v1.json",
+    "idea076_protocol_sha256": "3fede90e88d3fbecc8f87996b53337244502a24eaffd05e8f30902c554dc47f6",
+    "idea076_results_path": "metadata/experiments/meowagenet_idea076_C1_final_seed_confirmation_v1_results.json",
+    "idea076_results_sha256": "67f3d0d52cd5d55d2f11e8700e251a571cdc430620b3546b9bec6aed912f59fd",
+    "idea078_results_path": "metadata/experiments/meowagenet_idea078_ast_prelast_special_token_age_injection_v1_results.json",
+    "idea078_results_sha256": "c055f408b80635dc0b35c99491ec25086463ad9260cb1e4cd2e433895ec2587e"
+  },
+  "outputs": {
+    "run_root": "runs/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1",
+    "cpu_preflight": "runs/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1/cpu_preflight.json",
+    "summary": "runs/meowagenet_idea080_ast_last_block_lora_c1_factorial_v1/initial_evaluation_summary.json"
+  }
+}
